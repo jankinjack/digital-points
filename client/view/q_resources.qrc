@@ -1,0 +1,43 @@
+<RCC>
+  <qresource prefix="/icons">
+    <file>icons/icon_serial_port.png</file>
+    <file>icons/icon_help.png</file>
+    <file>icons/icon_plus.png</file>
+    <file>icons/icon_minus.png</file>
+    <file>icons/icon_matrix.png</file>
+    <file>icons/icon_menu.png</file>
+    <file>icons/icon_math.png</file>
+    <file>icons/icon_xrange.png</file>
+    <file>icons/icon_yrange.png</file>
+    <file>icons/icon_check.png</file>
+    <file>icons/icon_alter_edge.png</file>
+    <file>icons/icon_leading_edge.png</file>
+    <file>icons/icon_trailing_edge.png</file>
+    <file>icons/icon_arrow_left.png</file>
+    <file>icons/icon_arrow_right.png</file>
+    <file>icons/icon_log.png</file>
+    <file>icons/icon_restore.png</file>
+    <file>icons/icon_folder.png</file>
+    <file>icons/icon_arrow_bottom.png</file>
+    <file>icons/icon_arrow_top.png</file>
+    <file>icons/icon_network_settings.png</file>
+    <file>icons/icon_plug.png</file>
+    <file>icons/icon_fra.png</file>
+    <file>icons/icon_settings.png</file>
+    <file>icons/icon_line_chart.png</file>
+    <file>icons/icon_close.png</file>
+    <file>icons/icon_maximize.png</file>
+    <file>icons/icon_minimize.png</file>
+  </qresource>
+  <qresource prefix="/fonts">
+    <file>fonts/DroidSans.ttf</file>
+    <file>fonts/DroidSansMono.ttf</file>
+  </qresource>
+  <qresource prefix="/images">
+    <file>images/logo_small_circle.ico</file>
+    <file>images/pid_filter_equation.svg</file>
+    <file>images/pid_equation.svg</file>
+    <file>images/logo_small.png</file>
+    <file>images/splash_screen.png</file>
+  </qresource>
+</RCC>

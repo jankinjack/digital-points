@@ -1,0 +1,27 @@
+[binaries]
+c       = 'gcc'
+cpp     = 'g++'
+ld      = 'ld'
+ar      = 'ar'
+as      = 'as'
+size    = 'size'
+objdump = 'objdump'
+objcopy = 'objcopy'
+strip   = 'strip'
+gdb     = 'gdb'
+
+[built-in options]
+buildtype = 'plain'
+
+[host_machine]
+system     = 'windows'
+cpu_family = 'x86_64'
+cpu        = 'x86_64'
+endian     = 'little'
+
+[properties]
+optimization = 'fast'
+compiler = 'gcc'
+fpu = ''
+float_abi = ''
+name = 'microdp_gcc_dll'

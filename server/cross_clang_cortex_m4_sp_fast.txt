@@ -1,0 +1,19 @@
+[binaries]
+c       = 'clang'
+ar      = 'llvm-ar'
+
+[built-in options]
+buildtype = 'plain'
+
+[host_machine]
+system     = 'bare metal'
+cpu_family = 'arm'
+cpu        = 'cortex-m4'
+endian     = 'little'
+
+[properties]
+optimization = 'fast'
+compiler = 'clang'
+fpu = 'fpv4-sp-d16'
+float_abi = 'hard'
+name = 'microdp_clang_cortex_m4_sp'

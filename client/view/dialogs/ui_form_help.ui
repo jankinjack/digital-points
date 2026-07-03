@@ -1,0 +1,569 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>830</width>
+    <height>632</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Variables Selection</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget {
+	font-family: Droid Sans;
+	font-size: 15px;
+    color: #212121;
+}
+
+QTableWidget::item {
+	font-family: Open Sans;
+	font-size: 15px;
+}
+</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout" name="gridLayout_2">
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <item row="0" column="0">
+     <widget class="QFrame" name="frameTop">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>50</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>50</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#frameTop {
+	border-bottom: 1px solid #566490
+}</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::NoFrame</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_15">
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QFrame" name="frameTop_1">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">#frameTop_1 {	
+	background-color: #6272a4;
+	border-left:1px solid #566490;
+	border-right:1px solid #566490;
+}</string>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::NoFrame</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_3">
+          <item row="0" column="0">
+           <spacer name="horizontalSpacer_12">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>372</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLabel" name="label_4">
+            <property name="font">
+             <font>
+              <family>Droid Sans</family>
+              <pointsize>-1</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QLabel {
+	color: #f8f8f2;
+	font-size: 16px;
+}</string>
+            </property>
+            <property name="text">
+             <string>Help</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <spacer name="horizontalSpacer_13">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>372</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QFrame" name="frameTop_2">
+         <property name="minimumSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">#frameTop_2 {	
+	background-color: #6272a4;
+}</string>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::NoFrame</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_13">
+          <property name="spacing">
+           <number>5</number>
+          </property>
+          <property name="leftMargin">
+           <number>5</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>5</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QPushButton" name="pushButtonCloseApp">
+            <property name="minimumSize">
+             <size>
+              <width>28</width>
+              <height>28</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>28</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton {	
+	background-color: rgba(255, 255, 255, 0);
+	border: none; 
+	border-radius: 5px;
+	color: white;
+}
+
+QPushButton:hover {
+	background-color:  #D21F3C;
+	border-style: solid;
+	border-radius: 4px;
+	color: white;
+}
+QPushButton:pressed {
+	background-color: #B31431;
+	border-style: solid;
+	border-radius: 4px;
+	color: white;
+}</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="../q_resources.qrc">
+              <normaloff>:/icons/icons/icon_close.png</normaloff>:/icons/icons/icon_close.png</iconset>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="QFrame" name="frameContent">
+      <property name="styleSheet">
+       <string notr="true">#frameContent {
+	background-color: #f8f8f2;
+}</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::NoFrame</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_6">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <item row="0" column="0">
+        <layout class="QGridLayout" name="gridLayout_4">
+         <property name="leftMargin">
+          <number>9</number>
+         </property>
+         <property name="topMargin">
+          <number>9</number>
+         </property>
+         <property name="rightMargin">
+          <number>9</number>
+         </property>
+         <property name="spacing">
+          <number>0</number>
+         </property>
+         <item row="0" column="0">
+          <widget class="QPushButton" name="pushButtonExpressions">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>25</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>25</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+	background-color: #6272a4;	
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border: 1px solid #6272a4;
+    color: #f8f8f2;
+	padding-left: 8px;
+	padding-right: 8px;
+}
+
+QPushButton:hover {
+	background-color: #7284b9;
+	border-style: solid;
+	color: #f8f8f2;
+}
+
+QPushButton:pressed {
+	background-color: #566490;
+	border-style: solid;
+	color: #f8f8f2;
+}
+
+QPushButton:disabled {
+	background-color: #aaaaaa;
+	border: 2px solid #aaaaaa;
+}</string>
+           </property>
+           <property name="text">
+            <string>Выражения</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <spacer name="horizontalSpacer_2">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>720</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item row="1" column="0" colspan="2">
+          <widget class="QFrame" name="frame_1">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">#frame_1 {
+	background: white;
+	border: 0px solid #6272a4;
+	border-bottom-left-radius: 7px;
+	border-bottom-right-radius: 7px;
+	border-top-right-radius: 7px;
+}</string>
+           </property>
+           <property name="frameShape">
+            <enum>QFrame::StyledPanel</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Raised</enum>
+           </property>
+           <layout class="QGridLayout" name="gridLayout_5">
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
+            <property name="topMargin">
+             <number>3</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>3</number>
+            </property>
+            <property name="spacing">
+             <number>3</number>
+            </property>
+            <item row="1" column="0">
+             <widget class="QScrollArea" name="scrollArea">
+              <property name="frameShape">
+               <enum>QFrame::NoFrame</enum>
+              </property>
+              <property name="horizontalScrollBarPolicy">
+               <enum>Qt::ScrollBarAlwaysOff</enum>
+              </property>
+              <property name="widgetResizable">
+               <bool>true</bool>
+              </property>
+              <widget class="QWidget" name="scrollAreaWidgetContents">
+               <property name="geometry">
+                <rect>
+                 <x>0</x>
+                 <y>0</y>
+                 <width>795</width>
+                 <height>1428</height>
+                </rect>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">#scrollAreaWidgetContents {
+	background-color: white;
+}</string>
+               </property>
+               <layout class="QGridLayout" name="gridLayout">
+                <property name="leftMargin">
+                 <number>0</number>
+                </property>
+                <property name="topMargin">
+                 <number>0</number>
+                </property>
+                <property name="rightMargin">
+                 <number>0</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>0</number>
+                </property>
+                <property name="spacing">
+                 <number>0</number>
+                </property>
+                <item row="0" column="0">
+                 <widget class="QLabel" name="label">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="text">
+                   <string>x1, x2, x3, ... – обозначения переменных.
+x – алиас текущей переменной, для которой формируется выражение.
+t – функция времени.
+
+Пример выражений:
+    0.5 * x + 10 – сумма константы 10 и произведения 'x' с константой 0,5
+    sin(t) + x1^2 * x2 – синус 't' плюс произведение квадрата 'x1' и 'x'
+
+Выражение по умолчанию:
+    x
+
+Список поддерживаемых функций:
+    sin(x) – синус 'x'
+    cos(x) – косинус 'x'
+    tan(x) – тангенс 'x'
+    arcsin(x) – арксинус 'x'
+    arccos(x) – арккосинус 'x'
+    arctan(x) – арктангенс 'x'
+    arctan2(x, y) – арктангенс отношения y/x с учётом квадранта
+    degrees(x) – преобразование 'x' от радиан к градусам
+    radians(x) – преобразование 'x' от градусов к радианам
+    deg2rad(x) – то же, что и radians(x)
+    rad2deg(x) – то же, что и degrees(x)
+    sinh(x) – гиперболический синус 'x'
+    cosh(x) – гиперболический косинус 'x'
+    tanh(x) – гиперболический тангенс 'x'
+    arcsinh(x) – гиперболический арксинус 'x'
+    arccosh(x) – гиперболический арккосинус 'x'
+    arctanh(x) – гиперболический арктангенс 'x'
+    round(x, n) – округление 'x' до ближайшего числа с 'n' цифр после десятичной запятой
+    fix(x) – округление 'x' до ближайшего целого числа в сторону 0
+    floor(x) – округление 'x' до наибольшего целого, меньшего или равного 'x'
+    ceil(x) – округление 'x' до наименьшего целого, большего или равного 'x'
+    trunc(x) – то же, что и fix(x)
+    cumprod(x) – накапливаемое произведение 'x'
+    cumsum(x) – накапливаемая сумма 'x'
+    gradient(x) – градиент 'x'
+    exp(x) – экспонента 'x'
+    log(x) – натуральный логарифм 'x'
+    log10(x) – десятичный логарифм 'x'
+    log2(x) – двоичный логарифм 'x'
+    i0(x) – модифицированная функция Бесселя 1-го рода 0-го порядка 'x'
+    sinc(x) – нормированный кардинальный синус 'x'
+    mod(x1, x2) – остаток от деления 'x1' на 'x2'
+    remainder(x1, x2) – то же, что и mod(x1, x2)
+    maximum(x1, x2) – максимальное значение между 'x1' и 'x2'
+    minimum(x1, x2) – минимальное значение между 'x1' и 'x2'
+    clip(x, u, l) – ограничение значения между верхним 'u' и нижним 'l' уровнями
+    sqrt(x) – квадратный корень 'x'
+    cbrt(x) – кубический корень 'x'
+    square(x) – квадрат 'x' (то же, что и x**2 или x^2)
+    absolute(x) – абсолютное значение 'x'
+    abs(x) – то же, что и absolute(x)
+    sign(x) – функция знака 'x'
+    heaviside(x) – функция Хевисайда 'x'
+    median_f(x, w) – медианный фильтр 'x' порядка 'w'
+    l_f(x, w) – оператор L для 'x' из алгоритма LULU фильтрации порядка 'w'
+    u_f(x, w) – оператор U для 'x' из алгоритма LULU фильтрации порядка 'w'
+    lu_f(x, w) – оператор LU для 'x' из алгоритма LULU фильтрации порядка 'w'
+    ul_f(x, w) – оператор UL для 'x' из алгоритма LULU фильтрации порядка 'w'
+    lulu_f(x, w) – LULU фильтр 'x' порядка 'w'
+    ulul_f(x, w) – ULUL фильтр 'x' порядка 'w'
+    ma_f(x, w) – фильтр скользящего среднего 'x' порядка 'w'
+</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+                  </property>
+                  <property name="wordWrap">
+                   <bool>true</bool>
+                  </property>
+                  <property name="margin">
+                   <number>10</number>
+                  </property>
+                  <property name="textInteractionFlags">
+                   <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item row="1" column="0">
+        <layout class="QHBoxLayout" name="horizontalLayout_6">
+         <property name="spacing">
+          <number>0</number>
+         </property>
+         <property name="leftMargin">
+          <number>3</number>
+         </property>
+         <item>
+          <spacer name="horizontalSpacer">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources>
+  <include location="../q_resources.qrc"/>
+ </resources>
+ <connections/>
+</ui>

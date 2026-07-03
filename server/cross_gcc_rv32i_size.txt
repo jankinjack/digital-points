@@ -1,0 +1,27 @@
+[binaries]
+c       = 'riscv64-unknown-elf-gcc'
+cpp     = 'riscv64-unknown-elf-g++'
+ld      = 'riscv64-unknown-elf-ld'
+ar      = 'riscv64-unknown-elf-ar'
+as      = 'riscv64-unknown-elf-as'
+size    = 'riscv64-unknown-elf-size'
+objdump = 'riscv64-unknown-elf-objdump'
+objcopy = 'riscv64-unknown-elf-objcopy'
+strip   = 'riscv64-unknown-elf-strip'
+gdb     = 'riscv64-unknown-elf-gdb'
+
+[built-in options]
+buildtype = 'plain'
+
+[host_machine]
+system     = 'bare metal'
+cpu_family = 'riscv32'
+cpu        = 'rv32i'
+endian     = 'little'
+
+[properties]
+optimization = 'size'
+compiler = 'gcc'
+fpu = ''
+float_abi = ''
+name = 'microdp_gcc_rv32i'

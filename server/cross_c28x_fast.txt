@@ -1,0 +1,20 @@
+[binaries]
+c       = 'cl2000'
+ar      = 'ar2000'
+strip   = 'strip2000'
+
+[built-in options]
+buildtype = 'plain'
+
+[host_machine]
+system     = 'bare metal'
+cpu_family = 'c2000'
+cpu        = 'c28x'
+endian     = 'little'
+
+[properties]
+optimization = 'fast'
+compiler = 'cl2000'
+fpu = 'softlib'
+float_abi = ''
+name = 'microdp_c28x'

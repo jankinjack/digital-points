@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>340</width>
+    <height>30</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>340</width>
+    <height>30</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>340</width>
+    <height>30</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">#Form {
+    background-color: none;
+}
+
+QWidget {
+	font-family: Droid Sans;
+	font-size: 15px;
+    color: #212121;
+}
+
+QTableWidget::item {
+	font-family: Open Sans;
+	font-size: 15px;
+}
+
+
+</string>
+  </property>
+  <layout class="QHBoxLayout" name="horizontalLayout">
+   <property name="spacing">
+    <number>0</number>
+   </property>
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
+   <item>
+    <widget class="QLineEdit" name="lineEditArrayIndex">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>170</width>
+       <height>30</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>170</width>
+       <height>30</height>
+      </size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLineEdit {
+    color: #babbbd;
+	background-color: white;
+	border-left: 1px solid #BABBBD;
+	border-top: 1px solid #BABBBD;
+	border-bottom: 1px solid #BABBBD;
+	border-radius: 0px;
+	padding: 3px;
+}
+
+QLineEdit:focus {
+    color: black;
+}
+
+QLineEdit:disabled {
+    color: #aaaaaa;
+	background-color: #babbbd;
+}</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="placeholderText">
+      <string>Index</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="pushButtonSetTrigger">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>170</width>
+       <height>30</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>340</width>
+       <height>30</height>
+      </size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton {	
+	background-color: white;	
+	border: none; 
+	color: #212121;
+	border-bottom: 1px solid #BABBBD;
+	border-top: 1px solid #BABBBD;
+	border-left: 1px solid #BABBBD;
+	border-right: 1px solid #BABBBD;
+}
+
+QPushButton:hover {
+	background-color: #dfe2ec;
+	border-style: solid;
+	color: black;
+}
+
+QPushButton:pressed {
+	background-color: #bec5da;
+	border-style: solid;
+	color: black;
+}
+
+QPushButton:disabled {
+	background-color: #aaaaaa;
+	border: 1px solid #aaaaaa;
+}</string>
+     </property>
+     <property name="text">
+      <string>   Select as Trigger   </string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="../q_resources.qrc"/>
+ </resources>
+ <connections/>
+</ui>

@@ -1,0 +1,27 @@
+[binaries]
+c       = 'arm-none-eabi-gcc'
+cpp     = 'arm-none-eabi-g++'
+ld      = 'arm-none-eabi-ld'
+ar      = 'arm-none-eabi-ar'
+as      = 'arm-none-eabi-as'
+size    = 'arm-none-eabi-size'
+objdump = 'arm-none-eabi-objdump'
+objcopy = 'arm-none-eabi-objcopy'
+strip   = 'arm-none-eabi-strip'
+gdb     = 'arm-none-eabi-gdb'
+
+[built-in options]
+buildtype = 'plain'
+
+[host_machine]
+system     = 'bare metal'
+cpu_family = 'arm'
+cpu        = 'cortex-m7'
+endian     = 'little'
+
+[properties]
+optimization = 'fast'
+compiler = 'gcc'
+fpu = 'auto'
+float_abi = 'soft'
+name = 'microdp_gcc_cortex_m7'
