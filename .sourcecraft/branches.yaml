@@ -1,0 +1,20 @@
+branch_protection:
+  policies:
+    ## Preventing commit history rewrites, edits without 
+    ## a pull request, and deletion of the main branch
+    - target: default_branch
+      message: "Direct push into default branch is forbidden, create PR first"
+      rules:
+        - prevent_force_push
+        - prevent_non_pr_changes
+        - prevent_deletion
+
+    ## Preventing commit history rewrites, edits without 
+    ## a pull request, and deletion of the main branch
+    - target: branch
+      matches: "main"
+      message: "Direct push into main branch is forbidden, create PR first"
+      rules:
+        - prevent_force_push
+        - prevent_non_pr_changes
+        - prevent_deletion
