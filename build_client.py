@@ -7,7 +7,7 @@ from build_server import SERVER_DIR
 
 ROOT = Path(__file__).resolve().parent
 CLIENT_DIR = ROOT / 'client'
-MAIN_DIST = ROOT / 'main.dist'
+MAIN_DIST = ROOT / 'build' / 'main.dist'
 OUTPUT_DIR = ROOT / 'output'
 
 PYTHON_CMD = 'python'
