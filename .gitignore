@@ -224,3 +224,4 @@ client/config.json
 client/log
 server/build*
 dev
+output
