@@ -143,10 +143,17 @@ void interface_irq_handler(void)
 
 ## Build from source
 
-Clone the repository:
+Clone the repository from GitHub:
 
 ```bash
-git clone https://github.com/jankinjack/digital_points.git
+git clone https://github.com/jankinjack/digital-points.git
+cd digital-points
+```
+
+or from SourceCraft:
+
+```bash
+git clone https://git@git.sourcecraft.dev/jankinjack/digital-points.git
 cd digital-points
 ```
 
