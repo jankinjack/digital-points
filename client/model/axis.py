@@ -466,17 +466,17 @@ class Axis(pg.PlotItem):
         # when they are out of view box.
         if x0 < view_range[0]:
             x0 = view_range[0]
-            method_0 = 'floor'
+            method_0 = 'ceil'
         elif x0 > view_range[1]:
             x0 = view_range[1]
-            method_0 = 'ceil'
+            method_0 = 'floor'
 
         if x1 < view_range[0]:
             x1 = view_range[0]
-            method_1 = 'floor'
+            method_1 = 'ceil'
         elif x1 > view_range[1]:
             x1 = view_range[1]
-            method_1 = 'ceil'
+            method_1 = 'floor'
 
         self.cursors[0].setValue(x0)
         self.cursors[1].setValue(x1)
