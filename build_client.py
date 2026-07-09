@@ -34,7 +34,7 @@ def build_client() -> None:
         PYTHON_CMD,
         '-m',
         'nuitka',
-        CLIENT_DIR / 'main.py',
+        str(CLIENT_DIR / 'main.py'),
         '--output-filename=Digital Points.exe',
         '--file-description=Digital Points',
         f'--file-version={info.__version__}',

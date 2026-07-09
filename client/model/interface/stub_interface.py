@@ -3,7 +3,7 @@ import ctypes
 from contextlib import suppress
 from typing import Optional, Callable, Self
 
-from model.interface.stub_micro_dp import lib, get_stub_rx_frame
+from model.interface.stub_server import lib, get_stub_rx_frame
 
 
 class StubInterface:
@@ -12,7 +12,7 @@ class StubInterface:
     Provides thread-safe writing and custom frame reading logic
     based on a proprietary termination key (DP_KEY).
     """
-    
+
     __slots__ = (
         '_write_lock',
         '_is_initialized',
@@ -26,7 +26,7 @@ class StubInterface:
         '_bytesize',
         '_timeout',
     )
-    
+
     __instance = None
 
     def __new__(cls) -> Self:
@@ -164,7 +164,7 @@ class StubInterface:
 
             ChunkArray = ctypes.c_uint8 * len(self._write_buf)
             c_chunk = ChunkArray.from_buffer_copy(data)
-            
+
             lib.micro_dp_handle_rx_chunk(c_chunk, len(c_chunk))
 
             return len(self._write_buf)
@@ -187,10 +187,10 @@ class StubInterface:
     ) -> list[int]:
         """
         Read a frame from the stub receive buffer.
-        
+
         Args:
             check_func: A callback to validate the frame length.
-            blocked_thread_exit: A callback to check if a blocked thread should exit 
+            blocked_thread_exit: A callback to check if a blocked thread should exit
                                 (kept for API compatibility).
 
         Returns:
@@ -206,7 +206,7 @@ class StubInterface:
             if self._read_buf:
                 frame_read += self._read_buf
             else:
-                break;
+                break
 
         # A valid frame must be at least 9 bytes long and pass the custom check.
         if len(frame_read) < 9 or not check_func(len(frame_read)):

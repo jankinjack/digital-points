@@ -3,7 +3,7 @@ import ctypes
 import time
 
 # Define the relative path to the compiled C library.
-LIB_FILENAME = "micro_dp/builds/dll/libmicrodp_gcc_dll_fast.dll"
+LIB_FILENAME = "server/builds/dll/libmicrodp_gcc_dll_fast.dll"
 lib_path = os.path.abspath(LIB_FILENAME)
 
 if not os.path.exists(lib_path):
