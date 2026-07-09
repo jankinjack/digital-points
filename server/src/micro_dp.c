@@ -109,7 +109,7 @@ EXPORT Exception_DP micro_dp_init(Info_DP_Struct * const info)
         (uint_least8_t *)micro_dp_calloc(MICRO_DP.info.static_buffer, MICRO_DP.info.memory_limit / 2, sizeof(uint_least8_t), MICRO_DP.info.memory_limit);
 
     MICRO_DP.mem.var_samples =
-            (Value_DP_Union *)micro_dp_calloc(MICRO_DP.info.static_buffer, 1, sizeof(Value_DP_Union), MICRO_DP.info.memory_limit);
+        (Value_DP_Union *)micro_dp_calloc(MICRO_DP.info.static_buffer, 1, sizeof(Value_DP_Union), MICRO_DP.info.memory_limit);
 
     // Calculate the maximum required transmit buffer size across all functions.
     MICRO_DP.mem.max_size_tx = DP_MAX(get_0x00_frame_size(), get_0x01_frame_size());
@@ -394,7 +394,7 @@ void read_variable(Value_DP_Union * const dest, const size_t var_count)
         for (ptrdiff_t i = 0; i < var_count; i++)
         {
 #ifndef MICRO_DP_EXPORTS
-            dest[i] = *MICRO_DP.vars[i].ptr;
+            memcpy(&dest[i], MICRO_DP.vars[i].ptr, sizeof(Value_DP_Union));
 #else
             dest[i].float32 = (float)rand() / (float)RAND_MAX;
 #endif
@@ -408,7 +408,7 @@ void read_variable(Value_DP_Union * const dest, const size_t var_count)
         for (ptrdiff_t i = 0; i < var_count; i++)
         {
 #ifndef MICRO_DP_EXPORTS
-            dest[i] = *MICRO_DP.vars[i].ptr;
+            memcpy(&dest[i], MICRO_DP.vars[i].ptr, sizeof(Value_DP_Union));
 #else
             dest[i].float32 = (float)rand() / (float)RAND_MAX;
 #endif
@@ -429,14 +429,14 @@ void read_variable(Value_DP_Union * const dest, const size_t var_count)
             do
             {
 #ifndef MICRO_DP_EXPORTS
-                sample = *MICRO_DP.vars[i].ptr;
-                sample_check = *MICRO_DP.vars[i].ptr;
+                memcpy((void *)&sample, MICRO_DP.vars[i].ptr, sizeof(Value_DP_Union));
+                memcpy((void *)&sample_check, MICRO_DP.vars[i].ptr, sizeof(Value_DP_Union));
 #else
                 sample.float32 = (float)rand() / (float)RAND_MAX;
                 sample_check.float32 = sample.float32;
 #endif
 
-            } while (sample.uint64 != sample_check.uint64);
+            } while (memcmp((void *)&sample, (void *)&sample_check, sizeof(Value_DP_Union)) != 0);
 
             dest[i] = sample;
         }

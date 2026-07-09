@@ -13,7 +13,7 @@
 /**
  * \brief   Precomputed CRC-16 lookup table for fast checksum calculation.
  */
-static const uint16_t CRC16_TABLE[256] = {
+static const uint_fast16_t CRC16_TABLE[256] = {
     0x0000u, 0xC0C1u, 0xC181u, 0x0140u, 0xC301u, 0x03C0u, 0x0280u, 0xC241u, 0xC601u, 0x06C0u, 0x0780u, 0xC741u, 0x0500u, 0xC5C1u, 0xC481u, 0x0440u,
     0xCC01u, 0x0CC0u, 0x0D80u, 0xCD41u, 0x0F00u, 0xCFC1u, 0xCE81u, 0x0E40u, 0x0A00u, 0xCAC1u, 0xCB81u, 0x0B40u, 0xC901u, 0x09C0u, 0x0880u, 0xC841u,
     0xD801u, 0x18C0u, 0x1980u, 0xD941u, 0x1B00u, 0xDBC1u, 0xDA81u, 0x1A40u, 0x1E00u, 0xDEC1u, 0xDF81u, 0x1F40u, 0xDD01u, 0x1DC0u, 0x1C80u, 0xDC41u,
@@ -43,11 +43,11 @@ static const uint16_t CRC16_TABLE[256] = {
  */
 EXPORT uint16_t crc16(const uint_least8_t * const buf, const size_t size)
 {
-    uint16_t crc = (uint16_t)0xFFFFu;
+    uint_fast16_t crc = 0xFFFFu;
 
-    for (ptrdiff_t i = 0; i < (ptrdiff_t)size; i++)
+    for (size_t i = 0; i < size; i++)
     {
-        const uint16_t index = buf[i] ^ crc;
+        const uint_fast16_t index = buf[i] ^ crc;
 
         crc = (crc >> 8) ^ CRC16_TABLE[index & 0x00FFu];
     }

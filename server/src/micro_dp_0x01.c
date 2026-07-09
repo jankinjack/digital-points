@@ -139,8 +139,8 @@ static Exception_DP build_0x01_frame(void)
 #elif DP_BYTE_SIZE == 16
         for (ptrdiff_t k = (ptrdiff_t)MICRO_DP.vars[j].address_alignment; k < k_max; k++)
         {
-            tx_buf[i++] = READ_BYTE(MICRO_DP.vars[j].ptr->uint16_array[k], 0);
-            tx_buf[i++] = READ_BYTE(MICRO_DP.vars[j].ptr->uint16_array[k], 1);
+            tx_buf[i++] = READ_BYTE(sample[j].uint16_array[k], 0);
+            tx_buf[i++] = READ_BYTE(sample[j].uint16_array[k], 1);
         }
 #endif
     }

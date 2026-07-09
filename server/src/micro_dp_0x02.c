@@ -13,8 +13,8 @@
 #include "micro_dp.h"
 #include "micro_dp_crc16.h"
 
-static bool_t is_trigger_occurred(void);
-static void common_collect(void);
+static inline bool_t is_trigger_occurred(void);
+static inline void common_collect(void);
 
 static Exception_DP build_0x02_ack_frame(void);
 static Exception_DP build_0x02_frame(void);
@@ -127,7 +127,7 @@ EXPORT float32_t collect_0x02_vars(void)
 /**
  * \brief   Acquire samples for all configured variables into the circular buffer.
  */
-static void common_collect(void)
+static inline void common_collect(void)
 {
     read_variable(MICRO_DP.trigger.current_pointer, MICRO_DP.var_count);
 
@@ -437,10 +437,10 @@ static Exception_DP build_0x02_frame(void)
     tx_buf[1] = (uint_least8_t)DP_MODE_0x02;
 
     // Calculate the trigger sample index.
-    const ptrdiff_t trigger_sample_index = (ptrdiff_t)(MICRO_DP.trigger.fill_pointer - MICRO_DP.mem.var_samples) / (ptrdiff_t)MICRO_DP.var_count;
+    const uint16_t trigger_sample_index = (uint16_t)((ptrdiff_t)(MICRO_DP.trigger.fill_pointer - MICRO_DP.mem.var_samples) / (ptrdiff_t)MICRO_DP.var_count);
 
-    tx_buf[3] = READ_BYTE((uint16_t)trigger_sample_index, 0);
-    tx_buf[4] = READ_BYTE((uint16_t)trigger_sample_index, 1);
+    tx_buf[3] = READ_BYTE(trigger_sample_index, 0);
+    tx_buf[4] = READ_BYTE(trigger_sample_index, 1);
 
     // Calculate the number of samples to transmit in this chunk.
     const uint_fast16_t chunk_size = DP_MIN(MICRO_DP.trigger.samples_count_per_var - MICRO_DP.tx_samples_count, MICRO_DP.mem.samples_count_tx_0x02);
@@ -461,49 +461,26 @@ static Exception_DP build_0x02_frame(void)
         i++;
 
         const uintptr_t address_alignment = MICRO_DP.vars[k].address_alignment;
-        const size_t type_bytesize = TYPE_BYTESIZE[MICRO_DP.vars[k].type] + address_alignment;
-
-        for (ptrdiff_t j = MICRO_DP.tx_samples_count; j < tx_end; j++)
-        {
-            const Value_DP_Union sample = MICRO_DP.mem.var_samples[(j * MICRO_DP.var_count) + k];
+        const size_t valid_bytes = TYPE_BYTESIZE[MICRO_DP.vars[k].type];
+        const size_t type_bytesize = valid_bytes + address_alignment;
 
 #if DP_BYTE_SIZE == 8
-            const ptrdiff_t l_max = 8 + (ptrdiff_t)address_alignment;
-
-            for (ptrdiff_t l = (ptrdiff_t)address_alignment; l < l_max; l++)
-            {
-                if (l < type_bytesize)
-                {
-                    tx_buf[i] = sample.uint8_array[l];
-                    i++;
-                }
-                else
-                {
-                    tx_buf[i] = 0u;
-                    i++;
-                }
-            }
+        const size_t padding = 8u - valid_bytes;
 #elif DP_BYTE_SIZE == 16
-            const ptrdiff_t l_max = 4 + (uint_fast8_t)address_alignment;
-
-            for (ptrdiff_t l = (ptrdiff_t)address_alignment; l < l_max; l++)
-            {
-                if (l < type_bytesize)
-                {
-                    tx_buf[i] = READ_BYTE(sample.uint16_array[l], 0);
-                    i++;
-                    tx_buf[i] = READ_BYTE(sample.uint16_array[l], 1);
-                    i++;
-                }
-                else
-                {
-                    tx_buf[i] = 0u;
-                    i++;
-                    tx_buf[i] = 0u;
-                    i++;
-                }
-            }
+        const size_t padding = 4u - valid_bytes;
 #endif
+        
+        Value_DP_Union * ptr = &MICRO_DP.mem.var_samples[(MICRO_DP.tx_samples_count * MICRO_DP.var_count) + k];
+
+        for (ptrdiff_t j = 0; j < chunk_size; j++)
+        {
+            memcpy(&tx_buf[i], &ptr->uint8_array[address_alignment], valid_bytes);
+            i += valid_bytes;
+            
+            memset(&tx_buf[i], 0, padding);
+            i += padding;
+
+            ptr += MICRO_DP.var_count;
         }
     }
 
@@ -513,7 +490,7 @@ static Exception_DP build_0x02_frame(void)
     if (MICRO_DP.tx_samples_count >= MICRO_DP.trigger.samples_count_per_var)
     {
         tx_buf[2] = (uint_least8_t)DP_0x02_TX_CHUNK_FINAL;
-        MICRO_DP.trigger.end   = true;
+        MICRO_DP.trigger.end = true;
     }
     else
     {
@@ -551,7 +528,7 @@ static Exception_DP build_0x02_frame(void)
  *
  * \return  true if the trigger event has occurred, false otherwise.
  */
-static bool_t is_trigger_occurred(void)
+static inline bool_t is_trigger_occurred(void)
 {
     TriggerState_DP state;
 
