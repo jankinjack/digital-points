@@ -26,7 +26,10 @@ def prepare_dist() -> None:
         MAIN_DIST / 'libmicrodp',
     )
 
-    shutil.copytree(MAIN_DIST, OUTPUT_DIR / 'windows')
+    release_dir = OUTPUT_DIR / f"Digital Points v{info.__version__}"
+
+    shutil.copytree(MAIN_DIST, release_dir)
+    shutil.make_archive(str(release_dir), 'zip', OUTPUT_DIR)
 
 
 def build_client() -> None:
