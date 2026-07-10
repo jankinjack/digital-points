@@ -253,10 +253,6 @@ class GraphView(QObject):
         self._number_lines -= 1
         self.number_lines_changed.emit(self._number_lines)
 
-        self._update_cursor_bounds(
-            empty=self._number_lines == 0 and len(self._imported_lines) == 0
-            )
-
     def remove_all_lines(self) -> None:
         """ Remove all non-imported lines from all axes. """
 
@@ -269,8 +265,6 @@ class GraphView(QObject):
         self._number_lines = 0
         self.number_lines_changed.emit(self._number_lines)
 
-        self._update_cursor_bounds(empty=len(self._imported_lines) == 0)
-
     def remove_all_imported_lines(self) -> None:
         """ Remove all imported lines from all axes. """
 
@@ -278,8 +272,6 @@ class GraphView(QObject):
             axis.remove_all_imported_lines()
 
         self._imported_lines = []
-
-        self._update_cursor_bounds(empty=self._number_lines == 0)
 
     @Slot(int, np.ndarray, np.ndarray, bool, int)
     def set_data(
@@ -378,8 +370,6 @@ class GraphView(QObject):
                 axis.dump_line.setData(x_slice, zeros)
                 axis.dump_texts.append(dump_text)
 
-        self._update_cursor_bounds(empty=False)
-
     def set_imported_data(
             self,
             lines: tuple[int, ...],
@@ -394,30 +384,6 @@ class GraphView(QObject):
 
         for i, l in enumerate(lines):
             self._imported_lines[l].data = (x_data, y_data[i])
-
-        self._update_cursor_bounds(empty=False)
-
-    def _update_cursor_bounds(self, empty: bool) -> None:
-        """
-        Update the movable bounds for cursors
-        based on the current data view.
-        """
-
-        for axis in self.axes:
-            if not axis.cursors:
-                continue
-
-            if empty:
-                axis_bounds = (0.1, 0.9)
-            else:
-                view_box = axis.getViewBox()
-                axis_bounds = view_box.childrenBounds()[0] if view_box else None
-
-                if axis_bounds is None:
-                    axis_bounds = (0.1, 0.9)
-
-            axis.cursors[0].setBounds(axis_bounds)
-            axis.cursors[1].setBounds(axis_bounds)
 
     def update_lines(self) -> None:
         """ Update (periodically) the line after data change. """

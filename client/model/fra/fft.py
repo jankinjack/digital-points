@@ -28,8 +28,8 @@ class FFT:
             sampling_frequency: Sampling frequency of the signal (Fs).
         """
 
-        # Compute the frequency bins (includes DC component at 0 Hz).
-        self._frequency = np.fft.rfftfreq(num_points, d=1/sampling_frequency)
+        # Compute the frequency bins (excludes DC component at 0 Hz).
+        self._frequency = np.fft.rfftfreq(num_points, d=1/sampling_frequency)[1:]
 
         # Compute the FFT.
         fft_result = np.fft.rfft(y_data)
@@ -40,7 +40,7 @@ class FFT:
             fft_result = fft_result[0]
 
         # Normalize the complex spectrum by the total number of points
-        self._complex = fft_result / num_points
+        self._complex = fft_result[1:] / num_points
 
     @property
     def complex_(self) -> np.ndarray:

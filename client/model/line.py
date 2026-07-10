@@ -113,7 +113,7 @@ class Line(pg.PlotDataItem):
 
         self.setPen({'color': color, 'width': 0})
 
-        self._data_buf = ([], [])
+        self._data_buf = (None, None)
 
         self._y_axis = y_axis
         self._type = VAR_TYPE_CODE.get(type_, VAR_TYPE_CODE['uint32_t'])
@@ -202,13 +202,26 @@ class Line(pg.PlotDataItem):
     def data(self) -> tuple[Optional[np.ndarray], Optional[np.ndarray]]:
         return self.xData, self.yData
 
+    @data.setter
+    def data(self, new_data: tuple[np.ndarray, np.ndarray]) -> bool:
+        """ Thread-safe data update mechanism. """
+
+        if new_data[0].size == new_data[1].size:
+            with nonblocking(self._mutex) as locked:
+                if locked:
+                    self._data_buf = new_data
+                    self._needs_update = True
+                    return True
+
+        return False
+
     @property
     def x_data(self) -> Optional[np.ndarray]:
-        return self.xData
+        return self._data_buf[0] # self.xData
 
     @property
     def y_data(self) -> Optional[np.ndarray]:
-        return self.yData
+        return self._data_buf[1] # self.yData
 
     @property
     def mark_point_0(self) -> dict:
@@ -255,8 +268,12 @@ class Line(pg.PlotDataItem):
                 and self.y_data is not None
                 and self.x_data.size > 0):
             index = int(np.abs(self.x_data - x).argmin())
+            x_round, y_round = float(self.x_data[index]), float(self.y_data[index])
 
-            return float(self.x_data[index]), self.y_data[index]
+            if x_scale == 'log':
+                x_round = np.log10(x_round if x_round != 0 else 1)
+
+            return x_round, y_round
 
         return None, None
 
@@ -281,7 +298,12 @@ class Line(pg.PlotDataItem):
             elif index >= len(self.x_data):
                 index = len(self.x_data) - 1
 
-            return float(self.x_data[index]), self.y_data[index]
+            x_round, y_round = float(self.x_data[index]), float(self.y_data[index])
+
+            if x_scale == 'log':
+                x_round = np.log10(x_round if x_round != 0 else 1)
+
+            return x_round, y_round
 
         return None, None
 
@@ -306,7 +328,12 @@ class Line(pg.PlotDataItem):
             elif index < 0:
                 index = 0
 
-            return float(self.x_data[index]), self.y_data[index]
+            x_round, y_round = float(self.x_data[index]), float(self.y_data[index])
+
+            if x_scale == 'log':
+                x_round = np.log10(x_round if x_round != 0 else 1)
+
+            return x_round, y_round
 
         return None, None
 
@@ -322,33 +349,19 @@ class Line(pg.PlotDataItem):
 
         # Move marker and update text.
         self._mark_points[n]['label'].setPos(
-            x if x_scale == 'linear' else np.log10(x),
-            y if update_point else self._mark_points[n]['label'].pos().y(),
+            x, y if update_point else self._mark_points[n]['label'].pos().y(),
             )
 
         if update_point:
-            if x_scale == 'linear':
-                self._mark_points[n]['point'].setData(
-                    [x], [y],
-                    pxMode=True,
-                    )
-            else:
-                self._mark_points[n]['point'].hide()
+            if x_scale == 'log':
+                x = 10**x
+
+            self._mark_points[n]['point'].setData(
+                [x], [y],
+                pxMode=True,
+                )
 
             self._mark_points[n]['label'].setText(f'{y:.6g}')
-
-    @data.setter
-    def data(self, new_data: tuple[np.ndarray, np.ndarray]) -> bool:
-        """ Thread-safe data update mechanism. """
-
-        if new_data[0].size == new_data[1].size:
-            with nonblocking(self._mutex) as locked:
-                if locked:
-                    self._data_buf = new_data
-                    self._needs_update = True
-                    return True
-
-        return False
 
     def update_line(self) -> None:
         if not self._needs_update:

@@ -63,7 +63,7 @@ class LogLinearInfiniteLabel(pg.InfLineLabel):
         if not self.isVisible():
             return
 
-        display_value = self._real_value if self._x_scale == 'linear' else 10**self._real_value
+        display_value = self._real_value
         self.setText(self.format.format(value=display_value))
 
         self.updatePosition()
@@ -214,8 +214,8 @@ class Axis(pg.PlotItem):
 
         self._cursors_mutex = threading.Lock()
 
-        bounds = [0.1, 0.9] if x_scale == 'linear' else [
-            np.log10(2), np.log10(1000)
+        bounds = (-np.inf, np.inf) if x_scale == 'linear' else [
+            np.log10(1e-20), np.log10(1e20)
             ]
         pos_0 = 0.1 if x_scale == 'linear' else np.log10(2)
         pos_1 = 0.9 if x_scale == 'linear' else np.log10(8)
@@ -352,7 +352,12 @@ class Axis(pg.PlotItem):
     def __on_cursor_dragged(self, n: int) -> None:
         self.update_cursor_data(n, update_label=True)
 
-        self.cursors[n].label.real_value = self.cursors[n].value()
+        x = self.cursors[n].getXPos()
+
+        if self.x_scale == 'log':
+            x = 10**(x)
+
+        self.cursors[n].label.real_value = x
         self.cursors[n].label.valueChanged()
 
     def update_cursor_data(
@@ -394,7 +399,7 @@ class Axis(pg.PlotItem):
                         self.x_scale,
                         update_label
                         )
-                    self.cursors[n].setValue(near_x if self.x_scale == 'linear' else np.log10(near_x))
+                    self.cursors[n].setPos(near_x)
 
             self.fill.setRegion((self.cursors[0].pos(), self.cursors[1].pos()))
 
@@ -407,8 +412,8 @@ class Axis(pg.PlotItem):
         displaying cursor statistics.
         """
 
-        x0 = self.cursors[0].value()
-        x1 = self.cursors[1].value()
+        x0 = self.cursors[0].getXPos()
+        x1 = self.cursors[1].getXPos()
 
         if self._x_scale == 'log':
             x0 = 10**x0
@@ -462,6 +467,10 @@ class Axis(pg.PlotItem):
 
         view_range = self.getViewBox().viewRange()[0]
 
+        if self.x_scale == 'log':
+            view_range[0] = 10**view_range[0]
+            view_range[1] = 10**view_range[1]
+
         # Change default round method for moving cursors
         # when they are out of view box.
         if x0 < view_range[0]:
@@ -478,8 +487,12 @@ class Axis(pg.PlotItem):
             x1 = view_range[1]
             method_1 = 'floor'
 
-        self.cursors[0].setValue(x0)
-        self.cursors[1].setValue(x1)
+        if self.x_scale == 'log':
+            x0 = np.log10(x0 if x0 != 0 else 1)
+            x1 = np.log10(x1 if x1 != 0 else 1)
+
+        self.cursors[0].setPos(x0)
+        self.cursors[1].setPos(x1)
 
         self.update_cursor_data(0, method=method_0)
         self.update_cursor_data(1, method=method_1)
