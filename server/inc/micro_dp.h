@@ -21,7 +21,7 @@
 
 #define DP_VERSION_MAJOR ((uint16_t)0)
 #define DP_VERSION_MINOR ((uint16_t)1)
-#define DP_VERSION_PATCH ((uint16_t)0)
+#define DP_VERSION_PATCH ((uint16_t)1)
 
 // Export defines for DLLs.
 #ifdef MICRO_DP_EXPORTS
