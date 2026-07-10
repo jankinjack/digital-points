@@ -294,6 +294,10 @@ EXPORT void micro_dp_handle_rx_chunk(const uint_least8_t * const chunk, const si
                 MICRO_DP.mem.rx_buf_ptr = 0u;
             }
         }
+        else if (byte == (uint_least8_t)DP_KEY[0])
+        {
+            MICRO_DP.mem.sequence = 1;
+        }
         else
         {
             MICRO_DP.mem.sequence = 0;
