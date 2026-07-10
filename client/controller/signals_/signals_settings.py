@@ -232,6 +232,55 @@ def init_signals_settings(dp: 'DigitalPoints') -> None:
         lambda value: dp.interface.trigger.__setattr__('settling_time', value)
         )
 
+    # Changing the cursor measurements.
+    dp.main.ui.checkBoxMeasDelta.toggled.connect(
+        lambda value: dp.config.set_parameter(('measurement', 'delta'), value)
+        )
+    dp.main.ui.checkBoxMeasMin.toggled.connect(
+        lambda value: dp.config.set_parameter(('measurement', 'min'), value)
+        )
+    dp.main.ui.checkBoxMeasMax.toggled.connect(
+        lambda value: dp.config.set_parameter(('measurement', 'max'), value)
+        )
+    dp.main.ui.checkBoxMeasRMS.toggled.connect(
+        lambda value: dp.config.set_parameter(('measurement', 'rms'), value)
+        )
+    dp.main.ui.checkBoxMeasMean.toggled.connect(
+        lambda value: dp.config.set_parameter(('measurement', 'mean'), value)
+        )
+    dp.main.ui.checkBoxMeasCF.toggled.connect(
+        lambda value: dp.config.set_parameter(('measurement', 'crest factor'), value)
+        )
+
+    def __on_check_box_meas_toggled(checked: bool, attr: str) -> None:
+
+        axes_with_meas = (
+            dp.main.graph_scope.axes[0],
+            dp.main.graph_scope.axes[1],
+            )
+
+        for axis in axes_with_meas:
+            axis.__setattr__(attr, checked)
+
+    dp.main.ui.checkBoxMeasDelta.toggled.connect(
+        lambda value: __on_check_box_meas_toggled(value, 'enable_meas_delta')
+        )
+    dp.main.ui.checkBoxMeasMin.toggled.connect(
+        lambda value: __on_check_box_meas_toggled(value, 'enable_meas_min')
+        )
+    dp.main.ui.checkBoxMeasMax.toggled.connect(
+        lambda value: __on_check_box_meas_toggled(value, 'enable_meas_max')
+        )
+    dp.main.ui.checkBoxMeasRMS.toggled.connect(
+        lambda value: __on_check_box_meas_toggled(value, 'enable_meas_rms')
+        )
+    dp.main.ui.checkBoxMeasMean.toggled.connect(
+        lambda value: __on_check_box_meas_toggled(value, 'enable_meas_mean')
+        )
+    dp.main.ui.checkBoxMeasCF.toggled.connect(
+        lambda value: __on_check_box_meas_toggled(value, 'enable_meas_cf')
+        )
+
     def __on_button_open_elf() -> None:
         """ Handler of pushButtonOpenELF clicked. """
 

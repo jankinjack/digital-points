@@ -129,6 +129,13 @@ class Axis(pg.PlotItem):
 
         self.sigXRangeChanged.connect(self.__on_x_range_changed)
 
+        self.enable_meas_delta = False
+        self.enable_meas_min = False
+        self.enable_meas_max = False
+        self.enable_meas_rms = False
+        self.enable_meas_mean = False
+        self.enable_meas_cf = False
+
     def _setup_basic_ui(
             self,
             x_scale: str,
@@ -436,22 +443,63 @@ class Axis(pg.PlotItem):
                 if line.x_data is not None and line.y_data is not None:
                     y_data = line.y_data[(line.x_data >= x0) & (line.x_data <= x1)]
 
-                    if len(y_data) > 0:
-                        y_mean = np.mean(y_data)
-                        y_max = np.max(y_data)
-                        y_min = np.min(y_data)
-                        y_rms = np.sqrt(np.mean(y_data**2))
-                        cf = y_max / y_rms if y_rms != 0 else float('inf')
+                    if (len(y_data) > 0 and (
+                            self.enable_meas_delta
+                            or self.enable_meas_min
+                            or self.enable_meas_max
+                            or self.enable_meas_mean
+                            or self.enable_meas_rms
+                            or self.enable_meas_cf
+                            )):
 
                         extra_lines.append(
                             f'<br><span style="color: {line.color_str};">'
-                            f'min: {y_min:.6g} max: {y_max:.6g} av: {y_mean:.6g} '
-                            f'rms: {y_rms:.6g} cf: {cf:.6g}</span>'
                             )
 
+                        y_delta = y_data[-1] - y_data[0]
+                        y_min = min(y_data)
+                        y_max = max(y_data)
+                        y_mean = np.mean(y_data)
+                        y_rms = np.sqrt(np.mean(y_data**2))
+                        y_cf = y_max / y_rms if y_rms != 0 else float('inf')
+
+                        if self.enable_meas_delta:
+                            extra_lines.append(
+                                f'delta: {y_delta:.6g} '
+                                )
+
+                        if self.enable_meas_min:
+                            extra_lines.append(
+                                f'min: {y_min:.6g} '
+                                )
+
+                        if self.enable_meas_max:
+                            extra_lines.append(
+                                f'max {y_max:.6g} '
+                                )
+
+                        if self.enable_meas_mean:
+                            extra_lines.append(
+                                f'mean: {y_mean:.6g} '
+                                )
+
+                        if self.enable_meas_rms:
+                            extra_lines.append(
+                                f'rms: {y_rms:.6g} '
+                                )
+
+                        if self.enable_meas_cf:
+                            extra_lines.append(
+                                f'cf: {y_cf:.6g} '
+                                )
+
+                        extra_lines.append('</span>')
+
         html_content = (
-            f'<span style="color: #000000;">dx=x1-x0: {delta_x:.6g} {self._x_unit}</span><br>'
-            f'<span style="color: #000000;">|1/dx|: {inv_delta_x:.6g} {inv_x_unit}</span>'
+            f'<span style="color: #000000;">'
+            f'dx=x1-x0: {delta_x:.6g} {self._x_unit}\t\t'
+            f'|1/dx|: {inv_delta_x:.6g} {inv_x_unit}'
+            '</span>'
             + ''.join(extra_lines)
             )
         self.measure_text.setHtml(html_content)

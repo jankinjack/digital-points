@@ -79,6 +79,14 @@ DEFAULT_CONFIG = {
         'excitation type': 'Single-Sine Excitation',
         'norm amp': True,
     },
+    'measurement': {
+        'delta': True,
+        'min': True,
+        'max': True,
+        'rms': False,
+        'mean': False,
+        'crest factor': False,
+    }
 }
 
 

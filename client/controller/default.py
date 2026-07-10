@@ -306,3 +306,23 @@ def init_default(dp: 'DigitalPoints') -> None:
 
     # Load the last used ELF file.
     dp.main.ui.pushButtonUpdateELF.clicked.emit()
+
+    # Cursor measurements.
+    dp.main.ui.checkBoxMeasDelta.setChecked(
+        config['measurement']['delta']
+        )
+    dp.main.ui.checkBoxMeasMin.setChecked(
+        config['measurement']['min']
+        )
+    dp.main.ui.checkBoxMeasMax.setChecked(
+        config['measurement']['max']
+        )
+    dp.main.ui.checkBoxMeasRMS.setChecked(
+        config['measurement']['rms']
+        )
+    dp.main.ui.checkBoxMeasMean.setChecked(
+        config['measurement']['mean']
+        )
+    dp.main.ui.checkBoxMeasCF.setChecked(
+        config['measurement']['crest factor']
+        )

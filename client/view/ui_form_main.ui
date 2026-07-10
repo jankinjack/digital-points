@@ -756,8 +756,8 @@ QTableView::item:selected {
                      <rect>
                       <x>0</x>
                       <y>0</y>
-                      <width>1184</width>
-                      <height>999</height>
+                      <width>1179</width>
+                      <height>1082</height>
                      </rect>
                     </property>
                     <property name="styleSheet">
@@ -859,6 +859,169 @@ QTableView::item:selected {
                         <property name="spacing">
                          <number>3</number>
                         </property>
+                        <item row="1" column="0">
+                         <widget class="Line" name="line_2">
+                          <property name="minimumSize">
+                           <size>
+                            <width>0</width>
+                            <height>2</height>
+                           </size>
+                          </property>
+                          <property name="maximumSize">
+                           <size>
+                            <width>16777215</width>
+                            <height>2</height>
+                           </size>
+                          </property>
+                          <property name="styleSheet">
+                           <string notr="true"/>
+                          </property>
+                          <property name="orientation">
+                           <enum>Qt::Orientation::Horizontal</enum>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="3" column="0">
+                         <widget class="Line" name="line_12">
+                          <property name="orientation">
+                           <enum>Qt::Orientation::Horizontal</enum>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="2" column="0">
+                         <widget class="QWidget" name="widget_2" native="true">
+                          <layout class="QHBoxLayout" name="horizontalLayout_12">
+                           <property name="spacing">
+                            <number>3</number>
+                           </property>
+                           <property name="leftMargin">
+                            <number>10</number>
+                           </property>
+                           <property name="topMargin">
+                            <number>0</number>
+                           </property>
+                           <property name="rightMargin">
+                            <number>3</number>
+                           </property>
+                           <property name="bottomMargin">
+                            <number>0</number>
+                           </property>
+                           <item>
+                            <widget class="QLabel" name="labelGraphVisibility">
+                             <property name="minimumSize">
+                              <size>
+                               <width>250</width>
+                               <height>0</height>
+                              </size>
+                             </property>
+                             <property name="text">
+                              <string>Visibility of Scope Graphs</string>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <spacer name="horizontalSpacer">
+                             <property name="orientation">
+                              <enum>Qt::Orientation::Horizontal</enum>
+                             </property>
+                             <property name="sizeHint" stdset="0">
+                              <size>
+                               <width>26</width>
+                               <height>20</height>
+                              </size>
+                             </property>
+                            </spacer>
+                           </item>
+                           <item>
+                            <widget class="QComboBox" name="comboBoxGraphVisibility">
+                             <property name="minimumSize">
+                              <size>
+                               <width>220</width>
+                               <height>30</height>
+                              </size>
+                             </property>
+                             <property name="maximumSize">
+                              <size>
+                               <width>220</width>
+                               <height>30</height>
+                              </size>
+                             </property>
+                             <property name="styleSheet">
+                              <string notr="true">QComboBox{
+	background-color: white;
+	border-radius: 5px;
+	border: 1px solid #6272a4;
+	padding-left: 10px;
+	height: 20px;
+}
+
+QComboBox:hover{
+	border: 1px solid #7284b9;
+}
+
+QComboBox:disabled{
+	border: 1px solid #7d7d7d;
+	color: #7d7d7d;
+}
+
+QComboBox::drop-down {
+	background-color: white;
+	subcontrol-origin: padding;
+	subcontrol-position: top right;
+	width: 28px; 
+	border-left: 1px solid #6272a4;
+	border-top-right-radius: 3px;
+	background-image: url(:/icons/icons/icon_arrow_bottom.png);
+	border-bottom-right-radius: 3px;
+	background-position: center;
+	background-repeat: no-reperat;
+ }
+
+QComboBox::drop-down:disabled {
+	background-color: #aaaaaa;
+	border-left-color: #aaaaaa;
+ }
+
+QComboBox::drop-down:hover {
+	background-color: #d1eeff;
+ }
+
+QComboBox::drop-down:on {
+	background-image: url(:/icons/icons/icon_arrow_top.png);
+ }
+
+QComboBox QAbstractItemView {
+    background-color: white;
+    selection-background-color: #adc9ff;
+	selection-color: #212121;
+	height: 20px;
+    outline: 0;
+}
+</string>
+                             </property>
+                             <property name="locale">
+                              <locale language="English" country="UnitedStates"/>
+                             </property>
+                             <item>
+                              <property name="text">
+                               <string>Both Graphs</string>
+                              </property>
+                             </item>
+                             <item>
+                              <property name="text">
+                               <string>Only Graph 1</string>
+                              </property>
+                             </item>
+                             <item>
+                              <property name="text">
+                               <string>Only Graph 2</string>
+                              </property>
+                             </item>
+                            </widget>
+                           </item>
+                          </layout>
+                         </widget>
+                        </item>
                         <item row="0" column="0">
                          <widget class="QWidget" name="widgetLayoutMode" native="true">
                           <property name="styleSheet">
@@ -1017,31 +1180,15 @@ QComboBox QAbstractItemView {
                           </layout>
                          </widget>
                         </item>
-                        <item row="1" column="0">
-                         <widget class="Line" name="line_2">
-                          <property name="minimumSize">
-                           <size>
-                            <width>0</width>
-                            <height>2</height>
-                           </size>
+                        <item row="4" column="0">
+                         <widget class="QFrame" name="widgetLayoutMeas">
+                          <property name="frameShape">
+                           <enum>QFrame::Shape::StyledPanel</enum>
                           </property>
-                          <property name="maximumSize">
-                           <size>
-                            <width>16777215</width>
-                            <height>2</height>
-                           </size>
+                          <property name="frameShadow">
+                           <enum>QFrame::Shadow::Raised</enum>
                           </property>
-                          <property name="styleSheet">
-                           <string notr="true"/>
-                          </property>
-                          <property name="orientation">
-                           <enum>Qt::Orientation::Horizontal</enum>
-                          </property>
-                         </widget>
-                        </item>
-                        <item row="2" column="0">
-                         <widget class="QWidget" name="widget_2" native="true">
-                          <layout class="QHBoxLayout" name="horizontalLayout_12">
+                          <layout class="QHBoxLayout" name="horizontalLayout_17">
                            <property name="spacing">
                             <number>3</number>
                            </property>
@@ -1058,7 +1205,7 @@ QComboBox QAbstractItemView {
                             <number>0</number>
                            </property>
                            <item>
-                            <widget class="QLabel" name="labelGraphVisibility">
+                            <widget class="QLabel" name="labelCursorsMeas">
                              <property name="minimumSize">
                               <size>
                                <width>250</width>
@@ -1066,109 +1213,183 @@ QComboBox QAbstractItemView {
                               </size>
                              </property>
                              <property name="text">
-                              <string>Visibility of Scope Graphs</string>
+                              <string>Cursor measurements</string>
                              </property>
                             </widget>
                            </item>
                            <item>
-                            <spacer name="horizontalSpacer">
+                            <spacer name="horizontalSpacer_6">
                              <property name="orientation">
                               <enum>Qt::Orientation::Horizontal</enum>
                              </property>
                              <property name="sizeHint" stdset="0">
                               <size>
-                               <width>26</width>
+                               <width>40</width>
                                <height>20</height>
                               </size>
                              </property>
                             </spacer>
                            </item>
                            <item>
-                            <widget class="QComboBox" name="comboBoxGraphVisibility">
-                             <property name="minimumSize">
-                              <size>
-                               <width>220</width>
-                               <height>30</height>
-                              </size>
+                            <layout class="QGridLayout" name="gridLayout_16">
+                             <property name="horizontalSpacing">
+                              <number>5</number>
                              </property>
-                             <property name="maximumSize">
-                              <size>
-                               <width>220</width>
-                               <height>30</height>
-                              </size>
+                             <property name="verticalSpacing">
+                              <number>2</number>
                              </property>
-                             <property name="styleSheet">
-                              <string notr="true">QComboBox{
-	background-color: white;
-	border-radius: 5px;
-	border: 1px solid #6272a4;
-	padding-left: 10px;
+                             <item row="0" column="1">
+                              <widget class="QCheckBox" name="checkBoxMeasRMS">
+                               <property name="styleSheet">
+                                <string notr="true">QCheckBox::indicator {
+    border: 1px solid #6272a4;
+	width: 20px;
 	height: 20px;
+	border-radius: 11px;
+    background: white;
 }
-
-QComboBox:hover{
-	border: 1px solid #7284b9;
+QCheckBox::indicator:hover {
+    border: 1px solid #7284b9;
 }
-
-QComboBox:disabled{
-	border: 1px solid #7d7d7d;
-	color: #7d7d7d;
-}
-
-QComboBox::drop-down {
-	background-color: white;
-	subcontrol-origin: padding;
-	subcontrol-position: top right;
-	width: 28px; 
-	border-left: 1px solid #6272a4;
-	border-top-right-radius: 3px;
-	background-image: url(:/icons/icons/icon_arrow_bottom.png);
-	border-bottom-right-radius: 3px;
-	background-position: center;
-	background-repeat: no-reperat;
- }
-
-QComboBox::drop-down:disabled {
-	background-color: #aaaaaa;
-	border-left-color: #aaaaaa;
- }
-
-QComboBox::drop-down:hover {
-	background-color: #d1eeff;
- }
-
-QComboBox::drop-down:on {
-	background-image: url(:/icons/icons/icon_arrow_top.png);
- }
-
-QComboBox QAbstractItemView {
-    background-color: white;
-    selection-background-color: #adc9ff;
-	selection-color: #212121;
+QCheckBox::indicator:checked {
+	background-image: url(:/icons/icons/icon_check.png);
+	background-repeat: no-repeat;
+    background-position: center;
+}</string>
+                               </property>
+                               <property name="text">
+                                <string>RMS</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="0" column="0">
+                              <widget class="QCheckBox" name="checkBoxMeasDelta">
+                               <property name="sizePolicy">
+                                <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                                 <horstretch>0</horstretch>
+                                 <verstretch>0</verstretch>
+                                </sizepolicy>
+                               </property>
+                               <property name="styleSheet">
+                                <string notr="true">QCheckBox::indicator {
+    border: 1px solid #6272a4;
+	width: 20px;
 	height: 20px;
-    outline: 0;
+	border-radius: 11px;
+    background: white;
+}
+QCheckBox::indicator:hover {
+    border: 1px solid #7284b9;
+}
+QCheckBox::indicator:checked {
+	background-image: url(:/icons/icons/icon_check.png);
+	background-repeat: no-repeat;
+    background-position: center;
+}</string>
+                               </property>
+                               <property name="text">
+                                <string>Delta</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="2" column="0">
+                              <widget class="QCheckBox" name="checkBoxMeasMean">
+                               <property name="styleSheet">
+                                <string notr="true">QCheckBox::indicator {
+    border: 1px solid #6272a4;
+	width: 20px;
+	height: 20px;
+	border-radius: 11px;
+    background: white;
+}
+QCheckBox::indicator:hover {
+    border: 1px solid #7284b9;
+}
+QCheckBox::indicator:checked {
+	background-image: url(:/icons/icons/icon_check.png);
+	background-repeat: no-repeat;
+    background-position: center;
+}</string>
+                               </property>
+                               <property name="text">
+                                <string>Mean</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="2" column="1">
+                              <widget class="QCheckBox" name="checkBoxMeasCF">
+                               <property name="styleSheet">
+                                <string notr="true">QCheckBox::indicator {
+    border: 1px solid #6272a4;
+	width: 20px;
+	height: 20px;
+	border-radius: 11px;
+    background: white;
+}
+QCheckBox::indicator:hover {
+    border: 1px solid #7284b9;
+}
+QCheckBox::indicator:checked {
+	background-image: url(:/icons/icons/icon_check.png);
+	background-repeat: no-repeat;
+    background-position: center;
+}</string>
+                               </property>
+                               <property name="text">
+                                <string>Crest factor</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="1" column="0">
+                              <widget class="QCheckBox" name="checkBoxMeasMin">
+                               <property name="styleSheet">
+                                <string notr="true">QCheckBox::indicator {
+    border: 1px solid #6272a4;
+	width: 20px;
+	height: 20px;
+	border-radius: 11px;
+    background: white;
+}
+QCheckBox::indicator:hover {
+    border: 1px solid #7284b9;
+}
+QCheckBox::indicator:checked {
+	background-image: url(:/icons/icons/icon_check.png);
+	background-repeat: no-repeat;
+    background-position: center;
+}</string>
+                               </property>
+                               <property name="text">
+                                <string>Min</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="1" column="1">
+                              <widget class="QCheckBox" name="checkBoxMeasMax">
+                               <property name="styleSheet">
+                                <string notr="true">QCheckBox::indicator {
+    border: 1px solid #6272a4;
+	width: 20px;
+	height: 20px;
+	border-radius: 11px;
+    background: white;
+}
+QCheckBox::indicator:hover {
+    border: 1px solid #7284b9;
+}
+QCheckBox::indicator:checked {
+	background-image: url(:/icons/icons/icon_check.png);
+	background-repeat: no-repeat;
+    background-position: center;
 }
 </string>
-                             </property>
-                             <property name="locale">
-                              <locale language="English" country="UnitedStates"/>
-                             </property>
-                             <item>
-                              <property name="text">
-                               <string>Both Graphs</string>
-                              </property>
+                               </property>
+                               <property name="text">
+                                <string>Max</string>
+                               </property>
+                              </widget>
                              </item>
-                             <item>
-                              <property name="text">
-                               <string>Only Graph 1</string>
-                              </property>
-                             </item>
-                             <item>
-                              <property name="text">
-                               <string>Only Graph 2</string>
-                              </property>
-                             </item>
-                            </widget>
+                            </layout>
                            </item>
                           </layout>
                          </widget>

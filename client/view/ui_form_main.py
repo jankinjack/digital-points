@@ -369,7 +369,7 @@ class Ui_Window_Main(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 1184, 999))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 1179, 1082))
         self.scrollAreaWidgetContents.setStyleSheet(u"#scrollAreaWidgetContents {\n"
 "	background-color: #f8f8f2;\n"
 "}")
@@ -416,6 +416,105 @@ class Ui_Window_Main(object):
         self.gridLayout_4.setSpacing(3)
         self.gridLayout_4.setObjectName(u"gridLayout_4")
         self.gridLayout_4.setContentsMargins(0, 3, 0, 3)
+        self.line_2 = QFrame(self.frameLineGraphsMeas)
+        self.line_2.setObjectName(u"line_2")
+        self.line_2.setMinimumSize(QSize(0, 2))
+        self.line_2.setMaximumSize(QSize(16777215, 2))
+        self.line_2.setStyleSheet(u"")
+        self.line_2.setFrameShape(QFrame.Shape.HLine)
+        self.line_2.setFrameShadow(QFrame.Shadow.Sunken)
+
+        self.gridLayout_4.addWidget(self.line_2, 1, 0, 1, 1)
+
+        self.line_12 = QFrame(self.frameLineGraphsMeas)
+        self.line_12.setObjectName(u"line_12")
+        self.line_12.setFrameShape(QFrame.Shape.HLine)
+        self.line_12.setFrameShadow(QFrame.Shadow.Sunken)
+
+        self.gridLayout_4.addWidget(self.line_12, 3, 0, 1, 1)
+
+        self.widget_2 = QWidget(self.frameLineGraphsMeas)
+        self.widget_2.setObjectName(u"widget_2")
+        self.horizontalLayout_12 = QHBoxLayout(self.widget_2)
+        self.horizontalLayout_12.setSpacing(3)
+        self.horizontalLayout_12.setObjectName(u"horizontalLayout_12")
+        self.horizontalLayout_12.setContentsMargins(10, 0, 3, 0)
+        self.labelGraphVisibility = QLabel(self.widget_2)
+        self.labelGraphVisibility.setObjectName(u"labelGraphVisibility")
+        self.labelGraphVisibility.setMinimumSize(QSize(250, 0))
+
+        self.horizontalLayout_12.addWidget(self.labelGraphVisibility)
+
+        self.horizontalSpacer = QSpacerItem(26, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout_12.addItem(self.horizontalSpacer)
+
+        self.comboBoxGraphVisibility = QComboBox(self.widget_2)
+        self.comboBoxGraphVisibility.addItem("")
+        self.comboBoxGraphVisibility.addItem("")
+        self.comboBoxGraphVisibility.addItem("")
+        self.comboBoxGraphVisibility.setObjectName(u"comboBoxGraphVisibility")
+        self.comboBoxGraphVisibility.setMinimumSize(QSize(220, 30))
+        self.comboBoxGraphVisibility.setMaximumSize(QSize(220, 30))
+        self.comboBoxGraphVisibility.setStyleSheet(u"QComboBox{\n"
+"	background-color: white;\n"
+"	border-radius: 5px;\n"
+"	border: 1px solid #6272a4;\n"
+"	padding-left: 10px;\n"
+"	height: 20px;\n"
+"}\n"
+"\n"
+"QComboBox:hover{\n"
+"	border: 1px solid #7284b9;\n"
+"}\n"
+"\n"
+"QComboBox:disabled{\n"
+"	border: 1px solid #7d7d7d;\n"
+"	color: #7d7d7d;\n"
+"}\n"
+"\n"
+"QComboBox::drop-down {\n"
+"	background-color: white;\n"
+"	subcontrol-origin: padding;\n"
+"	subcontrol-position: top right;\n"
+"	width: 28px; \n"
+"	border-left: 1px solid #6272a4;\n"
+"	border-top-right-radius: 3px;\n"
+"	background-image: url(:/icons/icons/icon_arrow_bottom.png);\n"
+"	border-bottom-right-radius: 3px;\n"
+"	background-position: center;\n"
+"	background-repeat: no-reperat;\n"
+" }\n"
+"\n"
+"QComboBox::drop-down:disabled {\n"
+"	background-color: #aaaaaa;\n"
+"	border-left-color: #aaaaaa;\n"
+" }\n"
+"\n"
+"QComboBox::drop-down:hover {\n"
+"	background-color: #d1eeff;\n"
+" }\n"
+"\n"
+"QComboBox::drop-down:on {\n"
+"	background-image: url(:/icons/icons/icon_arrow_top.png);\n"
+" }\n"
+"\n"
+"QComboBox QAbstract"
+                        "ItemView {\n"
+"    background-color: white;\n"
+"    selection-background-color: #adc9ff;\n"
+"	selection-color: #212121;\n"
+"	height: 20px;\n"
+"    outline: 0;\n"
+"}\n"
+"")
+        self.comboBoxGraphVisibility.setLocale(QLocale(QLocale.English, QLocale.UnitedStates))
+
+        self.horizontalLayout_12.addWidget(self.comboBoxGraphVisibility)
+
+
+        self.gridLayout_4.addWidget(self.widget_2, 2, 0, 1, 1)
+
         self.widgetLayoutMode = QWidget(self.frameLineGraphsMeas)
         self.widgetLayoutMode.setObjectName(u"widgetLayoutMode")
         self.widgetLayoutMode.setStyleSheet(u"")
@@ -510,97 +609,156 @@ class Ui_Window_Main(object):
 
         self.gridLayout_4.addWidget(self.widgetLayoutMode, 0, 0, 1, 1)
 
-        self.line_2 = QFrame(self.frameLineGraphsMeas)
-        self.line_2.setObjectName(u"line_2")
-        self.line_2.setMinimumSize(QSize(0, 2))
-        self.line_2.setMaximumSize(QSize(16777215, 2))
-        self.line_2.setStyleSheet(u"")
-        self.line_2.setFrameShape(QFrame.Shape.HLine)
-        self.line_2.setFrameShadow(QFrame.Shadow.Sunken)
+        self.widgetLayoutMeas = QFrame(self.frameLineGraphsMeas)
+        self.widgetLayoutMeas.setObjectName(u"widgetLayoutMeas")
+        self.widgetLayoutMeas.setFrameShape(QFrame.Shape.StyledPanel)
+        self.widgetLayoutMeas.setFrameShadow(QFrame.Shadow.Raised)
+        self.horizontalLayout_17 = QHBoxLayout(self.widgetLayoutMeas)
+        self.horizontalLayout_17.setSpacing(3)
+        self.horizontalLayout_17.setObjectName(u"horizontalLayout_17")
+        self.horizontalLayout_17.setContentsMargins(10, 0, 3, 0)
+        self.labelCursorsMeas = QLabel(self.widgetLayoutMeas)
+        self.labelCursorsMeas.setObjectName(u"labelCursorsMeas")
+        self.labelCursorsMeas.setMinimumSize(QSize(250, 0))
 
-        self.gridLayout_4.addWidget(self.line_2, 1, 0, 1, 1)
+        self.horizontalLayout_17.addWidget(self.labelCursorsMeas)
 
-        self.widget_2 = QWidget(self.frameLineGraphsMeas)
-        self.widget_2.setObjectName(u"widget_2")
-        self.horizontalLayout_12 = QHBoxLayout(self.widget_2)
-        self.horizontalLayout_12.setSpacing(3)
-        self.horizontalLayout_12.setObjectName(u"horizontalLayout_12")
-        self.horizontalLayout_12.setContentsMargins(10, 0, 3, 0)
-        self.labelGraphVisibility = QLabel(self.widget_2)
-        self.labelGraphVisibility.setObjectName(u"labelGraphVisibility")
-        self.labelGraphVisibility.setMinimumSize(QSize(250, 0))
+        self.horizontalSpacer_6 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
-        self.horizontalLayout_12.addWidget(self.labelGraphVisibility)
+        self.horizontalLayout_17.addItem(self.horizontalSpacer_6)
 
-        self.horizontalSpacer = QSpacerItem(26, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-
-        self.horizontalLayout_12.addItem(self.horizontalSpacer)
-
-        self.comboBoxGraphVisibility = QComboBox(self.widget_2)
-        self.comboBoxGraphVisibility.addItem("")
-        self.comboBoxGraphVisibility.addItem("")
-        self.comboBoxGraphVisibility.addItem("")
-        self.comboBoxGraphVisibility.setObjectName(u"comboBoxGraphVisibility")
-        self.comboBoxGraphVisibility.setMinimumSize(QSize(220, 30))
-        self.comboBoxGraphVisibility.setMaximumSize(QSize(220, 30))
-        self.comboBoxGraphVisibility.setStyleSheet(u"QComboBox{\n"
-"	background-color: white;\n"
-"	border-radius: 5px;\n"
-"	border: 1px solid #6272a4;\n"
-"	padding-left: 10px;\n"
+        self.gridLayout_16 = QGridLayout()
+        self.gridLayout_16.setObjectName(u"gridLayout_16")
+        self.gridLayout_16.setHorizontalSpacing(5)
+        self.gridLayout_16.setVerticalSpacing(2)
+        self.checkBoxMeasRMS = QCheckBox(self.widgetLayoutMeas)
+        self.checkBoxMeasRMS.setObjectName(u"checkBoxMeasRMS")
+        self.checkBoxMeasRMS.setStyleSheet(u"QCheckBox::indicator {\n"
+"    border: 1px solid #6272a4;\n"
+"	width: 20px;\n"
 "	height: 20px;\n"
+"	border-radius: 11px;\n"
+"    background: white;\n"
 "}\n"
-"\n"
-"QComboBox:hover{\n"
-"	border: 1px solid #7284b9;\n"
+"QCheckBox::indicator:hover {\n"
+"    border: 1px solid #7284b9;\n"
 "}\n"
-"\n"
-"QComboBox:disabled{\n"
-"	border: 1px solid #7d7d7d;\n"
-"	color: #7d7d7d;\n"
-"}\n"
-"\n"
-"QComboBox::drop-down {\n"
-"	background-color: white;\n"
-"	subcontrol-origin: padding;\n"
-"	subcontrol-position: top right;\n"
-"	width: 28px; \n"
-"	border-left: 1px solid #6272a4;\n"
-"	border-top-right-radius: 3px;\n"
-"	background-image: url(:/icons/icons/icon_arrow_bottom.png);\n"
-"	border-bottom-right-radius: 3px;\n"
-"	background-position: center;\n"
-"	background-repeat: no-reperat;\n"
-" }\n"
-"\n"
-"QComboBox::drop-down:disabled {\n"
-"	background-color: #aaaaaa;\n"
-"	border-left-color: #aaaaaa;\n"
-" }\n"
-"\n"
-"QComboBox::drop-down:hover {\n"
-"	background-color: #d1eeff;\n"
-" }\n"
-"\n"
-"QComboBox::drop-down:on {\n"
-"	background-image: url(:/icons/icons/icon_arrow_top.png);\n"
-" }\n"
-"\n"
-"QComboBox QAbstract"
-                        "ItemView {\n"
-"    background-color: white;\n"
-"    selection-background-color: #adc9ff;\n"
-"	selection-color: #212121;\n"
+"QCheckBox::indicator:checked {\n"
+"	background-image: url(:/icons/icons/icon_check.png);\n"
+"	background-repeat: no-repeat;\n"
+"    background-position: center;\n"
+"}")
+
+        self.gridLayout_16.addWidget(self.checkBoxMeasRMS, 0, 1, 1, 1)
+
+        self.checkBoxMeasDelta = QCheckBox(self.widgetLayoutMeas)
+        self.checkBoxMeasDelta.setObjectName(u"checkBoxMeasDelta")
+        sizePolicy1.setHeightForWidth(self.checkBoxMeasDelta.sizePolicy().hasHeightForWidth())
+        self.checkBoxMeasDelta.setSizePolicy(sizePolicy1)
+        self.checkBoxMeasDelta.setStyleSheet(u"QCheckBox::indicator {\n"
+"    border: 1px solid #6272a4;\n"
+"	width: 20px;\n"
 "	height: 20px;\n"
-"    outline: 0;\n"
+"	border-radius: 11px;\n"
+"    background: white;\n"
+"}\n"
+"QCheckBox::indicator:hover {\n"
+"    border: 1px solid #7284b9;\n"
+"}\n"
+"QCheckBox::indicator:checked {\n"
+"	background-image: url(:/icons/icons/icon_check.png);\n"
+"	background-repeat: no-repeat;\n"
+"    background-position: center;\n"
+"}")
+
+        self.gridLayout_16.addWidget(self.checkBoxMeasDelta, 0, 0, 1, 1)
+
+        self.checkBoxMeasMean = QCheckBox(self.widgetLayoutMeas)
+        self.checkBoxMeasMean.setObjectName(u"checkBoxMeasMean")
+        self.checkBoxMeasMean.setStyleSheet(u"QCheckBox::indicator {\n"
+"    border: 1px solid #6272a4;\n"
+"	width: 20px;\n"
+"	height: 20px;\n"
+"	border-radius: 11px;\n"
+"    background: white;\n"
+"}\n"
+"QCheckBox::indicator:hover {\n"
+"    border: 1px solid #7284b9;\n"
+"}\n"
+"QCheckBox::indicator:checked {\n"
+"	background-image: url(:/icons/icons/icon_check.png);\n"
+"	background-repeat: no-repeat;\n"
+"    background-position: center;\n"
+"}")
+
+        self.gridLayout_16.addWidget(self.checkBoxMeasMean, 2, 0, 1, 1)
+
+        self.checkBoxMeasCF = QCheckBox(self.widgetLayoutMeas)
+        self.checkBoxMeasCF.setObjectName(u"checkBoxMeasCF")
+        self.checkBoxMeasCF.setStyleSheet(u"QCheckBox::indicator {\n"
+"    border: 1px solid #6272a4;\n"
+"	width: 20px;\n"
+"	height: 20px;\n"
+"	border-radius: 11px;\n"
+"    background: white;\n"
+"}\n"
+"QCheckBox::indicator:hover {\n"
+"    border: 1px solid #7284b9;\n"
+"}\n"
+"QCheckBox::indicator:checked {\n"
+"	background-image: url(:/icons/icons/icon_check.png);\n"
+"	background-repeat: no-repeat;\n"
+"    background-position: center;\n"
+"}")
+
+        self.gridLayout_16.addWidget(self.checkBoxMeasCF, 2, 1, 1, 1)
+
+        self.checkBoxMeasMin = QCheckBox(self.widgetLayoutMeas)
+        self.checkBoxMeasMin.setObjectName(u"checkBoxMeasMin")
+        self.checkBoxMeasMin.setStyleSheet(u"QCheckBox::indicator {\n"
+"    border: 1px solid #6272a4;\n"
+"	width: 20px;\n"
+"	height: 20px;\n"
+"	border-radius: 11px;\n"
+"    background: white;\n"
+"}\n"
+"QCheckBox::indicator:hover {\n"
+"    border: 1px solid #7284b9;\n"
+"}\n"
+"QCheckBox::indicator:checked {\n"
+"	background-image: url(:/icons/icons/icon_check.png);\n"
+"	background-repeat: no-repeat;\n"
+"    background-position: center;\n"
+"}")
+
+        self.gridLayout_16.addWidget(self.checkBoxMeasMin, 1, 0, 1, 1)
+
+        self.checkBoxMeasMax = QCheckBox(self.widgetLayoutMeas)
+        self.checkBoxMeasMax.setObjectName(u"checkBoxMeasMax")
+        self.checkBoxMeasMax.setStyleSheet(u"QCheckBox::indicator {\n"
+"    border: 1px solid #6272a4;\n"
+"	width: 20px;\n"
+"	height: 20px;\n"
+"	border-radius: 11px;\n"
+"    background: white;\n"
+"}\n"
+"QCheckBox::indicator:hover {\n"
+"    border: 1px solid #7284b9;\n"
+"}\n"
+"QCheckBox::indicator:checked {\n"
+"	background-image: url(:/icons/icons/icon_check.png);\n"
+"	background-repeat: no-repeat;\n"
+"    background-position: center;\n"
 "}\n"
 "")
-        self.comboBoxGraphVisibility.setLocale(QLocale(QLocale.English, QLocale.UnitedStates))
 
-        self.horizontalLayout_12.addWidget(self.comboBoxGraphVisibility)
+        self.gridLayout_16.addWidget(self.checkBoxMeasMax, 1, 1, 1, 1)
 
 
-        self.gridLayout_4.addWidget(self.widget_2, 2, 0, 1, 1)
+        self.horizontalLayout_17.addLayout(self.gridLayout_16)
+
+
+        self.gridLayout_4.addWidget(self.widgetLayoutMeas, 4, 0, 1, 1)
 
 
         self.gridLayout_21.addWidget(self.frameLineGraphsMeas, 3, 0, 1, 1)
@@ -4072,16 +4230,23 @@ class Ui_Window_Main(object):
         ___qtablewidgetitem8 = self.tableWidgetNumbers.horizontalHeaderItem(8)
         ___qtablewidgetitem8.setText(QCoreApplication.translate("Window_Main", u"Write", None))
         self.labelFRA.setText(QCoreApplication.translate("Window_Main", u"Frequency Response Analyzer (FRA)", None))
-        self.labelMode.setText(QCoreApplication.translate("Window_Main", u"Mode", None))
-        self.comboBoxMode.setItemText(0, QCoreApplication.translate("Window_Main", u"Real-Time Mode", None))
-        self.comboBoxMode.setItemText(1, QCoreApplication.translate("Window_Main", u"Triggered Mode", None))
-        self.comboBoxMode.setItemText(2, QCoreApplication.translate("Window_Main", u"FRA Mode", None))
-
         self.labelGraphVisibility.setText(QCoreApplication.translate("Window_Main", u"Visibility of Scope Graphs", None))
         self.comboBoxGraphVisibility.setItemText(0, QCoreApplication.translate("Window_Main", u"Both Graphs", None))
         self.comboBoxGraphVisibility.setItemText(1, QCoreApplication.translate("Window_Main", u"Only Graph 1", None))
         self.comboBoxGraphVisibility.setItemText(2, QCoreApplication.translate("Window_Main", u"Only Graph 2", None))
 
+        self.labelMode.setText(QCoreApplication.translate("Window_Main", u"Mode", None))
+        self.comboBoxMode.setItemText(0, QCoreApplication.translate("Window_Main", u"Real-Time Mode", None))
+        self.comboBoxMode.setItemText(1, QCoreApplication.translate("Window_Main", u"Triggered Mode", None))
+        self.comboBoxMode.setItemText(2, QCoreApplication.translate("Window_Main", u"FRA Mode", None))
+
+        self.labelCursorsMeas.setText(QCoreApplication.translate("Window_Main", u"Cursor measurements", None))
+        self.checkBoxMeasRMS.setText(QCoreApplication.translate("Window_Main", u"RMS", None))
+        self.checkBoxMeasDelta.setText(QCoreApplication.translate("Window_Main", u"Delta", None))
+        self.checkBoxMeasMean.setText(QCoreApplication.translate("Window_Main", u"Mean", None))
+        self.checkBoxMeasCF.setText(QCoreApplication.translate("Window_Main", u"Crest factor", None))
+        self.checkBoxMeasMin.setText(QCoreApplication.translate("Window_Main", u"Min", None))
+        self.checkBoxMeasMax.setText(QCoreApplication.translate("Window_Main", u"Max", None))
         self.labelUpdate.setText(QCoreApplication.translate("Window_Main", u"Update", None))
         self.labelSaveSelection.setText(QCoreApplication.translate("Window_Main", u"Save Selected Variables", None))
         self.checkBoxSaveSelection.setText("")
