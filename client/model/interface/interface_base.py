@@ -470,46 +470,49 @@ class InterfaceBase(QObject):
                         self.trigger.stage = '-'
 
                     case 'FRA Mode':
-                        # Get a generator for 0x04.
-                        gen_0x04 = function_0x04(
-                            self._interface,
-                            event,
-                            int(self._node_address or 0),
-                            types, addresses, self.trigger,
-                            len(self._dp.main.graph_scope.axes[0].lines),
-                            self._dp.fra_settings.graph_fra_excitation.lines[0].y_data,
-                            )
+                        # Use only two variables to measure
+                        # frequency responses.
+                        if len(addresses) == 2:
+                            # Get a generator for 0x04.
+                            gen_0x04 = function_0x04(
+                                self._interface,
+                                event,
+                                int(self._node_address or 0),
+                                types, addresses, self.trigger,
+                                len(self._dp.main.graph_scope.axes[0].lines),
+                                self._dp.fra_settings.graph_fra_excitation.lines[0].y_data,
+                                )
 
-                        while event.is_set():
-                            try:
-                                # Get data from the generator.
-                                result = next(gen_0x04)
+                            while event.is_set():
+                                try:
+                                    # Get data from the generator.
+                                    result = next(gen_0x04)
 
-                                (finish, x_data, y_data, frequencies, magnitudes, phases) = result
+                                    (finish, x_data, y_data, frequencies, magnitudes, phases) = result
 
-                                if x_data is not None and y_data is not None:
-                                    self.update_scope_data.emit(
-                                        range(len(y_data)),
-                                        x_data, y_data,
-                                        True,   # Enable math.
-                                        -1,     # Disable dumps.
-                                        )
+                                    if x_data is not None and y_data is not None:
+                                        self.update_scope_data.emit(
+                                            range(len(y_data)),
+                                            x_data, y_data,
+                                            True,   # Enable math.
+                                            -1,     # Disable dumps.
+                                            )
 
-                                if frequencies.size == magnitudes.size == phases.size > 0:
-                                    # Plot the frequency responses.
-                                    self.update_fra_data.emit(
-                                        (0, 1),
-                                        frequencies,
-                                        (magnitudes, phases),
-                                        False,      # Disable math.
-                                        -1,         # Disable dumps.
-                                        )
+                                    if frequencies.size == magnitudes.size == phases.size > 0:
+                                        # Plot the frequency responses.
+                                        self.update_fra_data.emit(
+                                            (0, 1),
+                                            frequencies,
+                                            (magnitudes, phases),
+                                            False,      # Disable math.
+                                            -1,         # Disable dumps.
+                                            )
 
-                                if finish:
-                                    self.fra_finished.emit()
+                                    if finish:
+                                        self.fra_finished.emit()
+                                        break
+                                except Exception:
                                     break
-                            except Exception:
-                                break
 
                     case _:
                         pass
