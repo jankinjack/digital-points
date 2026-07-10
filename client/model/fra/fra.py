@@ -51,8 +51,8 @@ class FRA():
         """
 
         # Compute FFT and extract bins at the specified harmonic indices.
-        a_fft = FFT(y_a_data, y_a_data.shape[-1], self._sampling_frequency).complex_[self._harmonic_indices]
-        b_fft = FFT(y_b_data, y_b_data.shape[-1], self._sampling_frequency).complex_[self._harmonic_indices]
+        a_fft = FFT(y_a_data, y_a_data.shape[-1], self._sampling_frequency).complex_[self._harmonic_indices-1]
+        b_fft = FFT(y_b_data, y_b_data.shape[-1], self._sampling_frequency).complex_[self._harmonic_indices-1]
 
         if self._average_type == 'Vector Averaging':
             self._a_fft_complex += a_fft / self._num_repeats
@@ -198,7 +198,7 @@ class FRA():
         d = np.maximum(np.ceil(f_s / f_min / n_max), 1).astype(np.uint64)
 
         # Calculate the maximum harmonic.
-        h_max = int(min(n_max / 2, f_max / f_min))
+        h_max = int(min(n_max / 2, f_max / f_min / 2))
 
         # Generate an array of harmonics with logarithmic spacing.
         h = np.unique(np.rint(np.geomspace(1, h_max, num=n_freq)).astype(np.uint64))
