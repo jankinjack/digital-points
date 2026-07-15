@@ -91,6 +91,7 @@ class Axis(pg.PlotItem):
         '_y2_label',
         '_lines',
         '_imported_lines',
+        '_ipc_lines',
         '_selected_point',
         '_selectable_points',
         'cursors',
@@ -201,6 +202,7 @@ class Axis(pg.PlotItem):
         self._color_set = set()
         self._lines = []
         self._imported_lines = []
+        self._ipc_lines = []
         self.right_click = False
         self._reset_drag_point()
 
@@ -589,6 +591,14 @@ class Axis(pg.PlotItem):
         return self._lines
 
     @property
+    def imported_lines(self) -> list[Line]:
+        return self._imported_lines
+
+    @property
+    def ipc_lines(self) -> list[Line]:
+        return self._ipc_lines
+
+    @property
     def x_unit(self) -> str:
         return self._x_unit
 
@@ -601,6 +611,7 @@ class Axis(pg.PlotItem):
             show_symbols: bool = False,
             drag_limits: Optional[list | tuple] = None,
             imported: bool = False,
+            ipc: bool = False,
             enable_marks: bool = False,
             ) -> Line:
         """ Create and add a new interactive line to the plot. """
@@ -621,14 +632,15 @@ class Axis(pg.PlotItem):
             color=select_color,
             show_symbols=show_symbols,
             drag_limits=drag_limits,
-            imported=imported,
             enable_marks=enable_marks,
             )
 
-        if not imported:
-            self._lines.append(new_line)
-        else:
+        if imported:
             self._imported_lines.append(new_line)
+        elif ipc:
+            self._ipc_lines.append(new_line)
+        else:
+            self._lines.append(new_line)
 
         self.addItem(new_line)
         self.addItem(new_line.mark_point_0['point'])
@@ -638,10 +650,7 @@ class Axis(pg.PlotItem):
 
         return new_line
 
-    def _remove_line_from_plot(
-            self,
-            line: Line
-            ) -> None:
+    def _remove_line_from_plot(self, line: Line) -> None:
         """
         Helper to safely remove a line,
         its markers, and free its color.
@@ -653,9 +662,6 @@ class Axis(pg.PlotItem):
         self.removeItem(line.mark_point_1['label'])
         self.removeItem(line)
 
-        if line in self._lines:
-            self._lines.remove(line)
-
         # Use discard to prevent KeyError if the color was already removed.
         if line.color != (0, 0, 0):
             self._color_set.discard(line.color)
@@ -665,20 +671,21 @@ class Axis(pg.PlotItem):
 
         for line in reversed(self._lines):
             self._remove_line_from_plot(line)
+            self._lines.remove(line)
 
     def remove_all_imported_lines(self) -> None:
         """ Remove all imported lines. """
 
         for line in reversed(self._imported_lines):
-            self.removeItem(line.mark_point_0['point'])
-            self.removeItem(line.mark_point_0['label'])
-            self.removeItem(line.mark_point_1['point'])
-            self.removeItem(line.mark_point_1['label'])
-            self.removeItem(line)
+            self._remove_line_from_plot(line)
             self._imported_lines.remove(line)
 
-            if line.color != (0, 0, 0):
-                self._color_set.remove(line.color)
+    def remove_all_ipc_lines(self) -> None:
+        """ Remove all IPC lines. """
+
+        for line in reversed(self._ipc_lines):
+            self._remove_line_from_plot(line)
+            self._ipc_lines.remove(line)
 
     def remove_line(
             self,
@@ -688,10 +695,30 @@ class Axis(pg.PlotItem):
         """ Remove a specific line by name or address. """
 
         for line in self._lines:
-            if (name and line.name() == name) or (address and line.address == address):
+            if ((name and line.name() == name)
+                    or (address and line.address == address)):
                 self._remove_line_from_plot(line)
+                self._lines.remove(line)
+                break
+
+    def remove_imported_line(self, name: Optional[str] = None) -> None:
+        """ Remove a specific imported line by name. """
+
+        for line in self._imported_lines:
+            if name and line.name() == name:
+                self._remove_line_from_plot(line)
+                self._imported_lines.remove(line)
+                break
+
+    def remove_ipc_line(self, name: Optional[str] = None) -> None:
+        """ Remove a specific IPC line by name. """
+
+        for line in self._ipc_lines:
+            if name and line.name() == name:
+                self._remove_line_from_plot(line)
+                self._ipc_lines.remove(line)
                 break
 
     def update_lines(self) -> None:
-        for line in self._lines:
+        for line in self._lines + self._imported_lines + self._ipc_lines:
             line.update_line()

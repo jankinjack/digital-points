@@ -3808,10 +3808,6 @@ class Ui_Window_Main(object):
         self.gridLayout_8.setHorizontalSpacing(5)
         self.gridLayout_8.setVerticalSpacing(0)
         self.gridLayout_8.setContentsMargins(0, 0, 5, 0)
-        self.horizontalSpacer_13 = QSpacerItem(372, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-
-        self.gridLayout_8.addItem(self.horizontalSpacer_13, 0, 3, 1, 1)
-
         self.label_12 = QLabel(self.frameTop_1)
         self.label_12.setObjectName(u"label_12")
         self.label_12.setMinimumSize(QSize(25, 25))
@@ -3820,26 +3816,7 @@ class Ui_Window_Main(object):
         self.label_12.setPixmap(QPixmap(u":/images/images/logo_small.png"))
         self.label_12.setScaledContents(True)
 
-        self.gridLayout_8.addWidget(self.label_12, 0, 1, 1, 1)
-
-        self.label_2 = QLabel(self.frameTop_1)
-        self.label_2.setObjectName(u"label_2")
-        font1 = QFont()
-        font1.setFamilies([u"Tilda Sans VF"])
-        font1.setBold(True)
-        self.label_2.setFont(font1)
-        self.label_2.setStyleSheet(u"QLabel {\n"
-"	font-family: Tilda Sans VF;\n"
-"	color: #f8f8f2;\n"
-"	font-size: 22px;\n"
-"}")
-        self.label_2.setLocale(QLocale(QLocale.English, QLocale.UnitedStates))
-
-        self.gridLayout_8.addWidget(self.label_2, 0, 2, 1, 1)
-
-        self.horizontalSpacer_12 = QSpacerItem(372, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-
-        self.gridLayout_8.addItem(self.horizontalSpacer_12, 0, 0, 1, 1)
+        self.gridLayout_8.addWidget(self.label_12, 0, 3, 1, 1)
 
         self.pushButtonHelp = QPushButton(self.frameTop_1)
         self.pushButtonHelp.setObjectName(u"pushButtonHelp")
@@ -3867,7 +3844,59 @@ class Ui_Window_Main(object):
         self.pushButtonHelp.setIcon(icon7)
         self.pushButtonHelp.setIconSize(QSize(20, 20))
 
-        self.gridLayout_8.addWidget(self.pushButtonHelp, 0, 4, 1, 1)
+        self.gridLayout_8.addWidget(self.pushButtonHelp, 0, 6, 1, 1)
+
+        self.label_2 = QLabel(self.frameTop_1)
+        self.label_2.setObjectName(u"label_2")
+        font1 = QFont()
+        font1.setFamilies([u"Tilda Sans VF"])
+        font1.setBold(True)
+        self.label_2.setFont(font1)
+        self.label_2.setStyleSheet(u"QLabel {\n"
+"	font-family: Tilda Sans VF;\n"
+"	color: #f8f8f2;\n"
+"	font-size: 22px;\n"
+"}")
+        self.label_2.setLocale(QLocale(QLocale.English, QLocale.UnitedStates))
+
+        self.gridLayout_8.addWidget(self.label_2, 0, 4, 1, 1)
+
+        self.horizontalSpacer_13 = QSpacerItem(372, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.gridLayout_8.addItem(self.horizontalSpacer_13, 0, 5, 1, 1)
+
+        self.checkBoxIPC = QCheckBox(self.frameTop_1)
+        self.checkBoxIPC.setObjectName(u"checkBoxIPC")
+        self.checkBoxIPC.setStyleSheet(u"QCheckBox {\n"
+"	color: #f8f8f2;\n"
+"}\n"
+"\n"
+"QCheckBox::indicator {\n"
+"    border: 1px solid #6272a4;\n"
+"	width: 20px;\n"
+"	height: 20px;\n"
+"	border-radius: 11px;\n"
+"    background: white;\n"
+"}\n"
+"QCheckBox::indicator:hover {\n"
+"    border: 1px solid #7284b9;\n"
+"}\n"
+"QCheckBox::indicator:checked {\n"
+"	background-image: url(:/icons/icons/icon_check.png);\n"
+"	background-repeat: no-repeat;\n"
+"    background-position: center;\n"
+"}\n"
+"")
+
+        self.gridLayout_8.addWidget(self.checkBoxIPC, 0, 1, 1, 1)
+
+        self.horizontalSpacer_12 = QSpacerItem(372, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.gridLayout_8.addItem(self.horizontalSpacer_12, 0, 2, 1, 1)
+
+        self.horizontalSpacer_8 = QSpacerItem(10, 20, QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Minimum)
+
+        self.gridLayout_8.addItem(self.horizontalSpacer_8, 0, 0, 1, 1)
 
 
         self.horizontalLayout_15.addWidget(self.frameTop_1)
@@ -4344,8 +4373,9 @@ class Ui_Window_Main(object):
 #endif // QT_CONFIG(tooltip)
         self.pushButtonConnect.setText(QCoreApplication.translate("Window_Main", u"  Start", None))
         self.label_12.setText("")
-        self.label_2.setText(QCoreApplication.translate("Window_Main", u"Digital Points", None))
         self.pushButtonHelp.setText("")
+        self.label_2.setText(QCoreApplication.translate("Window_Main", u"Digital Points", None))
+        self.checkBoxIPC.setText(QCoreApplication.translate("Window_Main", u"IPC", None))
 #if QT_CONFIG(tooltip)
         self.pushButtonMinimizeApp.setToolTip(QCoreApplication.translate("Window_Main", u"Minimize", None))
 #endif // QT_CONFIG(tooltip)

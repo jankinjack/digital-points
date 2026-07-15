@@ -65,7 +65,6 @@ class Line(pg.PlotDataItem):
         '_expression_compiled',
         '_mark_points',
         '_drag_limits',
-        '_imported',
         '_y_data',
         '_color',
         '_color_str',
@@ -85,7 +84,6 @@ class Line(pg.PlotDataItem):
             color: tuple[int, int, int] = (0, 0, 0),
             show_symbols: bool = False,
             drag_limits: Optional[list | tuple] = None,
-            imported: bool = False,
             enable_marks: bool = False,
             *args, **kwargs,
             ) -> None:
@@ -154,7 +152,6 @@ class Line(pg.PlotDataItem):
                 })
 
         self._drag_limits = drag_limits
-        self._imported = imported
         self._mutex = threading.Lock()
         self._needs_update = False
 

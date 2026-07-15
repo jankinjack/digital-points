@@ -24,6 +24,7 @@ from model.dsp import (
     ulul_smooth,
     moving_average,
     )
+from model.ipc import IPC
 
 
 DICT_MATH_FUNCTIONS = {
@@ -119,7 +120,9 @@ class GraphView(QObject):
         '_share_objects',
         '_lines',
         '_imported_lines',
+        '_ipc_lines',
         '_number_lines',
+        '_ipc',
         )
 
     number_lines_changed = Signal(int)
@@ -172,7 +175,10 @@ class GraphView(QObject):
 
         self._lines = []
         self._imported_lines = []
+        self._ipc_lines = []
         self._number_lines = 0
+
+        self._ipc = None
 
     @property
     def share_objects(self) -> list[tuple[int, int]]:
@@ -194,6 +200,13 @@ class GraphView(QObject):
     def imported_lines(self) -> list[Line]:
         return self._imported_lines
 
+    @property
+    def ipc_lines(self) -> list[Line]:
+        return self._ipc_lines
+
+    def register_ipc(self, ipc: IPC) -> None:
+        self._ipc = ipc
+
     def build_share_objects_and_lines(self) -> None:
         """
         Rebuild the flat lists of shared objects
@@ -201,6 +214,8 @@ class GraphView(QObject):
         """
 
         self._lines = [line for ax in self._axes for line in ax.lines]
+        self._imported_lines = [line for ax in self._axes for line in ax.imported_lines]
+        self._ipc_lines = [line for ax in self._axes for line in ax.ipc_lines]
         self._share_objects = [
             (line.type_, line.address) for line in self._lines
             ]
@@ -215,6 +230,7 @@ class GraphView(QObject):
             show_symbols: bool = False,
             drag_limits: Optional[list | tuple] = None,
             imported: bool = False,
+            ipc: bool = False,
             enable_marks: bool = False,
             ) -> Line:
         """ Add a new line to the specified axis. """
@@ -227,15 +243,18 @@ class GraphView(QObject):
             show_symbols=show_symbols,
             drag_limits=drag_limits,
             imported=imported,
+            ipc=ipc,
             enable_marks=enable_marks,
             )
 
-        if not imported:
+        if imported:
+            self._imported_lines.append(line)
+        elif ipc:
+            self._ipc_lines.append(line)
+        else:
             self.build_share_objects_and_lines()
             self._number_lines += 1
             self.number_lines_changed.emit(self._number_lines)
-        else:
-            self._imported_lines.append(line)
 
         return line
 
@@ -265,6 +284,16 @@ class GraphView(QObject):
         self._number_lines = 0
         self.number_lines_changed.emit(self._number_lines)
 
+    def remove_imported_line(
+            self,
+            axis: int,
+            name: Optional[str] = None,
+            ) -> None:
+        """ Remove a specific imported line from the specified axis. """
+
+        self._axes[axis].remove_imported_line(name=name)
+        self.build_share_objects_and_lines()
+
     def remove_all_imported_lines(self) -> None:
         """ Remove all imported lines from all axes. """
 
@@ -272,6 +301,24 @@ class GraphView(QObject):
             axis.remove_all_imported_lines()
 
         self._imported_lines = []
+
+    def remove_ipc_line(
+            self,
+            axis: int,
+            name: Optional[str] = None,
+            ) -> None:
+        """ Remove a specific IPC line from the specified axis. """
+
+        self._axes[axis].remove_ipc_line(name=name)
+        self.build_share_objects_and_lines()
+
+    def remove_all_ipc_lines(self) -> None:
+        """ Remove all IPC lines from all axes. """
+
+        for axis in self._axes:
+            axis.remove_all_ipc_lines()
+
+        self._ipc_lines = []
 
     @Slot(int, np.ndarray, np.ndarray, bool, int)
     def set_data(
@@ -384,6 +431,18 @@ class GraphView(QObject):
 
         for i, l in enumerate(lines):
             self._imported_lines[l].data = (x_data, y_data[i])
+
+    def set_ipc_data_by_name(
+            self,
+            names: tuple[str, ...] | list[str],
+            x_data: np.ndarray,
+            y_data: tuple[np.ndarray, ...] | list[np.ndarray],
+            ) -> None:
+
+        for i, line in enumerate(self._ipc_lines):
+            for j, name in enumerate(names):
+                if name == line.name():
+                    self._ipc_lines[i].data = (x_data, y_data[j])
 
     def update_lines(self) -> None:
         """ Update (periodically) the line after data change. """

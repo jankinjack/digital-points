@@ -207,6 +207,7 @@ class UiMainWindow(BaseFramelessWindow):
         super().__init__(*args, **kwargs)
 
         self.timer_graph_update = QTimer()
+        self.timer_ipc = QTimer()
 
         self.pos_mouse_pressed = None
         self._load_ui()

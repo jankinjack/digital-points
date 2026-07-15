@@ -839,6 +839,11 @@ t – функция времени.
         <translation type="unfinished">Дельта</translation>
     </message>
     <message>
+        <location filename="../view/ui_form_main.ui" line="6936"/>
+        <source>IPC</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Average</source>
         <translation type="obsolete">Среднее</translation>
     </message>
@@ -1171,7 +1176,7 @@ t – функция времени.
     </message>
     <message>
         <location filename="../view/ui_form_main.ui" line="20"/>
-        <location filename="../view/ui_form_main.ui" line="6859"/>
+        <location filename="../view/ui_form_main.ui" line="6891"/>
         <source>Digital Points</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1180,42 +1185,42 @@ t – функция времени.
         <translation type="obsolete">Прогресс:</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_main.ui" line="6989"/>
+        <location filename="../view/ui_form_main.ui" line="7034"/>
         <source>Minimize</source>
         <translation type="unfinished">Свернуть</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_main.ui" line="7043"/>
+        <location filename="../view/ui_form_main.ui" line="7088"/>
         <source>Maximize/Restore</source>
         <translation type="unfinished">Развернуть/Восстановить</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_main.ui" line="7097"/>
+        <location filename="../view/ui_form_main.ui" line="7142"/>
         <source>Close</source>
         <translation type="unfinished">Закрыть</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_main.ui" line="7219"/>
+        <location filename="../view/ui_form_main.ui" line="7264"/>
         <source>Scope</source>
         <translation type="unfinished">Осциллограф</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_main.ui" line="7294"/>
+        <location filename="../view/ui_form_main.ui" line="7339"/>
         <source>FRA</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../view/ui_form_main.ui" line="7357"/>
+        <location filename="../view/ui_form_main.ui" line="7402"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Math&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../view/ui_form_main.ui" line="7436"/>
+        <location filename="../view/ui_form_main.ui" line="7481"/>
         <source>Log</source>
         <translation type="unfinished">Логгер</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_main.ui" line="7499"/>
+        <location filename="../view/ui_form_main.ui" line="7544"/>
         <source>Settings</source>
         <translation type="unfinished">Настройки</translation>
     </message>

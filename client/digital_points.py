@@ -18,10 +18,11 @@ from view.ui_windows import (
     UiImportCSVWindow,
     )
 from model.interface.interface_base import InterfaceBase
-from controller.signals import init_signals
-from controller.default import init_default
 from model.json_config import JSON_Config
 from model.loggers import LogHandler, StatusTracker
+from model.ipc import IPC
+from controller.signals import init_signals
+from controller.default import init_default
 
 
 class DigitalPoints(QApplication):
@@ -66,6 +67,7 @@ class DigitalPoints(QApplication):
         self.setApplicationVersion(info.__version__)
 
         # Initialize core components and UI.
+        self.ipc = IPC()
         self.interface = InterfaceBase(self)
         self._load_fonts()
         self._load_ui_windows()
@@ -81,9 +83,12 @@ class DigitalPoints(QApplication):
         # Start background tasks.
         self.com_settings.timer_update.start(200)
         self.main.timer_graph_update.start(15)
+        self.main.timer_ipc.start(200)
         self.interface.thread_.start()
 
         self.logger.debug('LOG ENABLE')
+
+        self.main.graph_scope.register_ipc(self.ipc)
 
     def _load_fonts(self) -> None:
         """ Load custom application fonts and set the default font. """

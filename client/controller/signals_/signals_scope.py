@@ -445,4 +445,76 @@ def init_signals_scope(dp: 'DigitalPoints') -> None:
         dp.fra_settings.graph_fra_config.update_lines()
         dp.fra_settings.graph_fra_excitation.update_lines()
 
+    def __periodic_ipc() -> None:
+        """
+        Handles the periodic Inter-Process Communication (IPC) cycle.
+        Sends local graph data to peer instances and processes incoming data
+        to dynamically synchronize remote graph lines in the UI.
+        """
+
+        # Send local graph data to all connected peers.
+        dp.ipc.send_data(dp.main.graph_scope)
+
+        # Process incoming data if IPC synchronization is enabled in the UI.
+        if dp.main.ui.checkBoxIPC.isChecked():
+            while True:
+                # Receive batches of data from all subscribers.
+                data = dp.ipc.receive_data()
+                if not data:
+                    break
+
+                # Process each batch
+                #   (grouped by remote instance and axis index).
+                for instance, axis, incoming_names, array in data:
+                    try:
+                        x_data = array[0]
+                        y_data = array[1:]
+
+                        # Format incoming names to avoid collisions
+                        # (e.g., "ipc1: temperature").
+                        formatted_names = [
+                            f'ipc{instance}: {name}' for name in incoming_names
+                            ]
+                        formatted_names_set = set(formatted_names)
+
+                        # Extract current IPC line names for the specific axis
+                        # into a set for O(1) lookups.
+                        current_names_set = {
+                            line.name() for line in dp.main.graph_scope.axes[axis].ipc_lines
+                            }
+
+                        # Remove obsolete IPC lines.
+                        #   (Lines that were imported previously
+                        #   but are no longer present in the incoming batch).
+                        obsolete_names = current_names_set - formatted_names_set
+                        for line_name in obsolete_names:
+                            if line_name.startswith('ipc'):
+                                dp.main.graph_scope.remove_ipc_line(
+                                    axis, line_name
+                                    )
+
+                        # Add new IPC lines
+                        #   (Lines that just appeared in the incoming batch).
+                        new_names = formatted_names_set - current_names_set
+                        for name in new_names:
+                            dp.main.graph_scope.add_line(
+                                axis=axis,
+                                name=name,
+                                type_='float32_t',
+                                address=0,
+                                ipc=True,
+                                enable_marks=False,
+                                )
+
+                        if formatted_names:
+                            dp.main.graph_scope.set_ipc_data_by_name(
+                                formatted_names, x_data, y_data
+                            )
+                    except Exception:
+                        continue
+        else:
+            # If IPC is disabled, clean up all remote lines.
+            dp.main.graph_scope.remove_all_ipc_lines()
+
     dp.main.timer_graph_update.timeout.connect(__periodic_update)
+    dp.main.timer_ipc.timeout.connect(__periodic_ipc)

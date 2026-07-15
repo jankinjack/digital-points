@@ -107,7 +107,7 @@ def init_signals_import_csv(dp: 'DigitalPoints') -> None:
                             address=0,
                             imported=True,
                             enable_marks=enable_marks,
-                        )
+                            )
 
                         selected_names.append(name)
                         axes_mapping.append(axis_idx)
