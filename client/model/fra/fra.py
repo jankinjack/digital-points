@@ -197,6 +197,9 @@ class FRA():
         # Calculate the decimation factor.
         d = np.maximum(np.ceil(f_s / f_min / n_max), 1).astype(np.uint64)
 
+        # Recalculate the number of points.
+        n_max = np.round(f_s / f_min / d).astype(np.uint64)
+
         # Calculate the maximum harmonic.
         h_max = int(min(n_max / 2, f_max / f_min / 2))
 
@@ -207,7 +210,7 @@ class FRA():
         d = np.full(len(h), d, dtype=np.uint64)
 
         # Calculate the number of points and frequencies.
-        n = np.round(f_s / f_min / d).astype(np.uint64)
+        n = np.full(len(h), n_max, dtype=np.uint64)
         f = f_s / (d * n) * h
 
         return f, n, d, h

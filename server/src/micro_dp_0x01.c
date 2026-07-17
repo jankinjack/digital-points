@@ -154,16 +154,9 @@ static Exception_DP build_0x01_frame(void)
     tx_buf[i] = READ_BYTE(crc, 0);
     i++;
 
-    tx_buf[i] = (uint_least8_t)DP_KEY[0];
-    i++;
-    tx_buf[i] = (uint_least8_t)DP_KEY[1];
-    i++;
-    tx_buf[i] = (uint_least8_t)DP_KEY[2];
-    i++;
-    tx_buf[i] = (uint_least8_t)DP_KEY[3];
-    i++;
-    tx_buf[i] = (uint_least8_t)DP_KEY[4];
-    i++;
+    // Magic Key Terminator.
+    memcpy(&tx_buf[i], DP_KEY, 5);
+    i += 5;
 
     // Transmit the fully built frame via the hardware callback.
     return MICRO_DP.info.func_transmit(tx_buf, (size_t)i);

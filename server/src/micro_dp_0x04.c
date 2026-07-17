@@ -100,11 +100,7 @@ static Exception_DP build_0x04_ack_frame(void)
     tx_buf[3] = READ_BYTE(crc, 0);
 
     // Magic Key Terminator.
-    tx_buf[4] = (uint_least8_t)DP_KEY[0];
-    tx_buf[5] = (uint_least8_t)DP_KEY[1];
-    tx_buf[6] = (uint_least8_t)DP_KEY[2];
-    tx_buf[7] = (uint_least8_t)DP_KEY[3];
-    tx_buf[8] = (uint_least8_t)DP_KEY[4];
+    memcpy(&tx_buf[4], DP_KEY, 5);
 
     // Transmit the fully built frame via the hardware callback.
     return MICRO_DP.info.func_transmit(tx_buf, 9u);

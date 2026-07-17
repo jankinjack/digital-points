@@ -398,11 +398,7 @@ static Exception_DP build_0x02_ack_frame(void)
     tx_buf[3] = READ_BYTE(crc, 0);
 
     // Magic Key Terminator.
-    tx_buf[4] = (uint_least8_t)DP_KEY[0];
-    tx_buf[5] = (uint_least8_t)DP_KEY[1];
-    tx_buf[6] = (uint_least8_t)DP_KEY[2];
-    tx_buf[7] = (uint_least8_t)DP_KEY[3];
-    tx_buf[8] = (uint_least8_t)DP_KEY[4];
+    memcpy(&tx_buf[4], DP_KEY, 5);
 
     MICRO_DP.stage_0x02 = DP_0x02_STAGE_WAIT_ACK;
 
@@ -506,16 +502,8 @@ static Exception_DP build_0x02_frame(void)
     i++;
 
     // Magic Key Terminator.
-    tx_buf[i] = (uint_least8_t)DP_KEY[0];
-    i++;
-    tx_buf[i] = (uint_least8_t)DP_KEY[1];
-    i++;
-    tx_buf[i] = (uint_least8_t)DP_KEY[2];
-    i++;
-    tx_buf[i] = (uint_least8_t)DP_KEY[3];
-    i++;
-    tx_buf[i] = (uint_least8_t)DP_KEY[4];
-    i++;
+    memcpy(&tx_buf[i], DP_KEY, 5);
+    i += 5;
 
     MICRO_DP.stage_0x02 = DP_0x02_STAGE_WAIT_ACK;
 
