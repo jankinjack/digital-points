@@ -73,7 +73,7 @@ class IPC():
         """ Returns the port number assigned to this instance. """
         return self._start_port + self._instance
 
-    def send_data(self, graph_view: GraphView) -> None:
+    def send_data(self, graph_view: 'GraphView') -> None:
         """
         Serializes and sends graph data to all connected subscribers.
         Uses a multi-part message: metadata followed by binary numpy arrays.
