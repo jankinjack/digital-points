@@ -54,7 +54,7 @@ EXPORT Exception_DP process_0x01_frame(const uint_least8_t * const frame)
         const Types_DP var_type = (Types_DP)payload[j];
         const uintptr_t address = BYTES_TO_UINT32(payload[j + 1], payload[j + 2], payload[j + 3], payload[j + 4]);
 
-        int_fast8_t address_alignment = are_type_and_address_valid(address, var_type);
+        const int_fast8_t address_alignment = are_type_and_address_valid(address, var_type);
 
         // Validate the variable type and memory alignment.
         // 64-bit variables currently lack proper alignment support.
@@ -147,8 +147,7 @@ static Exception_DP build_0x01_frame(void)
 
     // CRC-16 over the header and payload (16-bit BE).
     const uint16_t crc = crc16(tx_buf, (size_t)i);
-    
-    // Magic Key Terminator.
+
     tx_buf[i] = READ_BYTE(crc, 1);
     i++;
     tx_buf[i] = READ_BYTE(crc, 0);
@@ -192,7 +191,7 @@ EXPORT size_t get_0x01_frame_size(void)
         MICRO_DP.vars[i].ptr = (Value_DP_Union *)&stub_var;
     }
 
-        // Replace it with a stub function.
+    // Replace it with a stub function.
     // The stub intercepts the transmission request and records the requested
     // frame size into MICRO_DP.mem.stub_size instead of sending it.
     MICRO_DP.info.func_transmit = micro_dp_func_transmit_stub;

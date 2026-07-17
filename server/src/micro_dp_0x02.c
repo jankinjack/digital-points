@@ -378,7 +378,7 @@ EXPORT Exception_DP process_0x02_ack_frame(const uint_least8_t * const frame)
  * -------|------|-------------
  * 0      | 1    | Node Address
  * 1      | 1    | Frame Mode
- * 2..3   | 2    | CRC-16 over header only (Big-Endian: MSB fist, LSB second)
+ * 2..3   | 2    | CRC-16 over header only (Big-Endian: MSB first, LSB second)
  * 4..8   | 5    | Magic Key Terminator (DP_KEY)
  *
  * \retval  DP_OK: Frame built and transmitted successfully.
