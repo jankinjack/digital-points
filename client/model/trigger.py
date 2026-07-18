@@ -51,6 +51,7 @@ class Trigger(QObject):
         '_fra_progress',
         '_fra_repeat',
         '_fra_average_type',
+        '_fra_freq_distrib',
         '_fra_excitation_type',
         '_fra_harmonics',
         )
@@ -102,6 +103,7 @@ class Trigger(QObject):
         self._fra_progress = (0, 0)
         self._fra_repeat = 1
         self._fra_average_type = 'Vector Averaging'
+        self._fra_freq_distrib = 'h=1 Frequency Distribution'
         self._fra_excitation_type = 'Single-Sine Excitation'
         self._fra_harmonics = np.array([], dtype=np.uint64)
 
@@ -405,6 +407,14 @@ class Trigger(QObject):
     @fra_average_type.setter
     def fra_average_type(self, new_average_type: str) -> None:
         self._fra_average_type = new_average_type
+
+    @property
+    def fra_freq_distrib(self) -> str:
+        return self._fra_freq_distrib
+
+    @fra_freq_distrib.setter
+    def fra_freq_distrib(self, new_freq_distrib: str) -> None:
+        self._fra_freq_distrib = new_freq_distrib
 
     @property
     def fra_excitation_type(self) -> str:

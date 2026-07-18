@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>588</width>
-    <height>599</height>
+    <width>945</width>
+    <height>900</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -272,7 +272,7 @@ QPushButton:pressed {
       <property name="frameShadow">
        <enum>QFrame::Shadow::Raised</enum>
       </property>
-      <layout class="QVBoxLayout" name="verticalLayout_2">
+      <layout class="QVBoxLayout" name="verticalLayout_3">
        <property name="spacing">
         <number>0</number>
        </property>
@@ -289,617 +289,14 @@ QPushButton:pressed {
         <number>0</number>
        </property>
        <item>
-        <layout class="QGridLayout" name="gridLayout_3">
-         <property name="bottomMargin">
-          <number>9</number>
-         </property>
-         <property name="horizontalSpacing">
+        <layout class="QHBoxLayout" name="horizontalLayout_10">
+         <property name="spacing">
           <number>0</number>
          </property>
-         <property name="verticalSpacing">
-          <number>3</number>
+         <property name="topMargin">
+          <number>6</number>
          </property>
-         <item row="1" column="1">
-          <widget class="QFrame" name="frame">
-           <property name="styleSheet">
-            <string notr="true">#frame {
-	background: white;
-	border: 0px solid #6272a4;
-	border-radius: 7px;
-}</string>
-           </property>
-           <property name="frameShape">
-            <enum>QFrame::Shape::StyledPanel</enum>
-           </property>
-           <property name="frameShadow">
-            <enum>QFrame::Shadow::Raised</enum>
-           </property>
-           <layout class="QGridLayout" name="gridLayout_2">
-            <property name="leftMargin">
-             <number>3</number>
-            </property>
-            <property name="topMargin">
-             <number>3</number>
-            </property>
-            <property name="rightMargin">
-             <number>3</number>
-            </property>
-            <property name="bottomMargin">
-             <number>3</number>
-            </property>
-            <property name="spacing">
-             <number>6</number>
-            </property>
-            <item row="1" column="0">
-             <layout class="QHBoxLayout" name="horizontalLayout">
-              <property name="spacing">
-               <number>0</number>
-              </property>
-              <item>
-               <widget class="QLabel" name="label">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="minimumSize">
-                 <size>
-                  <width>0</width>
-                  <height>30</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>16777215</width>
-                  <height>30</height>
-                 </size>
-                </property>
-                <property name="styleSheet">
-                 <string notr="true"/>
-                </property>
-                <property name="text">
-                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;f&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;min&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt; = &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QLineEdit" name="lineEditFmin">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="minimumSize">
-                 <size>
-                  <width>50</width>
-                  <height>30</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>16777215</width>
-                  <height>30</height>
-                 </size>
-                </property>
-                <property name="styleSheet">
-                 <string notr="true">QLineEdit {
-	color: #212121;
-	background-color: white;
-	border-left: 1px solid #6272a4;
-	border-top: 1px solid #6272a4;
-	border-bottom: 1px solid #6272a4;
-	border-top-left-radius: 5px;
-	border-bottom-left-radius: 5px;
-	padding-left: 3px;
-}</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QLabel" name="label_4">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="minimumSize">
-                 <size>
-                  <width>0</width>
-                  <height>30</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>16777215</width>
-                  <height>30</height>
-                 </size>
-                </property>
-                <property name="styleSheet">
-                 <string notr="true">QLabel {
-	color: #212121;
-	background-color: white;
-	border-right: 1px solid #6272a4;
-	border-top: 1px solid #6272a4;
-	border-bottom: 1px solid #6272a4;
-	border-top-right-radius: 5px;
-	border-bottom-right-radius: 5px;
-}</string>
-                </property>
-                <property name="text">
-                 <string>(Hz)</string>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </item>
-            <item row="2" column="2">
-             <layout class="QHBoxLayout" name="horizontalLayout_4">
-              <property name="spacing">
-               <number>0</number>
-              </property>
-              <item>
-               <widget class="QLabel" name="label_9">
-                <property name="minimumSize">
-                 <size>
-                  <width>0</width>
-                  <height>30</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>16777215</width>
-                  <height>30</height>
-                 </size>
-                </property>
-                <property name="styleSheet">
-                 <string notr="true"/>
-                </property>
-                <property name="text">
-                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;N&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;repeat&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt; = &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QLineEdit" name="lineEditRepeat">
-                <property name="minimumSize">
-                 <size>
-                  <width>50</width>
-                  <height>30</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>16777215</width>
-                  <height>30</height>
-                 </size>
-                </property>
-                <property name="styleSheet">
-                 <string notr="true">QLineEdit {
-	color: #212121;
-	background-color: white;
-	border: 1px solid #6272a4;
-	border-radius: 5px;
-	padding-left: 3px;
-}</string>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </item>
-            <item row="1" column="3">
-             <layout class="QHBoxLayout" name="horizontalLayout_5">
-              <property name="spacing">
-               <number>0</number>
-              </property>
-              <item>
-               <widget class="QLabel" name="label_8">
-                <property name="minimumSize">
-                 <size>
-                  <width>0</width>
-                  <height>30</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>40</width>
-                  <height>30</height>
-                 </size>
-                </property>
-                <property name="styleSheet">
-                 <string notr="true"/>
-                </property>
-                <property name="text">
-                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;N&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;f&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt; = &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QLineEdit" name="lineEditNfreq">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="minimumSize">
-                 <size>
-                  <width>50</width>
-                  <height>30</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>16777215</width>
-                  <height>30</height>
-                 </size>
-                </property>
-                <property name="styleSheet">
-                 <string notr="true">QLineEdit {
-	color: #212121;
-	background-color: white;
-	border: 1px solid #6272a4;
-	border-radius: 5px;
-	padding-left: 3px;
-}</string>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </item>
-            <item row="2" column="0">
-             <widget class="QComboBox" name="comboBoxAverageType">
-              <property name="minimumSize">
-               <size>
-                <width>220</width>
-                <height>30</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>16777215</width>
-                <height>30</height>
-               </size>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">QComboBox{
-	background-color: white;
-	border-radius: 5px;
-	border: 1px solid #6272a4;
-	padding-left: 10px;
-	padding-right: 10px;
-	height: 20px;
-}
-
-QComboBox:hover{
-	border: 1px solid #7284b9;
-}
-
-QComboBox:disabled{
-	border: 1px solid #7d7d7d;
-	color: #7d7d7d;
-}
-
-QComboBox::drop-down {
-	background-color: white;
-	subcontrol-origin: padding;
-	subcontrol-position: top right;
-	width: 28px; 
-	border-left: 1px solid #6272a4;
-	border-top-right-radius: 3px;
-	background-image: url(:/icons/icons/icon_arrow_bottom.png);
-	border-bottom-right-radius: 3px;
-	background-position: center;
-	background-repeat: no-reperat;
- }
-
-QComboBox::drop-down:disabled {
-	background-color: #aaaaaa;
-	border-left-color: #aaaaaa;
- }
-
-QComboBox::drop-down:hover {
-	background-color: #d1eeff;
- }
-
-QComboBox::drop-down:on {
-	background-image: url(:/icons/icons/icon_arrow_top.png);
- }
-
-QComboBox QAbstractItemView {
-    background-color: white;
-    selection-background-color: #adc9ff;
-	selection-color: #212121;
-	height: 20px;
-    outline: 0;
-}
-</string>
-              </property>
-              <item>
-               <property name="text">
-                <string>Vector Averaging</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Exponential Averaging</string>
-               </property>
-              </item>
-             </widget>
-            </item>
-            <item row="1" column="2">
-             <layout class="QHBoxLayout" name="horizontalLayout_3">
-              <property name="spacing">
-               <number>0</number>
-              </property>
-              <item>
-               <widget class="QLabel" name="label_3">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="minimumSize">
-                 <size>
-                  <width>0</width>
-                  <height>30</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>16777215</width>
-                  <height>30</height>
-                 </size>
-                </property>
-                <property name="styleSheet">
-                 <string notr="true"/>
-                </property>
-                <property name="text">
-                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;f&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;max&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt; = &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QLineEdit" name="lineEditFmax">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="minimumSize">
-                 <size>
-                  <width>50</width>
-                  <height>30</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>16777215</width>
-                  <height>30</height>
-                 </size>
-                </property>
-                <property name="styleSheet">
-                 <string notr="true">QLineEdit {
-	color: #212121;
-	background-color: white;
-	border-left: 1px solid #6272a4;
-	border-top: 1px solid #6272a4;
-	border-bottom: 1px solid #6272a4;
-	border-top-left-radius: 5px;
-	border-bottom-left-radius: 5px;
-	padding-left: 3px;
-}</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QLabel" name="label_5">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="minimumSize">
-                 <size>
-                  <width>0</width>
-                  <height>30</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>16777215</width>
-                  <height>30</height>
-                 </size>
-                </property>
-                <property name="styleSheet">
-                 <string notr="true">QLabel {
-	color: #212121;
-	background-color: white;
-	border-right: 1px solid #6272a4;
-	border-top: 1px solid #6272a4;
-	border-bottom: 1px solid #6272a4;
-	border-top-right-radius: 5px;
-	border-bottom-right-radius: 5px;
-}</string>
-                </property>
-                <property name="text">
-                 <string>(Hz)</string>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </item>
-            <item row="1" column="4">
-             <layout class="QHBoxLayout" name="horizontalLayout_2">
-              <property name="spacing">
-               <number>0</number>
-              </property>
-              <item>
-               <widget class="QLabel" name="label_6">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="minimumSize">
-                 <size>
-                  <width>0</width>
-                  <height>30</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>16777215</width>
-                  <height>30</height>
-                 </size>
-                </property>
-                <property name="styleSheet">
-                 <string notr="true"/>
-                </property>
-                <property name="text">
-                 <string>A = </string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QLineEdit" name="lineEditAmplitude">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="minimumSize">
-                 <size>
-                  <width>50</width>
-                  <height>30</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>16777215</width>
-                  <height>30</height>
-                 </size>
-                </property>
-                <property name="styleSheet">
-                 <string notr="true">QLineEdit {
-	color: #212121;
-	background-color: white;
-	border: 1px solid #6272a4;
-	border-radius: 5px;
-	padding-left: 3px;
-}</string>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </item>
-            <item row="2" column="3" colspan="2">
-             <widget class="QComboBox" name="comboBoxExcitationType">
-              <property name="minimumSize">
-               <size>
-                <width>0</width>
-                <height>30</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>16777215</width>
-                <height>30</height>
-               </size>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">QComboBox{
-	background-color: white;
-	border-radius: 5px;
-	border: 1px solid #6272a4;
-	padding-left: 10px;
-	padding-right: 10px;
-	height: 20px;
-}
-
-QComboBox:hover{
-	border: 1px solid #7284b9;
-}
-
-QComboBox:disabled{
-	border: 1px solid #7d7d7d;
-	color: #7d7d7d;
-}
-
-QComboBox::drop-down {
-	background-color: white;
-	subcontrol-origin: padding;
-	subcontrol-position: top right;
-	width: 28px; 
-	border-left: 1px solid #6272a4;
-	border-top-right-radius: 3px;
-	background-image: url(:/icons/icons/icon_arrow_bottom.png);
-	border-bottom-right-radius: 3px;
-	background-position: center;
-	background-repeat: no-reperat;
- }
-
-QComboBox::drop-down:disabled {
-	background-color: #aaaaaa;
-	border-left-color: #aaaaaa;
- }
-
-QComboBox::drop-down:hover {
-	background-color: #d1eeff;
- }
-
-QComboBox::drop-down:on {
-	background-image: url(:/icons/icons/icon_arrow_top.png);
- }
-
-QComboBox QAbstractItemView {
-    background-color: white;
-    selection-background-color: #adc9ff;
-	selection-color: #212121;
-	height: 20px;
-    outline: 0;
-}
-</string>
-              </property>
-              <item>
-               <property name="text">
-                <string>Single-Sine Excitation</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Multi-Sine Excitation</string>
-               </property>
-              </item>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-         </item>
-         <item row="1" column="2">
-          <spacer name="horizontalSpacer_3">
-           <property name="orientation">
-            <enum>Qt::Orientation::Horizontal</enum>
-           </property>
-           <property name="sizeType">
-            <enum>QSizePolicy::Policy::Fixed</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>13</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item row="1" column="0">
+         <item>
           <spacer name="horizontalSpacer_2">
            <property name="orientation">
             <enum>Qt::Orientation::Horizontal</enum>
@@ -915,25 +312,694 @@ QComboBox QAbstractItemView {
            </property>
           </spacer>
          </item>
-         <item row="0" column="0" colspan="3">
-          <widget class="QLabel" name="label_7">
-           <property name="font">
-            <font>
-             <family>Droid Sans</family>
-             <pointsize>-1</pointsize>
-             <bold>true</bold>
-            </font>
-           </property>
+         <item>
+          <widget class="QFrame" name="frame">
            <property name="styleSheet">
-            <string notr="true">QLabel {
-	margin-top: 5px;
-	margin-left: 11px;
+            <string notr="true">#frame {
+	background: white;
+	border: 0px solid #6272a4;
+	border-radius: 7px;
 }</string>
            </property>
-           <property name="text">
-            <string>FRA Parameters</string>
+           <property name="frameShape">
+            <enum>QFrame::Shape::StyledPanel</enum>
            </property>
+           <property name="frameShadow">
+            <enum>QFrame::Shadow::Raised</enum>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_2">
+            <property name="spacing">
+             <number>3</number>
+            </property>
+            <property name="leftMargin">
+             <number>3</number>
+            </property>
+            <property name="topMargin">
+             <number>3</number>
+            </property>
+            <property name="rightMargin">
+             <number>3</number>
+            </property>
+            <property name="bottomMargin">
+             <number>3</number>
+            </property>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_8">
+              <item>
+               <layout class="QHBoxLayout" name="horizontalLayout">
+                <property name="spacing">
+                 <number>0</number>
+                </property>
+                <item>
+                 <widget class="QLabel" name="label">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>30</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>30</height>
+                   </size>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true"/>
+                  </property>
+                  <property name="text">
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;f&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;min&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt; = &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLineEdit" name="lineEditFmin">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="minimumSize">
+                   <size>
+                    <width>50</width>
+                    <height>30</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>30</height>
+                   </size>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">QLineEdit {
+	color: #212121;
+	background-color: white;
+	border-left: 1px solid #6272a4;
+	border-top: 1px solid #6272a4;
+	border-bottom: 1px solid #6272a4;
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	padding-left: 3px;
+}</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_4">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>30</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>30</height>
+                   </size>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">QLabel {
+	color: #212121;
+	background-color: white;
+	border-right: 1px solid #6272a4;
+	border-top: 1px solid #6272a4;
+	border-bottom: 1px solid #6272a4;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+}</string>
+                  </property>
+                  <property name="text">
+                   <string>(Hz)</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <layout class="QHBoxLayout" name="horizontalLayout_3">
+                <property name="spacing">
+                 <number>0</number>
+                </property>
+                <item>
+                 <widget class="QLabel" name="label_3">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>30</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>30</height>
+                   </size>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true"/>
+                  </property>
+                  <property name="text">
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;f&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;max&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt; = &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLineEdit" name="lineEditFmax">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="minimumSize">
+                   <size>
+                    <width>50</width>
+                    <height>30</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>30</height>
+                   </size>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">QLineEdit {
+	color: #212121;
+	background-color: white;
+	border-left: 1px solid #6272a4;
+	border-top: 1px solid #6272a4;
+	border-bottom: 1px solid #6272a4;
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	padding-left: 3px;
+}</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_5">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>30</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>30</height>
+                   </size>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">QLabel {
+	color: #212121;
+	background-color: white;
+	border-right: 1px solid #6272a4;
+	border-top: 1px solid #6272a4;
+	border-bottom: 1px solid #6272a4;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+}</string>
+                  </property>
+                  <property name="text">
+                   <string>(Hz)</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <layout class="QHBoxLayout" name="horizontalLayout_5">
+                <property name="spacing">
+                 <number>0</number>
+                </property>
+                <item>
+                 <widget class="QLabel" name="label_8">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>30</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>40</width>
+                    <height>30</height>
+                   </size>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true"/>
+                  </property>
+                  <property name="text">
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;N&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;f&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt; = &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLineEdit" name="lineEditNfreq">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="minimumSize">
+                   <size>
+                    <width>50</width>
+                    <height>30</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>30</height>
+                   </size>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">QLineEdit {
+	color: #212121;
+	background-color: white;
+	border: 1px solid #6272a4;
+	border-radius: 5px;
+	padding-left: 3px;
+}</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <widget class="QComboBox" name="comboBoxFreqDistrib">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>30</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>30</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QComboBox{
+	background-color: white;
+	border-radius: 5px;
+	border: 1px solid #6272a4;
+	padding-left: 10px;
+	padding-right: 10px;
+	height: 20px;
+}
+
+QComboBox:hover{
+	border: 1px solid #7284b9;
+}
+
+QComboBox:disabled{
+	border: 1px solid #7d7d7d;
+	color: #7d7d7d;
+}
+
+QComboBox::drop-down {
+	background-color: white;
+	subcontrol-origin: padding;
+	subcontrol-position: top right;
+	width: 28px; 
+	border-left: 1px solid #6272a4;
+	border-top-right-radius: 3px;
+	background-image: url(:/icons/icons/icon_arrow_bottom.png);
+	border-bottom-right-radius: 3px;
+	background-position: center;
+	background-repeat: no-reperat;
+ }
+
+QComboBox::drop-down:disabled {
+	background-color: #aaaaaa;
+	border-left-color: #aaaaaa;
+ }
+
+QComboBox::drop-down:hover {
+	background-color: #d1eeff;
+ }
+
+QComboBox::drop-down:on {
+	background-image: url(:/icons/icons/icon_arrow_top.png);
+ }
+
+QComboBox QAbstractItemView {
+    background-color: white;
+    selection-background-color: #adc9ff;
+	selection-color: #212121;
+	height: 20px;
+    outline: 0;
+}
+
+</string>
+                </property>
+                <item>
+                 <property name="text">
+                  <string>h=1 Frequency Distribution</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>h=var Frequency Distribution</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_9">
+              <item>
+               <layout class="QHBoxLayout" name="horizontalLayout_2">
+                <property name="spacing">
+                 <number>0</number>
+                </property>
+                <item>
+                 <widget class="QLabel" name="label_6">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>30</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>30</height>
+                   </size>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true"/>
+                  </property>
+                  <property name="text">
+                   <string>A = </string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLineEdit" name="lineEditAmplitude">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="minimumSize">
+                   <size>
+                    <width>50</width>
+                    <height>30</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>30</height>
+                   </size>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">QLineEdit {
+	color: #212121;
+	background-color: white;
+	border: 1px solid #6272a4;
+	border-radius: 5px;
+	padding-left: 3px;
+}</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <widget class="QComboBox" name="comboBoxAverageType">
+                <property name="minimumSize">
+                 <size>
+                  <width>220</width>
+                  <height>30</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>30</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QComboBox{
+	background-color: white;
+	border-radius: 5px;
+	border: 1px solid #6272a4;
+	padding-left: 10px;
+	padding-right: 10px;
+	height: 20px;
+}
+
+QComboBox:hover{
+	border: 1px solid #7284b9;
+}
+
+QComboBox:disabled{
+	border: 1px solid #7d7d7d;
+	color: #7d7d7d;
+}
+
+QComboBox::drop-down {
+	background-color: white;
+	subcontrol-origin: padding;
+	subcontrol-position: top right;
+	width: 28px; 
+	border-left: 1px solid #6272a4;
+	border-top-right-radius: 3px;
+	background-image: url(:/icons/icons/icon_arrow_bottom.png);
+	border-bottom-right-radius: 3px;
+	background-position: center;
+	background-repeat: no-reperat;
+ }
+
+QComboBox::drop-down:disabled {
+	background-color: #aaaaaa;
+	border-left-color: #aaaaaa;
+ }
+
+QComboBox::drop-down:hover {
+	background-color: #d1eeff;
+ }
+
+QComboBox::drop-down:on {
+	background-image: url(:/icons/icons/icon_arrow_top.png);
+ }
+
+QComboBox QAbstractItemView {
+    background-color: white;
+    selection-background-color: #adc9ff;
+	selection-color: #212121;
+	height: 20px;
+    outline: 0;
+}
+</string>
+                </property>
+                <item>
+                 <property name="text">
+                  <string>Vector Averaging</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Exponential Averaging</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+              <item>
+               <layout class="QHBoxLayout" name="horizontalLayout_4">
+                <property name="spacing">
+                 <number>0</number>
+                </property>
+                <item>
+                 <widget class="QLabel" name="label_9">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>30</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>30</height>
+                   </size>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true"/>
+                  </property>
+                  <property name="text">
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;N&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;repeat&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt; = &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLineEdit" name="lineEditRepeat">
+                  <property name="minimumSize">
+                   <size>
+                    <width>50</width>
+                    <height>30</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>30</height>
+                   </size>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">QLineEdit {
+	color: #212121;
+	background-color: white;
+	border: 1px solid #6272a4;
+	border-radius: 5px;
+	padding-left: 3px;
+}</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <widget class="QComboBox" name="comboBoxExcitationType">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>30</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>30</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QComboBox{
+	background-color: white;
+	border-radius: 5px;
+	border: 1px solid #6272a4;
+	padding-left: 10px;
+	padding-right: 10px;
+	height: 20px;
+}
+
+QComboBox:hover{
+	border: 1px solid #7284b9;
+}
+
+QComboBox:disabled{
+	border: 1px solid #7d7d7d;
+	color: #7d7d7d;
+}
+
+QComboBox::drop-down {
+	background-color: white;
+	subcontrol-origin: padding;
+	subcontrol-position: top right;
+	width: 28px; 
+	border-left: 1px solid #6272a4;
+	border-top-right-radius: 3px;
+	background-image: url(:/icons/icons/icon_arrow_bottom.png);
+	border-bottom-right-radius: 3px;
+	background-position: center;
+	background-repeat: no-reperat;
+ }
+
+QComboBox::drop-down:disabled {
+	background-color: #aaaaaa;
+	border-left-color: #aaaaaa;
+ }
+
+QComboBox::drop-down:hover {
+	background-color: #d1eeff;
+ }
+
+QComboBox::drop-down:on {
+	background-image: url(:/icons/icons/icon_arrow_top.png);
+ }
+
+QComboBox QAbstractItemView {
+    background-color: white;
+    selection-background-color: #adc9ff;
+	selection-color: #212121;
+	height: 20px;
+    outline: 0;
+}
+</string>
+                </property>
+                <item>
+                 <property name="text">
+                  <string>Single-Sine Excitation</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Multi-Sine Excitation</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
           </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_3">
+           <property name="orientation">
+            <enum>Qt::Orientation::Horizontal</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Policy::Fixed</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>13</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
          </item>
         </layout>
        </item>

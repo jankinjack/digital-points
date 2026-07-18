@@ -96,6 +96,7 @@ class FRA():
             n_freq: int,
             n_max: int,
             f_s: float | int,
+            freq_distrib: str,
             ) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
         """
         Calculate Single-Sine Excitation (SSE) parameters: frequencies,
@@ -175,8 +176,10 @@ class FRA():
 
         n_max = np.floor(n_max/2)
 
-        return _h_var(f_min, f_max, n_freq, n_max, f_s)
-        # return t_var_n_var(f_min, f_max, n_freq, n_max, f_s)
+        if freq_distrib and freq_distrib == 'h=1 Frequency Distribution':
+            return _h_const(f_min, f_max, n_freq, n_max, f_s)
+        else:
+            return _h_var(f_min, f_max, n_freq, n_max, f_s)
 
     @staticmethod
     def mse_parameters_from_frequency_range(
@@ -185,6 +188,7 @@ class FRA():
             n_freq: int,
             n_max: int,
             f_s: float | int,
+            freq_distrib: str,
             ) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
         """
         Calculate Multi-Sine Excitation (MSE) parameters.

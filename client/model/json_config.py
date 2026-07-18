@@ -77,6 +77,7 @@ DEFAULT_CONFIG = {
         'repeat': '1',
         'average type': 'Vector Averaging',
         'excitation type': 'Single-Sine Excitation',
+        'frequency distribution': 'h=1 Frequency Distribution',
     },
     'measurement': {
         'delta': True,

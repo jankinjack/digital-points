@@ -288,6 +288,11 @@ def init_default(dp: 'DigitalPoints') -> None:
         config['fra']['average type']
         )
 
+    # Averaging method.
+    dp.fra_settings.ui.comboBoxFreqDistrib.setCurrentText(
+        config['fra']['frequency distribution']
+        )
+
     # Excitation type.
     dp.fra_settings.ui.comboBoxExcitationType.setCurrentText(
         config['fra']['excitation type']

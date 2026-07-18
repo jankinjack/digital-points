@@ -285,32 +285,41 @@
         <translation type="unfinished">Настройки FRA</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_fra_settings.ui" line="934"/>
         <source>FRA Parameters</source>
-        <translation type="unfinished">Параметры FRA</translation>
+        <translation type="obsolete">Параметры FRA</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_fra_settings.ui" line="515"/>
+        <location filename="../view/ui_form_fra_settings.ui" line="581"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;N&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;f&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt; = &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../view/ui_form_fra_settings.ui" line="766"/>
+        <location filename="../view/ui_form_fra_settings.ui" line="689"/>
+        <source>h=1 Frequency Distribution</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../view/ui_form_fra_settings.ui" line="694"/>
+        <source>h=var Frequency Distribution</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../view/ui_form_fra_settings.ui" line="732"/>
         <source>A = </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../view/ui_form_fra_settings.ui" line="873"/>
+        <location filename="../view/ui_form_fra_settings.ui" line="973"/>
         <source>Single-Sine Excitation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../view/ui_form_fra_settings.ui" line="878"/>
+        <location filename="../view/ui_form_fra_settings.ui" line="978"/>
         <source>Multi-Sine Excitation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../view/ui_form_fra_settings.ui" line="627"/>
+        <location filename="../view/ui_form_fra_settings.ui" line="844"/>
         <source>Exponential Averaging</source>
         <translation type="unfinished"></translation>
     </message>
@@ -319,17 +328,17 @@
         <translation type="obsolete">Сгенерировать возмущающий сигнал</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_fra_settings.ui" line="622"/>
+        <location filename="../view/ui_form_fra_settings.ui" line="839"/>
         <source>Vector Averaging</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../view/ui_form_fra_settings.ui" line="461"/>
+        <location filename="../view/ui_form_fra_settings.ui" line="872"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;N&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;repeat&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt; = &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;N&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;повтор&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt; = &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_fra_settings.ui" line="362"/>
+        <location filename="../view/ui_form_fra_settings.ui" line="377"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;f&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;min&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt; = &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;f&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;мин&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt; = &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
@@ -338,7 +347,7 @@
         <translation type="obsolete">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;N&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;периоды&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt; = &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_fra_settings.ui" line="661"/>
+        <location filename="../view/ui_form_fra_settings.ui" line="482"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;f&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;max&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt; = &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;f&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;макс&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt; = &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
@@ -348,8 +357,8 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../view/ui_form_fra_settings.ui" line="432"/>
-        <location filename="../view/ui_form_fra_settings.ui" line="731"/>
+        <location filename="../view/ui_form_fra_settings.ui" line="447"/>
+        <location filename="../view/ui_form_fra_settings.ui" line="552"/>
         <source>(Hz)</source>
         <translation type="unfinished">(Гц)</translation>
     </message>
@@ -358,12 +367,12 @@
         <translation type="obsolete">Нормировать амплитуду</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_fra_settings.ui" line="1069"/>
+        <location filename="../view/ui_form_fra_settings.ui" line="1135"/>
         <source>Synthesize Excitation Signal</source>
         <translation type="unfinished">Синтезировать возмущающий сигнал</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_fra_settings.ui" line="1154"/>
+        <location filename="../view/ui_form_fra_settings.ui" line="1220"/>
         <source>Cursors</source>
         <translation type="unfinished">Курсоры</translation>
     </message>

@@ -76,6 +76,10 @@ def init_signals_fra_settings(dp: 'DigitalPoints') -> None:
             ui.comboBoxAverageType.currentText(),
             )
         dp.config.set_parameter(
+            ('fra', 'frequency distribution'),
+            ui.comboBoxFreqDistrib.currentText(),
+            )
+        dp.config.set_parameter(
             ('fra', 'excitation type'),
             ui.comboBoxExcitationType.currentText(),
             )
@@ -89,6 +93,7 @@ def init_signals_fra_settings(dp: 'DigitalPoints') -> None:
         f_min_str = ui.lineEditFmin.text()
         f_max_str = ui.lineEditFmax.text()
         n_freq_str = ui.lineEditNfreq.text()
+        freq_distrib = ui.comboBoxFreqDistrib.currentText()
 
         f_s = trigger.sampling_frequency
         n_max = trigger.max_number_samples
@@ -120,7 +125,7 @@ def init_signals_fra_settings(dp: 'DigitalPoints') -> None:
             )
 
         (trigger.fra_frequencies, trigger.fra_n_list, trigger.fra_dividers, trigger.fra_harmonics) = \
-            calc_func(f_min, f_max, n_freq, n_max, f_s)
+            calc_func(f_min, f_max, n_freq, n_max, f_s, freq_distrib)
 
         if first_change:
             __on_set_for_all()
@@ -132,6 +137,9 @@ def init_signals_fra_settings(dp: 'DigitalPoints') -> None:
     ui.lineEditFmax.editingFinished.connect(__on_frequencies_changed)
     ui.lineEditNfreq.editingFinished.connect(__on_frequencies_changed)
     ui.comboBoxExcitationType.currentIndexChanged.connect(
+        __on_frequencies_changed
+        )
+    ui.comboBoxFreqDistrib.currentIndexChanged.connect(
         __on_frequencies_changed
         )
 
@@ -155,6 +163,7 @@ def init_signals_fra_settings(dp: 'DigitalPoints') -> None:
 
         trigger.fra_repeat = int(ui.lineEditRepeat.text())
         trigger.fra_average_type = ui.comboBoxAverageType.currentText()
+        trigger.fra_freq_distrib = ui.comboBoxFreqDistrib.currentText()
         trigger.fra_excitation_type = exc_type
 
         __update_graph_from_data()
@@ -164,6 +173,7 @@ def init_signals_fra_settings(dp: 'DigitalPoints') -> None:
     ui.lineEditRepeat.editingFinished.connect(__on_set_for_all)
     ui.comboBoxAverageType.currentIndexChanged.connect(__on_set_for_all)
     ui.comboBoxExcitationType.currentIndexChanged.connect(__on_set_for_all)
+    ui.comboBoxFreqDistrib.currentIndexChanged.connect(__on_set_for_all)
 
     def __update_data_from_graph(index: int) -> None:
         """
