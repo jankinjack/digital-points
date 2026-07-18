@@ -181,7 +181,7 @@ class StatusTracker():
         # Prevent re-initialization of the Singleton instance
         if getattr(self, '_is_initialized', False):
             return
-            
+
         self._label_status = None
         self._label_node_status = None
         self._label_progress = None

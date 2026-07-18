@@ -321,11 +321,11 @@ class Trigger(QObject):
             self._save_config(('sampling frequency',), new_sampling_frequency)
 
     @property
-    def fra_progress(self) -> tuple[float, int]:
+    def fra_progress(self) -> tuple[float, int, str]:
         return self._fra_progress
 
     @fra_progress.setter
-    def fra_progress(self, new_fra_progress: tuple[float, int]) -> None:
+    def fra_progress(self, new_fra_progress: tuple[float, int, str]) -> None:
         self._fra_progress = new_fra_progress
         self.fra_progress_changed.emit()
 

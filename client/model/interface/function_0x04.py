@@ -105,13 +105,26 @@ def function_0x04(
     excitation_type = global_trigger.fra_excitation_type
     harmonics = global_trigger.fra_harmonics
 
+    if (len(n_list) == 0
+            or len(dividers) == 0
+            or len(frequencies) == 0
+            or len(amplitudes) == 0
+            or repeat == 0
+            or not average_type
+            or not excitation_type
+            or len(harmonics) == 0):
+        return
+
     sampling_frequency = float(trigger.sampling_frequency or 1)
     num_freqs = len(frequencies)
+
+    if num_freqs == 0:
+        return
 
     magnitudes = np.zeros(num_freqs, dtype=np.float64)
     phases = np.zeros(num_freqs, dtype=np.float64)
 
-    trigger.fra_progress = (0, 0)
+    trigger.fra_progress = (0, 0, '')
 
     if excitation_type == 'Single-Sine Excitation':
         f_prev = frequencies[0]
@@ -119,7 +132,6 @@ def function_0x04(
         for i, (n, d, a, f, h) in enumerate(zip(
                 n_list, dividers, amplitudes, frequencies, harmonics
                 )):
-            global_trigger.fra_progress = (f, int(100 * (i + 1) / len(n_list)))
 
             # Check the connection.
             if not event.is_set() or not interface.is_connected():
@@ -141,7 +153,14 @@ def function_0x04(
             interface.timeout = 0.5
 
             # Repeat measurement for averaging.
-            for _ in range(repeat):
+            for r in range(repeat):
+                fra_progress = (
+                    f,
+                    int(100 * (i + 1) / len(n_list)),
+                    f'Repeat {r}/{repeat}'
+                    )
+                global_trigger.fra_progress = fra_progress
+
                 if not _upload_signal_chunks(
                         interface, node_address, signal, n
                         ):
@@ -199,7 +218,14 @@ def function_0x04(
         fra = FRA(sampling_frequency / d, harmonics, average_type, 1)
 
         # Repeat measurement for averaging.
-        for _ in range(repeat):
+        for r in range(repeat):
+            fra_progress = (
+                0,
+                int(100),
+                f'Repeat {r}/{repeat}'
+                )
+            global_trigger.fra_progress = fra_progress
+
             if not _upload_signal_chunks(interface, node_address, signal, n):
                 break
 

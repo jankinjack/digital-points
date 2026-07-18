@@ -425,7 +425,9 @@ def init_signals_scope(dp: 'DigitalPoints') -> None:
 
     dp.interface.trigger.fra_progress_changed.connect(
         lambda: dp.status_tracker.progress(
-            f'{dp.interface.trigger.fra_progress[0]:.2f} Hz ({dp.interface.trigger.fra_progress[1]}%)',
+            f'{dp.interface.trigger.fra_progress[0]:.2f} Hz'
+            f' ({dp.interface.trigger.fra_progress[1]}%)'
+            f', {dp.interface.trigger.fra_progress[2]}',
             ) if dp.interface.mode == 'FRA Mode' else None,
         )
 
