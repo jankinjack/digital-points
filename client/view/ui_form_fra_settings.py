@@ -15,10 +15,10 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QCheckBox, QComboBox, QFrame,
-    QGridLayout, QHBoxLayout, QLabel, QLineEdit,
-    QMainWindow, QProgressBar, QPushButton, QSizePolicy,
-    QSpacerItem, QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QApplication, QComboBox, QFrame, QGridLayout,
+    QHBoxLayout, QLabel, QLineEdit, QMainWindow,
+    QProgressBar, QPushButton, QSizePolicy, QSpacerItem,
+    QVBoxLayout, QWidget)
 
 from pyqtgraph import GraphicsLayoutWidget
 import q_resources_rc
@@ -28,7 +28,7 @@ class Ui_MainWindow(object):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
         MainWindow.setWindowModality(Qt.WindowModality.WindowModal)
-        MainWindow.resize(773, 597)
+        MainWindow.resize(588, 599)
         MainWindow.setStyleSheet(u"QWidget {\n"
 "	font-family: Droid Sans;\n"
 "	font-size: 15px;\n"
@@ -153,29 +153,15 @@ class Ui_MainWindow(object):
 "}")
         self.frameContent.setFrameShape(QFrame.Shape.NoFrame)
         self.frameContent.setFrameShadow(QFrame.Shadow.Raised)
-        self.gridLayout_4 = QGridLayout(self.frameContent)
-        self.gridLayout_4.setSpacing(0)
-        self.gridLayout_4.setObjectName(u"gridLayout_4")
-        self.gridLayout_4.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_2 = QVBoxLayout(self.frameContent)
+        self.verticalLayout_2.setSpacing(0)
+        self.verticalLayout_2.setObjectName(u"verticalLayout_2")
+        self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
         self.gridLayout_3 = QGridLayout()
         self.gridLayout_3.setObjectName(u"gridLayout_3")
         self.gridLayout_3.setHorizontalSpacing(0)
         self.gridLayout_3.setVerticalSpacing(3)
         self.gridLayout_3.setContentsMargins(-1, -1, -1, 9)
-        self.label_7 = QLabel(self.frameContent)
-        self.label_7.setObjectName(u"label_7")
-        self.label_7.setFont(font)
-        self.label_7.setStyleSheet(u"QLabel {\n"
-"	margin-top: 5px;\n"
-"	margin-left: 11px;\n"
-"}")
-
-        self.gridLayout_3.addWidget(self.label_7, 0, 0, 1, 3)
-
-        self.horizontalSpacer_2 = QSpacerItem(13, 20, QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Minimum)
-
-        self.gridLayout_3.addItem(self.horizontalSpacer_2, 1, 0, 1, 1)
-
         self.frame = QFrame(self.frameContent)
         self.frame.setObjectName(u"frame")
         self.frame.setStyleSheet(u"#frame {\n"
@@ -189,6 +175,123 @@ class Ui_MainWindow(object):
         self.gridLayout_2.setSpacing(6)
         self.gridLayout_2.setObjectName(u"gridLayout_2")
         self.gridLayout_2.setContentsMargins(3, 3, 3, 3)
+        self.horizontalLayout = QHBoxLayout()
+        self.horizontalLayout.setSpacing(0)
+        self.horizontalLayout.setObjectName(u"horizontalLayout")
+        self.label = QLabel(self.frame)
+        self.label.setObjectName(u"label")
+        sizePolicy = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
+        self.label.setSizePolicy(sizePolicy)
+        self.label.setMinimumSize(QSize(0, 30))
+        self.label.setMaximumSize(QSize(16777215, 30))
+        self.label.setStyleSheet(u"")
+
+        self.horizontalLayout.addWidget(self.label)
+
+        self.lineEditFmin = QLineEdit(self.frame)
+        self.lineEditFmin.setObjectName(u"lineEditFmin")
+        sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Fixed)
+        sizePolicy1.setHorizontalStretch(0)
+        sizePolicy1.setVerticalStretch(0)
+        sizePolicy1.setHeightForWidth(self.lineEditFmin.sizePolicy().hasHeightForWidth())
+        self.lineEditFmin.setSizePolicy(sizePolicy1)
+        self.lineEditFmin.setMinimumSize(QSize(50, 30))
+        self.lineEditFmin.setMaximumSize(QSize(16777215, 30))
+        self.lineEditFmin.setStyleSheet(u"QLineEdit {\n"
+"	color: #212121;\n"
+"	background-color: white;\n"
+"	border-left: 1px solid #6272a4;\n"
+"	border-top: 1px solid #6272a4;\n"
+"	border-bottom: 1px solid #6272a4;\n"
+"	border-top-left-radius: 5px;\n"
+"	border-bottom-left-radius: 5px;\n"
+"	padding-left: 3px;\n"
+"}")
+
+        self.horizontalLayout.addWidget(self.lineEditFmin)
+
+        self.label_4 = QLabel(self.frame)
+        self.label_4.setObjectName(u"label_4")
+        sizePolicy.setHeightForWidth(self.label_4.sizePolicy().hasHeightForWidth())
+        self.label_4.setSizePolicy(sizePolicy)
+        self.label_4.setMinimumSize(QSize(0, 30))
+        self.label_4.setMaximumSize(QSize(16777215, 30))
+        self.label_4.setStyleSheet(u"QLabel {\n"
+"	color: #212121;\n"
+"	background-color: white;\n"
+"	border-right: 1px solid #6272a4;\n"
+"	border-top: 1px solid #6272a4;\n"
+"	border-bottom: 1px solid #6272a4;\n"
+"	border-top-right-radius: 5px;\n"
+"	border-bottom-right-radius: 5px;\n"
+"}")
+
+        self.horizontalLayout.addWidget(self.label_4)
+
+
+        self.gridLayout_2.addLayout(self.horizontalLayout, 1, 0, 1, 1)
+
+        self.horizontalLayout_4 = QHBoxLayout()
+        self.horizontalLayout_4.setSpacing(0)
+        self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
+        self.label_9 = QLabel(self.frame)
+        self.label_9.setObjectName(u"label_9")
+        self.label_9.setMinimumSize(QSize(0, 30))
+        self.label_9.setMaximumSize(QSize(16777215, 30))
+        self.label_9.setStyleSheet(u"")
+
+        self.horizontalLayout_4.addWidget(self.label_9)
+
+        self.lineEditRepeat = QLineEdit(self.frame)
+        self.lineEditRepeat.setObjectName(u"lineEditRepeat")
+        self.lineEditRepeat.setMinimumSize(QSize(50, 30))
+        self.lineEditRepeat.setMaximumSize(QSize(16777215, 30))
+        self.lineEditRepeat.setStyleSheet(u"QLineEdit {\n"
+"	color: #212121;\n"
+"	background-color: white;\n"
+"	border: 1px solid #6272a4;\n"
+"	border-radius: 5px;\n"
+"	padding-left: 3px;\n"
+"}")
+
+        self.horizontalLayout_4.addWidget(self.lineEditRepeat)
+
+
+        self.gridLayout_2.addLayout(self.horizontalLayout_4, 2, 2, 1, 1)
+
+        self.horizontalLayout_5 = QHBoxLayout()
+        self.horizontalLayout_5.setSpacing(0)
+        self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
+        self.label_8 = QLabel(self.frame)
+        self.label_8.setObjectName(u"label_8")
+        self.label_8.setMinimumSize(QSize(0, 30))
+        self.label_8.setMaximumSize(QSize(40, 30))
+        self.label_8.setStyleSheet(u"")
+
+        self.horizontalLayout_5.addWidget(self.label_8)
+
+        self.lineEditNfreq = QLineEdit(self.frame)
+        self.lineEditNfreq.setObjectName(u"lineEditNfreq")
+        sizePolicy1.setHeightForWidth(self.lineEditNfreq.sizePolicy().hasHeightForWidth())
+        self.lineEditNfreq.setSizePolicy(sizePolicy1)
+        self.lineEditNfreq.setMinimumSize(QSize(50, 30))
+        self.lineEditNfreq.setMaximumSize(QSize(16777215, 30))
+        self.lineEditNfreq.setStyleSheet(u"QLineEdit {\n"
+"	color: #212121;\n"
+"	background-color: white;\n"
+"	border: 1px solid #6272a4;\n"
+"	border-radius: 5px;\n"
+"	padding-left: 3px;\n"
+"}")
+
+        self.horizontalLayout_5.addWidget(self.lineEditNfreq)
+
+
+        self.gridLayout_2.addLayout(self.horizontalLayout_5, 1, 3, 1, 1)
+
         self.comboBoxAverageType = QComboBox(self.frame)
         self.comboBoxAverageType.addItem("")
         self.comboBoxAverageType.addItem("")
@@ -251,122 +354,6 @@ class Ui_MainWindow(object):
 
         self.gridLayout_2.addWidget(self.comboBoxAverageType, 2, 0, 1, 1)
 
-        self.checkBoxNormalize = QCheckBox(self.frame)
-        self.checkBoxNormalize.setObjectName(u"checkBoxNormalize")
-        self.checkBoxNormalize.setStyleSheet(u"QCheckBox::indicator {\n"
-"    border: 1px solid #6272a4;\n"
-"	width: 20px;\n"
-"	height: 20px;\n"
-"	border-radius: 11px;\n"
-"    background: white;\n"
-"}\n"
-"QCheckBox::indicator:hover {\n"
-"    border: 1px solid #7284b9;\n"
-"}\n"
-"QCheckBox::indicator:checked {\n"
-"	background-image: url(:/icons/icons/icon_check.png);\n"
-"	background-repeat: no-repeat;\n"
-"    background-position: center;\n"
-"}")
-
-        self.gridLayout_2.addWidget(self.checkBoxNormalize, 2, 3, 1, 1)
-
-        self.horizontalLayout_5 = QHBoxLayout()
-        self.horizontalLayout_5.setSpacing(0)
-        self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
-        self.label_8 = QLabel(self.frame)
-        self.label_8.setObjectName(u"label_8")
-        self.label_8.setMinimumSize(QSize(0, 30))
-        self.label_8.setMaximumSize(QSize(40, 30))
-        self.label_8.setStyleSheet(u"")
-
-        self.horizontalLayout_5.addWidget(self.label_8)
-
-        self.lineEditNfreq = QLineEdit(self.frame)
-        self.lineEditNfreq.setObjectName(u"lineEditNfreq")
-        sizePolicy = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.lineEditNfreq.sizePolicy().hasHeightForWidth())
-        self.lineEditNfreq.setSizePolicy(sizePolicy)
-        self.lineEditNfreq.setMinimumSize(QSize(50, 30))
-        self.lineEditNfreq.setMaximumSize(QSize(16777215, 30))
-        self.lineEditNfreq.setStyleSheet(u"QLineEdit {\n"
-"	color: #212121;\n"
-"	background-color: white;\n"
-"	border: 1px solid #6272a4;\n"
-"	border-radius: 5px;\n"
-"	padding-left: 3px;\n"
-"}")
-
-        self.horizontalLayout_5.addWidget(self.lineEditNfreq)
-
-
-        self.gridLayout_2.addLayout(self.horizontalLayout_5, 1, 2, 1, 1)
-
-        self.horizontalLayout_2 = QHBoxLayout()
-        self.horizontalLayout_2.setSpacing(0)
-        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
-        self.label_6 = QLabel(self.frame)
-        self.label_6.setObjectName(u"label_6")
-        sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Preferred)
-        sizePolicy1.setHorizontalStretch(0)
-        sizePolicy1.setVerticalStretch(0)
-        sizePolicy1.setHeightForWidth(self.label_6.sizePolicy().hasHeightForWidth())
-        self.label_6.setSizePolicy(sizePolicy1)
-        self.label_6.setMinimumSize(QSize(0, 30))
-        self.label_6.setMaximumSize(QSize(16777215, 30))
-        self.label_6.setStyleSheet(u"")
-
-        self.horizontalLayout_2.addWidget(self.label_6)
-
-        self.lineEditAmplitude = QLineEdit(self.frame)
-        self.lineEditAmplitude.setObjectName(u"lineEditAmplitude")
-        sizePolicy.setHeightForWidth(self.lineEditAmplitude.sizePolicy().hasHeightForWidth())
-        self.lineEditAmplitude.setSizePolicy(sizePolicy)
-        self.lineEditAmplitude.setMinimumSize(QSize(50, 30))
-        self.lineEditAmplitude.setMaximumSize(QSize(16777215, 30))
-        self.lineEditAmplitude.setStyleSheet(u"QLineEdit {\n"
-"	color: #212121;\n"
-"	background-color: white;\n"
-"	border: 1px solid #6272a4;\n"
-"	border-radius: 5px;\n"
-"	padding-left: 3px;\n"
-"}")
-
-        self.horizontalLayout_2.addWidget(self.lineEditAmplitude)
-
-
-        self.gridLayout_2.addLayout(self.horizontalLayout_2, 1, 3, 1, 1)
-
-        self.horizontalLayout_4 = QHBoxLayout()
-        self.horizontalLayout_4.setSpacing(0)
-        self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
-        self.label_9 = QLabel(self.frame)
-        self.label_9.setObjectName(u"label_9")
-        self.label_9.setMinimumSize(QSize(0, 30))
-        self.label_9.setMaximumSize(QSize(16777215, 30))
-        self.label_9.setStyleSheet(u"")
-
-        self.horizontalLayout_4.addWidget(self.label_9)
-
-        self.lineEditRepeat = QLineEdit(self.frame)
-        self.lineEditRepeat.setObjectName(u"lineEditRepeat")
-        self.lineEditRepeat.setMinimumSize(QSize(50, 30))
-        self.lineEditRepeat.setMaximumSize(QSize(16777215, 30))
-        self.lineEditRepeat.setStyleSheet(u"QLineEdit {\n"
-"	color: #212121;\n"
-"	background-color: white;\n"
-"	border: 1px solid #6272a4;\n"
-"	border-radius: 5px;\n"
-"	padding-left: 3px;\n"
-"}")
-
-        self.horizontalLayout_4.addWidget(self.lineEditRepeat)
-
-
-        self.gridLayout_2.addLayout(self.horizontalLayout_4, 2, 1, 1, 1)
-
         self.horizontalLayout_3 = QHBoxLayout()
         self.horizontalLayout_3.setSpacing(0)
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
@@ -385,8 +372,8 @@ class Ui_MainWindow(object):
 
         self.lineEditFmax = QLineEdit(self.frame)
         self.lineEditFmax.setObjectName(u"lineEditFmax")
-        sizePolicy.setHeightForWidth(self.lineEditFmax.sizePolicy().hasHeightForWidth())
-        self.lineEditFmax.setSizePolicy(sizePolicy)
+        sizePolicy1.setHeightForWidth(self.lineEditFmax.sizePolicy().hasHeightForWidth())
+        self.lineEditFmax.setSizePolicy(sizePolicy1)
         self.lineEditFmax.setMinimumSize(QSize(50, 30))
         self.lineEditFmax.setMaximumSize(QSize(16777215, 30))
         self.lineEditFmax.setStyleSheet(u"QLineEdit {\n"
@@ -404,8 +391,8 @@ class Ui_MainWindow(object):
 
         self.label_5 = QLabel(self.frame)
         self.label_5.setObjectName(u"label_5")
-        sizePolicy1.setHeightForWidth(self.label_5.sizePolicy().hasHeightForWidth())
-        self.label_5.setSizePolicy(sizePolicy1)
+        sizePolicy.setHeightForWidth(self.label_5.sizePolicy().hasHeightForWidth())
+        self.label_5.setSizePolicy(sizePolicy)
         self.label_5.setMinimumSize(QSize(0, 30))
         self.label_5.setMaximumSize(QSize(16777215, 30))
         self.label_5.setStyleSheet(u"QLabel {\n"
@@ -421,7 +408,39 @@ class Ui_MainWindow(object):
         self.horizontalLayout_3.addWidget(self.label_5)
 
 
-        self.gridLayout_2.addLayout(self.horizontalLayout_3, 1, 1, 1, 1)
+        self.gridLayout_2.addLayout(self.horizontalLayout_3, 1, 2, 1, 1)
+
+        self.horizontalLayout_2 = QHBoxLayout()
+        self.horizontalLayout_2.setSpacing(0)
+        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
+        self.label_6 = QLabel(self.frame)
+        self.label_6.setObjectName(u"label_6")
+        sizePolicy.setHeightForWidth(self.label_6.sizePolicy().hasHeightForWidth())
+        self.label_6.setSizePolicy(sizePolicy)
+        self.label_6.setMinimumSize(QSize(0, 30))
+        self.label_6.setMaximumSize(QSize(16777215, 30))
+        self.label_6.setStyleSheet(u"")
+
+        self.horizontalLayout_2.addWidget(self.label_6)
+
+        self.lineEditAmplitude = QLineEdit(self.frame)
+        self.lineEditAmplitude.setObjectName(u"lineEditAmplitude")
+        sizePolicy1.setHeightForWidth(self.lineEditAmplitude.sizePolicy().hasHeightForWidth())
+        self.lineEditAmplitude.setSizePolicy(sizePolicy1)
+        self.lineEditAmplitude.setMinimumSize(QSize(50, 30))
+        self.lineEditAmplitude.setMaximumSize(QSize(16777215, 30))
+        self.lineEditAmplitude.setStyleSheet(u"QLineEdit {\n"
+"	color: #212121;\n"
+"	background-color: white;\n"
+"	border: 1px solid #6272a4;\n"
+"	border-radius: 5px;\n"
+"	padding-left: 3px;\n"
+"}")
+
+        self.horizontalLayout_2.addWidget(self.lineEditAmplitude)
+
+
+        self.gridLayout_2.addLayout(self.horizontalLayout_2, 1, 4, 1, 1)
 
         self.comboBoxExcitationType = QComboBox(self.frame)
         self.comboBoxExcitationType.addItem("")
@@ -483,60 +502,7 @@ class Ui_MainWindow(object):
 "}\n"
 "")
 
-        self.gridLayout_2.addWidget(self.comboBoxExcitationType, 2, 2, 1, 1)
-
-        self.horizontalLayout = QHBoxLayout()
-        self.horizontalLayout.setSpacing(0)
-        self.horizontalLayout.setObjectName(u"horizontalLayout")
-        self.label = QLabel(self.frame)
-        self.label.setObjectName(u"label")
-        sizePolicy1.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
-        self.label.setSizePolicy(sizePolicy1)
-        self.label.setMinimumSize(QSize(0, 30))
-        self.label.setMaximumSize(QSize(16777215, 30))
-        self.label.setStyleSheet(u"")
-
-        self.horizontalLayout.addWidget(self.label)
-
-        self.lineEditFmin = QLineEdit(self.frame)
-        self.lineEditFmin.setObjectName(u"lineEditFmin")
-        sizePolicy.setHeightForWidth(self.lineEditFmin.sizePolicy().hasHeightForWidth())
-        self.lineEditFmin.setSizePolicy(sizePolicy)
-        self.lineEditFmin.setMinimumSize(QSize(50, 30))
-        self.lineEditFmin.setMaximumSize(QSize(16777215, 30))
-        self.lineEditFmin.setStyleSheet(u"QLineEdit {\n"
-"	color: #212121;\n"
-"	background-color: white;\n"
-"	border-left: 1px solid #6272a4;\n"
-"	border-top: 1px solid #6272a4;\n"
-"	border-bottom: 1px solid #6272a4;\n"
-"	border-top-left-radius: 5px;\n"
-"	border-bottom-left-radius: 5px;\n"
-"	padding-left: 3px;\n"
-"}")
-
-        self.horizontalLayout.addWidget(self.lineEditFmin)
-
-        self.label_4 = QLabel(self.frame)
-        self.label_4.setObjectName(u"label_4")
-        sizePolicy1.setHeightForWidth(self.label_4.sizePolicy().hasHeightForWidth())
-        self.label_4.setSizePolicy(sizePolicy1)
-        self.label_4.setMinimumSize(QSize(0, 30))
-        self.label_4.setMaximumSize(QSize(16777215, 30))
-        self.label_4.setStyleSheet(u"QLabel {\n"
-"	color: #212121;\n"
-"	background-color: white;\n"
-"	border-right: 1px solid #6272a4;\n"
-"	border-top: 1px solid #6272a4;\n"
-"	border-bottom: 1px solid #6272a4;\n"
-"	border-top-right-radius: 5px;\n"
-"	border-bottom-right-radius: 5px;\n"
-"}")
-
-        self.horizontalLayout.addWidget(self.label_4)
-
-
-        self.gridLayout_2.addLayout(self.horizontalLayout, 1, 0, 1, 1)
+        self.gridLayout_2.addWidget(self.comboBoxExcitationType, 2, 3, 1, 2)
 
 
         self.gridLayout_3.addWidget(self.frame, 1, 1, 1, 1)
@@ -545,8 +511,29 @@ class Ui_MainWindow(object):
 
         self.gridLayout_3.addItem(self.horizontalSpacer_3, 1, 2, 1, 1)
 
+        self.horizontalSpacer_2 = QSpacerItem(13, 20, QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Minimum)
 
-        self.gridLayout_4.addLayout(self.gridLayout_3, 0, 0, 1, 1)
+        self.gridLayout_3.addItem(self.horizontalSpacer_2, 1, 0, 1, 1)
+
+        self.label_7 = QLabel(self.frameContent)
+        self.label_7.setObjectName(u"label_7")
+        self.label_7.setFont(font)
+        self.label_7.setStyleSheet(u"QLabel {\n"
+"	margin-top: 5px;\n"
+"	margin-left: 11px;\n"
+"}")
+
+        self.gridLayout_3.addWidget(self.label_7, 0, 0, 1, 3)
+
+
+        self.verticalLayout_2.addLayout(self.gridLayout_3)
+
+        self.horizontalLayout_7 = QHBoxLayout()
+        self.horizontalLayout_7.setSpacing(0)
+        self.horizontalLayout_7.setObjectName(u"horizontalLayout_7")
+        self.horizontalSpacer = QSpacerItem(1, 20, QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout_7.addItem(self.horizontalSpacer)
 
         self.verticalLayout = QVBoxLayout()
         self.verticalLayout.setObjectName(u"verticalLayout")
@@ -573,7 +560,14 @@ class Ui_MainWindow(object):
         self.verticalLayout.addWidget(self.graphFRAExcitation)
 
 
-        self.gridLayout_4.addLayout(self.verticalLayout, 1, 0, 1, 1)
+        self.horizontalLayout_7.addLayout(self.verticalLayout)
+
+        self.horizontalSpacer_4 = QSpacerItem(1, 20, QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout_7.addItem(self.horizontalSpacer_4)
+
+
+        self.verticalLayout_2.addLayout(self.horizontalLayout_7)
 
         self.horizontalLayout_6 = QHBoxLayout()
         self.horizontalLayout_6.setSpacing(3)
@@ -668,7 +662,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_6.addWidget(self.pushButtonEnableFRAConfigCursors)
 
 
-        self.gridLayout_4.addLayout(self.horizontalLayout_6, 2, 0, 1, 1)
+        self.verticalLayout_2.addLayout(self.horizontalLayout_6)
 
 
         self.gridLayout.addWidget(self.frameContent, 1, 0, 1, 1)
@@ -684,21 +678,20 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"FRA Settings", None))
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"FRA Configuration", None))
         self.pushButtonCloseApp.setText("")
-        self.label_7.setText(QCoreApplication.translate("MainWindow", u"FRA Parameters", None))
+        self.label.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:12pt;\">f</span><span style=\" font-size:12pt; vertical-align:sub;\">min</span><span style=\" font-size:12pt;\"> = </span></p></body></html>", None))
+        self.label_4.setText(QCoreApplication.translate("MainWindow", u"(Hz)", None))
+        self.label_9.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:12pt;\">N</span><span style=\" font-size:12pt; vertical-align:sub;\">repeat</span><span style=\" font-size:12pt;\"> = </span></p></body></html>", None))
+        self.label_8.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:12pt;\">N</span><span style=\" font-size:12pt; vertical-align:sub;\">f</span><span style=\" font-size:12pt;\"> = </span></p></body></html>", None))
         self.comboBoxAverageType.setItemText(0, QCoreApplication.translate("MainWindow", u"Vector Averaging", None))
         self.comboBoxAverageType.setItemText(1, QCoreApplication.translate("MainWindow", u"Exponential Averaging", None))
 
-        self.checkBoxNormalize.setText(QCoreApplication.translate("MainWindow", u"Normalize Amplitude", None))
-        self.label_8.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:12pt;\">N</span><span style=\" font-size:12pt; vertical-align:sub;\">f</span><span style=\" font-size:12pt;\"> = </span></p></body></html>", None))
-        self.label_6.setText(QCoreApplication.translate("MainWindow", u"A = ", None))
-        self.label_9.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:12pt;\">N</span><span style=\" font-size:12pt; vertical-align:sub;\">repeat</span><span style=\" font-size:12pt;\"> = </span></p></body></html>", None))
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:12pt;\">f</span><span style=\" font-size:12pt; vertical-align:sub;\">max</span><span style=\" font-size:12pt;\"> = </span></p></body></html>", None))
         self.label_5.setText(QCoreApplication.translate("MainWindow", u"(Hz)", None))
+        self.label_6.setText(QCoreApplication.translate("MainWindow", u"A = ", None))
         self.comboBoxExcitationType.setItemText(0, QCoreApplication.translate("MainWindow", u"Single-Sine Excitation", None))
         self.comboBoxExcitationType.setItemText(1, QCoreApplication.translate("MainWindow", u"Multi-Sine Excitation", None))
 
-        self.label.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:12pt;\">f</span><span style=\" font-size:12pt; vertical-align:sub;\">min</span><span style=\" font-size:12pt;\"> = </span></p></body></html>", None))
-        self.label_4.setText(QCoreApplication.translate("MainWindow", u"(Hz)", None))
+        self.label_7.setText(QCoreApplication.translate("MainWindow", u"FRA Parameters", None))
         self.pushButtonUpdateFRAExcitation.setText(QCoreApplication.translate("MainWindow", u"Synthesize Excitation Signal", None))
         self.pushButtonEnableFRAConfigCursors.setText(QCoreApplication.translate("MainWindow", u"Cursors", None))
     # retranslateUi

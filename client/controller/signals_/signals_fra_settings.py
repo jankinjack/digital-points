@@ -143,12 +143,10 @@ def init_signals_fra_settings(dp: 'DigitalPoints') -> None:
 
         amp_str = ui.lineEditAmplitude.text()
         exc_type = ui.comboBoxExcitationType.currentText()
-        is_normalized = ui.checkBoxNormalize.isChecked()
 
         if amp_str:
-            # Apply uniform amplitude if Single-Sine
-            # or normalization is disabled.
-            if exc_type == 'Single-Sine Excitation' or not is_normalized:
+            # Apply uniform amplitude if Single-Sine excitation.
+            if exc_type == 'Single-Sine Excitation':
                 trigger.fra_amplitudes = np.full(
                     len(trigger.fra_frequencies),
                     float(amp_str),
@@ -225,7 +223,6 @@ def init_signals_fra_settings(dp: 'DigitalPoints') -> None:
         harmonics = trigger.fra_harmonics
         n_list = trigger.fra_n_list
 
-        normalize = bool(ui.checkBoxNormalize.isChecked())
         exc_type = trigger.fra_excitation_type
 
         if n_list is None or n_list.size == 0 or int(n_list[0]) == 0:
@@ -254,7 +251,7 @@ def init_signals_fra_settings(dp: 'DigitalPoints') -> None:
 
             # Normalize the multi-sine signal
             # to match the desired peak amplitude.
-            if normalize and norm_amplitude:
+            if norm_amplitude:
                 peak_val = max(abs(np.min(signal)), abs(np.max(signal)))
                 if peak_val > 0:
                     k_n = norm_amplitude / peak_val
@@ -271,10 +268,6 @@ def init_signals_fra_settings(dp: 'DigitalPoints') -> None:
 
     ui.pushButtonUpdateFRAExcitation.clicked.connect(
         __on_update_excitation
-        )
-
-    ui.checkBoxNormalize.toggled.connect(
-        lambda value: dp.config.set_parameter(('fra', 'norm amp'), value)
         )
 
     add_drag_handlers(dp.fra_settings)

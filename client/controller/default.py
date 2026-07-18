@@ -293,14 +293,6 @@ def init_default(dp: 'DigitalPoints') -> None:
         config['fra']['excitation type']
         )
 
-    # Normalize amplitude.
-    dp.fra_settings.ui.checkBoxNormalize.setChecked(
-        config['fra']['norm amp']
-        )
-    dp.fra_settings.ui.checkBoxNormalize.toggled.emit(
-        config['fra']['norm amp']
-        )
-
     # dp.fra_settings.ui.lineEditRepeat.editingFinished.emit()
     dp.fra_settings.ui.lineEditAmplitude.editingFinished.emit()
 

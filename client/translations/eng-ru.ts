@@ -285,32 +285,32 @@
         <translation type="unfinished">Настройки FRA</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_fra_settings.ui" line="318"/>
+        <location filename="../view/ui_form_fra_settings.ui" line="934"/>
         <source>FRA Parameters</source>
         <translation type="unfinished">Параметры FRA</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_fra_settings.ui" line="496"/>
+        <location filename="../view/ui_form_fra_settings.ui" line="515"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;N&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;f&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt; = &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../view/ui_form_fra_settings.ui" line="562"/>
+        <location filename="../view/ui_form_fra_settings.ui" line="766"/>
         <source>A = </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../view/ui_form_fra_settings.ui" line="828"/>
+        <location filename="../view/ui_form_fra_settings.ui" line="873"/>
         <source>Single-Sine Excitation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../view/ui_form_fra_settings.ui" line="833"/>
+        <location filename="../view/ui_form_fra_settings.ui" line="878"/>
         <source>Multi-Sine Excitation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../view/ui_form_fra_settings.ui" line="444"/>
+        <location filename="../view/ui_form_fra_settings.ui" line="627"/>
         <source>Exponential Averaging</source>
         <translation type="unfinished"></translation>
     </message>
@@ -319,17 +319,17 @@
         <translation type="obsolete">Сгенерировать возмущающий сигнал</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_fra_settings.ui" line="439"/>
+        <location filename="../view/ui_form_fra_settings.ui" line="622"/>
         <source>Vector Averaging</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../view/ui_form_fra_settings.ui" line="622"/>
+        <location filename="../view/ui_form_fra_settings.ui" line="461"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;N&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;repeat&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt; = &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;N&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;повтор&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt; = &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_fra_settings.ui" line="867"/>
+        <location filename="../view/ui_form_fra_settings.ui" line="362"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;f&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;min&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt; = &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;f&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;мин&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt; = &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
@@ -338,7 +338,7 @@
         <translation type="obsolete">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;N&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;периоды&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt; = &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_fra_settings.ui" line="682"/>
+        <location filename="../view/ui_form_fra_settings.ui" line="661"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;f&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;max&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt; = &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;f&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;макс&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt; = &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
@@ -348,23 +348,22 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../view/ui_form_fra_settings.ui" line="752"/>
-        <location filename="../view/ui_form_fra_settings.ui" line="937"/>
+        <location filename="../view/ui_form_fra_settings.ui" line="432"/>
+        <location filename="../view/ui_form_fra_settings.ui" line="731"/>
         <source>(Hz)</source>
         <translation type="unfinished">(Гц)</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_fra_settings.ui" line="469"/>
         <source>Normalize Amplitude</source>
-        <translation type="unfinished">Нормировать амплитуду</translation>
+        <translation type="obsolete">Нормировать амплитуду</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_fra_settings.ui" line="1054"/>
+        <location filename="../view/ui_form_fra_settings.ui" line="1069"/>
         <source>Synthesize Excitation Signal</source>
         <translation type="unfinished">Синтезировать возмущающий сигнал</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_fra_settings.ui" line="1139"/>
+        <location filename="../view/ui_form_fra_settings.ui" line="1154"/>
         <source>Cursors</source>
         <translation type="unfinished">Курсоры</translation>
     </message>
