@@ -84,6 +84,15 @@ EXPORT Exception_DP micro_dp_init(Info_DP_Struct * const info)
         return DP_ERROR;
     }
 
+    const size_t global_memory_diff = sizeof(MICRO_DP) + sizeof(NULL_MICRO_DP) + sizeof(SIGNALS_DP);
+
+    if (MICRO_DP.info.memory_limit <= global_memory_diff)
+    {
+        return DP_ERROR;
+    }
+
+    MICRO_DP.info.memory_limit -= global_memory_diff;
+
     // Expand valid RAM memory range to maximum if boundaries are not defined or invalid.
     if (MICRO_DP.info.valid_min_addr >= MICRO_DP.info.valid_max_addr)
     {
