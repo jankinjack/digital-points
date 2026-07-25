@@ -3,7 +3,7 @@
 <h3 align="center">[<a
 href="#about">About</a>] [<a
 href="#features">Features</a>] [<a
-href="#quickstart">Quickstart</a>] [<a
+href="https://github.com/jankinjack/digital-points/wiki">Wiki</a>] [<a
 href="#build-from-source">Build from source</a>]</h3>
 
 ![Digital Points main window](misc/main.png)
@@ -37,109 +37,7 @@ Supported MCU architectures:
 
 ## Quickstart
 
-1. Install `Digital Points`.
-
-2. Add the `microdp` library to your embedded project:
-
-    2.1 Add `libmicrodp` folder to *include paths* of the project.
-
-    2.2 Add the appropriate static library from the folder to the project's build.
-
-3. Implement a transmit function for your communication interface using the following prototype. It must return `DP_OK` on success:
-
-```C
-Exception_DP func_transmit(const uint_least8_t * const frame, const size_t byte_size);
-```
-
-4. Initialize the library anywhere in your code:
-
-```C
-#include "micro_dp_extern.h"
-
-// Declare a static buffer to limit memory consumption.
-static uint_least8_t DP_HEAP[10000];
-
-// Implement a function to get the system core clock counter.
-static size_t get_sys_clk_counter(void)
-{
-    // This is an example for ARM Cortex-M.
-    return (size_t)DWT->CYCCNT;
-}
-
-// Declare the config structure.
-static const Info_DP_Struct INFO =
-{
-    .sys_clk_freq    = 200000000,               // System core clock frequency, [Hz].
-    .sampling_freq   = 100000,                  // Sampling frequency, [Hz].
-    .func_transmit   = func_transmit,           // Function pointer to transmit frames.
-    .static_buffer   = DP_HEAP,                 // Pointer to the buffer for memory allocation.
-    .memory_limit    = sizeof(DP_HEAP),         // Available memory size, [byte].
-    .get_sys_clk_counter = get_sys_clk_counter  // Function pointer to get the current system core clock counter.
-};
-
-...
-
-int main(void)
-{
-    // Initialize the 'micro_dp' library.
-    micro_dp_init(&INFO);
-    ...
-}
-```
-
-5. Call background and context functions:
-
-```C
-int main(void)
-{
-    while (1)
-    {
-        // Call this function within your main loop
-        // or any non-time-critical task.
-        micro_dp_background();
-    }
-}
-
-void timer_irq_handler(void)
-{
-    // Call this function periodically at the sampling frequency.
-    micro_dp_context();
-}
-```
-
-6. Call the receive function to pass a chunk of data (or all the data) to the library:
-
-```C
-void interface_irq_handler(void)
-{
-    // Example 1: Byte-by-byte reception
-    uint_least8_t data = get_interface_data();
-
-    // Pass a single byte to the library.
-    micro_dp_handle_rx_chunk(&data, 1);
-
-    /*
-    // Example 2: Buffer reception.
-    uint_least8_t data[10];
-    
-    for (size_t i = 0; i < sizeof(data); i++)
-    {
-        data[i] = get_interface_data();
-    }
-
-    // Pass the entire buffer (or a part of it) to the library.
-    micro_dp_handle_rx_chunk(data, sizeof(data));
-    */
-}
-```
-
-7. Build the project, flash the MCU, and launch the Digital Points application.
-
-8. Load an ELF file (*.axf, *.elf, *.out, *.prx, *.puff, *.so) with DWARF debug information from your project into `Digital Points` and configure the communication interface on the `Settings` page.
-
-> **Note**: Enable maximum DWARF debug information in your compiler (e.g. `-g3` for GCC/clang).
-
-9. Check the connection status `Linked/Unlinked` in the bottom-left corner of the window.
+See [Wiki](https://github.com/jankinjack/digital-points/wiki#installation).
 
 ## Build from source
 
