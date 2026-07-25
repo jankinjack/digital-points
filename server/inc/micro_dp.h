@@ -100,6 +100,15 @@
 #define DP_MIN(a, b) (((a) < (b)) ? (a) : (b))
 #define DP_CLAMP(x, min, max) (((x) < (min)) ? (min) : (((x) > (max)) ? (max) : (x)))
 
+#define SAFE_CALL(func, ...)       \
+        do                         \
+        {                          \
+            if (func)              \
+            {                      \
+                func(__VA_ARGS__); \
+            }                      \
+        } while (0)
+
 // Custom typedefs.
 typedef _Bool  bool_t;
 typedef float  float32_t;

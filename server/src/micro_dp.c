@@ -12,8 +12,8 @@
 #include "micro_dp.h"
 #include "micro_dp_crc16.h"
 
-static void *micro_dp_calloc(const void * const, const size_t, const size_t, const size_t);
-static void micro_dp_free(void);
+static inline void *micro_dp_calloc(const void * const, const size_t, const size_t, const size_t);
+static inline void micro_dp_free(void);
 
 const size_t TYPE_BYTESIZE[DP_TYPE_END] = {
 #if DP_BYTE_SIZE == 8
@@ -260,6 +260,9 @@ EXPORT void micro_dp_handle_rx_chunk(const uint_least8_t * const chunk, const si
         return;
     }
 
+    // Disable interrupts to protect shared state.
+    SAFE_CALL(MICRO_DP.info.disable_interrupts);
+
     for (ptrdiff_t i = 0; i < size; i++)
     {
         const uint_least8_t byte = chunk[i];
@@ -303,6 +306,8 @@ EXPORT void micro_dp_handle_rx_chunk(const uint_least8_t * const chunk, const si
             MICRO_DP.mem.sequence = 0;
         }
     }
+
+    SAFE_CALL(MICRO_DP.info.disable_interrupts);
 }
 
 /**
@@ -310,7 +315,10 @@ EXPORT void micro_dp_handle_rx_chunk(const uint_least8_t * const chunk, const si
  */
 EXPORT void micro_dp_reset(void)
 {
+    // Disable interrupts to protect shared state.
+    SAFE_CALL(MICRO_DP.info.disable_interrupts);
     MICRO_DP = NULL_MICRO_DP;
+    SAFE_CALL(MICRO_DP.info.disable_interrupts);
 }
 
 /************************
@@ -352,7 +360,7 @@ EXPORT int_fast8_t are_type_and_address_valid(const uintptr_t address, const Typ
  * 
  * \return  Pointer to the allocated and zeroed memory, or NULL if out of memory.
  */
-static void *micro_dp_calloc(const void * const buf, const size_t count, const size_t size, const size_t memory_limit)
+static inline void *micro_dp_calloc(const void * const buf, const size_t count, const size_t size, const size_t memory_limit)
 {
     if ((buf != NULL) && (memory_limit > 0u))
     {
@@ -378,7 +386,7 @@ static void *micro_dp_calloc(const void * const buf, const size_t count, const s
 /**
  * \brief   Release all memory allocated from the static buffer.
  */
-static void micro_dp_free(void)
+static inline void micro_dp_free(void)
 {
     MICRO_DP.mem.alloc_end = 0;
 }
