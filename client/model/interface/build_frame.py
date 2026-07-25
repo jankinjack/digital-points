@@ -10,7 +10,8 @@ from model.trigger import Trigger
 from model.interface.crc16 import crc16
 
 # Mapping of struct format characters to their byte sizes.
-# Note: Indices 10 and 11 duplicate 'f' (4 bytes) likely for specific MCU type aliases.
+# Note: Indices 10 and 11 duplicate 'f' (4 bytes)
+# likely for specific MCU type aliases.
 PACK_SIZE = (
     ('b', 1),
     ('B', 1),
@@ -157,7 +158,7 @@ def build_0x03_frame(
     is_float_type = fmt_char in ('f', 'd')
 
     # Validate value type against the expected struct format.
-    if is_float_type != isinstance(value, float):
+    if is_float_type != isinstance(value, (float, np.floating)):
         return tuple()
 
     packed_data = struct.pack(
@@ -192,7 +193,7 @@ def build_0x04_frame(
         start_index,
         num_periods,
         length,
-        *tuple(signal),
+        *signal,
     )
 
     return _finalize_frame(tuple(packed_data))

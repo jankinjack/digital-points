@@ -41,31 +41,33 @@ def function_0x01(
     """
     Generator that continuously polls the MCU (function 0x01),
     accumulates time-series data, and optionally dumps it to CSV files.
-    
+
     Yields:
         A tuple containing: (delta_time, x_data_array, y_data_array, dump_state_flag).
     """
 
     x_list = []
     y_list = []
-    
+
     tic = 0
     n_dump = 0
     err_count = 0
-    
+
     is_first_packet = True
     is_first_yield = True
-    
+
     # Pre-build CSV header for dumps
     csv_header = 'time, ' + ', '.join(
         f'{hex(addr)}/{type_}' for type_, addr in zip(types, addresses)
     )
-    
+
     dump_dir = __main__.FULL_PATH / 'dumps'
     if dump_size > 0:
         dump_dir.mkdir(exist_ok=True)
 
-    while (non_thread or event.is_set()) and interface.is_connected() and err_count < 5:
+    while ((non_thread or event.is_set())
+            and interface.is_connected()
+            and err_count < 5):
         frame_write = build_0x01_frame(node_address, types, addresses)
 
         if not interface.write_frame(frame_write):
@@ -73,7 +75,7 @@ def function_0x01(
             continue
 
         frame_read = interface.read_frame(lambda len_: len_ >= 16)
-        
+
         if not frame_read:
             err_count += 1
             continue
@@ -86,10 +88,11 @@ def function_0x01(
             err_count += 1
             continue
 
-        # Handle 32-bit unsigned integer timer overflow elegantly using bitmask.
+        # Handle 32-bit unsigned integer timer
+        # overflow elegantly using bitmask.
         delta_ticks = (sys_clock - tic) & 0xFFFFFFFF
         tic = sys_clock
-        
+
         # Skip delta calculation for the very first packet.
         if is_first_packet:
             is_first_packet = False
@@ -100,38 +103,35 @@ def function_0x01(
             x_list.append(x_list[-1] + delta_sec)
 
         # Accumulate data.
-        y_list.append(variables[:, 0]) 
+        y_list.append(variables[:, 0])
 
         # Check if dump threshold is reached.
-        # Size is measured in array elements (equivalent to original y_data.size + x_data.size).
         current_size = (len(addresses) + 1) * len(x_list)
-        
+
         if dump_size > 0 and current_size >= dump_size:
             # Keep the last point to ensure visual continuity on the graph.
             num_points_to_dump = len(x_list) - 1
-            
+
             dump_x = x_list[:num_points_to_dump]
             dump_y = y_list[:num_points_to_dump]
-            
+
             # Stack time and variables into a single 2D array for CSV.
             dump_array = np.column_stack([dump_x] + dump_y)
             dump_path = dump_dir / f'dump_{n_dump}.csv'
-            
-            # Start background thread to save data without blocking the acquisition loop.
+
+            # Start background thread to save data
+            # without blocking the acquisition loop.
             threading.Thread(
                 target=_save_dump_worker,
                 args=(dump_path, dump_array, csv_header),
                 daemon=True,
             ).start()
-            
+
             # Reset buffers, keeping ONLY the last point for continuity.
-            x_list = [x_list[-1]]
-            y_list = [y_list[-1]]
-            
             # Convert remaining buffer to numpy arrays for the yield.
-            x_data = np.array(x_list)
-            y_data = np.column_stack(y_list)
-            
+            x_data = np.array([x_list[-1]])
+            y_data = np.column_stack([y_list[-1]])
+
             yield delta_sec, x_data, y_data, n_dump
             n_dump += 1
             continue
@@ -140,7 +140,8 @@ def function_0x01(
         x_data = np.array(x_list)
         y_data = np.column_stack(y_list) if y_list else np.empty((len(addresses), 0))
 
-        # Replicate original state flags (-1 for first packet, -2 for continuous streaming).
+        # Replicate original state flags
+        # (-1 for first packet, -2 for continuous streaming).
         dump_state = -1 if is_first_yield else -2
 
         if is_first_yield:

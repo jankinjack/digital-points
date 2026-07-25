@@ -40,7 +40,7 @@ class FRA():
         self._a_fft_complex = np.zeros(num_harmonics, dtype=np.complex128)
         self._b_fft_complex = np.zeros(num_harmonics, dtype=np.complex128)
 
-    def add_data( self, y_a_data: np.ndarray, y_b_data: np.ndarray) -> None:
+    def add_data(self, y_a_data: np.ndarray, y_b_data: np.ndarray) -> None:
         """
         Process a new pair of input/output signals
         and update the averaged spectra.
@@ -51,8 +51,12 @@ class FRA():
         """
 
         # Compute FFT and extract bins at the specified harmonic indices.
-        a_fft = FFT(y_a_data, y_a_data.shape[-1], self._sampling_frequency).complex_[self._harmonic_indices-1]
-        b_fft = FFT(y_b_data, y_b_data.shape[-1], self._sampling_frequency).complex_[self._harmonic_indices-1]
+        a_fft = FFT(y_a_data, self._sampling_frequency).complex_[
+            self._harmonic_indices-1
+            ]
+        b_fft = FFT(y_b_data, self._sampling_frequency).complex_[
+            self._harmonic_indices-1
+            ]
 
         if self._average_type == 'Vector Averaging':
             self._a_fft_complex += a_fft / self._num_repeats
@@ -85,7 +89,10 @@ class FRA():
 
     @property
     def response_phase(self) -> np.ndarray:
-        """Phase of the frequency response in degrees, wrapped to [-180, 180]."""
+        """
+        Phase of the frequency response in degrees,
+        wrapped to [-180, 180].
+        """
 
         return (np.rad2deg(np.angle(self.response_complex)) + 180) % 360 - 180
 
@@ -162,9 +169,14 @@ class FRA():
             n[mask] = np.ceil(n_base[mask] / d[mask]).astype(np.uint64)
             f[mask] = f_s / (n[mask] * d[mask])
 
-            # If the number of points is below the limit, calculate harmonic numbers.
-            h[inv_mask] = np.maximum(np.floor(n_max / n_base[inv_mask]), 1).astype(np.uint64)
-            n[inv_mask] = np.floor(h[inv_mask] * n_base[inv_mask] + 0.5).astype(np.uint64)
+            # If the number of points is below the limit,
+            # calculate harmonic numbers.
+            h[inv_mask] = np.maximum(
+                np.floor(n_max / n_base[inv_mask]), 1
+                ).astype(np.uint64)
+            n[inv_mask] = np.floor(
+                h[inv_mask] * n_base[inv_mask] + 0.5
+                ).astype(np.uint64)
             f[inv_mask] = (h[inv_mask] * f_s) / n[inv_mask]
 
             # Recalculate the number of points.
@@ -174,12 +186,12 @@ class FRA():
             # decimation coefficients, and harmonics.
             return f, n, d, h
 
-        n_max = np.floor(n_max/2)
+        n_max_half = np.floor(n_max/2)
 
         if freq_distrib and freq_distrib == 'h=1 Frequency Distribution':
-            return _h_const(f_min, f_max, n_freq, n_max, f_s)
+            return _h_const(f_min, f_max, n_freq, n_max_half, f_s)
         else:
-            return _h_var(f_min, f_max, n_freq, n_max, f_s)
+            return _h_var(f_min, f_max, n_freq, n_max_half, f_s)
 
     @staticmethod
     def mse_parameters_from_frequency_range(
@@ -196,16 +208,16 @@ class FRA():
         decimation factors, and harmonics.
         """
 
-        n_max = np.floor(n_max / 2)
+        n_max_half = np.floor(n_max / 2)
 
         # Calculate the decimation factor.
-        d = np.maximum(np.ceil(f_s / f_min / n_max), 1).astype(np.uint64)
+        d = np.maximum(np.ceil(f_s / f_min / n_max_half), 1).astype(np.uint64)
 
         # Recalculate the number of points.
-        n_max = np.round(f_s / f_min / d).astype(np.uint64)
+        n_max_half = np.round(f_s / f_min / d).astype(np.uint64)
 
         # Calculate the maximum harmonic.
-        h_max = int(min(n_max / 2, f_max / f_min / 2))
+        h_max = int(min(n_max_half / 2, f_max / f_min / 2))
 
         # Generate an array of harmonics with logarithmic spacing.
         h = np.unique(np.rint(np.geomspace(1, h_max, num=n_freq)).astype(np.uint64))
@@ -214,7 +226,7 @@ class FRA():
         d = np.full(len(h), d, dtype=np.uint64)
 
         # Calculate the number of points and frequencies.
-        n = np.full(len(h), n_max, dtype=np.uint64)
+        n = np.full(len(h), n_max_half, dtype=np.uint64)
         f = f_s / (d * n) * h
 
         return f, n, d, h

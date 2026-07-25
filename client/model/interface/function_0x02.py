@@ -153,9 +153,9 @@ def function_0x02(
                         y_data = np.hstack(y_data_chunks)
 
                         # Generate time axis relative to the trigger point.
-                        x_data = np.arange(
-                            -pre_trigger, post_trigger, 1, dtype=np.float64
-                        ) * trigger.sample_count / trigger.sampling_frequency
+                        x_data = np.linspace(
+                            -pre_trigger, post_trigger - 1, pre_trigger + post_trigger
+                            ) * trigger.sample_count / trigger.sampling_frequency
 
                         # Align the data so the trigger point is correctly positioned.
                         shift = -(trig_sample + post_trigger)

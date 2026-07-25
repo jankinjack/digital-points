@@ -27,7 +27,7 @@ def function_0x00(
 
     Raises:
         RuntimeError: If the frame fails to send, the response is empty/invalid, 
-                      or the CRC check fails.
+        or the CRC check fails.
     """
 
     frame_write = build_0x00_frame(node_address)

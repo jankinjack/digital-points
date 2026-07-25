@@ -214,11 +214,11 @@ class Line(pg.PlotDataItem):
 
     @property
     def x_data(self) -> Optional[np.ndarray]:
-        return self._data_buf[0] # self.xData
+        return self._data_buf[0]  # self.xData
 
     @property
     def y_data(self) -> Optional[np.ndarray]:
-        return self._data_buf[1] # self.yData
+        return self._data_buf[1]  # self.yData
 
     @property
     def mark_point_0(self) -> dict:
@@ -366,8 +366,15 @@ class Line(pg.PlotDataItem):
 
         x, y = self._data_buf
 
-        x_opt = np.ascontiguousarray(x, dtype=np.float32)
-        y_opt = np.ascontiguousarray(y, dtype=np.float32)
+        if not x.flags.c_contiguous:
+            x_opt = np.ascontiguousarray(x, dtype=np.float32)
+        else:
+            x_opt = x
+
+        if not y.flags.c_contiguous:
+            y_opt = np.ascontiguousarray(y, dtype=np.float32)
+        else:
+            y_opt = y
 
         self.setData(x_opt, y_opt, pxMode=True)
         self._needs_update = False

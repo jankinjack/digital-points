@@ -166,11 +166,7 @@ def init_signals_scope(dp: 'DigitalPoints') -> None:
             f_s = dp.interface.trigger.sampling_frequency
             sample_count = dp.interface.trigger.sample_count or 1
 
-            fft = FFT(
-                y_data,
-                y_data.shape[-1],
-                f_s / sample_count,
-                )
+            fft = FFT(y_data, f_s / sample_count)
 
             data.append(fft.magnitude)
             data.append(fft.phase)

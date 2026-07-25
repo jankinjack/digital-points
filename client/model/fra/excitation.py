@@ -69,8 +69,8 @@ def multi_sine_signal(
     num_harmonics = len(ku_all)
 
     # Calculate power 'q' for crest factor minimization heuristic.
-    p = 2**(round((num_points - 1) / harmonics[-1] * 2) - 1).bit_length()
-    q = int(p / 2)
+    p = 2**(int(round((num_points - 1) / harmonics[-1] * 2)) - 1).bit_length()
+    q = p // 2
 
     # Create time array.
     time_array = np.arange(0, period, period / num_points, dtype=np.float64)
