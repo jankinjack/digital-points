@@ -1,8 +1,9 @@
-
+import os
 import time
 import threading
 from typing import Optional, TYPE_CHECKING
 import shutil
+from inspect import currentframe, getframeinfo
 
 import serial.tools.list_ports
 
@@ -109,6 +110,9 @@ class InterfaceBase(QObject):
     frame_rate_changed = Signal(float)
     ext_handler_0x01 = Signal(int, tuple)
     list_of_com_ports_changed = Signal(tuple, tuple)
+    log_info = Signal(str)
+    log_warning = Signal(str)
+    log_error = Signal(str)
 
     def __init__(self, dp: 'DigitalPoints') -> None:
         super().__init__()
@@ -228,49 +232,6 @@ class InterfaceBase(QObject):
                 ('node address',), new_node_address
                 )
 
-    def _is_dp_ready(
-            self,
-            share_objects: Optional[list[tuple[int, int]]],
-            ) -> bool:
-        """
-        Validate system state and parameters
-        before starting data acquisition.
-        """
-
-        if not self.sys_clock_frequency:
-            return False
-        if not self._trigger.sampling_frequency:
-            return False
-        if not self._trigger.max_number_samples:
-            return False
-        if not self._trigger.tx_number_samples:
-            return False
-        if not isinstance(share_objects, list):
-            return False
-
-        if not all(
-                isinstance(x, tuple) and len(x) == 2 for x in share_objects
-                ):
-            return False
-
-        types = [obj[0] for obj in share_objects]
-        addresses = [obj[1] for obj in share_objects]
-
-        if len(types) != len(addresses):
-            return False
-        if not all(isinstance(t, int) for t in types):
-            return False
-        if not all(isinstance(addr, int) for addr in addresses):
-            return False
-
-        if self._mode not in SCOPE_MODES:
-            return False
-
-        if self._mode == 'Triggered Mode' and not self._trigger.is_ready():
-            return False
-
-        return True
-
     def connect_to_node(
             self,
             share_objects: Optional[list[tuple[int, int]]] = None,
@@ -329,11 +290,25 @@ class InterfaceBase(QObject):
 
                         (sys_freq, sample_freq, n_max, tx_max, n_vars) = result
 
-                    except RuntimeError:
+                    except RuntimeError as e:
                         if node_status:
                             node_status = False
                             self.node_status_changed.emit(False)
+
+                        frame_info = getframeinfo(currentframe())
+
+                        self.log_error.emit(
+                            f'{type(e).__name__}: {str(e)}'
+                            f' : {os.path.basename(frame_info.filename)}, {frame_info.lineno}'
+                            )
                         continue
+                    except Exception as e:
+                        frame_info = getframeinfo(currentframe())
+
+                        self.log_error.emit(
+                            f'{type(e).__name__}: {str(e)}'
+                            f' : {os.path.basename(frame_info.filename)}, {frame_info.lineno}'
+                            )
 
                     params_valid_and_changed = (
                         sys_freq is not None
@@ -408,6 +383,13 @@ class InterfaceBase(QObject):
                                 delta, x_data, y_data, dump = next(gen_0x01)
                             except StopIteration:
                                 break
+                            except Exception as e:
+                                frame_info = getframeinfo(currentframe())
+
+                                self.log_error.emit(
+                                    f'{type(e).__name__}: {str(e)}'
+                                    f' : {os.path.basename(frame_info.filename)}, {frame_info.lineno}'
+                                    )
 
                             # Process the data.
                             if not self._ext_handler:
@@ -427,6 +409,9 @@ class InterfaceBase(QObject):
                     case 'Triggered Mode':
                         # Check the trigger.
                         if not self.trigger.is_ready():
+                            self.log_warning.emit(
+                                'the trigger configuration is not valid.'
+                                )
                             continue
 
                         def __set_long_read(long_read: bool) -> None:
@@ -513,12 +498,23 @@ class InterfaceBase(QObject):
                                         break
                                 except Exception:
                                     break
+                        else:
+                            self.log_info.emit(
+                                'Select two variables for FRA.'
+                                )
 
                     case _:
                         pass
 
                 self.disconnect_from_node()
-            except Exception:
+            except Exception as e:
+                frame_info = getframeinfo(currentframe())
+
+                self.log_error.emit(
+                    f'{type(e).__name__}: {str(e)}'
+                    f' : {os.path.basename(frame_info.filename)}, {frame_info.lineno}'
+                    )
+
                 # Prevent 100% CPU usage
                 # in case of an unexpected rapid error loop.
                 time.sleep(0.5)
@@ -610,3 +606,10 @@ class InterfaceBase(QObject):
 
         except StopIteration:
             return
+        except Exception as e:
+            frame_info = getframeinfo(currentframe())
+
+            self.log_error.emit(
+                f'{type(e).__name__}: {str(e)}'
+                f' : {os.path.basename(frame_info.filename)}, {frame_info.lineno}'
+                )

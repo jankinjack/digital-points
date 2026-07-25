@@ -132,6 +132,18 @@ def init_signals_com_settings(dp: 'DigitalPoints') -> None:
         __on_list_com_ports_changed
         )
 
+    dp.interface.log_info.connect(
+        lambda info: dp.logger.info(info)
+        )
+
+    dp.interface.log_warning.connect(
+        lambda warning: dp.logger.warning(warning)
+        )
+
+    dp.interface.log_error.connect(
+        lambda error: dp.logger.error(error)
+        )
+
     add_drag_handlers(dp.com_settings)
 
     def __on_about_to_quit() -> None:

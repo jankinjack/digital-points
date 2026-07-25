@@ -65,7 +65,7 @@ def init_signals_import_csv(dp: 'DigitalPoints') -> None:
                 # Parse header.
                 header_line = file.readline()
                 if not header_line:
-                    dp.logger.error("The selected CSV file is empty.")
+                    dp.logger.error('The selected CSV file is empty.')
                     return
 
                 header = [h.strip() for h in header_line.split(',')[1:]]
