@@ -3,7 +3,6 @@ import re
 import itertools
 from typing import TYPE_CHECKING, Optional
 from contextlib import suppress
-import orjson
 import warnings
 
 from struct import pack, unpack
@@ -19,7 +18,7 @@ from PySide6.QtGui import QRegularExpressionValidator
 from PySide6.QtCore import Qt, QRegularExpression, QCoreApplication, Signal, QObject
 
 import __main__
-from model.elf_file_parser import ELF_Parser, VAR_TYPE_BITS
+from model.elf_parser.elf_parser import ELF_Parser, VAR_TYPE_BITS
 from model.line import VAR_TYPE_CODE, VAR_TYPE_INT_FLOAT
 from controller.common import (
     get_regex_and_dims_from_array_name,
