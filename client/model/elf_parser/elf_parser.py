@@ -53,7 +53,7 @@ class ELF_Parser:
         command = (
             f'{GDB_PATH} -nx -batch '
             f'-iex "set auto-load no" '
-            f'-x {GDB_DUMP_SCRIPT} {file_name}'
+            f'-x {GDB_DUMP_SCRIPT} "{file_name}"'
             )
 
         try:

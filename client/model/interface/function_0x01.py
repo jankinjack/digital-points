@@ -1,5 +1,3 @@
-
-import threading
 from typing import Iterator, TYPE_CHECKING
 from pathlib import Path
 
@@ -11,6 +9,8 @@ from model.interface.build_frame import build_0x01_frame
 from model.interface.process_frame import ProcessingError, process_0x01_frame
 
 if TYPE_CHECKING:
+    import threading
+
     from model.interface.serial_interface import SerialInterface
     from model.interface.can_interface import CAN_Interface
     from model.interface.stub_interface import StubInterface
@@ -30,7 +30,7 @@ def _save_dump_worker(dump_path: Path, dump_array: np.ndarray, header: str) -> N
 
 def function_0x01(
         interface: 'SerialInterface | CAN_Interface | StubInterface',
-        event: threading.Event,
+        event: 'threading.Event',
         node_address: int,
         types: list[int] | tuple[int, ...],
         addresses: list[int] | tuple[int, ...],

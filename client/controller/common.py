@@ -96,7 +96,7 @@ def get_array_item_name_and_offset(
         coeff.append(dim * coeff[-1])
 
     from model.line import VAR_TYPE_CODE
-    from model.elf_file_parser import ARCH_BYTESIZE
+    from model.elf_parser.elf_parser import ARCH_BYTESIZE
     from model.interface.interface_base import PACK_SIZE
 
     # Get type size in bytes.

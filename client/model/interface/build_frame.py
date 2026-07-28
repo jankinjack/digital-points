@@ -56,7 +56,7 @@ def _finalize_frame(frame: tuple[int, ...]) -> tuple[int, ...]:
 def build_0x00_frame(slave_address: int) -> tuple[int, ...]:
     """ Build a frame for function 0x00 (device info and heartbeat). """
 
-    from model.elf_file_parser import ARCH_ADDR_ALIGNMENT
+    from model.elf_parser.elf_parser import ARCH_ADDR_ALIGNMENT
 
     packed_data = struct.pack(
         '<BBBHHH',

@@ -1,5 +1,3 @@
-
-import threading
 from typing import Iterator, Optional, Callable, TYPE_CHECKING
 
 import numpy as np
@@ -20,6 +18,8 @@ if STUB_MICRO_DP:
     from model.interface.stub_interface import lib
 
 if TYPE_CHECKING:
+    import threading
+
     from model.interface.serial_interface import SerialInterface
     from model.interface.can_interface import CAN_Interface
     from model.interface.stub_interface import StubInterface
@@ -28,7 +28,7 @@ if TYPE_CHECKING:
 
 def function_0x02(
         interface: 'SerialInterface | CAN_Interface | StubInterface',
-        event: threading.Event,
+        event: 'threading.Event',
         node_address: int,
         types: list[int] | tuple[int, ...],
         addresses: list[int] | tuple[int, ...],

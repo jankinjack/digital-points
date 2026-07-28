@@ -1,5 +1,3 @@
-
-import threading
 import time
 from typing import Iterator, TYPE_CHECKING
 
@@ -15,6 +13,8 @@ import model.fra.excitation as excitation
 from model.trigger import Trigger
 
 if TYPE_CHECKING:
+    import threading
+
     from model.interface.serial_interface import SerialInterface
     from model.interface.can_interface import CAN_Interface
     from model.interface.stub_interface import StubInterface
@@ -61,7 +61,7 @@ def _upload_signal_chunks(
 
 def function_0x04(
         interface: 'SerialInterface | CAN_Interface | StubInterface',
-        event: threading.Event,
+        event: 'threading.Event',
         node_address: int,
         types: list[int] | tuple[int, ...],
         addresses: list[int] | tuple[int, ...],
