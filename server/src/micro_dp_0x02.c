@@ -400,7 +400,7 @@ static Exception_DP build_0x02_ack_frame(void)
     tx_buf[3] = READ_BYTE(crc, 0);
 
     // Magic Key Terminator.
-    memcpy(&tx_buf[4], DP_KEY, 5);
+    (void)&tx_buf[4], DP_KEY, 5);
 
     MICRO_DP.stage_0x02 = DP_0x02_STAGE_WAIT_ACK;
 
@@ -464,7 +464,7 @@ static Exception_DP build_0x02_frame(void)
 
         for (ptrdiff_t j = 0; j < chunk_size; j++)
         {
-            memcpy(&tx_buf[i], &sample->uint8_array[address_alignment], type_bytesize);
+            (void)memcpy(&tx_buf[i], &sample->uint8_array[address_alignment], type_bytesize);
             i += type_bytesize;
 
             sample += MICRO_DP.var_count;
@@ -493,7 +493,7 @@ static Exception_DP build_0x02_frame(void)
     i++;
 
     // Magic Key Terminator.
-    memcpy(&tx_buf[i], DP_KEY, 5);
+    (void)memcpy(&tx_buf[i], DP_KEY, 5);
     i += 5;
 
     MICRO_DP.stage_0x02 = DP_0x02_STAGE_WAIT_ACK;

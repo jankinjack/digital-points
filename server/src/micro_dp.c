@@ -414,7 +414,7 @@ void read_variable(Value_DP_Union * const dest, const size_t var_count)
         for (ptrdiff_t i = 0; i < var_count; i++)
         {
 #ifndef MICRO_DP_EXPORTS
-            memcpy(&dest[i], MICRO_DP.vars[i].ptr, sizeof(Value_DP_Union));
+            (void)memcpy(&dest[i], MICRO_DP.vars[i].ptr, sizeof(Value_DP_Union));
 #else
             dest[i].float32 = (float)rand() / (float)RAND_MAX;
 #endif
@@ -428,7 +428,7 @@ void read_variable(Value_DP_Union * const dest, const size_t var_count)
         for (ptrdiff_t i = 0; i < var_count; i++)
         {
 #ifndef MICRO_DP_EXPORTS
-            memcpy(&dest[i], MICRO_DP.vars[i].ptr, sizeof(Value_DP_Union));
+            (void)memcpy(&dest[i], MICRO_DP.vars[i].ptr, sizeof(Value_DP_Union));
 #else
             dest[i].float32 = (float)rand() / (float)RAND_MAX;
 #endif
@@ -449,8 +449,8 @@ void read_variable(Value_DP_Union * const dest, const size_t var_count)
             do
             {
 #ifndef MICRO_DP_EXPORTS
-                memcpy((void *)&sample, MICRO_DP.vars[i].ptr, sizeof(Value_DP_Union));
-                memcpy((void *)&sample_check, MICRO_DP.vars[i].ptr, sizeof(Value_DP_Union));
+                (void)memcpy((void *)&sample, MICRO_DP.vars[i].ptr, sizeof(Value_DP_Union));
+                (void)memcpy((void *)&sample_check, MICRO_DP.vars[i].ptr, sizeof(Value_DP_Union));
 #else
                 sample.float32 = (float)rand() / (float)RAND_MAX;
                 sample_check.float32 = sample.float32;

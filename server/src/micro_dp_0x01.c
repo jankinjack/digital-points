@@ -125,10 +125,10 @@ static Exception_DP build_0x01_frame(void)
         const ptrdiff_t address_alignment = (ptrdiff_t)MICRO_DP.vars[j].address_alignment;
 
 #if DP_BYTE_SIZE == 8
-        memcpy(&tx_buf[i], &sample[j].uint8_array[address_alignment], type_bytesize);
+        (void)memcpy(&tx_buf[i], &sample[j].uint8_array[address_alignment], type_bytesize);
         i += type_bytesize;
 #elif DP_BYTE_SIZE == 16
-        memcpy(&tx_buf[i], &sample[j].uint16_array[address_alignment], type_bytesize);
+        (void)memcpy(&tx_buf[i], &sample[j].uint16_array[address_alignment], type_bytesize);
         i += type_bytesize;
 #endif
     }
@@ -142,7 +142,7 @@ static Exception_DP build_0x01_frame(void)
     i++;
 
     // Magic Key Terminator.
-    memcpy(&tx_buf[i], DP_KEY, 5);
+    (void)memcpy(&tx_buf[i], DP_KEY, 5);
     i += 5;
 
     // Transmit the fully built frame via the hardware callback.

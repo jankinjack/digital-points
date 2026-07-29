@@ -110,7 +110,7 @@ static Exception_DP build_0x00_frame(void)
     tx_buf[14] = READ_BYTE(crc, 0);
 
     // Magic Key Terminator.
-    memcpy(&tx_buf[15], DP_KEY, 5);
+    (void)memcpy(&tx_buf[15], DP_KEY, 5);
 
     // Transmit the fully built frame via the hardware callback.
     return MICRO_DP.info.func_transmit(tx_buf, 20);

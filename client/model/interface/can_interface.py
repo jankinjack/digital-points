@@ -187,7 +187,7 @@ class CAN_Interface():
 
                     self._bus.shutdown()
                     time.sleep(0.1)
-                
+
                 self._bus = None
 
             if self._bus_type == 'socketcan' and platform.system() == 'Linux':
@@ -200,11 +200,15 @@ class CAN_Interface():
     def is_connected(self) -> bool:
 
         if self._bus_type == 'robotell':
-            is_connected = (self._bus is not None
-                and self._bus.serialPortOrig.isOpen())
+            is_connected = (
+                self._bus is not None
+                and self._bus.serialPortOrig.isOpen()
+                )
         else:
-            is_connected = (self._bus is not None
-                and self._bus.state == can.bus.BusState.ACTIVE)
+            is_connected = (
+                self._bus is not None
+                and self._bus.state == can.bus.BusState.ACTIVE
+                )
 
         return is_connected
 

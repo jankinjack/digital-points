@@ -102,7 +102,7 @@ def process_0x02_ack_frame(frame: list[int] | tuple[int, ...]) -> bool:
 def process_0x02_frame(
         frame: list[int] | tuple[int, ...]
         ) -> tuple[np.ndarray, int, int]:
-    """ Process a frame for function 0x02. """
+    """ Process a frame for function 0x02 (triggered acquisition). """
 
     if not frame or frame[1] != FUNCTION_ID['0x02'] or len(frame) < 16:
         raise ProcessingError('Invalid 0x02 frame structure or Function ID.')
@@ -110,6 +110,7 @@ def process_0x02_frame(
     if not _verify_crc16(frame):
         raise ProcessingError('CRC-16 verification failed for 0x02 frame.')
 
+    # Unpack header fields (Little-Endian).
     _, _, end_frame, trig_sample, samples_count, vars_count = \
         struct.unpack_from('<BBBHHB', bytes(frame), 0)
 
@@ -129,10 +130,12 @@ def process_0x02_frame(
         fmt_char = PACK_SIZE[var_type][0]
         offset_delta = samples_count * sample_bytesize
 
-        samples = frame[offset:offset+offset_delta]
+        samples = frame[offset:offset + offset_delta]
 
+        # Build a format string that skips alignment padding bytes.
+        unpack_pattern = f'{fmt_char}{sample_bytesize - type_bytesize}x' * samples_count
         variables[i, :] = struct.unpack_from(
-            '<' + f'{fmt_char}{sample_bytesize-type_bytesize}x'*samples_count,
+            '<' + unpack_pattern,
             bytes(samples), 0
             )
 
