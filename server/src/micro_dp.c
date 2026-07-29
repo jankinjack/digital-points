@@ -72,7 +72,6 @@ EXPORT Exception_DP micro_dp_init(Info_DP_Struct * const info)
 
     // Validate required hardware callbacks.
     if ((MICRO_DP.info.func_transmit == NULL)
-        || (MICRO_DP.info.get_sys_clk_counter == NULL)
         || (MICRO_DP.info.static_buffer == NULL))
     {
         return DP_ERROR;
@@ -316,7 +315,7 @@ EXPORT void micro_dp_handle_rx_chunk(const uint_least8_t * const chunk, const si
         }
     }
 
-    SAFE_CALL(MICRO_DP.info.disable_interrupts);
+    SAFE_CALL(MICRO_DP.info.enable_interrupts);
 }
 
 /**
@@ -327,7 +326,7 @@ EXPORT void micro_dp_reset(void)
     // Disable interrupts to protect shared state.
     SAFE_CALL(MICRO_DP.info.disable_interrupts);
     MICRO_DP = NULL_MICRO_DP;
-    SAFE_CALL(MICRO_DP.info.disable_interrupts);
+    SAFE_CALL(MICRO_DP.info.enable_interrupts);
 }
 
 /************************

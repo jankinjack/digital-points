@@ -16,12 +16,6 @@ typedef enum
 
 typedef struct
 {
-    // Function to get system clock counter.
-    size_t (*get_sys_clk_counter)(void);
-
-    // System clock frequency.
-    uint32_t sys_clk_freq;
-
     // Sampling frequency (frequency of 'micro_dp_context()' call).
     uint32_t sampling_freq;
 

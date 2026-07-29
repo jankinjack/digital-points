@@ -1,5 +1,6 @@
 from typing import Iterator, TYPE_CHECKING
 from pathlib import Path
+import time
 
 import numpy as np
 
@@ -34,7 +35,6 @@ def function_0x01(
         node_address: int,
         types: list[int] | tuple[int, ...],
         addresses: list[int] | tuple[int, ...],
-        sys_freq: float | int,
         non_thread: bool = False,
         dump_size: int = 0
         ) -> Iterator[tuple[float, int, np.ndarray, np.ndarray]]:
@@ -59,7 +59,7 @@ def function_0x01(
     # Pre-build CSV header for dumps
     csv_header = 'time, ' + ', '.join(
         f'{hex(addr)}/{type_}' for type_, addr in zip(types, addresses)
-    )
+        )
 
     dump_dir = __main__.FULL_PATH / 'dumps'
     if dump_size > 0:
@@ -68,21 +68,23 @@ def function_0x01(
     while ((non_thread or event.is_set())
             and interface.is_connected()
             and err_count < 5):
+
         frame_write = build_0x01_frame(node_address, types, addresses)
+
+        timestamp = time.perf_counter()
 
         if not interface.write_frame(frame_write):
             err_count += 1
             continue
 
-        frame_read = interface.read_frame(lambda len_: len_ >= 16)
+        frame_read = interface.read_frame(lambda len_: len_ >= 12)
 
         if not frame_read:
             err_count += 1
             continue
 
         try:
-            # process_0x01_frame returns variables with shape (N, 1)
-            variables, sys_clock = process_0x01_frame(frame_read)
+            variables = process_0x01_frame(frame_read)
             err_count = 0  # Reset error count on successful read.
         except ProcessingError:
             err_count += 1
@@ -90,8 +92,8 @@ def function_0x01(
 
         # Handle 32-bit unsigned integer timer
         # overflow elegantly using bitmask.
-        delta_ticks = (sys_clock - tic) & 0xFFFFFFFF
-        tic = sys_clock
+        delta_ticks = timestamp - tic
+        tic = timestamp
 
         # Skip delta calculation for the very first packet.
         if is_first_packet:
@@ -99,8 +101,8 @@ def function_0x01(
             delta_sec = 0.0
             x_list.append(0.0)
         else:
-            delta_sec = delta_ticks / sys_freq
-            x_list.append(x_list[-1] + delta_sec)
+            delta_sec = delta_ticks
+            x_list.append(x_list[-1] + delta_ticks)
 
         # Accumulate data.
         y_list.append(variables[:, 0])

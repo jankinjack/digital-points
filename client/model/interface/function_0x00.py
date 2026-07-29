@@ -40,8 +40,8 @@ def function_0x00(
     interface.timeout = 0.5
 
     try:
-        # Read the response frame (expected length is 24 bytes including DP_KEY).
-        frame_read = interface.read_frame(lambda len_: len_ == 24)
+        # Read the response frame (expected length is 20 bytes including DP_KEY).
+        frame_read = interface.read_frame(lambda len_: len_ == 20)
 
         if not frame_read:
             raise RuntimeError("Empty or timeout response received for 0x00 frame.")

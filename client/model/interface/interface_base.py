@@ -79,7 +79,6 @@ class InterfaceBase(QObject):
     __slots__ = (
         '_dp',
         '_mode',
-        '_sys_clock_frequency',
         '_vars_number',
         '_node_address',
         '_trigger',
@@ -120,7 +119,6 @@ class InterfaceBase(QObject):
         self._dp = dp
 
         self._mode = None
-        self._sys_clock_frequency = None
         self._vars_number = 4
         self._node_address = None
 
@@ -195,20 +193,6 @@ class InterfaceBase(QObject):
 
             # Save in config file.
             self.set_config_parameter[tuple, str].emit(('mode',), new_mode)
-
-    @property
-    def sys_clock_frequency(self) -> Optional[int | float]:
-        return self._sys_clock_frequency
-
-    @sys_clock_frequency.setter
-    def sys_clock_frequency(
-            self,
-            new_sys_clock_frequency: int | float,
-            ) -> None:
-
-        if self._sys_clock_frequency != new_sys_clock_frequency:
-            self._sys_clock_frequency = new_sys_clock_frequency
-            self.set_sys_clock_freq.emit(str(new_sys_clock_frequency))
 
     @property
     def vars_number(self) -> int:
@@ -288,9 +272,9 @@ class InterfaceBase(QObject):
                             self._interface, int(self._node_address or 0),
                             )
 
-                        (sys_freq, sample_freq, n_max, tx_max, n_vars) = result
+                        (sample_freq, n_max, tx_max, n_vars) = result
 
-                    except RuntimeError as e:
+                    except Exception as e:
                         if node_status:
                             node_status = False
                             self.node_status_changed.emit(False)
@@ -302,23 +286,14 @@ class InterfaceBase(QObject):
                             f' : {os.path.basename(frame_info.filename)}, {frame_info.lineno}'
                             )
                         continue
-                    except Exception as e:
-                        frame_info = getframeinfo(currentframe())
-
-                        self.log_error.emit(
-                            f'{type(e).__name__}: {str(e)}'
-                            f' : {os.path.basename(frame_info.filename)}, {frame_info.lineno}'
-                            )
 
                     params_valid_and_changed = (
-                        sys_freq is not None
-                        and sample_freq is not None
+                        sample_freq is not None
                         and n_max is not None
                         and tx_max is not None
                         and n_vars is not None
                         and (
-                            self.sys_clock_frequency != sys_freq
-                            or self.trigger.sampling_frequency != sample_freq
+                            self.trigger.sampling_frequency != sample_freq
                             or self.trigger.max_number_samples != n_max
                             or self.trigger.tx_number_samples != tx_max
                             or self.vars_number != n_vars
@@ -326,7 +301,6 @@ class InterfaceBase(QObject):
                         )
 
                     if params_valid_and_changed:
-                        self.sys_clock_frequency = sys_freq
                         self.trigger.sampling_frequency = sample_freq
                         self.trigger.max_number_samples = n_max
                         self.trigger.tx_number_samples = tx_max
@@ -360,9 +334,7 @@ class InterfaceBase(QObject):
                             self._interface,
                             event,
                             int(self._node_address or 0),
-                            types, addresses, int(
-                                self._sys_clock_frequency or 1
-                                ),
+                            types, addresses,
                             dump_size=int(
                                 self._dump_size_mb * 1024 * 1024 / 4
                                 ),
@@ -390,6 +362,7 @@ class InterfaceBase(QObject):
                                     f'{type(e).__name__}: {str(e)}'
                                     f' : {os.path.basename(frame_info.filename)}, {frame_info.lineno}'
                                     )
+                                break
 
                             # Process the data.
                             if not self._ext_handler:
@@ -594,7 +567,6 @@ class InterfaceBase(QObject):
             self._command_event,
             int(self._node_address or 0),
             types, addresses,
-            int(self._sys_clock_frequency or 0),
             non_thread=True,
             )
 

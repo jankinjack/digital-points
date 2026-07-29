@@ -1,8 +1,8 @@
 
 import re
-import threading
 from contextlib import contextmanager, suppress
 from typing import Any, Iterator
+from typing import TYPE_CHECKING
 
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QMouseEvent
@@ -11,6 +11,9 @@ from PySide6.QtWidgets import (
     QTableWidget,
     QAbstractItemView,
     )
+
+if TYPE_CHECKING:
+    import threading
 
 
 def chunks(list_: list[Any] | tuple[Any, ...], chunk_size: int) -> Iterator[Any]:
@@ -21,7 +24,7 @@ def chunks(list_: list[Any] | tuple[Any, ...], chunk_size: int) -> Iterator[Any]
 
 
 @contextmanager
-def nonblocking(lock: threading.Lock) -> Iterator[bool]:
+def nonblocking(lock: 'threading.Lock') -> Iterator[bool]:
     """
     Context manager for acquiring a lock without blocking the thread.
     Yields True if the lock was successfully acquired, False otherwise.

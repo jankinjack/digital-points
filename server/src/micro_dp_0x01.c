@@ -84,16 +84,16 @@ EXPORT Exception_DP process_0x01_frame(const uint_least8_t * const frame)
 
 /**
  * \brief   Build a 0x01 response frame to send to the host.
- * 
+ *
  * Offset   | Size | Description
  * ---------|------|-------------
  * 0        | 1    | Node Address
  * 1        | 1    | Frame Mode
- * 2        | 1    | Variable Count (Number of variables in this frame)
- * 3..6     | 4    | System Clock Counter Value (32-bit Little-Endian)
- * 7..M     | Var. | Variables Payload (repeated "Variable Count" times)
- * M+1..M+2 | 2    | CRC-16 over header and payload (16-bit Big-Endian: MSB first, LSB second)
+ * 2        | 1    | Variable Count
+ * 3..M     | Var. | Variables Payload (repeated "Variable Count" times)
+ * M+1..M+2 | 2    | CRC-16 over header and payload (16-bit Big-Endian)
  * M+3..M+7 | 5    | Magic Key Terminator (DP_KEY)
+
  *
  * \retval  DP_OK: Frame built and transmitted successfully.
  * \retval  DP_ERROR: Transmission failed.
@@ -107,14 +107,7 @@ static Exception_DP build_0x01_frame(void)
     tx_buf[1] = (uint_least8_t)DP_MODE_0x01;
     tx_buf[2] = (uint_least8_t)MICRO_DP.var_count;
 
-    // System clock counter value.
-    const size_t counter_val = MICRO_DP.info.get_sys_clk_counter();
-    tx_buf[3]   = READ_BYTE(counter_val, 0);
-    tx_buf[4]   = READ_BYTE(counter_val, 1);
-    tx_buf[5]   = READ_BYTE(counter_val, 2);
-    tx_buf[6]   = READ_BYTE(counter_val, 3);
-
-    ptrdiff_t i = 7;
+    ptrdiff_t i = 3;
     
     Value_DP_Union sample[20];
     

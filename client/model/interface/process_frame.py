@@ -33,18 +33,17 @@ def _verify_crc16(frame: list[int] | tuple[int, ...]) -> bool:
 def process_0x00_frame(frame: list[int] | tuple[int, ...]) -> tuple[int, ...]:
     """ Process a frame for function 0x00 (device info and heartbeat). """
 
-    if not frame or frame[1] != FUNCTION_ID['0x00'] or len(frame) != 19:
+    if not frame or frame[1] != FUNCTION_ID['0x00'] or len(frame) != 15:
         raise ProcessingError("Invalid 0x00 frame structure or Function ID.")
 
     if not _verify_crc16(frame):
-        raise ProcessingError("CRC-16 verification failed for 0x00 frame.")
+        raise ProcessingError('CRC-16 verification failed for 0x00 frame.')
 
     # Get data.
-    (_, _, sys_clock_frequency, sampling_frequency, max_number_samples, tx_number_samples, vars_number) = \
-        struct.unpack_from('<BBIIIHB', bytes(frame), 0)
+    (_, _, sampling_frequency, max_number_samples, tx_number_samples, vars_number) = \
+        struct.unpack_from('<BBIIHB', bytes(frame), 0)
 
     return (
-        sys_clock_frequency,
         sampling_frequency,
         max_number_samples,
         tx_number_samples,
@@ -54,28 +53,28 @@ def process_0x00_frame(frame: list[int] | tuple[int, ...]) -> tuple[int, ...]:
 
 def process_0x01_frame(
         frame: list[int] | tuple[int, ...]
-        ) -> tuple[np.ndarray, int]:
+        ) -> np.ndarray:
     """ Process a frame for function 0x01 (read variables). """
 
-    if not frame or frame[1] != FUNCTION_ID['0x01'] or len(frame) < 7:
-        raise ProcessingError("Invalid 0x01 frame structure or Function ID.")
+    if not frame or frame[1] != FUNCTION_ID['0x01'] or len(frame) < 3:
+        raise ProcessingError('Invalid 0x01 frame structure or Function ID.')
 
     if not _verify_crc16(frame):
-        raise ProcessingError("CRC-16 verification failed for 0x01 frame.")
+        raise ProcessingError('CRC-16 verification failed for 0x01 frame.')
 
     # Get service data.
-    _, _, var_number, sys_clock = struct.unpack_from('<BBBI', bytes(frame), 0)
+    _, _, var_number = struct.unpack_from('<BBB', bytes(frame), 0)
 
     variables = np.zeros((var_number, 1), dtype=np.float64)
-    offset = 7
+    offset = 3
 
     for j in range(var_number):
         if offset >= len(frame) - 2:
-            raise ProcessingError("Unexpected end of 0x01 frame payload.")
+            raise ProcessingError('Unexpected end of 0x01 frame payload.')
 
         var_type = frame[offset]
         if var_type >= len(PACK_SIZE):
-            raise ProcessingError(f"Unknown variable type index: {var_type}")
+            raise ProcessingError(f'Unknown variable type index: {var_type}')
 
         fmt_char, type_size = PACK_SIZE[var_type]
         variables[j, 0] = struct.unpack_from(
@@ -85,7 +84,7 @@ def process_0x01_frame(
             )[0]
         offset += 1 + type_size
 
-    return variables, sys_clock
+    return variables
 
 
 def process_0x02_ack_frame(frame: list[int] | tuple[int, ...]) -> bool:
@@ -106,10 +105,10 @@ def process_0x02_frame(
     """ Process a frame for function 0x02. """
 
     if not frame or frame[1] != FUNCTION_ID['0x02'] or len(frame) < 16:
-        raise ProcessingError("Invalid 0x02 frame structure or Function ID.")
+        raise ProcessingError('Invalid 0x02 frame structure or Function ID.')
 
     if not _verify_crc16(frame):
-        raise ProcessingError("CRC-16 verification failed for 0x02 frame.")
+        raise ProcessingError('CRC-16 verification failed for 0x02 frame.')
 
     _, _, end_frame, trig_sample, samples_count, vars_count = \
         struct.unpack_from(
@@ -128,12 +127,12 @@ def process_0x02_frame(
 
     for j in range(vars_count):
         if offset + chunk_size > len(frame) - 2:
-            raise ProcessingError("Unexpected end of 0x02 frame payload.")
+            raise ProcessingError('Unexpected end of 0x02 frame payload.')
 
         var_type = frame[offset + 1]
 
         if var_type >= len(PACK_SIZE):
-            raise ProcessingError(f"Unknown variable type index: {var_type}")
+            raise ProcessingError(f'Unknown variable type index: {var_type}')
 
         fmt_char = PACK_SIZE[var_type][0]
 

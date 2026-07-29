@@ -60,20 +60,19 @@ EXPORT Exception_DP process_0x00_frame(const uint_least8_t * const frame)
  * \brief   Build a 0x00 (heartbeat response) frame to send to the host.
  *
  * The response carries the node's identity and capabilities:
- * system clock frequency, sampling frequency, trigger buffer size,
- * tx chunk size, and variable count.
- * 
+ * sampling frequency, trigger buffer size, tx chunk size, and variable count.
+ *
  * Offset | Size | Description
  * -------|------|-------------
  * 0      | 1    | Node Address
  * 1      | 1    | Frame Mode
- * 2..5   | 4    | System Clock Frequency [Hz] (32-bit Little-Endian)
- * 6..9   | 4    | Sampling Frequency [Hz] (32-bit Little-Endian)
- * 10..13 | 4    | Trigger Sample Count (32-bit Little-Endian)
- * 14..15 | 2    | Samples count per frame to transmit in Triggered Mode (16-bit Little-Endian)
- * 16     | 1    | Maximum variable count
- * 17..18 | 2    | CRC-16 over header and payload (16-bit Big-Endian: MSB first, LSB second)
- * 19..23 | 5    | Magic Key Terminator (DP_KEY)
+ * 2..5   | 4    | Sampling Frequency [Hz] (32-bit Little-Endian)
+ * 6..9   | 4    | Trigger Sample Count (32-bit Little-Endian)
+ * 10..11 | 2    | Samples count per frame to transmit in Triggered Mode (16-bit Little-Endian)
+ * 12     | 1    | Maximum variable count
+ * 13..14 | 2    | CRC-16 over header and payload (16-bit Big-Endian)
+ * 15..19 | 5    | Magic Key Terminator (DP_KEY)
+
  *
  * \retval  DP_OK: Frame built and transmitted successfully.
  * \retval  DP_ERROR: Transmission failed.
@@ -86,41 +85,35 @@ static Exception_DP build_0x00_frame(void)
     tx_buf[0] = MICRO_DP.info.node_addr;
     tx_buf[1] = (uint_least8_t)DP_MODE_0x00;
 
-    // System Clock Frequency (32-bit LE), [Hz].
-    tx_buf[2]  = READ_BYTE(MICRO_DP.info.sys_clk_freq, 0);
-    tx_buf[3]  = READ_BYTE(MICRO_DP.info.sys_clk_freq, 1);
-    tx_buf[4]  = READ_BYTE(MICRO_DP.info.sys_clk_freq, 2);
-    tx_buf[5]  = READ_BYTE(MICRO_DP.info.sys_clk_freq, 3);
-
     // Sampling Frequency (32-bit LE), [Hz].
-    tx_buf[6]  = READ_BYTE(MICRO_DP.info.sampling_freq, 0);
-    tx_buf[7]  = READ_BYTE(MICRO_DP.info.sampling_freq, 1);
-    tx_buf[8]  = READ_BYTE(MICRO_DP.info.sampling_freq, 2);
-    tx_buf[9]  = READ_BYTE(MICRO_DP.info.sampling_freq, 3);
+    tx_buf[2]  = READ_BYTE(MICRO_DP.info.sampling_freq, 0);
+    tx_buf[3]  = READ_BYTE(MICRO_DP.info.sampling_freq, 1);
+    tx_buf[4]  = READ_BYTE(MICRO_DP.info.sampling_freq, 2);
+    tx_buf[5]  = READ_BYTE(MICRO_DP.info.sampling_freq, 3);
 
     // Trigger Sample Count (32-bit LE).
-    tx_buf[10] = READ_BYTE(MICRO_DP.trigger.samples_count, 0);
-    tx_buf[11] = READ_BYTE(MICRO_DP.trigger.samples_count, 1);
-    tx_buf[12] = READ_BYTE(MICRO_DP.trigger.samples_count, 2);
-    tx_buf[13] = READ_BYTE(MICRO_DP.trigger.samples_count, 3);
+    tx_buf[6] = READ_BYTE(MICRO_DP.trigger.samples_count, 0);
+    tx_buf[7] = READ_BYTE(MICRO_DP.trigger.samples_count, 1);
+    tx_buf[8] = READ_BYTE(MICRO_DP.trigger.samples_count, 2);
+    tx_buf[9] = READ_BYTE(MICRO_DP.trigger.samples_count, 3);
 
     // Samples count per frame to transmit in Triggered Mode (16-bit LE).
-    tx_buf[14] = READ_BYTE(MICRO_DP.mem.samples_count_tx_0x02, 0);
-    tx_buf[15] = READ_BYTE(MICRO_DP.mem.samples_count_tx_0x02, 1);
+    tx_buf[10] = READ_BYTE(MICRO_DP.mem.samples_count_tx_0x02, 0);
+    tx_buf[11] = READ_BYTE(MICRO_DP.mem.samples_count_tx_0x02, 1);
 
     // Maximum variable count.
-    tx_buf[16] = READ_BYTE(MICRO_DP.info.max_var_count, 0);
+    tx_buf[12] = READ_BYTE(MICRO_DP.info.max_var_count, 0);
 
     // CRC-16 over the header and payload (16-bit BE).
-    const uint16_t crc = crc16(tx_buf, 17);
-    tx_buf[17] = READ_BYTE(crc, 1);
-    tx_buf[18] = READ_BYTE(crc, 0);
+    const uint16_t crc = crc16(tx_buf, 13);
+    tx_buf[13] = READ_BYTE(crc, 1);
+    tx_buf[14] = READ_BYTE(crc, 0);
 
     // Magic Key Terminator.
-    memcpy(&tx_buf[19], DP_KEY, 5);
+    memcpy(&tx_buf[15], DP_KEY, 5);
 
     // Transmit the fully built frame via the hardware callback.
-    return MICRO_DP.info.func_transmit(tx_buf, 24u);
+    return MICRO_DP.info.func_transmit(tx_buf, 20);
 }
 
 /**
