@@ -20,6 +20,7 @@ from PySide6.QtCore import Qt, QRegularExpression, QCoreApplication, Signal, QOb
 import __main__
 from model.elf_parser.elf_parser import ELF_Parser, VAR_TYPE_BITS
 from model.line import VAR_TYPE_CODE, VAR_TYPE_INT_FLOAT
+from model.interface.build_frame import PACK_SIZE
 from controller.common import (
     get_regex_and_dims_from_array_name,
     get_array_item_name_and_offset,
@@ -177,9 +178,13 @@ def init_signals_settings(dp: 'DigitalPoints') -> None:
         pre_trigger = dp.main.ui.spinBoxPreTrigger.value()
         post_trigger = dp.main.ui.spinBoxPostTrigger.value()
 
-        if dp.interface.trigger.number_of_variables > 0:
+        types = [object_[0] for object_ in dp.main.graph_scope.share_objects]
+        type_bytesizes = [PACK_SIZE[var_type][1] for var_type in types]
+        sum_bytesize = sum(type_bytesizes)
+
+        if sum_bytesize > 0:
             number_samples_per_variable =\
-                dp.interface.trigger.max_number_samples // dp.interface.trigger.number_of_variables
+                (dp.interface.trigger.max_number_samples * 8) // sum_bytesize
         else:
             number_samples_per_variable = dp.interface.trigger.max_number_samples
 

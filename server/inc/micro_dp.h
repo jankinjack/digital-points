@@ -227,6 +227,7 @@ typedef struct
 
     // Variable data type.
     Types_DP type;
+    size_t type_bytesize;
 
     // Alignment remainder for non-aligned addresses.
     int_fast8_t address_alignment;

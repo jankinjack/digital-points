@@ -271,6 +271,7 @@ EXPORT Exception_DP process_0x02_frame(const uint_least8_t * const frame)
 #endif
 
         MICRO_DP.vars[i].type = var_type;
+        MICRO_DP.vars[i].type_bytesize = TYPE_BYTESIZE[var_type];
         MICRO_DP.vars[i].address_alignment = alignment;
         MICRO_DP.vars[i].ptr = (Value_DP_Union *)(void *)(var_address - (uintptr_t)alignment);
 
@@ -456,23 +457,14 @@ static Exception_DP build_0x02_frame(void)
         i++;
 
         const uintptr_t address_alignment = MICRO_DP.vars[k].address_alignment;
-        const size_t valid_bytes = TYPE_BYTESIZE[MICRO_DP.vars[k].type];
-
-#if DP_BYTE_SIZE == 8
-        const size_t padding = 8u - valid_bytes;
-#elif DP_BYTE_SIZE == 16
-        const size_t padding = 4u - valid_bytes;
-#endif
+        const size_t type_bytesize = TYPE_BYTESIZE[MICRO_DP.vars[k].type];
         
         Value_DP_Union * ptr = &MICRO_DP.mem.var_samples[(MICRO_DP.tx_samples_count * MICRO_DP.var_count) + k];
 
         for (ptrdiff_t j = 0; j < chunk_size; j++)
         {
-            memcpy(&tx_buf[i], &ptr->uint8_array[address_alignment], valid_bytes);
-            i += valid_bytes;
-            
-            memset(&tx_buf[i], 0, padding);
-            i += padding;
+            memcpy(&tx_buf[i], &ptr->uint8_array[address_alignment], type_bytesize);
+            i += type_bytesize;
 
             ptr += MICRO_DP.var_count;
         }
@@ -692,6 +684,7 @@ EXPORT size_t get_0x02_frame_size(void)
         for (ptrdiff_t i = 0; i < (ptrdiff_t)MICRO_DP.var_count; i++)
         {
             MICRO_DP.vars[i].type = DP_TYPE_FLOAT64;
+            MICRO_DP.vars[i].type_bytesize = TYPE_BYTESIZE[DP_TYPE_FLOAT64];
             MICRO_DP.vars[i].address_alignment = 7;
         }
 
@@ -715,6 +708,7 @@ EXPORT size_t get_0x02_frame_size(void)
         for (ptrdiff_t i = 0; i < (ptrdiff_t)MICRO_DP.var_count; i++)
         {
             MICRO_DP.vars[i].type = DP_TYPE_INT8;
+            MICRO_DP.vars[i].type_bytesize = TYPE_BYTESIZE[DP_TYPE_INT8];
             MICRO_DP.vars[i].address_alignment = 0;
         }
     }

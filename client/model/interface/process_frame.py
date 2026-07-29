@@ -111,41 +111,32 @@ def process_0x02_frame(
         raise ProcessingError('CRC-16 verification failed for 0x02 frame.')
 
     _, _, end_frame, trig_sample, samples_count, vars_count = \
-        struct.unpack_from(
-            '<BBBHHB',
-            bytes(frame),
-            0
-            )
+        struct.unpack_from('<BBBHHB', bytes(frame), 0)
 
     variables = np.zeros((vars_count, samples_count), dtype=np.float64)
 
-    # Each variable chunk has 2 bytes header
-    #   + (samples_count * 8) bytes of data.
-    # The MCU sends 8 bytes per sample regardless of the actual type size.
-    chunk_size = 2 + samples_count * 8
     offset = 8
 
-    for j in range(vars_count):
-        if offset + chunk_size > len(frame) - 2:
-            raise ProcessingError('Unexpected end of 0x02 frame payload.')
-
+    for i in range(vars_count):
         var_type = frame[offset + 1]
+        offset += 2
 
         if var_type >= len(PACK_SIZE):
             raise ProcessingError(f'Unknown variable type index: {var_type}')
 
+        type_bytesize = PACK_SIZE[var_type][1]
+        sample_bytesize = 8
         fmt_char = PACK_SIZE[var_type][0]
+        offset_delta = samples_count * sample_bytesize
 
-        val_offset = offset + 2
-        for i in range(samples_count):
-            variables[j, i] = struct.unpack_from(
-                f'<{fmt_char}',
-                bytes(frame),
-                val_offset
-                )[0]
-            val_offset += 8  # Skip the rest of the 8-byte buffer.
+        samples = frame[offset:offset+offset_delta]
 
-        offset += chunk_size
+        variables[i, :] = struct.unpack_from(
+            '<' + f'{fmt_char}{sample_bytesize-type_bytesize}x'*samples_count,
+            bytes(samples), 0
+            )
+
+        offset += offset_delta
 
     return variables, end_frame, trig_sample
 
