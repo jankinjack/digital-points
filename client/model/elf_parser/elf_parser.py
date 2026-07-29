@@ -1,8 +1,10 @@
 import subprocess
 from typing import Callable
 
+import __main__
+
 GDB_PATH = 'gdb'
-GDB_DUMP_SCRIPT = 'client/model/elf_parser/dump_globals.py'
+GDB_DUMP_SCRIPT = 'model/elf_parser/dump_globals.py'
 
 ARCH_BYTESIZE_DICT = {
     'EM_TI_C2000': 16,
@@ -63,6 +65,7 @@ class ELF_Parser:
                 text=True,
                 encoding='utf-8',
                 errors='ignore',
+                cwd=str(__main__.FULL_PATH)
                 )
         except Exception:
             return []

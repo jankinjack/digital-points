@@ -9,6 +9,7 @@ ROOT = Path(__file__).resolve().parent
 CLIENT_DIR = ROOT / 'client'
 MAIN_DIST = ROOT / 'build' / 'main.dist'
 OUTPUT_DIR = ROOT / 'output'
+RELEASE_DIR = OUTPUT_DIR / f"Digital Points v{info.__version__}"
 
 PYTHON_CMD = 'python'
 
@@ -16,20 +17,31 @@ PYTHON_CMD = 'python'
 def prepare_dist() -> None:
     shutil.rmtree(MAIN_DIST / 'libmicrodp', ignore_errors=True)
     shutil.rmtree(MAIN_DIST / 'translations', ignore_errors=True)
+    shutil.rmtree(MAIN_DIST / 'model' / 'elf_parser', ignore_errors=True)
+    shutil.rmtree(RELEASE_DIR, ignore_errors=True)
     shutil.rmtree(OUTPUT_DIR, ignore_errors=True)
 
     shutil.copytree(SERVER_DIR / 'builds', MAIN_DIST / 'libmicrodp')
     shutil.copytree(CLIENT_DIR / 'translations', MAIN_DIST / 'translations')
+    (MAIN_DIST / 'model' / 'elf_parser').mkdir(parents=True, exist_ok=True)
 
     shutil.copy(
         SERVER_DIR / 'inc' / 'micro_dp_extern.h',
         MAIN_DIST / 'libmicrodp',
-    )
+        )
 
-    release_dir = OUTPUT_DIR / f"Digital Points v{info.__version__}"
+    shutil.copy(
+        CLIENT_DIR / 'model' / 'elf_parser' / 'dump_globals.py',
+        MAIN_DIST / 'model' / 'elf_parser',
+        )
 
-    shutil.copytree(MAIN_DIST, release_dir)
-    shutil.make_archive(str(release_dir), 'zip', OUTPUT_DIR)
+    shutil.copy(
+        CLIENT_DIR / 'model' / 'elf_parser' / 'gdb',
+        MAIN_DIST / 'model' / 'elf_parser',
+        )
+
+    shutil.copytree(MAIN_DIST, RELEASE_DIR)
+    shutil.make_archive(str(RELEASE_DIR), 'zip', OUTPUT_DIR)
 
 
 def build_client() -> None:
@@ -52,6 +64,7 @@ def build_client() -> None:
     ], check=True)
 
     prepare_dist()
+
 
 if __name__ == '__main__':
     build_client()

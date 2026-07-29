@@ -440,7 +440,6 @@ static Exception_DP build_0x02_frame(void)
 
     // Calculate the number of samples to transmit in this chunk.
     const uint_fast16_t chunk_size = DP_MIN(MICRO_DP.trigger.samples_count_per_var - MICRO_DP.tx_samples_count, MICRO_DP.mem.samples_count_tx_0x02);
-    const size_t tx_end = MICRO_DP.tx_samples_count + chunk_size;
 
     // Number of samples to transmit.
     tx_buf[5] = READ_BYTE(chunk_size, 0);
@@ -458,7 +457,6 @@ static Exception_DP build_0x02_frame(void)
 
         const uintptr_t address_alignment = MICRO_DP.vars[k].address_alignment;
         const size_t valid_bytes = TYPE_BYTESIZE[MICRO_DP.vars[k].type];
-        const size_t type_bytesize = valid_bytes + address_alignment;
 
 #if DP_BYTE_SIZE == 8
         const size_t padding = 8u - valid_bytes;

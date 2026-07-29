@@ -279,12 +279,14 @@ class InterfaceBase(QObject):
                             node_status = False
                             self.node_status_changed.emit(False)
 
+                        """
                         frame_info = getframeinfo(currentframe())
 
                         self.log_error.emit(
                             f'{type(e).__name__}: {str(e)}'
                             f' : {os.path.basename(frame_info.filename)}, {frame_info.lineno}'
                             )
+                        """
                         continue
 
                     params_valid_and_changed = (

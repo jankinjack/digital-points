@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 def function_0x00(
         interface: 'SerialInterface | CAN_Interface | StubInterface',
         node_address: int,
-        ) -> tuple[int, int, int, int, int]:
+        ) -> tuple[int, int, int, int]:
     """
     Execute function 0x00: Request device information and handshake parameters.
 
@@ -33,7 +33,7 @@ def function_0x00(
     frame_write = build_0x00_frame(node_address)
 
     if not interface.write_frame(frame_write):
-        raise RuntimeError("Failed to write 0x00 frame to the interface.")
+        raise RuntimeError('Failed to write 0x00 frame to the interface.')
 
     # Temporarily set a short timeout for the heartbeat response.
     original_timeout = interface.timeout
@@ -44,13 +44,13 @@ def function_0x00(
         frame_read = interface.read_frame(lambda len_: len_ == 20)
 
         if not frame_read:
-            raise RuntimeError("Empty or timeout response received for 0x00 frame.")
+            raise RuntimeError('Empty or timeout response received for 0x00 frame.')
 
         return process_0x00_frame(tuple(frame_read))
 
     except ProcessingError as e:
         raise RuntimeError(f"Failed to process 0x00 frame payload: {e}") from e
     finally:
-        # Restore the original timeout to prevent side-effects 
+        # Restore the original timeout to prevent side-effects
         # on subsequent interface operations.
         pass # interface.timeout = original_timeout

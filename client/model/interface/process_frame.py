@@ -30,7 +30,7 @@ def _verify_crc16(frame: list[int] | tuple[int, ...]) -> bool:
     return calculated_crc == received_crc
 
 
-def process_0x00_frame(frame: list[int] | tuple[int, ...]) -> tuple[int, ...]:
+def process_0x00_frame(frame: list[int] | tuple[int, ...]) -> tuple[int, int, int, int]:
     """ Process a frame for function 0x00 (device info and heartbeat). """
 
     if not frame or frame[1] != FUNCTION_ID['0x00'] or len(frame) != 15:
