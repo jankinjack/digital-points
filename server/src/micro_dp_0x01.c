@@ -121,20 +121,15 @@ static Exception_DP build_0x01_frame(void)
         i++;
 
         // Serialize the variable bytes based on the architecture byte size.
-        const ptrdiff_t k_max = (ptrdiff_t)TYPE_BYTESIZE[MICRO_DP.vars[j].type] + (ptrdiff_t)MICRO_DP.vars[j].address_alignment;
+        const size_t type_bytesize = TYPE_BYTESIZE[MICRO_DP.vars[j].type];
+        const ptrdiff_t address_alignment = (ptrdiff_t)MICRO_DP.vars[j].address_alignment;
 
 #if DP_BYTE_SIZE == 8
-        for (ptrdiff_t k = (ptrdiff_t)MICRO_DP.vars[j].address_alignment; k < k_max; k++)
-        {
-            tx_buf[i] = sample[j].uint8_array[k];
-            i++;
-        }
+        memcpy(&tx_buf[i], &sample[j].uint8_array[address_alignment], type_bytesize);
+        i += type_bytesize;
 #elif DP_BYTE_SIZE == 16
-        for (ptrdiff_t k = (ptrdiff_t)MICRO_DP.vars[j].address_alignment; k < k_max; k++)
-        {
-            tx_buf[i++] = READ_BYTE(sample[j].uint16_array[k], 0);
-            tx_buf[i++] = READ_BYTE(sample[j].uint16_array[k], 1);
-        }
+        memcpy(&tx_buf[i], &sample[j].uint16_array[address_alignment], type_bytesize);
+        i += type_bytesize;
 #endif
     }
 

@@ -280,6 +280,7 @@ EXPORT Exception_DP process_0x02_frame(const uint_least8_t * const frame)
 
     // All validations passed. Commit the parsed configuration to the global state.
     MICRO_DP.trigger.var.type = trigger_type;
+    MICRO_DP.trigger.var.type_bytesize = TYPE_BYTESIZE[trigger_type];
     MICRO_DP.trigger.var.ptr = (Value_DP_Union *)(void *)trigger_address;
     MICRO_DP.trigger.var.aux_value = trigger_aux_value;
     MICRO_DP.trigger.count = trigger_count;
@@ -459,14 +460,14 @@ static Exception_DP build_0x02_frame(void)
         const uintptr_t address_alignment = MICRO_DP.vars[k].address_alignment;
         const size_t type_bytesize = TYPE_BYTESIZE[MICRO_DP.vars[k].type];
         
-        Value_DP_Union * ptr = &MICRO_DP.mem.var_samples[(MICRO_DP.tx_samples_count * MICRO_DP.var_count) + k];
+        Value_DP_Union * sample = &MICRO_DP.mem.var_samples[(MICRO_DP.tx_samples_count * MICRO_DP.var_count) + k];
 
         for (ptrdiff_t j = 0; j < chunk_size; j++)
         {
-            memcpy(&tx_buf[i], &ptr->uint8_array[address_alignment], type_bytesize);
+            memcpy(&tx_buf[i], &sample->uint8_array[address_alignment], type_bytesize);
             i += type_bytesize;
 
-            ptr += MICRO_DP.var_count;
+            sample += MICRO_DP.var_count;
         }
     }
 
