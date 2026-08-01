@@ -8,6 +8,7 @@ import __main__
 
 from model.interface.build_frame import build_0x01_frame
 from model.interface.process_frame import ProcessingError, process_0x01_frame
+from model.interface.jtag_interface import JTAG_Interface
 
 if TYPE_CHECKING:
     import threading
@@ -30,7 +31,7 @@ def _save_dump_worker(dump_path: Path, dump_array: np.ndarray, header: str) -> N
 
 
 def function_0x01(
-        interface: 'SerialInterface | CAN_Interface | StubInterface',
+        interface: 'SerialInterface | CAN_Interface | JTAG_Interface | StubInterface',
         event: 'threading.Event',
         node_address: int,
         types: list[int] | tuple[int, ...],
@@ -69,25 +70,31 @@ def function_0x01(
             and interface.is_connected()
             and err_count < 5):
 
-        frame_write = build_0x01_frame(node_address, types, addresses)
-
         timestamp = time.perf_counter()
 
-        if not interface.write_frame(frame_write):
-            err_count += 1
-            continue
+        if isinstance(interface, JTAG_Interface):
+            variables = interface.read_variables(addresses, types)
+        else:
+            frame_write = build_0x01_frame(node_address, types, addresses)
 
-        frame_read = interface.read_frame(lambda len_: len_ >= 12)
+            if not interface.write_frame(frame_write):
+                err_count += 1
+                continue
 
-        if not frame_read:
-            err_count += 1
-            continue
+            frame_read = interface.read_frame(lambda len_: len_ >= 12)
 
-        try:
-            variables = process_0x01_frame(frame_read)
-            err_count = 0  # Reset error count on successful read.
-        except ProcessingError:
-            err_count += 1
+            if not frame_read:
+                err_count += 1
+                continue
+
+            try:
+                variables = process_0x01_frame(frame_read)
+                err_count = 0  # Reset error count on successful read.
+            except ProcessingError:
+                err_count += 1
+                continue
+
+        if np.isnan(np.sum(variables)):
             continue
 
         # Handle 32-bit unsigned integer timer

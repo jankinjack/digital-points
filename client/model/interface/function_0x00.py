@@ -1,8 +1,10 @@
-
 from typing import TYPE_CHECKING
+from typing import Optional
 
 from model.interface.build_frame import build_0x00_frame
 from model.interface.process_frame import ProcessingError, process_0x00_frame
+
+from model.interface.jtag_interface import JTAG_Interface
 
 if TYPE_CHECKING:
     from model.interface.serial_interface import SerialInterface
@@ -11,7 +13,7 @@ if TYPE_CHECKING:
 
 
 def function_0x00(
-        interface: 'SerialInterface | CAN_Interface | StubInterface',
+        interface: 'SerialInterface | CAN_Interface | JTAG_Interface | StubInterface',
         node_address: int,
         ) -> tuple[int, int, int, int]:
     """
@@ -22,13 +24,19 @@ def function_0x00(
         node_address: The target slave/node address.
 
     Returns:
-        A tuple containing: 
+        A tuple containing:
         (sys_clock_freq, sampling_freq, max_samples, tx_samples, vars_count).
 
     Raises:
-        RuntimeError: If the frame fails to send, the response is empty/invalid, 
+        RuntimeError: If the frame fails to send, the response is empty/invalid,
         or the CRC check fails.
     """
+
+    if isinstance(interface, JTAG_Interface):
+        if interface.is_connected():
+            return 0, 0, 0, 20
+        else:
+            raise ProcessingError('No ping from JTAG.')
 
     frame_write = build_0x00_frame(node_address)
 

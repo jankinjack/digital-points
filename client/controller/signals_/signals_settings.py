@@ -752,18 +752,44 @@ def init_signals_settings(dp: 'DigitalPoints') -> None:
     def __on_toggle_settings_buttons(interface: str) -> None:
         """ Handler of settings buttons clicked. """
 
-        if interface == 'serial':
-            dp.main.ui.pushButtonSetSerial.setChecked(True)
-            dp.main.ui.pushButtonSetCAN.setChecked(False)
-            dp.main.ui.pushButtonSetCAN.setEnabled(True)
-            dp.main.ui.pushButtonSetSerial.setDisabled(True)
-            dp.interface.interface = dp.interface.instances['serial']
-        elif interface == 'can':
-            dp.main.ui.pushButtonSetCAN.setChecked(True)
-            dp.main.ui.pushButtonSetSerial.setChecked(False)
-            dp.main.ui.pushButtonSetCAN.setDisabled(True)
-            dp.main.ui.pushButtonSetSerial.setEnabled(True)
-            dp.interface.interface = dp.interface.instances['can']
+        # Mapping of interface names to their button names.
+        interface_buttons = {
+            'serial': 'pushButtonSetSerial',
+            'can': 'pushButtonSetCAN',
+            'jtag': 'pushButtonSetJTAG',
+            }
+
+        # Set button states.
+        for iface, button_name in interface_buttons.items():
+            button = getattr(dp.main.ui, button_name)
+            if iface == interface:
+                button.setChecked(True)
+                button.setDisabled(True)
+            else:
+                button.setChecked(False)
+                button.setEnabled(True)
+
+        # Set the active interface.
+        dp.interface.interface = dp.interface.instances[interface]
+
+        # Handle mode visibility based on interface.
+        index_trigger = dp.main.ui.comboBoxMode.findText('Triggered Mode')
+        index_fra = dp.main.ui.comboBoxMode.findText('FRA Mode')
+
+        if interface == 'jtag':
+            # Use only Real-Time Mode.
+            dp.main.ui.comboBoxMode.setCurrentText('Real-Time Mode')
+            if index_trigger != -1:
+                dp.main.ui.comboBoxMode.view().setRowHidden(index_trigger, True)
+            if index_fra != -1:
+                dp.main.ui.comboBoxMode.view().setRowHidden(index_fra, True)
+        else:
+            dp.interface.instances['jtag'].stop_openocd_server()
+
+            if index_trigger != -1:
+                dp.main.ui.comboBoxMode.view().setRowHidden(index_trigger, False)
+            if index_fra != -1:
+                dp.main.ui.comboBoxMode.view().setRowHidden(index_fra, False)
 
         dp.config.set_parameter(('interface', 'type'), interface)
         dp.logger.info(f'Change communication interface: {interface}')
@@ -777,6 +803,12 @@ def init_signals_settings(dp: 'DigitalPoints') -> None:
     dp.main.ui.pushButtonSetCAN.toggled.connect(
         lambda checked:
             __on_toggle_settings_buttons('can')
+            if checked
+            else None
+        )
+    dp.main.ui.pushButtonSetJTAG.toggled.connect(
+        lambda checked:
+            __on_toggle_settings_buttons('jtag')
             if checked
             else None
         )

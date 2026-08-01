@@ -1,5 +1,9 @@
+import os
 from typing import TYPE_CHECKING
 import copy
+from pathlib import Path
+
+import __main__
 
 if TYPE_CHECKING:
     from digital_points import DigitalPoints
@@ -155,11 +159,18 @@ def init_default(dp: 'DigitalPoints') -> None:
     if config['interface']['type'] == 'serial':
         dp.main.ui.pushButtonSetSerial.setChecked(True)
         dp.main.ui.pushButtonSetCAN.setChecked(False)
+        dp.main.ui.pushButtonSetJTAG.setChecked(False)
         dp.main.ui.pushButtonSetSerial.toggled.emit(True)
     elif config['interface']['type'] == 'can':
         dp.main.ui.pushButtonSetCAN.setChecked(True)
         dp.main.ui.pushButtonSetSerial.setChecked(False)
+        dp.main.ui.pushButtonSetJTAG.setChecked(False)
         dp.main.ui.pushButtonSetCAN.toggled.emit(True)
+    elif config['interface']['type'] == 'jtag':
+        dp.main.ui.pushButtonSetCAN.setChecked(False)
+        dp.main.ui.pushButtonSetSerial.setChecked(False)
+        dp.main.ui.pushButtonSetJTAG.setChecked(True)
+        dp.main.ui.pushButtonSetJTAG.toggled.emit(True)
 
     # Changing the baudrate.
     dp.com_settings.ui.comboBoxSerialBaudrate.setCurrentText(
@@ -223,6 +234,61 @@ def init_default(dp: 'DigitalPoints') -> None:
         )
     dp.com_settings.ui.comboBoxCANBusType.currentTextChanged.emit(
         config['interface']['can']['bus_type']
+        )
+
+    # Set default list of adapters.
+    cfg_targets = []
+    base_path = __main__.FULL_PATH / 'openocd' / 'interface'
+
+    if base_path.exists():
+        for root, _, files in os.walk(base_path):
+            for file in files:
+                if file.endswith('.cfg'):
+                    full_path = Path(root) / file
+
+                    # Get the relative path from the base directory.
+                    rel_path = full_path.relative_to(base_path)
+                    cfg_targets.append(str(rel_path.with_suffix('')).replace('\\', '/'))
+
+    dp.com_settings.ui.comboBoxJTAGAdapter.addItems(cfg_targets)
+
+    cfg_targets = []
+    base_path = __main__.FULL_PATH / 'openocd' / 'target'
+
+    if base_path.exists():
+        for root, _, files in os.walk(base_path):
+            for file in files:
+                if file.endswith('.cfg'):
+                    full_path = Path(root) / file
+
+                    # Get the relative path from the base directory.
+                    rel_path = full_path.relative_to(base_path)
+                    cfg_targets.append(str(rel_path.with_suffix('')).replace('\\', '/'))
+
+    dp.com_settings.ui.comboBoxJTAGTarget.addItems(cfg_targets)
+
+    # Changing the JTAG adapter.
+    dp.com_settings.ui.comboBoxJTAGAdapter.setCurrentText(
+        config['interface']['jtag']['adapter']
+        )
+    dp.com_settings.ui.comboBoxJTAGAdapter.currentTextChanged.emit(
+        config['interface']['jtag']['adapter']
+        )
+
+    # Changing the JTAG bitrate.
+    dp.com_settings.ui.comboBoxJTAGMaxClock.setCurrentText(
+        config['interface']['jtag']['bitrate']
+        )
+    dp.com_settings.ui.comboBoxJTAGMaxClock.currentTextChanged.emit(
+        config['interface']['jtag']['bitrate']
+        )
+
+    # Changing the JTAG target.
+    dp.com_settings.ui.comboBoxJTAGTarget.setCurrentText(
+        config['interface']['jtag']['target']
+        )
+    dp.com_settings.ui.comboBoxJTAGTarget.currentTextChanged.emit(
+        config['interface']['jtag']['target']
         )
 
     #

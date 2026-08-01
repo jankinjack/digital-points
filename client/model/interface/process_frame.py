@@ -66,6 +66,7 @@ def process_0x01_frame(
     _, _, var_number = struct.unpack_from('<BBB', bytes(frame), 0)
 
     variables = np.zeros((var_number, 1), dtype=np.float64)
+    variables[:] = np.nan
     offset = 3
 
     for j in range(var_number):

@@ -39,6 +39,11 @@ DEFAULT_CONFIG = {
             'id': 1,
             'port': '',
             'extended_id': False,
+        },
+        'jtag': {
+            'adapter': 'cmsis-dap',
+            'bitrate': '1 MHz',
+            'target': 'artery/at32f4x',
         }
     },
     'node address': 0,

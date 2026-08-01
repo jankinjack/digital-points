@@ -22,12 +22,13 @@ if TYPE_CHECKING:
 
     from model.interface.serial_interface import SerialInterface
     from model.interface.can_interface import CAN_Interface
+    from model.interface.jtag_interface import JTAG_Interface
     from model.interface.stub_interface import StubInterface
     from model.trigger import Trigger
 
 
 def function_0x02(
-        interface: 'SerialInterface | CAN_Interface | StubInterface',
+        interface: 'SerialInterface | CAN_Interface | JTAG_Interface | StubInterface',
         event: 'threading.Event',
         node_address: int,
         types: list[int] | tuple[int, ...],

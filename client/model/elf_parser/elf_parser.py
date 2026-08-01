@@ -38,7 +38,7 @@ class ELF_Parser:
     def get_variables_from_elf(
         self,
         file_name: str,
-        progress_callback: Callable[[float], None],
+        progress_callback: Callable[[int], None],
         exclude_patterns: tuple[str, ...],
     ) -> list[dict]:
         """Get list of variables from an ELF file using GDB.
@@ -98,7 +98,7 @@ class ELF_Parser:
                 })
 
             progress_callback(
-                100 * i / total_lines if total_lines > 0 else 100
+                (100 * i) // total_lines if total_lines > 0 else 100
                 )
 
         def is_valid_variable(variable: dict) -> bool:

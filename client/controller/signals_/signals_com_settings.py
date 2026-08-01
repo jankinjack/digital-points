@@ -91,6 +91,21 @@ def init_signals_com_settings(dp: 'DigitalPoints') -> None:
         lambda value: __on_com_param_changed({'can'}, 'extended_id', value)
         )
 
+    # Changing the adapter.
+    dp.com_settings.ui.comboBoxJTAGAdapter.currentTextChanged.connect(
+        lambda text: __on_com_param_changed({'jtag'}, 'adapter', text)
+        )
+
+    # Changing the JTAG bitrate.
+    dp.com_settings.ui.comboBoxJTAGMaxClock.currentTextChanged.connect(
+        lambda text: __on_com_param_changed({'jtag'}, 'bitrate', text)
+        )
+
+    # Changing the JTAG target.
+    dp.com_settings.ui.comboBoxJTAGTarget.currentTextChanged.connect(
+        lambda text: __on_com_param_changed({'jtag'}, 'target', text)
+        )
+
     def __on_list_com_ports_changed(
             list_com_ports: list[str] | tuple[str],
             store_com_ports: list[str] | tuple[str],

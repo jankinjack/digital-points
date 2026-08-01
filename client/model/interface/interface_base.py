@@ -26,6 +26,7 @@ from info import STUB_MICRO_DP
 
 from model.interface.serial_interface import SerialInterface
 from model.interface.can_interface import CAN_Interface
+from model.interface.jtag_interface import JTAG_Interface
 
 if STUB_MICRO_DP:
     from model.interface.stub_interface import StubInterface
@@ -142,6 +143,7 @@ class InterfaceBase(QObject):
         self._instances = {
             'serial': SerialInterface() if not STUB_MICRO_DP else StubInterface(),
             'can': CAN_Interface(),
+            'jtag': JTAG_Interface(),
             }
         self._interface = self._instances['serial']
         self._store_com_ports = None
@@ -168,13 +170,13 @@ class InterfaceBase(QObject):
             )
 
     @property
-    def interface(self) -> 'SerialInterface | CAN_Interface | StubInterface':
+    def interface(self) -> 'SerialInterface | CAN_Interface | JTAG_Interface | StubInterface':
         return self._interface
 
     @interface.setter
     def interface(
             self,
-            new_interface: 'SerialInterface | CAN_Interface | StubInterface'
+            new_interface: 'SerialInterface | CAN_Interface | JTAG_Interface | StubInterface'
             ) -> None:
         self._interface = new_interface
 
@@ -274,7 +276,7 @@ class InterfaceBase(QObject):
 
                         (sample_freq, n_max, tx_max, n_vars) = result
 
-                    except Exception as e:
+                    except Exception:
                         if node_status:
                             node_status = False
                             self.node_status_changed.emit(False)

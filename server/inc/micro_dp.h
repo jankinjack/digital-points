@@ -318,13 +318,13 @@ typedef struct
         uint_least8_t * rx_buf;
 
         // Size of the receive buffer.
-        size_t          rx_buf_size;
+        size_t rx_buf_size;
 
         // Current write index in the receive buffer.
-        size_t          rx_buf_ptr;
+        size_t rx_buf_ptr;
 
         // DP_KEY parsing sequence index
-        ptrdiff_t       sequence;
+        ptrdiff_t sequence;
 
         // Memory initialization flag.
         bool_t initialized;
