@@ -88,3 +88,7 @@ python build_client.py
 ```bash
 python build_server.py
 ```
+
+## Support
+
+[donate.stream](https://donate.stream/donate_digital_points)
