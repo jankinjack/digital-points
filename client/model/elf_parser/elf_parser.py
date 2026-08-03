@@ -65,7 +65,8 @@ class ELF_Parser:
                 text=True,
                 encoding='utf-8',
                 errors='ignore',
-                cwd=str(__main__.FULL_PATH)
+                cwd=str(__main__.FULL_PATH),
+                creationflags=subprocess.CREATE_NO_WINDOW,
                 )
         except Exception:
             return []

@@ -511,6 +511,7 @@ class JTAG_Interface:
             stdin=subprocess.DEVNULL,
             stdout=subprocess.DEVNULL,
             stderr=subprocess.DEVNULL,
+            creationflags=subprocess.CREATE_NO_WINDOW,
         )
 
     def _kill_openocd(self) -> None:

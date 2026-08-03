@@ -20,9 +20,12 @@ def prepare_dist() -> None:
     shutil.rmtree(MAIN_DIST / 'model' / 'elf_parser', ignore_errors=True)
     shutil.rmtree(RELEASE_DIR, ignore_errors=True)
     shutil.rmtree(OUTPUT_DIR, ignore_errors=True)
+    shutil.rmtree(MAIN_DIST / 'openocd', ignore_errors=True)
 
     shutil.copytree(SERVER_DIR / 'builds', MAIN_DIST / 'libmicrodp')
     shutil.copytree(CLIENT_DIR / 'translations', MAIN_DIST / 'translations')
+    shutil.copytree(CLIENT_DIR / 'openocd', MAIN_DIST / 'openocd')
+
     (MAIN_DIST / 'model' / 'elf_parser').mkdir(parents=True, exist_ok=True)
 
     shutil.copy(
