@@ -56,7 +56,7 @@ static Exception_DP (* const PROCESS_FUNCTION[DP_MODE_END])(const uint_least8_t 
  * \brief   Initialize the MicroDP protocol engine and allocate required memory.
  *
  * \param   info: Pointer to a structure with user-defined hardware parameters.
- * 
+ *
  * \retval  DP_OK: Initialization successful.
  * \retval  DP_ERROR: Invalid configuration or memory allocation failed.
  */
@@ -76,7 +76,7 @@ EXPORT Exception_DP micro_dp_init(Info_DP_Struct * const info)
     {
         return DP_ERROR;
     }
-        
+
     // Prevent re-initialization.
     if (MICRO_DP.mem.initialized)
     {
@@ -103,21 +103,41 @@ EXPORT Exception_DP micro_dp_init(Info_DP_Struct * const info)
     MICRO_DP.mem.address_alignment = 1u;
 
     // Allocate memory for variable configurations.
-    MICRO_DP.vars = (Var_DP_Struct *)micro_dp_calloc(MICRO_DP.info.static_buffer, MICRO_DP.info.max_var_count, sizeof(Var_DP_Struct), MICRO_DP.info.memory_limit);
+    MICRO_DP.vars = (Var_DP_Struct *)micro_dp_calloc(
+        MICRO_DP.info.static_buffer,
+        MICRO_DP.info.max_var_count,
+        sizeof(Var_DP_Struct),
+        MICRO_DP.info.memory_limit
+    );
 
     if (MICRO_DP.vars == NULL)
     {
         goto FREE_MEMORY;
     }
 
-    MICRO_DP.mem.tx_buf =
-        (uint_least8_t *)micro_dp_calloc(MICRO_DP.info.static_buffer, MICRO_DP.info.memory_limit / 2, sizeof(uint_least8_t), MICRO_DP.info.memory_limit);
+    // Compute the initial buffer size for tx/rx buffers (placeholder allocation).
+    const size_t buf_size = MICRO_DP.info.memory_limit / 2 - (MICRO_DP.info.max_var_count + 1) * sizeof(Var_DP_Struct) / 2;
 
-    MICRO_DP.mem.rx_buf =
-        (uint_least8_t *)micro_dp_calloc(MICRO_DP.info.static_buffer, MICRO_DP.info.memory_limit / 2, sizeof(uint_least8_t), MICRO_DP.info.memory_limit);
+    MICRO_DP.mem.tx_buf = (uint_least8_t *)micro_dp_calloc(
+        MICRO_DP.info.static_buffer,
+        buf_size,
+        sizeof(uint_least8_t),
+        MICRO_DP.info.memory_limit
+    );
 
-    MICRO_DP.mem.var_samples =
-        (Value_DP_Union *)micro_dp_calloc(MICRO_DP.info.static_buffer, 1, sizeof(Value_DP_Union), MICRO_DP.info.memory_limit);
+    MICRO_DP.mem.rx_buf = (uint_least8_t *)micro_dp_calloc(
+        MICRO_DP.info.static_buffer,
+        buf_size,
+        sizeof(uint_least8_t),
+        MICRO_DP.info.memory_limit
+    );
+
+    MICRO_DP.mem.var_samples = (Value_DP_Union *)micro_dp_calloc(
+        MICRO_DP.info.static_buffer,
+        1,
+        sizeof(Value_DP_Union),
+        MICRO_DP.info.memory_limit
+    );
 
     // Calculate the maximum required transmit buffer size across all functions.
     MICRO_DP.mem.max_size_tx = DP_MAX(get_0x00_frame_size(), get_0x01_frame_size());
@@ -125,6 +145,8 @@ EXPORT Exception_DP micro_dp_init(Info_DP_Struct * const info)
     MICRO_DP.mem.max_size_tx = DP_MAX(MICRO_DP.mem.max_size_tx, get_0x02_frame_size());
     MICRO_DP.mem.max_size_tx = DP_MAX(MICRO_DP.mem.max_size_tx, get_size_build_0x03_ack_frame());
     MICRO_DP.mem.max_size_tx = DP_MAX(MICRO_DP.mem.max_size_tx, get_size_build_0x04_ack_frame());
+
+    micro_dp_free();
 
     // Calculate the optimal number of samples per transmission chunk for function 0x02.
     // 15u = Header (7) + CRC (2) + Magic Key (5) + Overhead (1)
@@ -283,8 +305,10 @@ EXPORT void micro_dp_handle_rx_chunk(const uint_least8_t * const chunk, const si
         {
             MICRO_DP.mem.rx_buf_ptr = 0;
         }
-        
+
         // Parse the DP_KEY sequence to detect the end of a frame.
+        // State machine: track progress through the key bytes.
+        // When the full key is matched, validate and process the frame, then reset.
         if (byte == (uint_least8_t)DP_KEY[MICRO_DP.mem.sequence])
         {
             MICRO_DP.mem.sequence++;
@@ -329,18 +353,12 @@ EXPORT void micro_dp_reset(void)
     SAFE_CALL(MICRO_DP.info.enable_interrupts);
 }
 
-/************************
- *                      *
- *    EXTRA functions   *
- *                      *
- ************************/
-
 /**
  * \brief   Validate a variable's type and memory address, returning the alignment remainder.
  *
  * \param   address: The memory address to validate.
  * \param   type: The data type expected at the address.
- * 
+ *
  * \return  The alignment remainder (>= 0) if valid, or -1 if invalid.
  */
 EXPORT int_fast8_t are_type_and_address_valid(const uintptr_t address, const Types_DP type)
@@ -354,7 +372,7 @@ EXPORT int_fast8_t are_type_and_address_valid(const uintptr_t address, const Typ
     {
         return (int_fast8_t)(address % MICRO_DP.mem.address_alignment);
     }
-    
+
     return -1;
 }
 
@@ -365,7 +383,7 @@ EXPORT int_fast8_t are_type_and_address_valid(const uintptr_t address, const Typ
  * \param   count: Number of elements to allocate.
  * \param   size: Size of each element in bytes.
  * \param   memory_limit: Maximum allowed allocation size within the static buffer.
- * 
+ *
  * \return  Pointer to the allocated and zeroed memory, or NULL if out of memory.
  */
 static inline void *micro_dp_calloc(const void * const buf, const size_t count, const size_t size, const size_t memory_limit)
@@ -401,10 +419,10 @@ static inline void micro_dp_free(void)
 
 /**
  * \brief   Read variable values.
- * 
+ *
  * \param   dest: pointer to a destination.
  * \param   var_count: amount of variable to read.
- * 
+ *
  */
 void read_variable(Value_DP_Union * const dest, const size_t var_count)
 {
@@ -468,7 +486,7 @@ void read_variable(Value_DP_Union * const dest, const size_t var_count)
  *
  * \param   frame: Pointer to the frame buffer (ignored).
  * \param   size: Number of bytes in the frame.
- * 
+ *
  * \retval  DP_OK: Always succeeds.
  */
 EXPORT Exception_DP micro_dp_func_transmit_stub(const uint_least8_t * const frame, const size_t size)
