@@ -25,7 +25,7 @@ def function_0x00(
 
     Returns:
         A tuple containing:
-        (sys_clock_freq, sampling_freq, max_samples, tx_samples, vars_count).
+        (sampling_freq, max_samples, tx_samples, vars_count).
 
     Raises:
         RuntimeError: If the frame fails to send, the response is empty/invalid,
@@ -34,7 +34,7 @@ def function_0x00(
 
     if isinstance(interface, JTAG_Interface):
         if interface.is_connected():
-            return 0, 0, 0, 20
+            return 1, 1, 1, 20
         else:
             raise ProcessingError('No ping from JTAG.')
 
