@@ -10,7 +10,7 @@ href="#build-from-source">Build from source</a>]</h3>
 
 ## About
 
-Digital Points is an open-source real-time debugging tool for embedded systems. It functions as a software oscilloscope and enables developers to read and visualize microcontroller variables via standard communication interfaces (serial, CAN), perform FFT/DSP operations, measure frequency responses (Bode plots), and design digital PID controllers.
+Digital Points is an open-source real-time debugging tool for embedded systems. It functions as a software oscilloscope and enables developers to read and visualize microcontroller variables via standard communication interfaces (serial, CAN) and JTAG, perform FFT/DSP operations, measure frequency responses (Bode plots), and design digital PID controllers.
 
 Supported MCU architectures:
 - ARM Cortex-M4/M7 (gcc, clang)
