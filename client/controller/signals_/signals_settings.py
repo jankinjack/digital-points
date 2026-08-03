@@ -178,13 +178,9 @@ def init_signals_settings(dp: 'DigitalPoints') -> None:
         pre_trigger = dp.main.ui.spinBoxPreTrigger.value()
         post_trigger = dp.main.ui.spinBoxPostTrigger.value()
 
-        types = [object_[0] for object_ in dp.main.graph_scope.share_objects]
-        type_bytesizes = [PACK_SIZE[var_type][1] for var_type in types]
-        sum_bytesize = sum(type_bytesizes)
-
-        if sum_bytesize > 0:
+        if dp.interface.trigger.number_of_variables > 0:
             number_samples_per_variable =\
-                (dp.interface.trigger.max_number_samples * 8) // sum_bytesize
+                dp.interface.trigger.max_number_samples // dp.interface.trigger.number_of_variables
         else:
             number_samples_per_variable = dp.interface.trigger.max_number_samples
 
