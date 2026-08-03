@@ -369,7 +369,7 @@ class Ui_Window_Main(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 1179, 1082))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 849, 1082))
         self.scrollAreaWidgetContents.setStyleSheet(u"#scrollAreaWidgetContents {\n"
 "	background-color: #f8f8f2;\n"
 "}")
@@ -3920,7 +3920,7 @@ class Ui_Window_Main(object):
 
         self.gridLayout_8.addItem(self.horizontalSpacer_12, 0, 2, 1, 1)
 
-        self.horizontalSpacer_8 = QSpacerItem(10, 20, QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Minimum)
+        self.horizontalSpacer_8 = QSpacerItem(14, 20, QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Minimum)
 
         self.gridLayout_8.addItem(self.horizontalSpacer_8, 0, 0, 1, 1)
 
