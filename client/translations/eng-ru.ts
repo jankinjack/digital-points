@@ -171,33 +171,93 @@
         <translation type="obsolete">Настройки последовательного интерфейса</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_com_settings.ui" line="949"/>
+        <location filename="../view/ui_form_com_settings.ui" line="850"/>
         <source>COM Port</source>
         <translation type="unfinished">COM порт</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_com_settings.ui" line="498"/>
+        <location filename="../view/ui_form_com_settings.ui" line="507"/>
         <source>Baudrate [baud]</source>
         <translation type="unfinished">Скорость [бод]</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_com_settings.ui" line="733"/>
+        <location filename="../view/ui_form_com_settings.ui" line="723"/>
         <source>Byte Size</source>
         <translation type="unfinished">Размер байта</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_com_settings.ui" line="841"/>
+        <location filename="../view/ui_form_com_settings.ui" line="615"/>
         <source>Parity</source>
         <translation type="unfinished">Бит паритета</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_com_settings.ui" line="625"/>
+        <location filename="../view/ui_form_com_settings.ui" line="380"/>
         <source>Stop Bits</source>
         <translation type="unfinished">Стоп-биты</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_com_settings.ui" line="1270"/>
+        <location filename="../view/ui_form_com_settings.ui" line="1079"/>
         <source>Extended ID</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../view/ui_form_com_settings.ui" line="1946"/>
+        <source>Max Clock</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../view/ui_form_com_settings.ui" line="2038"/>
+        <source>10 MHz</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../view/ui_form_com_settings.ui" line="2043"/>
+        <source>5 MHz</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../view/ui_form_com_settings.ui" line="2048"/>
+        <source>2 MHz</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../view/ui_form_com_settings.ui" line="2053"/>
+        <source>1 MHz</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../view/ui_form_com_settings.ui" line="2058"/>
+        <source>500 kHz</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../view/ui_form_com_settings.ui" line="2063"/>
+        <source>200 kHz</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../view/ui_form_com_settings.ui" line="2068"/>
+        <source>100 kHz</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../view/ui_form_com_settings.ui" line="2073"/>
+        <source>50 kHz</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../view/ui_form_com_settings.ui" line="2078"/>
+        <source>20 kHz</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../view/ui_form_com_settings.ui" line="2083"/>
+        <source>10 kHz</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../view/ui_form_com_settings.ui" line="2088"/>
+        <source>5 kHz</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -205,22 +265,22 @@
         <translation type="obsolete">Настройки CAN интерфейса</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_com_settings.ui" line="1123"/>
+        <location filename="../view/ui_form_com_settings.ui" line="1319"/>
         <source>CAN Bus Type</source>
         <translation type="unfinished">Тип интерфейса CAN</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_com_settings.ui" line="1225"/>
+        <location filename="../view/ui_form_com_settings.ui" line="1421"/>
         <source>gs_usb</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../view/ui_form_com_settings.ui" line="1230"/>
+        <location filename="../view/ui_form_com_settings.ui" line="1426"/>
         <source>canalyst_ii</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../view/ui_form_com_settings.ui" line="1507"/>
+        <location filename="../view/ui_form_com_settings.ui" line="1151"/>
         <source>Bitrate [bit/s]</source>
         <translation type="unfinished">Скорость [бит/с]</translation>
     </message>
@@ -241,12 +301,17 @@
         <translation type="obsolete">Расширенный</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_com_settings.ui" line="1361"/>
+        <location filename="../view/ui_form_com_settings.ui" line="1447"/>
         <source>ID</source>
         <translation type="unfinished">ID</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_com_settings.ui" line="343"/>
+        <location filename="../view/ui_form_com_settings.ui" line="1675"/>
+        <source>JTAG/SWD</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../view/ui_form_com_settings.ui" line="1018"/>
         <source>Serial Interface</source>
         <translation type="unfinished">Serial интерфейс</translation>
     </message>
@@ -256,7 +321,17 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../view/ui_form_com_settings.ui" line="380"/>
+        <location filename="../view/ui_form_com_settings.ui" line="1838"/>
+        <source>Target</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../view/ui_form_com_settings.ui" line="1730"/>
+        <source>Adapter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../view/ui_form_com_settings.ui" line="1656"/>
         <source>CAN Interface</source>
         <translation type="unfinished">Интерфейс CAN</translation>
     </message>
@@ -270,12 +345,12 @@
         <translation type="unfinished">Настройки интерфейсов</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_com_settings.ui" line="1220"/>
+        <location filename="../view/ui_form_com_settings.ui" line="1416"/>
         <source>socketcan</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../view/ui_form_com_settings.ui" line="1215"/>
+        <location filename="../view/ui_form_com_settings.ui" line="1411"/>
         <source>robotell</source>
         <translation type="unfinished"></translation>
     </message>
@@ -486,7 +561,7 @@ t – функция времени.
     </message>
     <message>
         <location filename="../view/ui_form_main.ui" line="193"/>
-        <location filename="../view/ui_form_main.ui" line="6438"/>
+        <location filename="../view/ui_form_main.ui" line="6480"/>
         <source>Disconnected</source>
         <translation type="unfinished">Отключен</translation>
     </message>
@@ -515,7 +590,7 @@ t – функция времени.
         <translation type="obsolete">Y2макс = </translation>
     </message>
     <message>
-        <location filename="../view/ui_form_main.ui" line="3586"/>
+        <location filename="../view/ui_form_main.ui" line="3628"/>
         <source>Communication</source>
         <translation type="unfinished">Связь</translation>
     </message>
@@ -524,13 +599,13 @@ t – функция времени.
         <translation type="obsolete">Список переменных</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_main.ui" line="2654"/>
+        <location filename="../view/ui_form_main.ui" line="2696"/>
         <source>Trigger:</source>
         <translation type="unfinished">Триггер:</translation>
     </message>
     <message>
         <location filename="../view/ui_form_main.ui" line="622"/>
-        <location filename="../view/ui_form_main.ui" line="2867"/>
+        <location filename="../view/ui_form_main.ui" line="2909"/>
         <location filename="../view/ui_form_select_variables.ui" line="575"/>
         <location filename="../view/ui_form_select_variables.ui" line="773"/>
         <location filename="../view/ui_form_select_variables.ui" line="974"/>
@@ -542,8 +617,8 @@ t – функция времени.
     </message>
     <message>
         <location filename="../view/ui_form_main.ui" line="630"/>
-        <location filename="../view/ui_form_main.ui" line="2875"/>
-        <location filename="../view/ui_form_main.ui" line="5434"/>
+        <location filename="../view/ui_form_main.ui" line="2917"/>
+        <location filename="../view/ui_form_main.ui" line="5476"/>
         <location filename="../view/ui_form_select_variables.ui" line="583"/>
         <location filename="../view/ui_form_select_variables.ui" line="781"/>
         <location filename="../view/ui_form_select_variables.ui" line="982"/>
@@ -552,7 +627,7 @@ t – функция времени.
     </message>
     <message>
         <location filename="../view/ui_form_main.ui" line="638"/>
-        <location filename="../view/ui_form_main.ui" line="2883"/>
+        <location filename="../view/ui_form_main.ui" line="2925"/>
         <location filename="../view/ui_form_select_variables.ui" line="591"/>
         <location filename="../view/ui_form_select_variables.ui" line="789"/>
         <location filename="../view/ui_form_select_variables.ui" line="990"/>
@@ -560,7 +635,7 @@ t – функция времени.
         <translation type="unfinished">Адрес (hex)</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_main.ui" line="2456"/>
+        <location filename="../view/ui_form_main.ui" line="2498"/>
         <source>Open ELF File</source>
         <translation type="unfinished">Открыть ELF файл</translation>
     </message>
@@ -592,13 +667,13 @@ t – функция времени.
     </message>
     <message>
         <location filename="../view/ui_form_main.ui" line="1416"/>
-        <location filename="../view/ui_form_main.ui" line="2600"/>
-        <location filename="../view/ui_form_main.ui" line="3216"/>
+        <location filename="../view/ui_form_main.ui" line="2642"/>
+        <location filename="../view/ui_form_main.ui" line="3258"/>
         <source>Update</source>
         <translation type="unfinished">Обновить</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_main.ui" line="1824"/>
+        <location filename="../view/ui_form_main.ui" line="1866"/>
         <source>Address of Node</source>
         <translation type="unfinished">Адрес узла</translation>
     </message>
@@ -623,13 +698,13 @@ t – функция времени.
     </message>
     <message>
         <location filename="../view/ui_form_main.ui" line="1165"/>
-        <location filename="../view/ui_form_main.ui" line="6557"/>
+        <location filename="../view/ui_form_main.ui" line="6599"/>
         <source>Real-Time Mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../view/ui_form_main.ui" line="1170"/>
-        <source>Triggered Mode</source>
+        <source>Trigger Mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -650,23 +725,23 @@ t – функция времени.
         <translation type="obsolete">Частота дискретизации</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_main.ui" line="2333"/>
+        <location filename="../view/ui_form_main.ui" line="2375"/>
         <source>Trigger</source>
         <translation type="unfinished">Триггер</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_main.ui" line="4797"/>
-        <source>Sample Divider</source>
-        <translation type="unfinished">Делитель выборок</translation>
+        <location filename="../view/ui_form_main.ui" line="4839"/>
+        <source>Sample Decimation</source>
+        <translation type="unfinished">Децимация выборок</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_main.ui" line="4492"/>
+        <location filename="../view/ui_form_main.ui" line="4534"/>
         <source>One-Shot Mode</source>
         <translation type="unfinished">Режим однократной выборки</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_main.ui" line="4159"/>
-        <source>Trigger Level</source>
+        <location filename="../view/ui_form_main.ui" line="4201"/>
+        <source>Trigger Threshold</source>
         <translation type="unfinished">Уровень триггера</translation>
     </message>
     <message>
@@ -674,8 +749,8 @@ t – функция времени.
         <translation type="obsolete">Время предварительной выборки</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_main.ui" line="4748"/>
-        <location filename="../view/ui_form_main.ui" line="5092"/>
+        <location filename="../view/ui_form_main.ui" line="4790"/>
+        <location filename="../view/ui_form_main.ui" line="5134"/>
         <source> sample</source>
         <translation type="unfinished"> выборок</translation>
     </message>
@@ -684,24 +759,24 @@ t – функция времени.
         <translation type="obsolete">Количество выборок</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_main.ui" line="3965"/>
-        <source>Trigger Divider</source>
-        <translation type="unfinished">Делитель триггера</translation>
+        <location filename="../view/ui_form_main.ui" line="4007"/>
+        <source>Trigger Prescaler</source>
+        <translation type="unfinished">Предделитель триггера</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_main.ui" line="4327"/>
+        <location filename="../view/ui_form_main.ui" line="4369"/>
         <source>Settling Time</source>
         <translation type="unfinished">Время установления</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_main.ui" line="4437"/>
+        <location filename="../view/ui_form_main.ui" line="4479"/>
         <source> s</source>
         <translation type="unfinished"> с</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_main.ui" line="3700"/>
-        <source>Type of Edge</source>
-        <translation type="unfinished">Тип триггера</translation>
+        <location filename="../view/ui_form_main.ui" line="3742"/>
+        <source>Trigger Slope</source>
+        <translation type="unfinished">Тип фронта</translation>
     </message>
     <message>
         <location filename="../view/ui_form_main.ui" line="213"/>
@@ -724,7 +799,7 @@ t – функция времени.
         <translation type="unfinished">Среднее</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_main.ui" line="1722"/>
+        <location filename="../view/ui_form_main.ui" line="1764"/>
         <source>CAN</source>
         <translation type="unfinished"></translation>
     </message>
@@ -733,12 +808,12 @@ t – функция времени.
         <translation type="obsolete">Режимы</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_main.ui" line="4620"/>
+        <location filename="../view/ui_form_main.ui" line="4662"/>
         <source>Pre-Trigger Samples</source>
         <translation type="unfinished">Кол-во выборок до триггера</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_main.ui" line="4964"/>
+        <location filename="../view/ui_form_main.ui" line="5006"/>
         <source>Post-Trigger Samples</source>
         <translation type="unfinished">Кол-во выборок после триггера</translation>
     </message>
@@ -748,12 +823,12 @@ t – функция времени.
         <translation type="unfinished">Анализатор частотных характеристик (FRA)</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_main.ui" line="3308"/>
+        <location filename="../view/ui_form_main.ui" line="3350"/>
         <source>FRA Config</source>
         <translation type="unfinished">Настройки FRA</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_main.ui" line="3366"/>
+        <location filename="../view/ui_form_main.ui" line="3408"/>
         <source>Open</source>
         <translation type="unfinished">Открыть</translation>
     </message>
@@ -770,7 +845,7 @@ t – функция времени.
         <translation type="obsolete">Доступная версия:</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_main.ui" line="3171"/>
+        <location filename="../view/ui_form_main.ui" line="3213"/>
         <source>Check for Updates</source>
         <translation type="unfinished">Проверить обновления</translation>
     </message>
@@ -783,7 +858,7 @@ t – функция времени.
         <translation type="obsolete">Открыть LIC Response файл</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_main.ui" line="2353"/>
+        <location filename="../view/ui_form_main.ui" line="2395"/>
         <source>System Settings</source>
         <translation type="unfinished">Системные настройки</translation>
     </message>
@@ -794,7 +869,7 @@ t – функция времени.
     </message>
     <message>
         <location filename="../view/ui_form_main.ui" line="168"/>
-        <location filename="../view/ui_form_main.ui" line="6726"/>
+        <location filename="../view/ui_form_main.ui" line="6768"/>
         <source>  Start</source>
         <translation type="unfinished">  Запустить</translation>
     </message>
@@ -826,8 +901,8 @@ t – функция времени.
     </message>
     <message>
         <location filename="../view/ui_form_main.ui" line="496"/>
-        <location filename="../view/ui_form_main.ui" line="5290"/>
-        <location filename="../view/ui_form_main.ui" line="6316"/>
+        <location filename="../view/ui_form_main.ui" line="5332"/>
+        <location filename="../view/ui_form_main.ui" line="6358"/>
         <source>Cursors</source>
         <translation type="unfinished">Курсоры</translation>
     </message>
@@ -847,7 +922,12 @@ t – функция времени.
         <translation type="unfinished">Дельта</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_main.ui" line="6936"/>
+        <location filename="../view/ui_form_main.ui" line="1719"/>
+        <source>JTAG</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../view/ui_form_main.ui" line="6978"/>
         <source>IPC</source>
         <translation type="unfinished"></translation>
     </message>
@@ -861,7 +941,7 @@ t – функция времени.
         <translation type="unfinished">Крест-фактор</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_main.ui" line="2307"/>
+        <location filename="../view/ui_form_main.ui" line="2349"/>
         <source>Real-Time Mode (RTM)</source>
         <translation type="unfinished">Режим реального времени (RTM)</translation>
     </message>
@@ -875,10 +955,10 @@ t – функция времени.
         <translation type="unfinished">Очистить импорт</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_main.ui" line="4642"/>
-        <location filename="../view/ui_form_main.ui" line="4986"/>
-        <location filename="../view/ui_form_main.ui" line="6213"/>
-        <location filename="../view/ui_form_main.ui" line="6489"/>
+        <location filename="../view/ui_form_main.ui" line="4684"/>
+        <location filename="../view/ui_form_main.ui" line="5028"/>
+        <location filename="../view/ui_form_main.ui" line="6255"/>
+        <location filename="../view/ui_form_main.ui" line="6531"/>
         <source>-</source>
         <translation type="unfinished"></translation>
     </message>
@@ -887,22 +967,22 @@ t – функция времени.
         <translation type="obsolete">Режимы и параметры</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_main.ui" line="2064"/>
+        <location filename="../view/ui_form_main.ui" line="2106"/>
         <source>Language</source>
         <translation type="unfinished">Язык</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_main.ui" line="2156"/>
+        <location filename="../view/ui_form_main.ui" line="2198"/>
         <source>Russian (Русский)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../view/ui_form_main.ui" line="2161"/>
+        <location filename="../view/ui_form_main.ui" line="2203"/>
         <source>English (Английский)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../view/ui_form_main.ui" line="2724"/>
+        <location filename="../view/ui_form_main.ui" line="2766"/>
         <source>Remove Trigger</source>
         <translation type="unfinished">Удалить триггер</translation>
     </message>
@@ -923,7 +1003,7 @@ t – функция времени.
         <translation type="obsolete">Удалить псевдонимы</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_main.ui" line="5426"/>
+        <location filename="../view/ui_form_main.ui" line="5468"/>
         <source>Timestamp</source>
         <translation type="unfinished">Метка времени</translation>
     </message>
@@ -932,7 +1012,7 @@ t – функция времени.
         <translation type="obsolete">Модуль</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_main.ui" line="5439"/>
+        <location filename="../view/ui_form_main.ui" line="5481"/>
         <source>Message</source>
         <translation type="unfinished">Сообщение</translation>
     </message>
@@ -941,7 +1021,7 @@ t – функция времени.
         <translation type="obsolete">Загрузить DAT</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_main.ui" line="5511"/>
+        <location filename="../view/ui_form_main.ui" line="5553"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;k&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;corr&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt; =&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;k&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;корр&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt; =&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
@@ -975,17 +1055,17 @@ t – функция времени.
         <translation type="unfinished">Выражение</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_main.ui" line="5665"/>
+        <location filename="../view/ui_form_main.ui" line="5707"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;f&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;s&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt; = &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../view/ui_form_main.ui" line="2997"/>
+        <location filename="../view/ui_form_main.ui" line="3039"/>
         <source>Current Version: </source>
         <translation type="unfinished">Текущая версия: </translation>
     </message>
     <message>
-        <location filename="../view/ui_form_main.ui" line="3075"/>
+        <location filename="../view/ui_form_main.ui" line="3117"/>
         <source>Available Version: </source>
         <translation type="unfinished">Доступная версия: </translation>
     </message>
@@ -999,34 +1079,34 @@ t – функция времени.
         <translation type="unfinished">Только график 2</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_main.ui" line="3549"/>
+        <location filename="../view/ui_form_main.ui" line="3591"/>
         <source> MiB</source>
         <translation type="unfinished"> МиБ</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_main.ui" line="5723"/>
-        <location filename="../view/ui_form_main.ui" line="5818"/>
+        <location filename="../view/ui_form_main.ui" line="5765"/>
+        <location filename="../view/ui_form_main.ui" line="5860"/>
         <source>(Hz)</source>
         <translation type="unfinished">(Гц)</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_main.ui" line="5760"/>
+        <location filename="../view/ui_form_main.ui" line="5802"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;f&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;c&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt; = &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../view/ui_form_main.ui" line="5855"/>
+        <location filename="../view/ui_form_main.ui" line="5897"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;φ&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;m&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt; = &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;φ&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;зап&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt; = &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_main.ui" line="5634"/>
-        <location filename="../view/ui_form_main.ui" line="5913"/>
+        <location filename="../view/ui_form_main.ui" line="5676"/>
+        <location filename="../view/ui_form_main.ui" line="5955"/>
         <source>(deg)</source>
         <translation type="unfinished">(°)</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_main.ui" line="5963"/>
+        <location filename="../view/ui_form_main.ui" line="6005"/>
         <source>Synthesize</source>
         <translation type="unfinished">Синтезировать</translation>
     </message>
@@ -1041,7 +1121,7 @@ t – функция времени.
     </message>
     <message>
         <location filename="../view/ui_form_main.ui" line="233"/>
-        <location filename="../view/ui_form_main.ui" line="6392"/>
+        <location filename="../view/ui_form_main.ui" line="6434"/>
         <source>Unlinked</source>
         <translation type="unfinished">Нет связи</translation>
     </message>
@@ -1081,17 +1161,17 @@ t – функция времени.
         <translation type="obsolete">Срок действия: </translation>
     </message>
     <message>
-        <location filename="../view/ui_form_main.ui" line="2221"/>
+        <location filename="../view/ui_form_main.ui" line="2263"/>
         <source>Save Settings to File</source>
         <translation type="unfinished">Сохранить настройки в файл</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_main.ui" line="2263"/>
+        <location filename="../view/ui_form_main.ui" line="2305"/>
         <source>Load Settings from File</source>
         <translation type="unfinished">Загрузить настройки из файла</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_main.ui" line="2379"/>
+        <location filename="../view/ui_form_main.ui" line="2421"/>
         <source>Modes and Graphs</source>
         <translation type="unfinished">Режимы и графики</translation>
     </message>
@@ -1115,22 +1195,22 @@ t – функция времени.
         <translation type="obsolete">Параметры регулятора:</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_main.ui" line="5588"/>
+        <location filename="../view/ui_form_main.ui" line="5630"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;φ&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;corr&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt; = &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;φ&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;корр&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt; = &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_main.ui" line="5557"/>
+        <location filename="../view/ui_form_main.ui" line="5599"/>
         <source>(dB)</source>
         <translation type="unfinished">(дБ)</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_main.ui" line="6064"/>
+        <location filename="../view/ui_form_main.ui" line="6106"/>
         <source>Controller parameters</source>
         <translation type="unfinished">Параметры регулятора</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_main.ui" line="6165"/>
+        <location filename="../view/ui_form_main.ui" line="6207"/>
         <source>PID</source>
         <translation type="unfinished">ПИД</translation>
     </message>
@@ -1152,7 +1232,7 @@ t – функция времени.
         <translation type="obsolete">Ширина кадра</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_main.ui" line="3448"/>
+        <location filename="../view/ui_form_main.ui" line="3490"/>
         <source>Dump Size</source>
         <translation type="unfinished">Размер дампа</translation>
     </message>
@@ -1165,26 +1245,26 @@ t – функция времени.
         <translation type="obsolete">Кадр</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_main.ui" line="6409"/>
-        <location filename="../view/ui_form_main.ui" line="6455"/>
-        <location filename="../view/ui_form_main.ui" line="6506"/>
-        <location filename="../view/ui_form_main.ui" line="6543"/>
+        <location filename="../view/ui_form_main.ui" line="6451"/>
+        <location filename="../view/ui_form_main.ui" line="6497"/>
+        <location filename="../view/ui_form_main.ui" line="6548"/>
+        <location filename="../view/ui_form_main.ui" line="6585"/>
         <source>|</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../view/ui_form_main.ui" line="6472"/>
+        <location filename="../view/ui_form_main.ui" line="6514"/>
         <source>Status:</source>
         <translation type="unfinished">Статус:</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_main.ui" line="6699"/>
+        <location filename="../view/ui_form_main.ui" line="6741"/>
         <source>Connect</source>
         <translation type="unfinished">Соединить</translation>
     </message>
     <message>
         <location filename="../view/ui_form_main.ui" line="20"/>
-        <location filename="../view/ui_form_main.ui" line="6891"/>
+        <location filename="../view/ui_form_main.ui" line="6933"/>
         <source>Digital Points</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1193,42 +1273,42 @@ t – функция времени.
         <translation type="obsolete">Прогресс:</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_main.ui" line="7034"/>
+        <location filename="../view/ui_form_main.ui" line="7076"/>
         <source>Minimize</source>
         <translation type="unfinished">Свернуть</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_main.ui" line="7088"/>
+        <location filename="../view/ui_form_main.ui" line="7130"/>
         <source>Maximize/Restore</source>
         <translation type="unfinished">Развернуть/Восстановить</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_main.ui" line="7142"/>
+        <location filename="../view/ui_form_main.ui" line="7184"/>
         <source>Close</source>
         <translation type="unfinished">Закрыть</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_main.ui" line="7264"/>
+        <location filename="../view/ui_form_main.ui" line="7306"/>
         <source>Scope</source>
         <translation type="unfinished">Осциллограф</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_main.ui" line="7339"/>
+        <location filename="../view/ui_form_main.ui" line="7381"/>
         <source>FRA</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../view/ui_form_main.ui" line="7402"/>
+        <location filename="../view/ui_form_main.ui" line="7444"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Math&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../view/ui_form_main.ui" line="7481"/>
+        <location filename="../view/ui_form_main.ui" line="7523"/>
         <source>Log</source>
         <translation type="unfinished">Логгер</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_main.ui" line="7544"/>
+        <location filename="../view/ui_form_main.ui" line="7586"/>
         <source>Settings</source>
         <translation type="unfinished">Настройки</translation>
     </message>
@@ -1260,7 +1340,7 @@ t – функция времени.
         <translation type="obsolete">Помощь</translation>
     </message>
     <message>
-        <location filename="../view/ui_form_main.ui" line="2766"/>
+        <location filename="../view/ui_form_main.ui" line="2808"/>
         <location filename="../view/ui_form_select_variables.ui" line="483"/>
         <location filename="../view/ui_form_import_csv.ui" line="518"/>
         <source>Search for a variable...</source>

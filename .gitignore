@@ -79,6 +79,7 @@ docs/_build/
 # PyBuilder
 .pybuilder/
 target/
+!client/openocd/target
 
 # Jupyter Notebook
 .ipynb_checkpoints

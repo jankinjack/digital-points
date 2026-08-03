@@ -37,7 +37,7 @@ if TYPE_CHECKING:
 # Valid operational modes.
 SCOPE_MODES = {
     'Real-Time Mode',
-    'Triggered Mode',
+    'Trigger Mode',
     'FRA Mode',
     }
 
@@ -383,7 +383,7 @@ class InterfaceBase(QObject):
                             # Update frame rate.
                             self.frame_rate_changed.emit(1/delta if delta > 0 else 0)
 
-                    case 'Triggered Mode':
+                    case 'Trigger Mode':
                         # Check the trigger.
                         if not self.trigger.is_ready():
                             self.log_warning.emit(

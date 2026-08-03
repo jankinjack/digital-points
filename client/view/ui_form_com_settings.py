@@ -26,7 +26,7 @@ class Ui_MainWindow(object):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
         MainWindow.setWindowModality(Qt.WindowModality.WindowModal)
-        MainWindow.resize(669, 314)
+        MainWindow.resize(681, 467)
         MainWindow.setStyleSheet(u"QWidget {\n"
 "	font-family: Droid Sans;\n"
 "	font-size: 15px;\n"
@@ -162,43 +162,18 @@ class Ui_MainWindow(object):
         self.gridLayout_3.setHorizontalSpacing(9)
         self.gridLayout_3.setVerticalSpacing(6)
         self.gridLayout_3.setContentsMargins(9, 8, 9, -1)
-        self.label = QLabel(self.frameContent)
-        self.label.setObjectName(u"label")
-        sizePolicy = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
-        self.label.setSizePolicy(sizePolicy)
-        self.label.setMinimumSize(QSize(0, 20))
-        self.label.setMaximumSize(QSize(16777215, 20))
-        self.label.setFont(font)
-        self.label.setStyleSheet(u"QLabel {\n"
-"	margin-left: 5px;\n"
-"}")
+        self.verticalSpacer_2 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
-        self.gridLayout_3.addWidget(self.label, 0, 0, 1, 1)
-
-        self.label_3 = QLabel(self.frameContent)
-        self.label_3.setObjectName(u"label_3")
-        sizePolicy.setHeightForWidth(self.label_3.sizePolicy().hasHeightForWidth())
-        self.label_3.setSizePolicy(sizePolicy)
-        self.label_3.setMinimumSize(QSize(0, 20))
-        self.label_3.setMaximumSize(QSize(16777215, 20))
-        self.label_3.setFont(font)
-        self.label_3.setStyleSheet(u"QLabel {\n"
-"	margin-left: 5px;\n"
-"}")
-
-        self.gridLayout_3.addWidget(self.label_3, 0, 1, 1, 1)
+        self.gridLayout_3.addItem(self.verticalSpacer_2, 4, 0, 1, 2)
 
         self.frameLine_1 = QFrame(self.frameContent)
         self.frameLine_1.setObjectName(u"frameLine_1")
-        sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Preferred)
-        sizePolicy1.setHorizontalStretch(0)
-        sizePolicy1.setVerticalStretch(0)
-        sizePolicy1.setHeightForWidth(self.frameLine_1.sizePolicy().hasHeightForWidth())
-        self.frameLine_1.setSizePolicy(sizePolicy1)
-        self.frameLine_1.setMinimumSize(QSize(0, 0))
+        sizePolicy = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.frameLine_1.sizePolicy().hasHeightForWidth())
+        self.frameLine_1.setSizePolicy(sizePolicy)
+        self.frameLine_1.setMinimumSize(QSize(327, 206))
         self.frameLine_1.setStyleSheet(u"#frameLine_1 {\n"
 "	background: white;\n"
 "	border: 0px solid #6272a4;\n"
@@ -210,119 +185,6 @@ class Ui_MainWindow(object):
         self.gridLayout_2.setSpacing(3)
         self.gridLayout_2.setObjectName(u"gridLayout_2")
         self.gridLayout_2.setContentsMargins(0, 3, 0, 3)
-        self.line_3 = QFrame(self.frameLine_1)
-        self.line_3.setObjectName(u"line_3")
-        self.line_3.setMinimumSize(QSize(0, 2))
-        self.line_3.setMaximumSize(QSize(16777215, 2))
-        self.line_3.setFrameShape(QFrame.Shape.HLine)
-        self.line_3.setFrameShadow(QFrame.Shadow.Sunken)
-
-        self.gridLayout_2.addWidget(self.line_3, 7, 0, 1, 1)
-
-        self.line_2 = QFrame(self.frameLine_1)
-        self.line_2.setObjectName(u"line_2")
-        self.line_2.setMinimumSize(QSize(0, 2))
-        self.line_2.setMaximumSize(QSize(16777215, 2))
-        self.line_2.setFrameShape(QFrame.Shape.HLine)
-        self.line_2.setFrameShadow(QFrame.Shadow.Sunken)
-
-        self.gridLayout_2.addWidget(self.line_2, 3, 0, 1, 1)
-
-        self.line_4 = QFrame(self.frameLine_1)
-        self.line_4.setObjectName(u"line_4")
-        self.line_4.setMinimumSize(QSize(0, 2))
-        self.line_4.setMaximumSize(QSize(16777215, 2))
-        self.line_4.setFrameShape(QFrame.Shape.HLine)
-        self.line_4.setFrameShadow(QFrame.Shadow.Sunken)
-
-        self.gridLayout_2.addWidget(self.line_4, 5, 0, 1, 1)
-
-        self.horizontalLayout_2 = QHBoxLayout()
-        self.horizontalLayout_2.setSpacing(3)
-        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
-        self.horizontalLayout_2.setContentsMargins(10, -1, 3, -1)
-        self.label_20 = QLabel(self.frameLine_1)
-        self.label_20.setObjectName(u"label_20")
-
-        self.horizontalLayout_2.addWidget(self.label_20)
-
-        self.horizontalSpacer_16 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-
-        self.horizontalLayout_2.addItem(self.horizontalSpacer_16)
-
-        self.comboBoxSerialBaudrate = QComboBox(self.frameLine_1)
-        self.comboBoxSerialBaudrate.setObjectName(u"comboBoxSerialBaudrate")
-        sizePolicy1.setHeightForWidth(self.comboBoxSerialBaudrate.sizePolicy().hasHeightForWidth())
-        self.comboBoxSerialBaudrate.setSizePolicy(sizePolicy1)
-        self.comboBoxSerialBaudrate.setMinimumSize(QSize(200, 30))
-        self.comboBoxSerialBaudrate.setMaximumSize(QSize(200, 30))
-        self.comboBoxSerialBaudrate.setStyleSheet(u"QComboBox{\n"
-"	background-color: white;\n"
-"	border-radius: 5px;\n"
-"	border: 1px solid #6272a4;\n"
-"	padding-left: 10px;\n"
-"	height: 20px;\n"
-"}\n"
-"\n"
-"QComboBox:hover{\n"
-"	border: 1px solid #7284b9;\n"
-"}\n"
-"\n"
-"QComboBox:disabled{\n"
-"	border: 1px solid #7d7d7d;\n"
-"	color: #7d7d7d;\n"
-"}\n"
-"\n"
-"QComboBox::drop-down {\n"
-"	background-color: white;\n"
-"	subcontrol-origin: padding;\n"
-"	subcontrol-position: top right;\n"
-"	width: 28px; \n"
-"	border-left: 1px solid #6272a4;\n"
-"	border-top-right-radius: 3px;\n"
-"	background-image: url(:/icons/icons/icon_arrow_bottom.png);\n"
-"	border-bottom-right-radius: 3px;\n"
-"	background-position: center;\n"
-"	background-repeat: no-reperat;\n"
-" }\n"
-"\n"
-"QComboBox::drop-down:disabled {\n"
-"	background-color: #aaaaaa;\n"
-"	border-left-color: #aaaaaa;\n"
-" }\n"
-"\n"
-"QComboBox::drop-down:hover {\n"
-"	background-color: #d1eeff;\n"
-" }\n"
-"\n"
-"QComboBox::drop-down:on {\n"
-"	background-image: url(:/icons/icons/icon_arrow_top.png);\n"
-" }\n"
-"\n"
-"QComboBox QAbstract"
-                        "ItemView {\n"
-"    background-color: white;\n"
-"    selection-background-color: #adc9ff;\n"
-"	selection-color: #212121;\n"
-"	height: 20px;\n"
-"    outline: 0;\n"
-"}\n"
-"")
-
-        self.horizontalLayout_2.addWidget(self.comboBoxSerialBaudrate)
-
-
-        self.gridLayout_2.addLayout(self.horizontalLayout_2, 2, 0, 1, 1)
-
-        self.line = QFrame(self.frameLine_1)
-        self.line.setObjectName(u"line")
-        self.line.setMinimumSize(QSize(0, 2))
-        self.line.setMaximumSize(QSize(16777215, 2))
-        self.line.setFrameShape(QFrame.Shape.HLine)
-        self.line.setFrameShadow(QFrame.Shadow.Sunken)
-
-        self.gridLayout_2.addWidget(self.line, 1, 0, 1, 1)
-
         self.horizontalLayout_5 = QHBoxLayout()
         self.horizontalLayout_5.setSpacing(3)
         self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
@@ -338,8 +200,8 @@ class Ui_MainWindow(object):
 
         self.comboBoxSerialStopBits = QComboBox(self.frameLine_1)
         self.comboBoxSerialStopBits.setObjectName(u"comboBoxSerialStopBits")
-        sizePolicy1.setHeightForWidth(self.comboBoxSerialStopBits.sizePolicy().hasHeightForWidth())
-        self.comboBoxSerialStopBits.setSizePolicy(sizePolicy1)
+        sizePolicy.setHeightForWidth(self.comboBoxSerialStopBits.sizePolicy().hasHeightForWidth())
+        self.comboBoxSerialStopBits.setSizePolicy(sizePolicy)
         self.comboBoxSerialStopBits.setMinimumSize(QSize(200, 30))
         self.comboBoxSerialStopBits.setMaximumSize(QSize(200, 30))
         self.comboBoxSerialStopBits.setStyleSheet(u"QComboBox{\n"
@@ -400,26 +262,35 @@ class Ui_MainWindow(object):
 
         self.gridLayout_2.addLayout(self.horizontalLayout_5, 8, 0, 1, 1)
 
-        self.horizontalLayout_3 = QHBoxLayout()
-        self.horizontalLayout_3.setSpacing(3)
-        self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
-        self.horizontalLayout_3.setContentsMargins(10, -1, 3, -1)
-        self.label_17 = QLabel(self.frameLine_1)
-        self.label_17.setObjectName(u"label_17")
+        self.line_3 = QFrame(self.frameLine_1)
+        self.line_3.setObjectName(u"line_3")
+        self.line_3.setMinimumSize(QSize(0, 2))
+        self.line_3.setMaximumSize(QSize(16777215, 2))
+        self.line_3.setFrameShape(QFrame.Shape.HLine)
+        self.line_3.setFrameShadow(QFrame.Shadow.Sunken)
 
-        self.horizontalLayout_3.addWidget(self.label_17)
+        self.gridLayout_2.addWidget(self.line_3, 7, 0, 1, 1)
 
-        self.horizontalSpacer_19 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+        self.horizontalLayout_2 = QHBoxLayout()
+        self.horizontalLayout_2.setSpacing(3)
+        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
+        self.horizontalLayout_2.setContentsMargins(10, -1, 3, -1)
+        self.label_20 = QLabel(self.frameLine_1)
+        self.label_20.setObjectName(u"label_20")
 
-        self.horizontalLayout_3.addItem(self.horizontalSpacer_19)
+        self.horizontalLayout_2.addWidget(self.label_20)
 
-        self.comboBoxSerialDataBits = QComboBox(self.frameLine_1)
-        self.comboBoxSerialDataBits.setObjectName(u"comboBoxSerialDataBits")
-        sizePolicy1.setHeightForWidth(self.comboBoxSerialDataBits.sizePolicy().hasHeightForWidth())
-        self.comboBoxSerialDataBits.setSizePolicy(sizePolicy1)
-        self.comboBoxSerialDataBits.setMinimumSize(QSize(200, 30))
-        self.comboBoxSerialDataBits.setMaximumSize(QSize(200, 30))
-        self.comboBoxSerialDataBits.setStyleSheet(u"QComboBox{\n"
+        self.horizontalSpacer_16 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout_2.addItem(self.horizontalSpacer_16)
+
+        self.comboBoxSerialBaudrate = QComboBox(self.frameLine_1)
+        self.comboBoxSerialBaudrate.setObjectName(u"comboBoxSerialBaudrate")
+        sizePolicy.setHeightForWidth(self.comboBoxSerialBaudrate.sizePolicy().hasHeightForWidth())
+        self.comboBoxSerialBaudrate.setSizePolicy(sizePolicy)
+        self.comboBoxSerialBaudrate.setMinimumSize(QSize(200, 30))
+        self.comboBoxSerialBaudrate.setMaximumSize(QSize(200, 30))
+        self.comboBoxSerialBaudrate.setStyleSheet(u"QComboBox{\n"
 "	background-color: white;\n"
 "	border-radius: 5px;\n"
 "	border: 1px solid #6272a4;\n"
@@ -472,10 +343,10 @@ class Ui_MainWindow(object):
 "}\n"
 "")
 
-        self.horizontalLayout_3.addWidget(self.comboBoxSerialDataBits)
+        self.horizontalLayout_2.addWidget(self.comboBoxSerialBaudrate)
 
 
-        self.gridLayout_2.addLayout(self.horizontalLayout_3, 4, 0, 1, 1)
+        self.gridLayout_2.addLayout(self.horizontalLayout_2, 2, 0, 1, 1)
 
         self.horizontalLayout_4 = QHBoxLayout()
         self.horizontalLayout_4.setSpacing(3)
@@ -492,8 +363,8 @@ class Ui_MainWindow(object):
 
         self.comboBoxSerialParity = QComboBox(self.frameLine_1)
         self.comboBoxSerialParity.setObjectName(u"comboBoxSerialParity")
-        sizePolicy1.setHeightForWidth(self.comboBoxSerialParity.sizePolicy().hasHeightForWidth())
-        self.comboBoxSerialParity.setSizePolicy(sizePolicy1)
+        sizePolicy.setHeightForWidth(self.comboBoxSerialParity.sizePolicy().hasHeightForWidth())
+        self.comboBoxSerialParity.setSizePolicy(sizePolicy)
         self.comboBoxSerialParity.setMinimumSize(QSize(200, 30))
         self.comboBoxSerialParity.setMaximumSize(QSize(200, 30))
         self.comboBoxSerialParity.setStyleSheet(u"QComboBox{\n"
@@ -554,6 +425,92 @@ class Ui_MainWindow(object):
 
         self.gridLayout_2.addLayout(self.horizontalLayout_4, 6, 0, 1, 1)
 
+        self.horizontalLayout_3 = QHBoxLayout()
+        self.horizontalLayout_3.setSpacing(3)
+        self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
+        self.horizontalLayout_3.setContentsMargins(10, -1, 3, -1)
+        self.label_17 = QLabel(self.frameLine_1)
+        self.label_17.setObjectName(u"label_17")
+
+        self.horizontalLayout_3.addWidget(self.label_17)
+
+        self.horizontalSpacer_19 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout_3.addItem(self.horizontalSpacer_19)
+
+        self.comboBoxSerialDataBits = QComboBox(self.frameLine_1)
+        self.comboBoxSerialDataBits.setObjectName(u"comboBoxSerialDataBits")
+        sizePolicy.setHeightForWidth(self.comboBoxSerialDataBits.sizePolicy().hasHeightForWidth())
+        self.comboBoxSerialDataBits.setSizePolicy(sizePolicy)
+        self.comboBoxSerialDataBits.setMinimumSize(QSize(200, 30))
+        self.comboBoxSerialDataBits.setMaximumSize(QSize(200, 30))
+        self.comboBoxSerialDataBits.setStyleSheet(u"QComboBox{\n"
+"	background-color: white;\n"
+"	border-radius: 5px;\n"
+"	border: 1px solid #6272a4;\n"
+"	padding-left: 10px;\n"
+"	height: 20px;\n"
+"}\n"
+"\n"
+"QComboBox:hover{\n"
+"	border: 1px solid #7284b9;\n"
+"}\n"
+"\n"
+"QComboBox:disabled{\n"
+"	border: 1px solid #7d7d7d;\n"
+"	color: #7d7d7d;\n"
+"}\n"
+"\n"
+"QComboBox::drop-down {\n"
+"	background-color: white;\n"
+"	subcontrol-origin: padding;\n"
+"	subcontrol-position: top right;\n"
+"	width: 28px; \n"
+"	border-left: 1px solid #6272a4;\n"
+"	border-top-right-radius: 3px;\n"
+"	background-image: url(:/icons/icons/icon_arrow_bottom.png);\n"
+"	border-bottom-right-radius: 3px;\n"
+"	background-position: center;\n"
+"	background-repeat: no-reperat;\n"
+" }\n"
+"\n"
+"QComboBox::drop-down:disabled {\n"
+"	background-color: #aaaaaa;\n"
+"	border-left-color: #aaaaaa;\n"
+" }\n"
+"\n"
+"QComboBox::drop-down:hover {\n"
+"	background-color: #d1eeff;\n"
+" }\n"
+"\n"
+"QComboBox::drop-down:on {\n"
+"	background-image: url(:/icons/icons/icon_arrow_top.png);\n"
+" }\n"
+"\n"
+"QComboBox QAbstract"
+                        "ItemView {\n"
+"    background-color: white;\n"
+"    selection-background-color: #adc9ff;\n"
+"	selection-color: #212121;\n"
+"	height: 20px;\n"
+"    outline: 0;\n"
+"}\n"
+"")
+
+        self.horizontalLayout_3.addWidget(self.comboBoxSerialDataBits)
+
+
+        self.gridLayout_2.addLayout(self.horizontalLayout_3, 4, 0, 1, 1)
+
+        self.line = QFrame(self.frameLine_1)
+        self.line.setObjectName(u"line")
+        self.line.setMinimumSize(QSize(0, 2))
+        self.line.setMaximumSize(QSize(16777215, 2))
+        self.line.setFrameShape(QFrame.Shape.HLine)
+        self.line.setFrameShadow(QFrame.Shadow.Sunken)
+
+        self.gridLayout_2.addWidget(self.line, 1, 0, 1, 1)
+
         self.horizontalLayout = QHBoxLayout()
         self.horizontalLayout.setSpacing(3)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
@@ -569,8 +526,8 @@ class Ui_MainWindow(object):
 
         self.comboBoxSerialPorts = QComboBox(self.frameLine_1)
         self.comboBoxSerialPorts.setObjectName(u"comboBoxSerialPorts")
-        sizePolicy1.setHeightForWidth(self.comboBoxSerialPorts.sizePolicy().hasHeightForWidth())
-        self.comboBoxSerialPorts.setSizePolicy(sizePolicy1)
+        sizePolicy.setHeightForWidth(self.comboBoxSerialPorts.sizePolicy().hasHeightForWidth())
+        self.comboBoxSerialPorts.setSizePolicy(sizePolicy)
         self.comboBoxSerialPorts.setMinimumSize(QSize(200, 30))
         self.comboBoxSerialPorts.setMaximumSize(QSize(200, 30))
         self.comboBoxSerialPorts.setStyleSheet(u"QComboBox{\n"
@@ -631,25 +588,48 @@ class Ui_MainWindow(object):
 
         self.gridLayout_2.addLayout(self.horizontalLayout, 0, 0, 1, 1)
 
-        self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+        self.line_2 = QFrame(self.frameLine_1)
+        self.line_2.setObjectName(u"line_2")
+        self.line_2.setMinimumSize(QSize(0, 2))
+        self.line_2.setMaximumSize(QSize(16777215, 2))
+        self.line_2.setFrameShape(QFrame.Shape.HLine)
+        self.line_2.setFrameShadow(QFrame.Shadow.Sunken)
 
-        self.gridLayout_2.addItem(self.verticalSpacer, 10, 0, 1, 1)
+        self.gridLayout_2.addWidget(self.line_2, 3, 0, 1, 1)
 
-        self.line_9 = QFrame(self.frameLine_1)
-        self.line_9.setObjectName(u"line_9")
-        self.line_9.setFrameShape(QFrame.Shape.HLine)
-        self.line_9.setFrameShadow(QFrame.Shadow.Sunken)
+        self.line_4 = QFrame(self.frameLine_1)
+        self.line_4.setObjectName(u"line_4")
+        self.line_4.setMinimumSize(QSize(0, 2))
+        self.line_4.setMaximumSize(QSize(16777215, 2))
+        self.line_4.setFrameShape(QFrame.Shape.HLine)
+        self.line_4.setFrameShadow(QFrame.Shadow.Sunken)
 
-        self.gridLayout_2.addWidget(self.line_9, 9, 0, 1, 1)
+        self.gridLayout_2.addWidget(self.line_4, 5, 0, 1, 1)
 
 
         self.gridLayout_3.addWidget(self.frameLine_1, 1, 0, 1, 1)
 
+        self.label = QLabel(self.frameContent)
+        self.label.setObjectName(u"label")
+        sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Fixed)
+        sizePolicy1.setHorizontalStretch(0)
+        sizePolicy1.setVerticalStretch(0)
+        sizePolicy1.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
+        self.label.setSizePolicy(sizePolicy1)
+        self.label.setMinimumSize(QSize(0, 20))
+        self.label.setMaximumSize(QSize(16777215, 20))
+        self.label.setFont(font)
+        self.label.setStyleSheet(u"QLabel {\n"
+"	margin-left: 5px;\n"
+"}")
+
+        self.gridLayout_3.addWidget(self.label, 0, 0, 1, 1)
+
         self.frameLine_2 = QFrame(self.frameContent)
         self.frameLine_2.setObjectName(u"frameLine_2")
-        sizePolicy1.setHeightForWidth(self.frameLine_2.sizePolicy().hasHeightForWidth())
-        self.frameLine_2.setSizePolicy(sizePolicy1)
-        self.frameLine_2.setMinimumSize(QSize(0, 0))
+        sizePolicy.setHeightForWidth(self.frameLine_2.sizePolicy().hasHeightForWidth())
+        self.frameLine_2.setSizePolicy(sizePolicy)
+        self.frameLine_2.setMinimumSize(QSize(327, 206))
         self.frameLine_2.setStyleSheet(u"#frameLine_2 {\n"
 "	background: white;\n"
 "	border: 0px solid #6272a4;\n"
@@ -661,6 +641,156 @@ class Ui_MainWindow(object):
         self.gridLayout_4.setSpacing(3)
         self.gridLayout_4.setObjectName(u"gridLayout_4")
         self.gridLayout_4.setContentsMargins(0, 3, 0, 3)
+        self.horizontalLayout_11 = QHBoxLayout()
+        self.horizontalLayout_11.setSpacing(3)
+        self.horizontalLayout_11.setObjectName(u"horizontalLayout_11")
+        self.horizontalLayout_11.setContentsMargins(10, -1, 3, -1)
+        self.label_23 = QLabel(self.frameLine_2)
+        self.label_23.setObjectName(u"label_23")
+
+        self.horizontalLayout_11.addWidget(self.label_23)
+
+        self.horizontalSpacer_25 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout_11.addItem(self.horizontalSpacer_25)
+
+        self.checkBoxExtendedID = QCheckBox(self.frameLine_2)
+        self.checkBoxExtendedID.setObjectName(u"checkBoxExtendedID")
+        self.checkBoxExtendedID.setMinimumSize(QSize(0, 30))
+        self.checkBoxExtendedID.setMaximumSize(QSize(30, 30))
+        self.checkBoxExtendedID.setLayoutDirection(Qt.LayoutDirection.RightToLeft)
+        self.checkBoxExtendedID.setStyleSheet(u"QCheckBox::indicator {\n"
+"    border: 1px solid #6272a4;\n"
+"	width: 20px;\n"
+"	height: 20px;\n"
+"	border-radius: 11px;\n"
+"    background: white;\n"
+"}\n"
+"QCheckBox::indicator:hover {\n"
+"    border: 1px solid #7284b9;\n"
+"}\n"
+"QCheckBox::indicator:checked {\n"
+"	background-image: url(:/icons/icons/icon_check.png);\n"
+"	background-repeat: no-repeat;\n"
+"    background-position: center;\n"
+"}")
+
+        self.horizontalLayout_11.addWidget(self.checkBoxExtendedID)
+
+
+        self.gridLayout_4.addLayout(self.horizontalLayout_11, 6, 0, 1, 1)
+
+        self.horizontalLayout_8 = QHBoxLayout()
+        self.horizontalLayout_8.setSpacing(3)
+        self.horizontalLayout_8.setObjectName(u"horizontalLayout_8")
+        self.horizontalLayout_8.setContentsMargins(10, -1, 3, -1)
+        self.label_21 = QLabel(self.frameLine_2)
+        self.label_21.setObjectName(u"label_21")
+
+        self.horizontalLayout_8.addWidget(self.label_21)
+
+        self.horizontalSpacer_22 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout_8.addItem(self.horizontalSpacer_22)
+
+        self.spinBoxCANBitrate = QSpinBox(self.frameLine_2)
+        self.spinBoxCANBitrate.setObjectName(u"spinBoxCANBitrate")
+        sizePolicy.setHeightForWidth(self.spinBoxCANBitrate.sizePolicy().hasHeightForWidth())
+        self.spinBoxCANBitrate.setSizePolicy(sizePolicy)
+        self.spinBoxCANBitrate.setMinimumSize(QSize(200, 30))
+        self.spinBoxCANBitrate.setMaximumSize(QSize(200, 30))
+        self.spinBoxCANBitrate.setStyleSheet(u"QSpinBox {\n"
+"	color: black;\n"
+"	background-color: white;\n"
+"	border-radius: 5px;\n"
+"	border: 1px solid #6272a4;\n"
+"	padding-left: 5px;\n"
+"}\n"
+"\n"
+"QSpinBox:disabled {\n"
+"	color: #7d7d7d;\n"
+"	border: 1px solid #7d7d7d;\n"
+"}\n"
+"\n"
+"QSpinBox::down-button {\n"
+"	width: 28px;\n"
+"	height: 28px;\n"
+"	subcontrol-position: left;\n"
+"	border-top-left-radius: 3px;\n"
+"	border-bottom-left-radius: 3px;\n"
+"	background-image: url(:/icons/icons/icon_minus.png);\n"
+"	background-position: center;\n"
+"	background-repeat: no-reperat;\n"
+"	border-right: 1px solid #6272a4;\n"
+"	border-top: 1px solid #6272a4;\n"
+"	border-bottom: 1px solid #6272a4;\n"
+"	margin-left: 1px;\n"
+" }\n"
+"\n"
+"QSpinBox::up-button:hover,\n"
+"QSpinBox::down-button:hover {\n"
+"	background-color: #d1eeff;\n"
+" }\n"
+"\n"
+"QSpinBox::up-button:pressed,\n"
+"QSpinBox::down-button:pressed {\n"
+"	background-color: #f8f8f2;\n"
+"}\n"
+"\n"
+"QSpinBox::down-button:disabled {\n"
+"	background-color: #aaaaaa;\n"
+"	border-left-color: #aaaaaa;\n"
+"	border-top: 1"
+                        "px solid #aaaaaa;\n"
+" }\n"
+"\n"
+"QSpinBox::up-button {\n"
+"	width: 28px;\n"
+"	height: 28px;\n"
+"	subcontrol-position: right;\n"
+"	border-top-right-radius: 3px;\n"
+"	border-bottom-right-radius: 3px;\n"
+"	background-image: url(:/icons/icons/icon_plus.png);\n"
+"	background-position: center;\n"
+"	background-repeat: no-reperat;\n"
+"	border-left: 1px solid #6272a4;\n"
+"	border-top: 1px solid #6272a4;\n"
+"	border-bottom: 1px solid #6272a4;\n"
+"	margin-right: 1px;\n"
+" }\n"
+"\n"
+"QSpinBox::up-button:disabled {\n"
+"	background-color: #aaaaaa;\n"
+"	border-left-color: #aaaaaa;\n"
+" }\n"
+"")
+        self.spinBoxCANBitrate.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.spinBoxCANBitrate.setMinimum(1)
+        self.spinBoxCANBitrate.setMaximum(1000000)
+
+        self.horizontalLayout_8.addWidget(self.spinBoxCANBitrate)
+
+
+        self.gridLayout_4.addLayout(self.horizontalLayout_8, 4, 0, 1, 1)
+
+        self.line_5 = QFrame(self.frameLine_2)
+        self.line_5.setObjectName(u"line_5")
+        self.line_5.setMinimumSize(QSize(0, 2))
+        self.line_5.setMaximumSize(QSize(16777215, 2))
+        self.line_5.setFrameShape(QFrame.Shape.HLine)
+        self.line_5.setFrameShadow(QFrame.Shadow.Sunken)
+
+        self.gridLayout_4.addWidget(self.line_5, 1, 0, 1, 1)
+
+        self.line_7 = QFrame(self.frameLine_2)
+        self.line_7.setObjectName(u"line_7")
+        self.line_7.setMinimumSize(QSize(0, 2))
+        self.line_7.setMaximumSize(QSize(16777215, 2))
+        self.line_7.setFrameShape(QFrame.Shape.HLine)
+        self.line_7.setFrameShadow(QFrame.Shadow.Sunken)
+
+        self.gridLayout_4.addWidget(self.line_7, 5, 0, 1, 1)
+
         self.horizontalLayout_9 = QHBoxLayout()
         self.horizontalLayout_9.setSpacing(3)
         self.horizontalLayout_9.setObjectName(u"horizontalLayout_9")
@@ -680,8 +810,8 @@ class Ui_MainWindow(object):
         self.comboBoxCANBusType.addItem("")
         self.comboBoxCANBusType.addItem("")
         self.comboBoxCANBusType.setObjectName(u"comboBoxCANBusType")
-        sizePolicy1.setHeightForWidth(self.comboBoxCANBusType.sizePolicy().hasHeightForWidth())
-        self.comboBoxCANBusType.setSizePolicy(sizePolicy1)
+        sizePolicy.setHeightForWidth(self.comboBoxCANBusType.sizePolicy().hasHeightForWidth())
+        self.comboBoxCANBusType.setSizePolicy(sizePolicy)
         self.comboBoxCANBusType.setMinimumSize(QSize(200, 30))
         self.comboBoxCANBusType.setMaximumSize(QSize(200, 30))
         self.comboBoxCANBusType.setStyleSheet(u"QComboBox{\n"
@@ -742,63 +872,6 @@ class Ui_MainWindow(object):
 
         self.gridLayout_4.addLayout(self.horizontalLayout_9, 0, 0, 1, 1)
 
-        self.line_6 = QFrame(self.frameLine_2)
-        self.line_6.setObjectName(u"line_6")
-        self.line_6.setMinimumSize(QSize(0, 2))
-        self.line_6.setMaximumSize(QSize(16777215, 2))
-        self.line_6.setFrameShape(QFrame.Shape.HLine)
-        self.line_6.setFrameShadow(QFrame.Shadow.Sunken)
-
-        self.gridLayout_4.addWidget(self.line_6, 3, 0, 1, 1)
-
-        self.horizontalLayout_11 = QHBoxLayout()
-        self.horizontalLayout_11.setSpacing(3)
-        self.horizontalLayout_11.setObjectName(u"horizontalLayout_11")
-        self.horizontalLayout_11.setContentsMargins(10, -1, 3, -1)
-        self.label_23 = QLabel(self.frameLine_2)
-        self.label_23.setObjectName(u"label_23")
-
-        self.horizontalLayout_11.addWidget(self.label_23)
-
-        self.horizontalSpacer_25 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-
-        self.horizontalLayout_11.addItem(self.horizontalSpacer_25)
-
-        self.checkBoxExtendedID = QCheckBox(self.frameLine_2)
-        self.checkBoxExtendedID.setObjectName(u"checkBoxExtendedID")
-        self.checkBoxExtendedID.setMinimumSize(QSize(0, 30))
-        self.checkBoxExtendedID.setMaximumSize(QSize(30, 30))
-        self.checkBoxExtendedID.setLayoutDirection(Qt.LayoutDirection.RightToLeft)
-        self.checkBoxExtendedID.setStyleSheet(u"QCheckBox::indicator {\n"
-"    border: 1px solid #6272a4;\n"
-"	width: 20px;\n"
-"	height: 20px;\n"
-"	border-radius: 11px;\n"
-"    background: white;\n"
-"}\n"
-"QCheckBox::indicator:hover {\n"
-"    border: 1px solid #7284b9;\n"
-"}\n"
-"QCheckBox::indicator:checked {\n"
-"	background-image: url(:/icons/icons/icon_check.png);\n"
-"	background-repeat: no-repeat;\n"
-"    background-position: center;\n"
-"}")
-
-        self.horizontalLayout_11.addWidget(self.checkBoxExtendedID)
-
-
-        self.gridLayout_4.addLayout(self.horizontalLayout_11, 6, 0, 1, 1)
-
-        self.line_5 = QFrame(self.frameLine_2)
-        self.line_5.setObjectName(u"line_5")
-        self.line_5.setMinimumSize(QSize(0, 2))
-        self.line_5.setMaximumSize(QSize(16777215, 2))
-        self.line_5.setFrameShape(QFrame.Shape.HLine)
-        self.line_5.setFrameShadow(QFrame.Shadow.Sunken)
-
-        self.gridLayout_4.addWidget(self.line_5, 1, 0, 1, 1)
-
         self.horizontalLayout_10 = QHBoxLayout()
         self.horizontalLayout_10.setSpacing(3)
         self.horizontalLayout_10.setObjectName(u"horizontalLayout_10")
@@ -814,8 +887,8 @@ class Ui_MainWindow(object):
 
         self.spinBoxCANID = QSpinBox(self.frameLine_2)
         self.spinBoxCANID.setObjectName(u"spinBoxCANID")
-        sizePolicy1.setHeightForWidth(self.spinBoxCANID.sizePolicy().hasHeightForWidth())
-        self.spinBoxCANID.setSizePolicy(sizePolicy1)
+        sizePolicy.setHeightForWidth(self.spinBoxCANID.sizePolicy().hasHeightForWidth())
+        self.spinBoxCANID.setSizePolicy(sizePolicy)
         self.spinBoxCANID.setMinimumSize(QSize(200, 30))
         self.spinBoxCANID.setMaximumSize(QSize(200, 30))
         self.spinBoxCANID.setStyleSheet(u"QSpinBox {\n"
@@ -893,111 +966,14 @@ class Ui_MainWindow(object):
 
         self.gridLayout_4.addLayout(self.horizontalLayout_10, 2, 0, 1, 1)
 
-        self.verticalSpacer_2 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+        self.line_6 = QFrame(self.frameLine_2)
+        self.line_6.setObjectName(u"line_6")
+        self.line_6.setMinimumSize(QSize(0, 2))
+        self.line_6.setMaximumSize(QSize(16777215, 2))
+        self.line_6.setFrameShape(QFrame.Shape.HLine)
+        self.line_6.setFrameShadow(QFrame.Shadow.Sunken)
 
-        self.gridLayout_4.addItem(self.verticalSpacer_2, 8, 0, 1, 1)
-
-        self.horizontalLayout_8 = QHBoxLayout()
-        self.horizontalLayout_8.setSpacing(3)
-        self.horizontalLayout_8.setObjectName(u"horizontalLayout_8")
-        self.horizontalLayout_8.setContentsMargins(10, -1, 3, -1)
-        self.label_21 = QLabel(self.frameLine_2)
-        self.label_21.setObjectName(u"label_21")
-
-        self.horizontalLayout_8.addWidget(self.label_21)
-
-        self.horizontalSpacer_22 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-
-        self.horizontalLayout_8.addItem(self.horizontalSpacer_22)
-
-        self.spinBoxCANBitrate = QSpinBox(self.frameLine_2)
-        self.spinBoxCANBitrate.setObjectName(u"spinBoxCANBitrate")
-        sizePolicy1.setHeightForWidth(self.spinBoxCANBitrate.sizePolicy().hasHeightForWidth())
-        self.spinBoxCANBitrate.setSizePolicy(sizePolicy1)
-        self.spinBoxCANBitrate.setMinimumSize(QSize(200, 30))
-        self.spinBoxCANBitrate.setMaximumSize(QSize(200, 30))
-        self.spinBoxCANBitrate.setStyleSheet(u"QSpinBox {\n"
-"	color: black;\n"
-"	background-color: white;\n"
-"	border-radius: 5px;\n"
-"	border: 1px solid #6272a4;\n"
-"	padding-left: 5px;\n"
-"}\n"
-"\n"
-"QSpinBox:disabled {\n"
-"	color: #7d7d7d;\n"
-"	border: 1px solid #7d7d7d;\n"
-"}\n"
-"\n"
-"QSpinBox::down-button {\n"
-"	width: 28px;\n"
-"	height: 28px;\n"
-"	subcontrol-position: left;\n"
-"	border-top-left-radius: 3px;\n"
-"	border-bottom-left-radius: 3px;\n"
-"	background-image: url(:/icons/icons/icon_minus.png);\n"
-"	background-position: center;\n"
-"	background-repeat: no-reperat;\n"
-"	border-right: 1px solid #6272a4;\n"
-"	border-top: 1px solid #6272a4;\n"
-"	border-bottom: 1px solid #6272a4;\n"
-"	margin-left: 1px;\n"
-" }\n"
-"\n"
-"QSpinBox::up-button:hover,\n"
-"QSpinBox::down-button:hover {\n"
-"	background-color: #d1eeff;\n"
-" }\n"
-"\n"
-"QSpinBox::up-button:pressed,\n"
-"QSpinBox::down-button:pressed {\n"
-"	background-color: #f8f8f2;\n"
-"}\n"
-"\n"
-"QSpinBox::down-button:disabled {\n"
-"	background-color: #aaaaaa;\n"
-"	border-left-color: #aaaaaa;\n"
-"	border-top: 1"
-                        "px solid #aaaaaa;\n"
-" }\n"
-"\n"
-"QSpinBox::up-button {\n"
-"	width: 28px;\n"
-"	height: 28px;\n"
-"	subcontrol-position: right;\n"
-"	border-top-right-radius: 3px;\n"
-"	border-bottom-right-radius: 3px;\n"
-"	background-image: url(:/icons/icons/icon_plus.png);\n"
-"	background-position: center;\n"
-"	background-repeat: no-reperat;\n"
-"	border-left: 1px solid #6272a4;\n"
-"	border-top: 1px solid #6272a4;\n"
-"	border-bottom: 1px solid #6272a4;\n"
-"	margin-right: 1px;\n"
-" }\n"
-"\n"
-"QSpinBox::up-button:disabled {\n"
-"	background-color: #aaaaaa;\n"
-"	border-left-color: #aaaaaa;\n"
-" }\n"
-"")
-        self.spinBoxCANBitrate.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        self.spinBoxCANBitrate.setMinimum(1)
-        self.spinBoxCANBitrate.setMaximum(1000000)
-
-        self.horizontalLayout_8.addWidget(self.spinBoxCANBitrate)
-
-
-        self.gridLayout_4.addLayout(self.horizontalLayout_8, 4, 0, 1, 1)
-
-        self.line_7 = QFrame(self.frameLine_2)
-        self.line_7.setObjectName(u"line_7")
-        self.line_7.setMinimumSize(QSize(0, 2))
-        self.line_7.setMaximumSize(QSize(16777215, 2))
-        self.line_7.setFrameShape(QFrame.Shape.HLine)
-        self.line_7.setFrameShadow(QFrame.Shadow.Sunken)
-
-        self.gridLayout_4.addWidget(self.line_7, 5, 0, 1, 1)
+        self.gridLayout_4.addWidget(self.line_6, 3, 0, 1, 1)
 
         self.line_8 = QFrame(self.frameLine_2)
         self.line_8.setObjectName(u"line_8")
@@ -1008,8 +984,315 @@ class Ui_MainWindow(object):
 
         self.gridLayout_4.addWidget(self.line_8, 7, 0, 1, 1)
 
+        self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Preferred)
+
+        self.gridLayout_4.addItem(self.verticalSpacer, 8, 0, 1, 1)
+
 
         self.gridLayout_3.addWidget(self.frameLine_2, 1, 1, 1, 1)
+
+        self.label_3 = QLabel(self.frameContent)
+        self.label_3.setObjectName(u"label_3")
+        sizePolicy1.setHeightForWidth(self.label_3.sizePolicy().hasHeightForWidth())
+        self.label_3.setSizePolicy(sizePolicy1)
+        self.label_3.setMinimumSize(QSize(0, 20))
+        self.label_3.setMaximumSize(QSize(16777215, 20))
+        self.label_3.setFont(font)
+        self.label_3.setStyleSheet(u"QLabel {\n"
+"	margin-left: 5px;\n"
+"}")
+
+        self.gridLayout_3.addWidget(self.label_3, 0, 1, 1, 1)
+
+        self.label_4 = QLabel(self.frameContent)
+        self.label_4.setObjectName(u"label_4")
+        self.label_4.setFont(font)
+        self.label_4.setStyleSheet(u"QLabel {\n"
+"	margin-left: 5px;\n"
+"}")
+
+        self.gridLayout_3.addWidget(self.label_4, 2, 0, 1, 1)
+
+        self.frameLine_3 = QFrame(self.frameContent)
+        self.frameLine_3.setObjectName(u"frameLine_3")
+        self.frameLine_3.setMinimumSize(QSize(327, 118))
+        self.frameLine_3.setStyleSheet(u"#frameLine_3 {\n"
+"	background: white;\n"
+"	border: 0px solid #6272a4;\n"
+"	border-radius: 7px;\n"
+"}")
+        self.frameLine_3.setFrameShape(QFrame.Shape.StyledPanel)
+        self.frameLine_3.setFrameShadow(QFrame.Shadow.Raised)
+        self.gridLayout_6 = QGridLayout(self.frameLine_3)
+        self.gridLayout_6.setSpacing(3)
+        self.gridLayout_6.setObjectName(u"gridLayout_6")
+        self.gridLayout_6.setContentsMargins(0, 3, 0, 3)
+        self.horizontalLayout_7 = QHBoxLayout()
+        self.horizontalLayout_7.setSpacing(3)
+        self.horizontalLayout_7.setObjectName(u"horizontalLayout_7")
+        self.horizontalLayout_7.setContentsMargins(10, -1, 3, -1)
+        self.label_25 = QLabel(self.frameLine_3)
+        self.label_25.setObjectName(u"label_25")
+
+        self.horizontalLayout_7.addWidget(self.label_25)
+
+        self.horizontalSpacer_21 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout_7.addItem(self.horizontalSpacer_21)
+
+        self.comboBoxJTAGAdapter = QComboBox(self.frameLine_3)
+        self.comboBoxJTAGAdapter.setObjectName(u"comboBoxJTAGAdapter")
+        sizePolicy.setHeightForWidth(self.comboBoxJTAGAdapter.sizePolicy().hasHeightForWidth())
+        self.comboBoxJTAGAdapter.setSizePolicy(sizePolicy)
+        self.comboBoxJTAGAdapter.setMinimumSize(QSize(200, 30))
+        self.comboBoxJTAGAdapter.setMaximumSize(QSize(200, 30))
+        self.comboBoxJTAGAdapter.setStyleSheet(u"QComboBox{\n"
+"	background-color: white;\n"
+"	border-radius: 5px;\n"
+"	border: 1px solid #6272a4;\n"
+"	padding-left: 10px;\n"
+"	height: 20px;\n"
+"}\n"
+"\n"
+"QComboBox:hover{\n"
+"	border: 1px solid #7284b9;\n"
+"}\n"
+"\n"
+"QComboBox:disabled{\n"
+"	border: 1px solid #7d7d7d;\n"
+"	color: #7d7d7d;\n"
+"}\n"
+"\n"
+"QComboBox::drop-down {\n"
+"	background-color: white;\n"
+"	subcontrol-origin: padding;\n"
+"	subcontrol-position: top right;\n"
+"	width: 28px; \n"
+"	border-left: 1px solid #6272a4;\n"
+"	border-top-right-radius: 3px;\n"
+"	background-image: url(:/icons/icons/icon_arrow_bottom.png);\n"
+"	border-bottom-right-radius: 3px;\n"
+"	background-position: center;\n"
+"	background-repeat: no-reperat;\n"
+" }\n"
+"\n"
+"QComboBox::drop-down:disabled {\n"
+"	background-color: #aaaaaa;\n"
+"	border-left-color: #aaaaaa;\n"
+" }\n"
+"\n"
+"QComboBox::drop-down:hover {\n"
+"	background-color: #d1eeff;\n"
+" }\n"
+"\n"
+"QComboBox::drop-down:on {\n"
+"	background-image: url(:/icons/icons/icon_arrow_top.png);\n"
+" }\n"
+"\n"
+"QComboBox QAbstract"
+                        "ItemView {\n"
+"    background-color: white;\n"
+"    selection-background-color: #adc9ff;\n"
+"	selection-color: #212121;\n"
+"	height: 20px;\n"
+"    outline: 0;\n"
+"}\n"
+"")
+
+        self.horizontalLayout_7.addWidget(self.comboBoxJTAGAdapter)
+
+
+        self.gridLayout_6.addLayout(self.horizontalLayout_7, 0, 0, 1, 1)
+
+        self.horizontalLayout_12 = QHBoxLayout()
+        self.horizontalLayout_12.setSpacing(3)
+        self.horizontalLayout_12.setObjectName(u"horizontalLayout_12")
+        self.horizontalLayout_12.setContentsMargins(10, -1, 3, -1)
+        self.label_26 = QLabel(self.frameLine_3)
+        self.label_26.setObjectName(u"label_26")
+
+        self.horizontalLayout_12.addWidget(self.label_26)
+
+        self.horizontalSpacer_26 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout_12.addItem(self.horizontalSpacer_26)
+
+        self.comboBoxJTAGTarget = QComboBox(self.frameLine_3)
+        self.comboBoxJTAGTarget.setObjectName(u"comboBoxJTAGTarget")
+        sizePolicy.setHeightForWidth(self.comboBoxJTAGTarget.sizePolicy().hasHeightForWidth())
+        self.comboBoxJTAGTarget.setSizePolicy(sizePolicy)
+        self.comboBoxJTAGTarget.setMinimumSize(QSize(200, 30))
+        self.comboBoxJTAGTarget.setMaximumSize(QSize(200, 30))
+        self.comboBoxJTAGTarget.setStyleSheet(u"QComboBox{\n"
+"	background-color: white;\n"
+"	border-radius: 5px;\n"
+"	border: 1px solid #6272a4;\n"
+"	padding-left: 10px;\n"
+"	height: 20px;\n"
+"}\n"
+"\n"
+"QComboBox:hover{\n"
+"	border: 1px solid #7284b9;\n"
+"}\n"
+"\n"
+"QComboBox:disabled{\n"
+"	border: 1px solid #7d7d7d;\n"
+"	color: #7d7d7d;\n"
+"}\n"
+"\n"
+"QComboBox::drop-down {\n"
+"	background-color: white;\n"
+"	subcontrol-origin: padding;\n"
+"	subcontrol-position: top right;\n"
+"	width: 28px; \n"
+"	border-left: 1px solid #6272a4;\n"
+"	border-top-right-radius: 3px;\n"
+"	background-image: url(:/icons/icons/icon_arrow_bottom.png);\n"
+"	border-bottom-right-radius: 3px;\n"
+"	background-position: center;\n"
+"	background-repeat: no-reperat;\n"
+" }\n"
+"\n"
+"QComboBox::drop-down:disabled {\n"
+"	background-color: #aaaaaa;\n"
+"	border-left-color: #aaaaaa;\n"
+" }\n"
+"\n"
+"QComboBox::drop-down:hover {\n"
+"	background-color: #d1eeff;\n"
+" }\n"
+"\n"
+"QComboBox::drop-down:on {\n"
+"	background-image: url(:/icons/icons/icon_arrow_top.png);\n"
+" }\n"
+"\n"
+"QComboBox QAbstract"
+                        "ItemView {\n"
+"    background-color: white;\n"
+"    selection-background-color: #adc9ff;\n"
+"	selection-color: #212121;\n"
+"	height: 20px;\n"
+"    outline: 0;\n"
+"}\n"
+"")
+
+        self.horizontalLayout_12.addWidget(self.comboBoxJTAGTarget)
+
+
+        self.gridLayout_6.addLayout(self.horizontalLayout_12, 4, 0, 1, 1)
+
+        self.horizontalLayout_14 = QHBoxLayout()
+        self.horizontalLayout_14.setSpacing(3)
+        self.horizontalLayout_14.setObjectName(u"horizontalLayout_14")
+        self.horizontalLayout_14.setContentsMargins(10, -1, 3, -1)
+        self.label_27 = QLabel(self.frameLine_3)
+        self.label_27.setObjectName(u"label_27")
+
+        self.horizontalLayout_14.addWidget(self.label_27)
+
+        self.horizontalSpacer_27 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout_14.addItem(self.horizontalSpacer_27)
+
+        self.comboBoxJTAGMaxClock = QComboBox(self.frameLine_3)
+        self.comboBoxJTAGMaxClock.addItem("")
+        self.comboBoxJTAGMaxClock.addItem("")
+        self.comboBoxJTAGMaxClock.addItem("")
+        self.comboBoxJTAGMaxClock.addItem("")
+        self.comboBoxJTAGMaxClock.addItem("")
+        self.comboBoxJTAGMaxClock.addItem("")
+        self.comboBoxJTAGMaxClock.addItem("")
+        self.comboBoxJTAGMaxClock.addItem("")
+        self.comboBoxJTAGMaxClock.addItem("")
+        self.comboBoxJTAGMaxClock.addItem("")
+        self.comboBoxJTAGMaxClock.addItem("")
+        self.comboBoxJTAGMaxClock.setObjectName(u"comboBoxJTAGMaxClock")
+        sizePolicy.setHeightForWidth(self.comboBoxJTAGMaxClock.sizePolicy().hasHeightForWidth())
+        self.comboBoxJTAGMaxClock.setSizePolicy(sizePolicy)
+        self.comboBoxJTAGMaxClock.setMinimumSize(QSize(200, 30))
+        self.comboBoxJTAGMaxClock.setMaximumSize(QSize(200, 30))
+        self.comboBoxJTAGMaxClock.setStyleSheet(u"QComboBox{\n"
+"	background-color: white;\n"
+"	border-radius: 5px;\n"
+"	border: 1px solid #6272a4;\n"
+"	padding-left: 10px;\n"
+"	height: 20px;\n"
+"}\n"
+"\n"
+"QComboBox:hover{\n"
+"	border: 1px solid #7284b9;\n"
+"}\n"
+"\n"
+"QComboBox:disabled{\n"
+"	border: 1px solid #7d7d7d;\n"
+"	color: #7d7d7d;\n"
+"}\n"
+"\n"
+"QComboBox::drop-down {\n"
+"	background-color: white;\n"
+"	subcontrol-origin: padding;\n"
+"	subcontrol-position: top right;\n"
+"	width: 28px; \n"
+"	border-left: 1px solid #6272a4;\n"
+"	border-top-right-radius: 3px;\n"
+"	background-image: url(:/icons/icons/icon_arrow_bottom.png);\n"
+"	border-bottom-right-radius: 3px;\n"
+"	background-position: center;\n"
+"	background-repeat: no-reperat;\n"
+" }\n"
+"\n"
+"QComboBox::drop-down:disabled {\n"
+"	background-color: #aaaaaa;\n"
+"	border-left-color: #aaaaaa;\n"
+" }\n"
+"\n"
+"QComboBox::drop-down:hover {\n"
+"	background-color: #d1eeff;\n"
+" }\n"
+"\n"
+"QComboBox::drop-down:on {\n"
+"	background-image: url(:/icons/icons/icon_arrow_top.png);\n"
+" }\n"
+"\n"
+"QComboBox QAbstract"
+                        "ItemView {\n"
+"    background-color: white;\n"
+"    selection-background-color: #adc9ff;\n"
+"	selection-color: #212121;\n"
+"	height: 20px;\n"
+"    outline: 0;\n"
+"}\n"
+"")
+
+        self.horizontalLayout_14.addWidget(self.comboBoxJTAGMaxClock)
+
+
+        self.gridLayout_6.addLayout(self.horizontalLayout_14, 2, 0, 1, 1)
+
+        self.line_9 = QFrame(self.frameLine_3)
+        self.line_9.setObjectName(u"line_9")
+        self.line_9.setMinimumSize(QSize(0, 2))
+        self.line_9.setMaximumSize(QSize(16777215, 2))
+        self.line_9.setFrameShape(QFrame.Shape.HLine)
+        self.line_9.setFrameShadow(QFrame.Shadow.Sunken)
+
+        self.gridLayout_6.addWidget(self.line_9, 1, 0, 1, 1)
+
+        self.line_10 = QFrame(self.frameLine_3)
+        self.line_10.setObjectName(u"line_10")
+        self.line_10.setMinimumSize(QSize(0, 2))
+        self.line_10.setMaximumSize(QSize(16777215, 2))
+        self.line_10.setFrameShape(QFrame.Shape.HLine)
+        self.line_10.setFrameShadow(QFrame.Shadow.Sunken)
+
+        self.gridLayout_6.addWidget(self.line_10, 3, 0, 1, 1)
+
+
+        self.gridLayout_3.addWidget(self.frameLine_3, 3, 0, 1, 1)
+
+        self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.gridLayout_3.addItem(self.horizontalSpacer_2, 3, 1, 1, 1)
 
 
         self.gridLayout_5.addLayout(self.gridLayout_3, 0, 0, 1, 1)
@@ -1038,22 +1321,38 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"COM Settings", None))
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"Interfaces Configuration", None))
         self.pushButtonCloseApp.setText("")
-        self.label.setText(QCoreApplication.translate("MainWindow", u"Serial Interface", None))
-        self.label_3.setText(QCoreApplication.translate("MainWindow", u"CAN Interface", None))
-        self.label_20.setText(QCoreApplication.translate("MainWindow", u"Baudrate [baud]", None))
         self.label_18.setText(QCoreApplication.translate("MainWindow", u"Stop Bits", None))
-        self.label_17.setText(QCoreApplication.translate("MainWindow", u"Byte Size", None))
+        self.label_20.setText(QCoreApplication.translate("MainWindow", u"Baudrate [baud]", None))
         self.label_16.setText(QCoreApplication.translate("MainWindow", u"Parity", None))
+        self.label_17.setText(QCoreApplication.translate("MainWindow", u"Byte Size", None))
         self.label_19.setText(QCoreApplication.translate("MainWindow", u"COM Port", None))
+        self.label.setText(QCoreApplication.translate("MainWindow", u"Serial Interface", None))
+        self.label_23.setText(QCoreApplication.translate("MainWindow", u"Extended ID", None))
+        self.checkBoxExtendedID.setText("")
+        self.label_21.setText(QCoreApplication.translate("MainWindow", u"Bitrate [bit/s]", None))
         self.label_22.setText(QCoreApplication.translate("MainWindow", u"CAN Bus Type", None))
         self.comboBoxCANBusType.setItemText(0, QCoreApplication.translate("MainWindow", u"robotell", None))
         self.comboBoxCANBusType.setItemText(1, QCoreApplication.translate("MainWindow", u"socketcan", None))
         self.comboBoxCANBusType.setItemText(2, QCoreApplication.translate("MainWindow", u"gs_usb", None))
         self.comboBoxCANBusType.setItemText(3, QCoreApplication.translate("MainWindow", u"canalyst_ii", None))
 
-        self.label_23.setText(QCoreApplication.translate("MainWindow", u"Extended ID", None))
-        self.checkBoxExtendedID.setText("")
         self.label_24.setText(QCoreApplication.translate("MainWindow", u"ID", None))
-        self.label_21.setText(QCoreApplication.translate("MainWindow", u"Bitrate [bit/s]", None))
+        self.label_3.setText(QCoreApplication.translate("MainWindow", u"CAN Interface", None))
+        self.label_4.setText(QCoreApplication.translate("MainWindow", u"JTAG/SWD", None))
+        self.label_25.setText(QCoreApplication.translate("MainWindow", u"Adapter", None))
+        self.label_26.setText(QCoreApplication.translate("MainWindow", u"Target", None))
+        self.label_27.setText(QCoreApplication.translate("MainWindow", u"Max Clock", None))
+        self.comboBoxJTAGMaxClock.setItemText(0, QCoreApplication.translate("MainWindow", u"10 MHz", None))
+        self.comboBoxJTAGMaxClock.setItemText(1, QCoreApplication.translate("MainWindow", u"5 MHz", None))
+        self.comboBoxJTAGMaxClock.setItemText(2, QCoreApplication.translate("MainWindow", u"2 MHz", None))
+        self.comboBoxJTAGMaxClock.setItemText(3, QCoreApplication.translate("MainWindow", u"1 MHz", None))
+        self.comboBoxJTAGMaxClock.setItemText(4, QCoreApplication.translate("MainWindow", u"500 kHz", None))
+        self.comboBoxJTAGMaxClock.setItemText(5, QCoreApplication.translate("MainWindow", u"200 kHz", None))
+        self.comboBoxJTAGMaxClock.setItemText(6, QCoreApplication.translate("MainWindow", u"100 kHz", None))
+        self.comboBoxJTAGMaxClock.setItemText(7, QCoreApplication.translate("MainWindow", u"50 kHz", None))
+        self.comboBoxJTAGMaxClock.setItemText(8, QCoreApplication.translate("MainWindow", u"20 kHz", None))
+        self.comboBoxJTAGMaxClock.setItemText(9, QCoreApplication.translate("MainWindow", u"10 kHz", None))
+        self.comboBoxJTAGMaxClock.setItemText(10, QCoreApplication.translate("MainWindow", u"5 kHz", None))
+
     # retranslateUi
 

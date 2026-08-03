@@ -58,7 +58,7 @@ def init_signals_settings(dp: 'DigitalPoints') -> None:
 
         # Determine current mode flags
         is_rtm = new_mode == 'Real-Time Mode'
-        is_trig = new_mode == 'Triggered Mode'
+        is_trig = new_mode == 'Trigger Mode'
         is_fra = new_mode == 'FRA Mode'
 
         # Update common UI elements visibility based on flags
@@ -71,10 +71,10 @@ def init_signals_settings(dp: 'DigitalPoints') -> None:
         dp.main.ui.labelFRA.setVisible(is_fra)
         dp.main.ui.frameLineFRA.setVisible(is_fra)
 
-        # Enable FFT button only in Triggered Mode
+        # Enable FFT button only in Trigger Mode
         dp.main.popup_scope.ui.pushButtonComputeFFT.setEnabled(is_trig)
 
-        # Group Triggered Mode specific layouts and lines to toggle them in a loop
+        # Group Trigger Mode specific layouts and lines to toggle them in a loop
         trigger_widgets = (
             dp.main.ui.widgetLayoutSampleCount,
             dp.main.ui.widgetLayoutOneShotMode,
@@ -168,7 +168,7 @@ def init_signals_settings(dp: 'DigitalPoints') -> None:
         lambda value: dp.interface.trigger.__setattr__('one_shot_mode', value)
         )
 
-    # Changing the trigger level.
+    # Changing the trigger threshold.
     dp.main.ui.doubleSpinBoxTriggerLevel.valueChanged.connect(
         lambda value: dp.interface.trigger.__setattr__('level', value)
         )
@@ -773,7 +773,7 @@ def init_signals_settings(dp: 'DigitalPoints') -> None:
         dp.interface.interface = dp.interface.instances[interface]
 
         # Handle mode visibility based on interface.
-        index_trigger = dp.main.ui.comboBoxMode.findText('Triggered Mode')
+        index_trigger = dp.main.ui.comboBoxMode.findText('Trigger Mode')
         index_fra = dp.main.ui.comboBoxMode.findText('FRA Mode')
 
         if interface == 'jtag':
@@ -951,7 +951,7 @@ def init_signals_settings(dp: 'DigitalPoints') -> None:
 
                     # Change progress status.
                     if dp.interface.mode not in (
-                            'Real-Time Mode', 'Triggered Mode'
+                            'Real-Time Mode', 'Trigger Mode'
                             ):
                         dp.status_tracker.progress('-')
 

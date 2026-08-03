@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>669</width>
-    <height>314</height>
+    <width>681</width>
+    <height>467</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -307,79 +307,18 @@ QPushButton:pressed {
          <property name="verticalSpacing">
           <number>6</number>
          </property>
-         <item row="0" column="0">
-          <widget class="QLabel" name="label">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
+         <item row="4" column="0" colspan="2">
+          <spacer name="verticalSpacer_2">
+           <property name="orientation">
+            <enum>Qt::Orientation::Vertical</enum>
            </property>
-           <property name="minimumSize">
+           <property name="sizeHint" stdset="0">
             <size>
-             <width>0</width>
-             <height>20</height>
+             <width>20</width>
+             <height>40</height>
             </size>
            </property>
-           <property name="maximumSize">
-            <size>
-             <width>16777215</width>
-             <height>20</height>
-            </size>
-           </property>
-           <property name="font">
-            <font>
-             <family>Droid Sans</family>
-             <pointsize>-1</pointsize>
-             <bold>true</bold>
-            </font>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">QLabel {
-	margin-left: 5px;
-}</string>
-           </property>
-           <property name="text">
-            <string>Serial Interface</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="1">
-          <widget class="QLabel" name="label_3">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="minimumSize">
-            <size>
-             <width>0</width>
-             <height>20</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>16777215</width>
-             <height>20</height>
-            </size>
-           </property>
-           <property name="font">
-            <font>
-             <family>Droid Sans</family>
-             <pointsize>-1</pointsize>
-             <bold>true</bold>
-            </font>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">QLabel {
-	margin-left: 5px;
-}</string>
-           </property>
-           <property name="text">
-            <string>CAN Interface</string>
-           </property>
-          </widget>
+          </spacer>
          </item>
          <item row="1" column="0">
           <widget class="QFrame" name="frameLine_1">
@@ -391,8 +330,8 @@ QPushButton:pressed {
            </property>
            <property name="minimumSize">
             <size>
-             <width>0</width>
-             <height>0</height>
+             <width>327</width>
+             <height>206</height>
             </size>
            </property>
            <property name="styleSheet">
@@ -424,190 +363,6 @@ QPushButton:pressed {
             <property name="spacing">
              <number>3</number>
             </property>
-            <item row="7" column="0">
-             <widget class="Line" name="line_3">
-              <property name="minimumSize">
-               <size>
-                <width>0</width>
-                <height>2</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>16777215</width>
-                <height>2</height>
-               </size>
-              </property>
-              <property name="orientation">
-               <enum>Qt::Orientation::Horizontal</enum>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="0">
-             <widget class="Line" name="line_2">
-              <property name="minimumSize">
-               <size>
-                <width>0</width>
-                <height>2</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>16777215</width>
-                <height>2</height>
-               </size>
-              </property>
-              <property name="orientation">
-               <enum>Qt::Orientation::Horizontal</enum>
-              </property>
-             </widget>
-            </item>
-            <item row="5" column="0">
-             <widget class="Line" name="line_4">
-              <property name="minimumSize">
-               <size>
-                <width>0</width>
-                <height>2</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>16777215</width>
-                <height>2</height>
-               </size>
-              </property>
-              <property name="orientation">
-               <enum>Qt::Orientation::Horizontal</enum>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="0">
-             <layout class="QHBoxLayout" name="horizontalLayout_2">
-              <property name="spacing">
-               <number>3</number>
-              </property>
-              <property name="leftMargin">
-               <number>10</number>
-              </property>
-              <property name="rightMargin">
-               <number>3</number>
-              </property>
-              <item>
-               <widget class="QLabel" name="label_20">
-                <property name="text">
-                 <string>Baudrate [baud]</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <spacer name="horizontalSpacer_16">
-                <property name="orientation">
-                 <enum>Qt::Orientation::Horizontal</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>40</width>
-                  <height>20</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-              <item>
-               <widget class="QComboBox" name="comboBoxSerialBaudrate">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="minimumSize">
-                 <size>
-                  <width>200</width>
-                  <height>30</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>200</width>
-                  <height>30</height>
-                 </size>
-                </property>
-                <property name="styleSheet">
-                 <string notr="true">QComboBox{
-	background-color: white;
-	border-radius: 5px;
-	border: 1px solid #6272a4;
-	padding-left: 10px;
-	height: 20px;
-}
-
-QComboBox:hover{
-	border: 1px solid #7284b9;
-}
-
-QComboBox:disabled{
-	border: 1px solid #7d7d7d;
-	color: #7d7d7d;
-}
-
-QComboBox::drop-down {
-	background-color: white;
-	subcontrol-origin: padding;
-	subcontrol-position: top right;
-	width: 28px; 
-	border-left: 1px solid #6272a4;
-	border-top-right-radius: 3px;
-	background-image: url(:/icons/icons/icon_arrow_bottom.png);
-	border-bottom-right-radius: 3px;
-	background-position: center;
-	background-repeat: no-reperat;
- }
-
-QComboBox::drop-down:disabled {
-	background-color: #aaaaaa;
-	border-left-color: #aaaaaa;
- }
-
-QComboBox::drop-down:hover {
-	background-color: #d1eeff;
- }
-
-QComboBox::drop-down:on {
-	background-image: url(:/icons/icons/icon_arrow_top.png);
- }
-
-QComboBox QAbstractItemView {
-    background-color: white;
-    selection-background-color: #adc9ff;
-	selection-color: #212121;
-	height: 20px;
-    outline: 0;
-}
-</string>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </item>
-            <item row="1" column="0">
-             <widget class="Line" name="line">
-              <property name="minimumSize">
-               <size>
-                <width>0</width>
-                <height>2</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>16777215</width>
-                <height>2</height>
-               </size>
-              </property>
-              <property name="orientation">
-               <enum>Qt::Orientation::Horizontal</enum>
-              </property>
-             </widget>
-            </item>
             <item row="8" column="0">
              <layout class="QHBoxLayout" name="horizontalLayout_5">
               <property name="spacing">
@@ -716,8 +471,27 @@ QComboBox QAbstractItemView {
               </item>
              </layout>
             </item>
-            <item row="4" column="0">
-             <layout class="QHBoxLayout" name="horizontalLayout_3">
+            <item row="7" column="0">
+             <widget class="Line" name="line_3">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>2</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>2</height>
+               </size>
+              </property>
+              <property name="orientation">
+               <enum>Qt::Orientation::Horizontal</enum>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <layout class="QHBoxLayout" name="horizontalLayout_2">
               <property name="spacing">
                <number>3</number>
               </property>
@@ -728,14 +502,14 @@ QComboBox QAbstractItemView {
                <number>3</number>
               </property>
               <item>
-               <widget class="QLabel" name="label_17">
+               <widget class="QLabel" name="label_20">
                 <property name="text">
-                 <string>Byte Size</string>
+                 <string>Baudrate [baud]</string>
                 </property>
                </widget>
               </item>
               <item>
-               <spacer name="horizontalSpacer_19">
+               <spacer name="horizontalSpacer_16">
                 <property name="orientation">
                  <enum>Qt::Orientation::Horizontal</enum>
                 </property>
@@ -748,7 +522,7 @@ QComboBox QAbstractItemView {
                </spacer>
               </item>
               <item>
-               <widget class="QComboBox" name="comboBoxSerialDataBits">
+               <widget class="QComboBox" name="comboBoxSerialBaudrate">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
                   <horstretch>0</horstretch>
@@ -932,6 +706,133 @@ QComboBox QAbstractItemView {
               </item>
              </layout>
             </item>
+            <item row="4" column="0">
+             <layout class="QHBoxLayout" name="horizontalLayout_3">
+              <property name="spacing">
+               <number>3</number>
+              </property>
+              <property name="leftMargin">
+               <number>10</number>
+              </property>
+              <property name="rightMargin">
+               <number>3</number>
+              </property>
+              <item>
+               <widget class="QLabel" name="label_17">
+                <property name="text">
+                 <string>Byte Size</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="horizontalSpacer_19">
+                <property name="orientation">
+                 <enum>Qt::Orientation::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QComboBox" name="comboBoxSerialDataBits">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>200</width>
+                  <height>30</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>200</width>
+                  <height>30</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QComboBox{
+	background-color: white;
+	border-radius: 5px;
+	border: 1px solid #6272a4;
+	padding-left: 10px;
+	height: 20px;
+}
+
+QComboBox:hover{
+	border: 1px solid #7284b9;
+}
+
+QComboBox:disabled{
+	border: 1px solid #7d7d7d;
+	color: #7d7d7d;
+}
+
+QComboBox::drop-down {
+	background-color: white;
+	subcontrol-origin: padding;
+	subcontrol-position: top right;
+	width: 28px; 
+	border-left: 1px solid #6272a4;
+	border-top-right-radius: 3px;
+	background-image: url(:/icons/icons/icon_arrow_bottom.png);
+	border-bottom-right-radius: 3px;
+	background-position: center;
+	background-repeat: no-reperat;
+ }
+
+QComboBox::drop-down:disabled {
+	background-color: #aaaaaa;
+	border-left-color: #aaaaaa;
+ }
+
+QComboBox::drop-down:hover {
+	background-color: #d1eeff;
+ }
+
+QComboBox::drop-down:on {
+	background-image: url(:/icons/icons/icon_arrow_top.png);
+ }
+
+QComboBox QAbstractItemView {
+    background-color: white;
+    selection-background-color: #adc9ff;
+	selection-color: #212121;
+	height: 20px;
+    outline: 0;
+}
+</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item row="1" column="0">
+             <widget class="Line" name="line">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>2</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>2</height>
+               </size>
+              </property>
+              <property name="orientation">
+               <enum>Qt::Orientation::Horizontal</enum>
+              </property>
+             </widget>
+            </item>
             <item row="0" column="0">
              <layout class="QHBoxLayout" name="horizontalLayout">
               <property name="spacing">
@@ -1040,27 +941,82 @@ QComboBox QAbstractItemView {
               </item>
              </layout>
             </item>
-            <item row="10" column="0">
-             <spacer name="verticalSpacer">
-              <property name="orientation">
-               <enum>Qt::Orientation::Vertical</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
+            <item row="3" column="0">
+             <widget class="Line" name="line_2">
+              <property name="minimumSize">
                <size>
-                <width>20</width>
-                <height>40</height>
+                <width>0</width>
+                <height>2</height>
                </size>
               </property>
-             </spacer>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>2</height>
+               </size>
+              </property>
+              <property name="orientation">
+               <enum>Qt::Orientation::Horizontal</enum>
+              </property>
+             </widget>
             </item>
-            <item row="9" column="0">
-             <widget class="Line" name="line_9">
+            <item row="5" column="0">
+             <widget class="Line" name="line_4">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>2</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>2</height>
+               </size>
+              </property>
               <property name="orientation">
                <enum>Qt::Orientation::Horizontal</enum>
               </property>
              </widget>
             </item>
            </layout>
+          </widget>
+         </item>
+         <item row="0" column="0">
+          <widget class="QLabel" name="label">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>20</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>20</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>Droid Sans</family>
+             <pointsize>-1</pointsize>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel {
+	margin-left: 5px;
+}</string>
+           </property>
+           <property name="text">
+            <string>Serial Interface</string>
+           </property>
           </widget>
          </item>
          <item row="1" column="1">
@@ -1073,8 +1029,8 @@ QComboBox QAbstractItemView {
            </property>
            <property name="minimumSize">
             <size>
-             <width>0</width>
-             <height>0</height>
+             <width>327</width>
+             <height>206</height>
             </size>
            </property>
            <property name="styleSheet">
@@ -1106,6 +1062,246 @@ QComboBox QAbstractItemView {
             <property name="spacing">
              <number>3</number>
             </property>
+            <item row="6" column="0">
+             <layout class="QHBoxLayout" name="horizontalLayout_11">
+              <property name="spacing">
+               <number>3</number>
+              </property>
+              <property name="leftMargin">
+               <number>10</number>
+              </property>
+              <property name="rightMargin">
+               <number>3</number>
+              </property>
+              <item>
+               <widget class="QLabel" name="label_23">
+                <property name="text">
+                 <string>Extended ID</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="horizontalSpacer_25">
+                <property name="orientation">
+                 <enum>Qt::Orientation::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QCheckBox" name="checkBoxExtendedID">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>30</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>30</width>
+                  <height>30</height>
+                 </size>
+                </property>
+                <property name="layoutDirection">
+                 <enum>Qt::LayoutDirection::RightToLeft</enum>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QCheckBox::indicator {
+    border: 1px solid #6272a4;
+	width: 20px;
+	height: 20px;
+	border-radius: 11px;
+    background: white;
+}
+QCheckBox::indicator:hover {
+    border: 1px solid #7284b9;
+}
+QCheckBox::indicator:checked {
+	background-image: url(:/icons/icons/icon_check.png);
+	background-repeat: no-repeat;
+    background-position: center;
+}</string>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item row="4" column="0">
+             <layout class="QHBoxLayout" name="horizontalLayout_8">
+              <property name="spacing">
+               <number>3</number>
+              </property>
+              <property name="leftMargin">
+               <number>10</number>
+              </property>
+              <property name="rightMargin">
+               <number>3</number>
+              </property>
+              <item>
+               <widget class="QLabel" name="label_21">
+                <property name="text">
+                 <string>Bitrate [bit/s]</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="horizontalSpacer_22">
+                <property name="orientation">
+                 <enum>Qt::Orientation::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QSpinBox" name="spinBoxCANBitrate">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>200</width>
+                  <height>30</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>200</width>
+                  <height>30</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QSpinBox {
+	color: black;
+	background-color: white;
+	border-radius: 5px;
+	border: 1px solid #6272a4;
+	padding-left: 5px;
+}
+
+QSpinBox:disabled {
+	color: #7d7d7d;
+	border: 1px solid #7d7d7d;
+}
+
+QSpinBox::down-button {
+	width: 28px;
+	height: 28px;
+	subcontrol-position: left;
+	border-top-left-radius: 3px;
+	border-bottom-left-radius: 3px;
+	background-image: url(:/icons/icons/icon_minus.png);
+	background-position: center;
+	background-repeat: no-reperat;
+	border-right: 1px solid #6272a4;
+	border-top: 1px solid #6272a4;
+	border-bottom: 1px solid #6272a4;
+	margin-left: 1px;
+ }
+
+QSpinBox::up-button:hover,
+QSpinBox::down-button:hover {
+	background-color: #d1eeff;
+ }
+
+QSpinBox::up-button:pressed,
+QSpinBox::down-button:pressed {
+	background-color: #f8f8f2;
+}
+
+QSpinBox::down-button:disabled {
+	background-color: #aaaaaa;
+	border-left-color: #aaaaaa;
+	border-top: 1px solid #aaaaaa;
+ }
+
+QSpinBox::up-button {
+	width: 28px;
+	height: 28px;
+	subcontrol-position: right;
+	border-top-right-radius: 3px;
+	border-bottom-right-radius: 3px;
+	background-image: url(:/icons/icons/icon_plus.png);
+	background-position: center;
+	background-repeat: no-reperat;
+	border-left: 1px solid #6272a4;
+	border-top: 1px solid #6272a4;
+	border-bottom: 1px solid #6272a4;
+	margin-right: 1px;
+ }
+
+QSpinBox::up-button:disabled {
+	background-color: #aaaaaa;
+	border-left-color: #aaaaaa;
+ }
+</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignmentFlag::AlignCenter</set>
+                </property>
+                <property name="minimum">
+                 <number>1</number>
+                </property>
+                <property name="maximum">
+                 <number>1000000</number>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item row="1" column="0">
+             <widget class="Line" name="line_5">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>2</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>2</height>
+               </size>
+              </property>
+              <property name="orientation">
+               <enum>Qt::Orientation::Horizontal</enum>
+              </property>
+             </widget>
+            </item>
+            <item row="5" column="0">
+             <widget class="Line" name="line_7">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>2</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>2</height>
+               </size>
+              </property>
+              <property name="orientation">
+               <enum>Qt::Orientation::Horizontal</enum>
+              </property>
+             </widget>
+            </item>
             <item row="0" column="0">
              <layout class="QHBoxLayout" name="horizontalLayout_9">
               <property name="spacing">
@@ -1233,116 +1429,6 @@ QComboBox QAbstractItemView {
                </widget>
               </item>
              </layout>
-            </item>
-            <item row="3" column="0">
-             <widget class="Line" name="line_6">
-              <property name="minimumSize">
-               <size>
-                <width>0</width>
-                <height>2</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>16777215</width>
-                <height>2</height>
-               </size>
-              </property>
-              <property name="orientation">
-               <enum>Qt::Orientation::Horizontal</enum>
-              </property>
-             </widget>
-            </item>
-            <item row="6" column="0">
-             <layout class="QHBoxLayout" name="horizontalLayout_11">
-              <property name="spacing">
-               <number>3</number>
-              </property>
-              <property name="leftMargin">
-               <number>10</number>
-              </property>
-              <property name="rightMargin">
-               <number>3</number>
-              </property>
-              <item>
-               <widget class="QLabel" name="label_23">
-                <property name="text">
-                 <string>Extended ID</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <spacer name="horizontalSpacer_25">
-                <property name="orientation">
-                 <enum>Qt::Orientation::Horizontal</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>40</width>
-                  <height>20</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-              <item>
-               <widget class="QCheckBox" name="checkBoxExtendedID">
-                <property name="minimumSize">
-                 <size>
-                  <width>0</width>
-                  <height>30</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>30</width>
-                  <height>30</height>
-                 </size>
-                </property>
-                <property name="layoutDirection">
-                 <enum>Qt::LayoutDirection::RightToLeft</enum>
-                </property>
-                <property name="styleSheet">
-                 <string notr="true">QCheckBox::indicator {
-    border: 1px solid #6272a4;
-	width: 20px;
-	height: 20px;
-	border-radius: 11px;
-    background: white;
-}
-QCheckBox::indicator:hover {
-    border: 1px solid #7284b9;
-}
-QCheckBox::indicator:checked {
-	background-image: url(:/icons/icons/icon_check.png);
-	background-repeat: no-repeat;
-    background-position: center;
-}</string>
-                </property>
-                <property name="text">
-                 <string/>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </item>
-            <item row="1" column="0">
-             <widget class="Line" name="line_5">
-              <property name="minimumSize">
-               <size>
-                <width>0</width>
-                <height>2</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>16777215</width>
-                <height>2</height>
-               </size>
-              </property>
-              <property name="orientation">
-               <enum>Qt::Orientation::Horizontal</enum>
-              </property>
-             </widget>
             </item>
             <item row="2" column="0">
              <layout class="QHBoxLayout" name="horizontalLayout_10">
@@ -1477,151 +1563,8 @@ QSpinBox::up-button:disabled {
               </item>
              </layout>
             </item>
-            <item row="8" column="0">
-             <spacer name="verticalSpacer_2">
-              <property name="orientation">
-               <enum>Qt::Orientation::Vertical</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>20</width>
-                <height>40</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item row="4" column="0">
-             <layout class="QHBoxLayout" name="horizontalLayout_8">
-              <property name="spacing">
-               <number>3</number>
-              </property>
-              <property name="leftMargin">
-               <number>10</number>
-              </property>
-              <property name="rightMargin">
-               <number>3</number>
-              </property>
-              <item>
-               <widget class="QLabel" name="label_21">
-                <property name="text">
-                 <string>Bitrate [bit/s]</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <spacer name="horizontalSpacer_22">
-                <property name="orientation">
-                 <enum>Qt::Orientation::Horizontal</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>40</width>
-                  <height>20</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-              <item>
-               <widget class="QSpinBox" name="spinBoxCANBitrate">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="minimumSize">
-                 <size>
-                  <width>200</width>
-                  <height>30</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>200</width>
-                  <height>30</height>
-                 </size>
-                </property>
-                <property name="styleSheet">
-                 <string notr="true">QSpinBox {
-	color: black;
-	background-color: white;
-	border-radius: 5px;
-	border: 1px solid #6272a4;
-	padding-left: 5px;
-}
-
-QSpinBox:disabled {
-	color: #7d7d7d;
-	border: 1px solid #7d7d7d;
-}
-
-QSpinBox::down-button {
-	width: 28px;
-	height: 28px;
-	subcontrol-position: left;
-	border-top-left-radius: 3px;
-	border-bottom-left-radius: 3px;
-	background-image: url(:/icons/icons/icon_minus.png);
-	background-position: center;
-	background-repeat: no-reperat;
-	border-right: 1px solid #6272a4;
-	border-top: 1px solid #6272a4;
-	border-bottom: 1px solid #6272a4;
-	margin-left: 1px;
- }
-
-QSpinBox::up-button:hover,
-QSpinBox::down-button:hover {
-	background-color: #d1eeff;
- }
-
-QSpinBox::up-button:pressed,
-QSpinBox::down-button:pressed {
-	background-color: #f8f8f2;
-}
-
-QSpinBox::down-button:disabled {
-	background-color: #aaaaaa;
-	border-left-color: #aaaaaa;
-	border-top: 1px solid #aaaaaa;
- }
-
-QSpinBox::up-button {
-	width: 28px;
-	height: 28px;
-	subcontrol-position: right;
-	border-top-right-radius: 3px;
-	border-bottom-right-radius: 3px;
-	background-image: url(:/icons/icons/icon_plus.png);
-	background-position: center;
-	background-repeat: no-reperat;
-	border-left: 1px solid #6272a4;
-	border-top: 1px solid #6272a4;
-	border-bottom: 1px solid #6272a4;
-	margin-right: 1px;
- }
-
-QSpinBox::up-button:disabled {
-	background-color: #aaaaaa;
-	border-left-color: #aaaaaa;
- }
-</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignmentFlag::AlignCenter</set>
-                </property>
-                <property name="minimum">
-                 <number>1</number>
-                </property>
-                <property name="maximum">
-                 <number>1000000</number>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </item>
-            <item row="5" column="0">
-             <widget class="Line" name="line_7">
+            <item row="3" column="0">
+             <widget class="Line" name="line_6">
               <property name="minimumSize">
                <size>
                 <width>0</width>
@@ -1658,8 +1601,550 @@ QSpinBox::up-button:disabled {
               </property>
              </widget>
             </item>
+            <item row="8" column="0">
+             <spacer name="verticalSpacer">
+              <property name="orientation">
+               <enum>Qt::Orientation::Vertical</enum>
+              </property>
+              <property name="sizeType">
+               <enum>QSizePolicy::Policy::Preferred</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>40</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
            </layout>
           </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLabel" name="label_3">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>20</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>20</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>Droid Sans</family>
+             <pointsize>-1</pointsize>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel {
+	margin-left: 5px;
+}</string>
+           </property>
+           <property name="text">
+            <string>CAN Interface</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_4">
+           <property name="font">
+            <font>
+             <family>Droid Sans</family>
+             <pointsize>-1</pointsize>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel {
+	margin-left: 5px;
+}</string>
+           </property>
+           <property name="text">
+            <string>JTAG/SWD</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="QFrame" name="frameLine_3">
+           <property name="minimumSize">
+            <size>
+             <width>327</width>
+             <height>118</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">#frameLine_3 {
+	background: white;
+	border: 0px solid #6272a4;
+	border-radius: 7px;
+}</string>
+           </property>
+           <property name="frameShape">
+            <enum>QFrame::Shape::StyledPanel</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Shadow::Raised</enum>
+           </property>
+           <layout class="QGridLayout" name="gridLayout_6">
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
+            <property name="topMargin">
+             <number>3</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>3</number>
+            </property>
+            <property name="spacing">
+             <number>3</number>
+            </property>
+            <item row="0" column="0">
+             <layout class="QHBoxLayout" name="horizontalLayout_7">
+              <property name="spacing">
+               <number>3</number>
+              </property>
+              <property name="leftMargin">
+               <number>10</number>
+              </property>
+              <property name="rightMargin">
+               <number>3</number>
+              </property>
+              <item>
+               <widget class="QLabel" name="label_25">
+                <property name="text">
+                 <string>Adapter</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="horizontalSpacer_21">
+                <property name="orientation">
+                 <enum>Qt::Orientation::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QComboBox" name="comboBoxJTAGAdapter">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>200</width>
+                  <height>30</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>200</width>
+                  <height>30</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QComboBox{
+	background-color: white;
+	border-radius: 5px;
+	border: 1px solid #6272a4;
+	padding-left: 10px;
+	height: 20px;
+}
+
+QComboBox:hover{
+	border: 1px solid #7284b9;
+}
+
+QComboBox:disabled{
+	border: 1px solid #7d7d7d;
+	color: #7d7d7d;
+}
+
+QComboBox::drop-down {
+	background-color: white;
+	subcontrol-origin: padding;
+	subcontrol-position: top right;
+	width: 28px; 
+	border-left: 1px solid #6272a4;
+	border-top-right-radius: 3px;
+	background-image: url(:/icons/icons/icon_arrow_bottom.png);
+	border-bottom-right-radius: 3px;
+	background-position: center;
+	background-repeat: no-reperat;
+ }
+
+QComboBox::drop-down:disabled {
+	background-color: #aaaaaa;
+	border-left-color: #aaaaaa;
+ }
+
+QComboBox::drop-down:hover {
+	background-color: #d1eeff;
+ }
+
+QComboBox::drop-down:on {
+	background-image: url(:/icons/icons/icon_arrow_top.png);
+ }
+
+QComboBox QAbstractItemView {
+    background-color: white;
+    selection-background-color: #adc9ff;
+	selection-color: #212121;
+	height: 20px;
+    outline: 0;
+}
+</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item row="4" column="0">
+             <layout class="QHBoxLayout" name="horizontalLayout_12">
+              <property name="spacing">
+               <number>3</number>
+              </property>
+              <property name="leftMargin">
+               <number>10</number>
+              </property>
+              <property name="rightMargin">
+               <number>3</number>
+              </property>
+              <item>
+               <widget class="QLabel" name="label_26">
+                <property name="text">
+                 <string>Target</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="horizontalSpacer_26">
+                <property name="orientation">
+                 <enum>Qt::Orientation::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QComboBox" name="comboBoxJTAGTarget">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>200</width>
+                  <height>30</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>200</width>
+                  <height>30</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QComboBox{
+	background-color: white;
+	border-radius: 5px;
+	border: 1px solid #6272a4;
+	padding-left: 10px;
+	height: 20px;
+}
+
+QComboBox:hover{
+	border: 1px solid #7284b9;
+}
+
+QComboBox:disabled{
+	border: 1px solid #7d7d7d;
+	color: #7d7d7d;
+}
+
+QComboBox::drop-down {
+	background-color: white;
+	subcontrol-origin: padding;
+	subcontrol-position: top right;
+	width: 28px; 
+	border-left: 1px solid #6272a4;
+	border-top-right-radius: 3px;
+	background-image: url(:/icons/icons/icon_arrow_bottom.png);
+	border-bottom-right-radius: 3px;
+	background-position: center;
+	background-repeat: no-reperat;
+ }
+
+QComboBox::drop-down:disabled {
+	background-color: #aaaaaa;
+	border-left-color: #aaaaaa;
+ }
+
+QComboBox::drop-down:hover {
+	background-color: #d1eeff;
+ }
+
+QComboBox::drop-down:on {
+	background-image: url(:/icons/icons/icon_arrow_top.png);
+ }
+
+QComboBox QAbstractItemView {
+    background-color: white;
+    selection-background-color: #adc9ff;
+	selection-color: #212121;
+	height: 20px;
+    outline: 0;
+}
+</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item row="2" column="0">
+             <layout class="QHBoxLayout" name="horizontalLayout_14">
+              <property name="spacing">
+               <number>3</number>
+              </property>
+              <property name="leftMargin">
+               <number>10</number>
+              </property>
+              <property name="rightMargin">
+               <number>3</number>
+              </property>
+              <item>
+               <widget class="QLabel" name="label_27">
+                <property name="text">
+                 <string>Max Clock</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="horizontalSpacer_27">
+                <property name="orientation">
+                 <enum>Qt::Orientation::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QComboBox" name="comboBoxJTAGMaxClock">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>200</width>
+                  <height>30</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>200</width>
+                  <height>30</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QComboBox{
+	background-color: white;
+	border-radius: 5px;
+	border: 1px solid #6272a4;
+	padding-left: 10px;
+	height: 20px;
+}
+
+QComboBox:hover{
+	border: 1px solid #7284b9;
+}
+
+QComboBox:disabled{
+	border: 1px solid #7d7d7d;
+	color: #7d7d7d;
+}
+
+QComboBox::drop-down {
+	background-color: white;
+	subcontrol-origin: padding;
+	subcontrol-position: top right;
+	width: 28px; 
+	border-left: 1px solid #6272a4;
+	border-top-right-radius: 3px;
+	background-image: url(:/icons/icons/icon_arrow_bottom.png);
+	border-bottom-right-radius: 3px;
+	background-position: center;
+	background-repeat: no-reperat;
+ }
+
+QComboBox::drop-down:disabled {
+	background-color: #aaaaaa;
+	border-left-color: #aaaaaa;
+ }
+
+QComboBox::drop-down:hover {
+	background-color: #d1eeff;
+ }
+
+QComboBox::drop-down:on {
+	background-image: url(:/icons/icons/icon_arrow_top.png);
+ }
+
+QComboBox QAbstractItemView {
+    background-color: white;
+    selection-background-color: #adc9ff;
+	selection-color: #212121;
+	height: 20px;
+    outline: 0;
+}
+</string>
+                </property>
+                <item>
+                 <property name="text">
+                  <string>10 MHz</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>5 MHz</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>2 MHz</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>1 MHz</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>500 kHz</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>200 kHz</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>100 kHz</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>50 kHz</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>20 kHz</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>10 kHz</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>5 kHz</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item row="1" column="0">
+             <widget class="Line" name="line_9">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>2</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>2</height>
+               </size>
+              </property>
+              <property name="orientation">
+               <enum>Qt::Orientation::Horizontal</enum>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="0">
+             <widget class="Line" name="line_10">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>2</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>2</height>
+               </size>
+              </property>
+              <property name="orientation">
+               <enum>Qt::Orientation::Horizontal</enum>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <spacer name="horizontalSpacer_2">
+           <property name="orientation">
+            <enum>Qt::Orientation::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
          </item>
         </layout>
        </item>

@@ -93,7 +93,7 @@ def init_default(dp: 'DigitalPoints') -> None:
         config['rtm']['dump_size_mb']
         )
 
-    # Default value for the trigger level.
+    # Default value for the trigger threshold.
     dp.main.ui.doubleSpinBoxTriggerLevel.setValue(
         config['trigger']['level']
         )

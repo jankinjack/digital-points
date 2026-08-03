@@ -68,7 +68,7 @@ EXPORT Exception_DP process_0x00_frame(const uint_least8_t * const frame)
  * 1      | 1    | Frame Mode
  * 2..5   | 4    | Sampling Frequency [Hz] (32-bit Little-Endian)
  * 6..9   | 4    | Trigger Sample Count (32-bit Little-Endian)
- * 10..11 | 2    | Samples count per frame to transmit in Triggered Mode (16-bit Little-Endian)
+ * 10..11 | 2    | Samples count per frame to transmit in Trigger Mode (16-bit Little-Endian)
  * 12     | 1    | Maximum variable count
  * 13..14 | 2    | CRC-16 over header and payload (16-bit Big-Endian)
  * 15..19 | 5    | Magic Key Terminator (DP_KEY)
@@ -97,7 +97,7 @@ static Exception_DP build_0x00_frame(void)
     tx_buf[8] = READ_BYTE(MICRO_DP.trigger.samples_count, 2);
     tx_buf[9] = READ_BYTE(MICRO_DP.trigger.samples_count, 3);
 
-    // Samples count per frame to transmit in Triggered Mode (16-bit LE).
+    // Samples count per frame to transmit in Trigger Mode (16-bit LE).
     tx_buf[10] = READ_BYTE(MICRO_DP.mem.samples_count_tx_0x02, 0);
     tx_buf[11] = READ_BYTE(MICRO_DP.mem.samples_count_tx_0x02, 1);
 

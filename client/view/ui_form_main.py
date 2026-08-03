@@ -870,8 +870,8 @@ class Ui_Window_Main(object):
         self.pushButtonSetSerial = QPushButton(self.widgetLayoutComButtons)
         self.pushButtonSetSerial.setObjectName(u"pushButtonSetSerial")
         self.pushButtonSetSerial.setEnabled(True)
-        self.pushButtonSetSerial.setMinimumSize(QSize(0, 30))
-        self.pushButtonSetSerial.setMaximumSize(QSize(87, 40))
+        self.pushButtonSetSerial.setMinimumSize(QSize(0, 40))
+        self.pushButtonSetSerial.setMaximumSize(QSize(16777215, 40))
         self.pushButtonSetSerial.setStyleSheet(u"QPushButton {\n"
 "	background-color: #6272a4;	\n"
 "	border-top-left-radius: 5px;\n"
@@ -896,11 +896,37 @@ class Ui_Window_Main(object):
 
         self.horizontalLayoutComButtons.addWidget(self.pushButtonSetSerial)
 
+        self.pushButtonSetJTAG = QPushButton(self.widgetLayoutComButtons)
+        self.pushButtonSetJTAG.setObjectName(u"pushButtonSetJTAG")
+        self.pushButtonSetJTAG.setMinimumSize(QSize(0, 40))
+        self.pushButtonSetJTAG.setMaximumSize(QSize(16777215, 40))
+        self.pushButtonSetJTAG.setStyleSheet(u"QPushButton {\n"
+"	background-color: #6272a4;	\n"
+"	border-radius: 0px;\n"
+"	border-right: 1px solid #7284b9;\n"
+"    color: #f8f8f2;\n"
+"	padding-left: 6px;\n"
+"	padding-right: 6px;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"	background-color: #7284b9;\n"
+"	color: #f8f8f2;\n"
+"}\n"
+"\n"
+"QPushButton:checked {\n"
+"	background-color: #566490;\n"
+"	color: #f8f8f2;\n"
+"}")
+        self.pushButtonSetJTAG.setCheckable(True)
+
+        self.horizontalLayoutComButtons.addWidget(self.pushButtonSetJTAG)
+
         self.pushButtonSetCAN = QPushButton(self.widgetLayoutComButtons)
         self.pushButtonSetCAN.setObjectName(u"pushButtonSetCAN")
         self.pushButtonSetCAN.setEnabled(True)
         self.pushButtonSetCAN.setMinimumSize(QSize(0, 40))
-        self.pushButtonSetCAN.setMaximumSize(QSize(88, 40))
+        self.pushButtonSetCAN.setMaximumSize(QSize(16777215, 40))
         self.pushButtonSetCAN.setStyleSheet(u"QPushButton {\n"
 "	background-color: #6272a4;	\n"
 "	border-top-right-radius: 5px;\n"
@@ -4266,7 +4292,7 @@ class Ui_Window_Main(object):
 
         self.labelMode.setText(QCoreApplication.translate("Window_Main", u"Mode", None))
         self.comboBoxMode.setItemText(0, QCoreApplication.translate("Window_Main", u"Real-Time Mode", None))
-        self.comboBoxMode.setItemText(1, QCoreApplication.translate("Window_Main", u"Triggered Mode", None))
+        self.comboBoxMode.setItemText(1, QCoreApplication.translate("Window_Main", u"Trigger Mode", None))
         self.comboBoxMode.setItemText(2, QCoreApplication.translate("Window_Main", u"FRA Mode", None))
 
         self.labelCursorsMeas.setText(QCoreApplication.translate("Window_Main", u"Cursor measurements", None))
@@ -4281,6 +4307,7 @@ class Ui_Window_Main(object):
         self.checkBoxSaveSelection.setText("")
         self.labelComInterface.setText(QCoreApplication.translate("Window_Main", u"Communication Interface", None))
         self.pushButtonSetSerial.setText(QCoreApplication.translate("Window_Main", u"  Serial  ", None))
+        self.pushButtonSetJTAG.setText(QCoreApplication.translate("Window_Main", u"JTAG", None))
         self.pushButtonSetCAN.setText(QCoreApplication.translate("Window_Main", u"CAN", None))
         self.pushButtonConfigureInterface.setText("")
         self.labelNodeAddress.setText(QCoreApplication.translate("Window_Main", u"Address of Node", None))
@@ -4315,12 +4342,12 @@ class Ui_Window_Main(object):
         self.label_25.setText(QCoreApplication.translate("Window_Main", u"Dump Size", None))
         self.spinBoxDumpSize.setSuffix(QCoreApplication.translate("Window_Main", u" MiB", None))
         self.labelCom.setText(QCoreApplication.translate("Window_Main", u"Communication", None))
-        self.labelEdgeType.setText(QCoreApplication.translate("Window_Main", u"Type of Edge", None))
+        self.labelEdgeType.setText(QCoreApplication.translate("Window_Main", u"Trigger Slope", None))
         self.pushButtonLeadEdge.setText("")
         self.pushButtonTrailEdge.setText("")
         self.pushButtonAlterEdge.setText("")
-        self.labelTriggerCount.setText(QCoreApplication.translate("Window_Main", u"Trigger Divider", None))
-        self.labelTriggerLevel.setText(QCoreApplication.translate("Window_Main", u"Trigger Level", None))
+        self.labelTriggerCount.setText(QCoreApplication.translate("Window_Main", u"Trigger Prescaler", None))
+        self.labelTriggerLevel.setText(QCoreApplication.translate("Window_Main", u"Trigger Threshold", None))
         self.labelSettlingTime.setText(QCoreApplication.translate("Window_Main", u"Settling Time", None))
         self.doubleSpinBoxSettlingTime.setSuffix(QCoreApplication.translate("Window_Main", u" s", None))
         self.labelOneShotMode.setText(QCoreApplication.translate("Window_Main", u"One-Shot Mode", None))
@@ -4329,7 +4356,7 @@ class Ui_Window_Main(object):
         self.labelPreTriggerTime.setText(QCoreApplication.translate("Window_Main", u"-", None))
         self.spinBoxPreTrigger.setSuffix(QCoreApplication.translate("Window_Main", u" sample", None))
         self.spinBoxPreTrigger.setPrefix("")
-        self.labelSampleCount.setText(QCoreApplication.translate("Window_Main", u"Sample Divider", None))
+        self.labelSampleCount.setText(QCoreApplication.translate("Window_Main", u"Sample Decimation", None))
         self.labelPostTrigger.setText(QCoreApplication.translate("Window_Main", u"Post-Trigger Samples", None))
         self.labelPostTriggerTime.setText(QCoreApplication.translate("Window_Main", u"-", None))
         self.spinBoxPostTrigger.setSuffix(QCoreApplication.translate("Window_Main", u" sample", None))

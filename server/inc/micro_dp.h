@@ -119,8 +119,8 @@ typedef enum
     DP_MODE_IDLE     = 0,
     DP_MODE_0x00     = 100,
     DP_MODE_0x01     = 101, // Real-Time Mode
-    DP_MODE_0x02     = 102, // Triggered Mode.
-    DP_MODE_0x02_ACK = 103, // Triggered Mode (acknowledgement).
+    DP_MODE_0x02     = 102, // Trigger Mode.
+    DP_MODE_0x02_ACK = 103, // Trigger Mode (acknowledgement).
     DP_MODE_0x03     = 104, // Writing value to the variable.
     DP_MODE_0x04     = 105, // Start FRA excitation.
 
@@ -272,7 +272,7 @@ typedef struct
     // Previous trigger state for edge detection.
     TriggerState_DP prev_state;
 
-    // Total samples per variable for Triggered Mode.
+    // Total samples per variable for Trigger Mode.
     size_t samples_count_per_var;
 
     // Flag indicating the end of the TX stage.
@@ -305,7 +305,7 @@ typedef struct
 
     struct
     {
-        // Samples per transmission chunk in Triggered Mode.
+        // Samples per transmission chunk in Trigger Mode.
         uint_fast16_t samples_count_tx_0x02;
 
         // Circular buffer for acquired samples.

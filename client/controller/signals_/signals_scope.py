@@ -416,7 +416,7 @@ def init_signals_scope(dp: 'DigitalPoints') -> None:
     dp.interface.trigger.stage_changed.connect(
         lambda: dp.status_tracker.progress(
             dp.interface.trigger.stage,
-            ) if dp.interface.mode == 'Triggered Mode' else None,
+            ) if dp.interface.mode == 'Trigger Mode' else None,
         )
 
     dp.interface.trigger.fra_progress_changed.connect(

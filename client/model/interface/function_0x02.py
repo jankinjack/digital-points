@@ -37,7 +37,7 @@ def function_0x02(
         set_long_read: Callable = lambda _: None,
         ) -> Iterator[tuple[np.ndarray, np.ndarray]]:
     """
-    Generator for Triggered Mode (function 0x02).
+    Generator for Trigger Mode (function 0x02).
     Sends trigger configuration to the MCU, waits for the hardware trigger event,
     reads the buffered data chunks, and yields the aligned time-series arrays.
     """

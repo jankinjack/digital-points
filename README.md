@@ -23,9 +23,9 @@ Supported MCU architectures:
 
 ![Real-Time Mode demo](misc/rtm_demo.gif)
 
-- **Triggered Mode**: Captures variables within a time window at a specified sampling frequency.
+- **Trigger Mode**: Captures variables within a time window at a specified sampling frequency.
 
-![Triggered Mode demo](misc/tm_demo.gif)
+![Trigger Mode demo](misc/tm_demo.gif)
 
 - **Frequency Response Analysis (FRA) Mode**: Measures frequency responses of a real-time control system using single-tone excitation with stepped frequency sweep or multi-tone excitation.
 

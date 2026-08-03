@@ -381,7 +381,9 @@ class UiComSettingsWindow(BaseFramelessWindow):
             self.ui.comboBoxSerialStopBits.addItem(str(stop_bits))
 
         self.shadow_list = _apply_shadows([
-            self.ui.frameLine_1, self.ui.frameLine_2,
+            self.ui.frameLine_1,
+            self.ui.frameLine_2,
+            self.ui.frameLine_3,
             ])
         self._add_esc_shortcut()
 

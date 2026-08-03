@@ -1167,7 +1167,7 @@ QComboBox QAbstractItemView {
                              </item>
                              <item>
                               <property name="text">
-                               <string>Triggered Mode</string>
+                               <string>Trigger Mode</string>
                               </property>
                              </item>
                              <item>
@@ -1640,12 +1640,12 @@ QLabel:disabled {
                                 <property name="minimumSize">
                                  <size>
                                   <width>0</width>
-                                  <height>30</height>
+                                  <height>40</height>
                                  </size>
                                 </property>
                                 <property name="maximumSize">
                                  <size>
-                                  <width>87</width>
+                                  <width>16777215</width>
                                   <height>40</height>
                                  </size>
                                 </property>
@@ -1682,6 +1682,48 @@ QPushButton:checked {
                                </widget>
                               </item>
                               <item>
+                               <widget class="QPushButton" name="pushButtonSetJTAG">
+                                <property name="minimumSize">
+                                 <size>
+                                  <width>0</width>
+                                  <height>40</height>
+                                 </size>
+                                </property>
+                                <property name="maximumSize">
+                                 <size>
+                                  <width>16777215</width>
+                                  <height>40</height>
+                                 </size>
+                                </property>
+                                <property name="styleSheet">
+                                 <string notr="true">QPushButton {
+	background-color: #6272a4;	
+	border-radius: 0px;
+	border-right: 1px solid #7284b9;
+    color: #f8f8f2;
+	padding-left: 6px;
+	padding-right: 6px;
+}
+
+QPushButton:hover {
+	background-color: #7284b9;
+	color: #f8f8f2;
+}
+
+QPushButton:checked {
+	background-color: #566490;
+	color: #f8f8f2;
+}</string>
+                                </property>
+                                <property name="text">
+                                 <string>JTAG</string>
+                                </property>
+                                <property name="checkable">
+                                 <bool>true</bool>
+                                </property>
+                               </widget>
+                              </item>
+                              <item>
                                <widget class="QPushButton" name="pushButtonSetCAN">
                                 <property name="enabled">
                                  <bool>true</bool>
@@ -1694,7 +1736,7 @@ QPushButton:checked {
                                 </property>
                                 <property name="maximumSize">
                                  <size>
-                                  <width>88</width>
+                                  <width>16777215</width>
                                   <height>40</height>
                                  </size>
                                 </property>
@@ -3697,7 +3739,7 @@ QLabel:disabled {
 }</string>
                              </property>
                              <property name="text">
-                              <string>Type of Edge</string>
+                              <string>Trigger Slope</string>
                              </property>
                              <property name="wordWrap">
                               <bool>true</bool>
@@ -3962,7 +4004,7 @@ QLabel:disabled {
 }</string>
                              </property>
                              <property name="text">
-                              <string>Trigger Divider</string>
+                              <string>Trigger Prescaler</string>
                              </property>
                              <property name="wordWrap">
                               <bool>true</bool>
@@ -4156,7 +4198,7 @@ QLabel:disabled {
 }</string>
                              </property>
                              <property name="text">
-                              <string>Trigger Level</string>
+                              <string>Trigger Threshold</string>
                              </property>
                              <property name="wordWrap">
                               <bool>true</bool>
@@ -4794,7 +4836,7 @@ QLabel:disabled {
 }</string>
                              </property>
                              <property name="text">
-                              <string>Sample Divider</string>
+                              <string>Sample Decimation</string>
                              </property>
                              <property name="wordWrap">
                               <bool>true</bool>
