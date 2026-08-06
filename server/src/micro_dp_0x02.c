@@ -173,8 +173,7 @@ EXPORT Exception_DP process_0x02_frame(const uint_least8_t * const frame)
     }
 
     // Validate trigger type and address.
-    if ((are_type_and_address_valid(trigger_address, trigger_type) != 0) || (SIGNALS_DP.build_function != NULL)
-        || (MICRO_DP.mode != DP_MODE_IDLE))
+    if ((are_type_and_address_valid(trigger_address, trigger_type) != 0) || (SIGNALS_DP.build_function != NULL))
     {
         goto FREE_0x02;
     }
@@ -255,7 +254,11 @@ EXPORT Exception_DP process_0x02_frame(const uint_least8_t * const frame)
         // Get a type and an address of a variable.
         const Types_DP var_type = (Types_DP)ptr[0];
         const uintptr_t var_address = BYTES_TO_UINT32(ptr[1], ptr[2], ptr[3], ptr[4]);
-        int_fast8_t alignment = are_type_and_address_valid(var_address, var_type);
+#if DP_BYTE_SIZE == 8
+        const int_fast8_t alignment = are_type_and_address_valid(var_address, var_type);
+#if DP_BYTE_SIZE == 16
+        const int_fast8_t alignment = are_type_and_address_valid(var_address, var_type) >> 1;
+#endif
 
         // Check if the variable's type and address are valid.
         // 64-bit variables are unsupported now with alignment checking...
@@ -265,10 +268,6 @@ EXPORT Exception_DP process_0x02_frame(const uint_least8_t * const frame)
         {
             goto FREE_0x02;
         }
-
-#if DP_BYTE_SIZE == 16
-        alignment = alignment >> 1;
-#endif
 
         MICRO_DP.vars[i].type = var_type;
         MICRO_DP.vars[i].type_bytesize = TYPE_BYTESIZE[var_type];
@@ -400,7 +399,7 @@ static Exception_DP build_0x02_ack_frame(void)
     tx_buf[3] = READ_BYTE(crc, 0);
 
     // Magic Key Terminator.
-    (void)memcpy(&tx_buf[4], DP_KEY, 5);
+    (void)memcpy(&tx_buf[4], DP_KEY, sizeof(DP_KEY) - 1);
 
     MICRO_DP.stage_0x02 = DP_0x02_STAGE_WAIT_ACK;
 
@@ -493,7 +492,7 @@ static Exception_DP build_0x02_frame(void)
     i++;
 
     // Magic Key Terminator.
-    (void)memcpy(&tx_buf[i], DP_KEY, 5);
+    (void)memcpy(&tx_buf[i], DP_KEY, sizeof(DP_KEY) - 1);
     i += 5;
 
     MICRO_DP.stage_0x02 = DP_0x02_STAGE_WAIT_ACK;

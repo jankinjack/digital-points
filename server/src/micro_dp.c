@@ -394,15 +394,15 @@ static inline void *micro_dp_calloc(const void * const buf, const size_t count, 
         static const size_t alignment = alignof(int);
 
         // Calculate the offset aligned to the system's integer boundary.
-        const size_t offset = ((alloc_size + alignment - 1u) / alignment) * alignment;
+        const size_t offset = ((MICRO_DP.mem.alloc_end + alignment - 1u) / alignment) * alignment;
 
-        if ((MICRO_DP.mem.alloc_end + offset) <= memory_limit)
+        if ((offset + alloc_size) <= memory_limit)
         {
-            void * const alloc_start = (void *)((ptrdiff_t)buf + (ptrdiff_t)MICRO_DP.mem.alloc_end);
+            void * const alloc_start = (void *)((ptrdiff_t)buf + (ptrdiff_t)offset);
 
-            MICRO_DP.mem.alloc_end += offset;
+            MICRO_DP.mem.alloc_end = offset + alloc_size;
 
-            return memset(alloc_start, 0, offset);
+            return memset(alloc_start, 0, alloc_size);
         }
     }
 
@@ -459,6 +459,7 @@ void read_variable(Value_DP_Union * const dest, const size_t var_count)
     {
         for (ptrdiff_t i = 0; i < var_count; i++)
         {
+            const volatile Value_DP_Union * src = MICRO_DP.vars[i].ptr;
             volatile Value_DP_Union sample;
             volatile Value_DP_Union sample_check;
 
@@ -467,8 +468,8 @@ void read_variable(Value_DP_Union * const dest, const size_t var_count)
             do
             {
 #ifndef MICRO_DP_EXPORTS
-                (void)memcpy((void *)&sample, MICRO_DP.vars[i].ptr, sizeof(Value_DP_Union));
-                (void)memcpy((void *)&sample_check, MICRO_DP.vars[i].ptr, sizeof(Value_DP_Union));
+                (void)memcpy((void *)&sample, src, sizeof(Value_DP_Union));
+                (void)memcpy((void *)&sample_check, src, sizeof(Value_DP_Union));
 #else
                 sample.float32 = (float)rand() / (float)RAND_MAX;
                 sample_check.float32 = sample.float32;

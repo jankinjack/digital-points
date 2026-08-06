@@ -56,6 +56,12 @@ EXPORT Exception_DP process_0x01_frame(const uint_least8_t * const frame)
 
         const int_fast8_t address_alignment = are_type_and_address_valid(address, var_type);
 
+#if DP_BYTE_SIZE == 8
+        const int_fast8_t address_alignment = are_type_and_address_valid(address, var_type);
+#elif DP_BYTE_SIZE == 16
+        const int_fast8_t address_alignment = are_type_and_address_valid(address, var_type) >> 1;
+#endif
+
         // Validate the variable type and memory alignment.
         // 64-bit variables currently lack proper alignment support.
         if ((address_alignment == -1) ||
@@ -64,10 +70,6 @@ EXPORT Exception_DP process_0x01_frame(const uint_least8_t * const frame)
         {
             return DP_ERROR;
         }
-
-#if DP_BYTE_SIZE == 16
-        address_alignment = address_alignment >> 1;
-#endif
 
         // Store the validated configuration into the global state.
         MICRO_DP.vars[i].address_alignment = address_alignment;
@@ -142,7 +144,7 @@ static Exception_DP build_0x01_frame(void)
     i++;
 
     // Magic Key Terminator.
-    (void)memcpy(&tx_buf[i], DP_KEY, 5);
+    (void)memcpy(&tx_buf[i], DP_KEY, sizeof(DP_KEY) - 1);
     i += 5;
 
     // Transmit the fully built frame via the hardware callback.
