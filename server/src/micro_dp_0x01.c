@@ -54,8 +54,6 @@ EXPORT Exception_DP process_0x01_frame(const uint_least8_t * const frame)
         const Types_DP var_type = (Types_DP)payload[j];
         const uintptr_t address = BYTES_TO_UINT32(payload[j + 1], payload[j + 2], payload[j + 3], payload[j + 4]);
 
-        const int_fast8_t address_alignment = are_type_and_address_valid(address, var_type);
-
 #if DP_BYTE_SIZE == 8
         const int_fast8_t address_alignment = are_type_and_address_valid(address, var_type);
 #elif DP_BYTE_SIZE == 16
@@ -111,7 +109,7 @@ static Exception_DP build_0x01_frame(void)
 
     ptrdiff_t i = 3;
     
-    Value_DP_Union sample[20];
+    static Value_DP_Union sample[20];
     
     // Read variables.
     read_variable(sample, MICRO_DP.var_count);
@@ -128,11 +126,10 @@ static Exception_DP build_0x01_frame(void)
 
 #if DP_BYTE_SIZE == 8
         (void)memcpy(&tx_buf[i], &sample[j].uint8_array[address_alignment], type_bytesize);
-        i += type_bytesize;
 #elif DP_BYTE_SIZE == 16
         (void)memcpy(&tx_buf[i], &sample[j].uint16_array[address_alignment], type_bytesize);
-        i += type_bytesize;
 #endif
+        i += type_bytesize;
     }
 
     // CRC-16 over the header and payload (16-bit BE).
@@ -194,13 +191,6 @@ EXPORT size_t get_0x01_frame_size(void)
 
     // Restore the original global state.
     MICRO_DP.var_count = original_var_count;
-
-    for (ptrdiff_t i = 0; i < (ptrdiff_t)MICRO_DP.var_count; i++)
-    {
-        MICRO_DP.vars[i].type = DP_TYPE_INT8;
-        MICRO_DP.vars[i].address_alignment = 0;
-        MICRO_DP.vars[i].ptr = NULL;
-    }
 
     return MICRO_DP.mem.stub_size;
 }
