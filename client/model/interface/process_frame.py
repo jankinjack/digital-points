@@ -127,7 +127,7 @@ def process_0x02_frame(
             raise ProcessingError(f'Unknown variable type index: {var_type}')
 
         type_bytesize = PACK_SIZE[var_type][1]
-        sample_bytesize = 8
+        sample_bytesize = type_bytesize
         fmt_char = PACK_SIZE[var_type][0]
         offset_delta = samples_count * sample_bytesize
 

@@ -125,6 +125,11 @@ EXPORT Exception_DP micro_dp_init(Info_DP_Struct * const info)
         MICRO_DP.info.memory_limit
     );
 
+    if (MICRO_DP.mem.tx_buf == NULL)
+    {
+        goto FREE_MEMORY;
+    }
+
     MICRO_DP.mem.rx_buf = (uint_least8_t *)micro_dp_calloc(
         MICRO_DP.info.static_buffer,
         buf_size,
@@ -132,12 +137,22 @@ EXPORT Exception_DP micro_dp_init(Info_DP_Struct * const info)
         MICRO_DP.info.memory_limit
     );
 
+    if (MICRO_DP.mem.rx_buf == NULL)
+    {
+        goto FREE_MEMORY;
+    }
+
     MICRO_DP.mem.var_samples = (Value_DP_Union *)micro_dp_calloc(
         MICRO_DP.info.static_buffer,
         1,
         sizeof(Value_DP_Union),
         MICRO_DP.info.memory_limit
     );
+
+    if (MICRO_DP.mem.var_samples == NULL)
+    {
+        goto FREE_MEMORY;
+    }
 
     // Calculate the maximum required transmit buffer size across all functions.
     MICRO_DP.mem.max_size_tx = DP_MAX(get_0x00_frame_size(), get_0x01_frame_size());
@@ -147,6 +162,20 @@ EXPORT Exception_DP micro_dp_init(Info_DP_Struct * const info)
     MICRO_DP.mem.max_size_tx = DP_MAX(MICRO_DP.mem.max_size_tx, get_size_build_0x04_ack_frame());
 
     micro_dp_free();
+
+    // Allocate memory for variable configurations
+    // again after free.
+    MICRO_DP.vars = (Var_DP_Struct *)micro_dp_calloc(
+        MICRO_DP.info.static_buffer,
+        MICRO_DP.info.max_var_count,
+        sizeof(Var_DP_Struct),
+        MICRO_DP.info.memory_limit
+    );
+
+    if (MICRO_DP.vars == NULL)
+    {
+        goto FREE_MEMORY;
+    }
 
     // Calculate the optimal number of samples per transmission chunk for function 0x02.
     // 15u = Header (7) + CRC (2) + Magic Key (5) + Overhead (1)
@@ -350,6 +379,10 @@ EXPORT void micro_dp_reset(void)
     // Disable interrupts to protect shared state.
     SAFE_CALL(MICRO_DP.info.disable_interrupts);
     MICRO_DP = NULL_MICRO_DP;
+    if (MICRO_DP.vars != NULL)
+    {
+        memset((void *)MICRO_DP.vars, 0, MICRO_DP.info.max_var_count * sizeof(Var_DP_Struct));
+    }
     SAFE_CALL(MICRO_DP.info.enable_interrupts);
 }
 
@@ -426,13 +459,18 @@ static inline void micro_dp_free(void)
  */
 void read_variable(Value_DP_Union * const dest, const size_t var_count)
 {
+    if (dest == NULL)
+    {
+        return;
+    }
+    
     // Fastest path: sampling without interrupt management.
     if (MICRO_DP.info.uninterrupted)
     {
         for (ptrdiff_t i = 0; i < var_count; i++)
         {
 #ifndef MICRO_DP_EXPORTS
-            (void)memcpy(&dest[i], MICRO_DP.vars[i].ptr, sizeof(Value_DP_Union));
+            (void)memcpy((void *)&dest[i], (const void *)MICRO_DP.vars[i].ptr, sizeof(Value_DP_Union));
 #else
             dest[i].float32 = (float)rand() / (float)RAND_MAX;
 #endif
@@ -459,7 +497,7 @@ void read_variable(Value_DP_Union * const dest, const size_t var_count)
     {
         for (ptrdiff_t i = 0; i < var_count; i++)
         {
-            const volatile Value_DP_Union * src = MICRO_DP.vars[i].ptr;
+            const volatile Value_DP_Union * const src = MICRO_DP.vars[i].ptr;
             volatile Value_DP_Union sample;
             volatile Value_DP_Union sample_check;
 
@@ -468,8 +506,8 @@ void read_variable(Value_DP_Union * const dest, const size_t var_count)
             do
             {
 #ifndef MICRO_DP_EXPORTS
-                (void)memcpy((void *)&sample, src, sizeof(Value_DP_Union));
-                (void)memcpy((void *)&sample_check, src, sizeof(Value_DP_Union));
+                (void)memcpy((void *)&sample, (const void *)src, sizeof(Value_DP_Union));
+                (void)memcpy((void *)&sample_check, (const void *)src, sizeof(Value_DP_Union));
 #else
                 sample.float32 = (float)rand() / (float)RAND_MAX;
                 sample_check.float32 = sample.float32;

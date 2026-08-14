@@ -80,10 +80,13 @@
         SIGNALS_DP.build_function = (func); \
     } while (0)
 
-#define REGISTER_PROCESS_FUNCTION(func)       \
-    do                                        \
-    {                                         \
-        SIGNALS_DP.process_function = (func); \
+#define REGISTER_PROCESS_FUNCTION(func)           \
+    do                                            \
+    {                                             \
+        if (SIGNALS_DP.process_function == NULL)  \
+        {                                         \
+            SIGNALS_DP.process_function = (func); \
+        }                                         \
     } while (0)
 
 #define UNREGISTER_BUILD_FUNCTION()    do { SIGNALS_DP.build_function = NULL; } while (0)
