@@ -178,19 +178,19 @@ EXPORT Exception_DP micro_dp_init(Info_DP_Struct * const info)
     }
 
     // Calculate the optimal number of samples per transmission chunk for function 0x02.
-    // 15u = Header (7) + CRC (2) + Magic Key (5) + Overhead (1)
+    // 10u = Header (7) + CRC (2) + Overhead (1)
     MICRO_DP.mem.samples_count_tx_0x02 =
-        (uint_fast16_t)(((uint_fast32_t)MICRO_DP.mem.max_size_tx - 15u - (2u * MICRO_DP.info.max_var_count)) / (8u * MICRO_DP.info.max_var_count));
+        (uint_fast16_t)(((uint_fast32_t)MICRO_DP.mem.max_size_tx - 10u - (2u * MICRO_DP.info.max_var_count)) / (8u * MICRO_DP.info.max_var_count));
 
     // Recompute the exact tx buffer size based on the calculated chunk size.
-    MICRO_DP.mem.max_size_tx = 15u + (MICRO_DP.mem.samples_count_tx_0x02 * (8u * MICRO_DP.info.max_var_count)) + (2u * MICRO_DP.info.max_var_count);
+    MICRO_DP.mem.max_size_tx = 10u + (MICRO_DP.mem.samples_count_tx_0x02 * (8u * MICRO_DP.info.max_var_count)) + (2u * MICRO_DP.info.max_var_count);
 
     // Calculate the maximum required receive buffer size across all functions.
-    const size_t rx_max_size_0x00 = 9u + 7u;
-    const size_t rx_max_size_0x01 = 3u + (5u * MICRO_DP.info.max_var_count) + 7u;
-    const size_t rx_max_size_0x02 = 19u + 8u + (5u * MICRO_DP.info.max_var_count) + 7u;
-    const size_t rx_max_size_0x03 = 7u + 8u + 7u;
-    const size_t rx_max_size_0x04 = 11u + (4u * 20u) + 7u;
+    const size_t rx_max_size_0x00 = 9u + 4u;
+    const size_t rx_max_size_0x01 = 3u + (5u * MICRO_DP.info.max_var_count) + 4u;
+    const size_t rx_max_size_0x02 = 19u + 8u + (5u * MICRO_DP.info.max_var_count) + 4u;
+    const size_t rx_max_size_0x03 = 7u + 8u + 4u;
+    const size_t rx_max_size_0x04 = 11u + (4u * 20u) + 4u;
 
     MICRO_DP.mem.rx_buf_size = DP_MAX(rx_max_size_0x00, rx_max_size_0x01);
     MICRO_DP.mem.rx_buf_size = DP_MAX(MICRO_DP.mem.rx_buf_size, rx_max_size_0x02);
@@ -236,10 +236,10 @@ EXPORT Exception_DP micro_dp_init(Info_DP_Struct * const info)
     MICRO_DP.mem.initialized = true;
 
     // Save the successfully allocated state as the reset snapshot.
-    NULL_MICRO_DP.info                   = MICRO_DP.info;
-    NULL_MICRO_DP.mem                    = MICRO_DP.mem;
-    NULL_MICRO_DP.vars                   = MICRO_DP.vars;
-    NULL_MICRO_DP.tx_samples_count       = MICRO_DP.tx_samples_count;
+    NULL_MICRO_DP.info                  = MICRO_DP.info;
+    NULL_MICRO_DP.mem                   = MICRO_DP.mem;
+    NULL_MICRO_DP.vars                  = MICRO_DP.vars;
+    NULL_MICRO_DP.tx_samples_count      = MICRO_DP.tx_samples_count;
     NULL_MICRO_DP.trigger.samples_count = MICRO_DP.trigger.samples_count;
 
 #ifdef MICRO_DP_EXPORTS
@@ -286,7 +286,7 @@ EXPORT Exception_DP micro_dp_background(void)
     if (store_process_function != NULL)
     {
         UNREGISTER_PROCESS_FUNCTION();
-        exception = store_process_function(MICRO_DP.mem.rx_buf);
+        exception = store_process_function(&MICRO_DP.mem.rx_buf[1]);
     }
 
     if (!MICRO_DP.mem.initialized)
@@ -335,36 +335,22 @@ EXPORT void micro_dp_handle_rx_chunk(const uint_least8_t * const chunk, const si
             MICRO_DP.mem.rx_buf_ptr = 0;
         }
 
-        // Parse the DP_KEY sequence to detect the end of a frame.
-        // State machine: track progress through the key bytes.
-        // When the full key is matched, validate and process the frame, then reset.
-        if (byte == (uint_least8_t)DP_KEY[MICRO_DP.mem.sequence])
+        // Finding the delimiter byte to detect the end of a frame.
+        if (byte == 0x00)
         {
-            MICRO_DP.mem.sequence++;
+            cobs_decode(MICRO_DP.mem.rx_buf, MICRO_DP.mem.rx_buf_ptr-1);
 
-            if (MICRO_DP.mem.sequence == (sizeof(DP_KEY) - 1))
+            const uint_least8_t node_addr = MICRO_DP.mem.rx_buf[1];
+            const Modes_DP mode = (Modes_DP)MICRO_DP.mem.rx_buf[2];
+
+            // Validate that the frame is addressed to this node and the function is supported.
+            if ((node_addr == MICRO_DP.info.node_addr) && (mode < DP_MODE_END))
             {
-                const uint_least8_t node_addr = MICRO_DP.mem.rx_buf[0];
-                const Modes_DP mode = (Modes_DP)MICRO_DP.mem.rx_buf[1];
-
-                // Validate that the frame is addressed to this node and the function is supported.
-                if ((node_addr == MICRO_DP.info.node_addr) && (mode < DP_MODE_END))
-                {
-                    // Process the frame.
-                    REGISTER_PROCESS_FUNCTION(PROCESS_FUNCTION[(ptrdiff_t)mode]);
-                }
-
-                MICRO_DP.mem.sequence   = 0u;
-                MICRO_DP.mem.rx_buf_ptr = 0u;
+                // Process the frame.
+                REGISTER_PROCESS_FUNCTION(PROCESS_FUNCTION[(ptrdiff_t)mode]);
             }
-        }
-        else if (byte == (uint_least8_t)DP_KEY[0])
-        {
-            MICRO_DP.mem.sequence = 1;
-        }
-        else
-        {
-            MICRO_DP.mem.sequence = 0;
+
+            MICRO_DP.mem.rx_buf_ptr = 0u;
         }
     }
 
@@ -518,6 +504,88 @@ void read_variable(Value_DP_Union * const dest, const size_t var_count)
             dest[i] = sample;
         }
     }
+}
+
+/**
+ * \brief   COBS encode: insert length bytes to eliminate interior zero bytes.
+ *
+ * The caller must have prepended a 0x00 byte before the data block. This
+ * sentinel guarantees the backward search always terminates without
+ * out-of-bounds access. The function modifies the buffer in-place and
+ * appends a trailing 0x00 terminator.
+ *
+ * \param   buffer: Pointer to the data buffer (must have 1 extra byte at end).
+ * \param   size: Number of data bytes (excluding the prepended and appended 0x00).
+ */
+void cobs_encode(uint_least8_t * const buffer, const size_t size)
+{
+    // Sentinel at buffer[-1] is guaranteed by caller; start at last data byte.
+    const uint_least8_t * end_of_block = &buffer[size - 1];
+
+    // Prepend a 0x00 terminator (COBS overhead byte).
+    // Also serves as a sentinel so the backward search never underflows.
+    buffer[0] = 0x00;
+
+    uint_least8_t * cursor;
+
+    do
+    {
+        // Search backward for the next 0x00 byte.
+        // The prepended 0x00 at buffer[0] guarantees termination.
+        for (cursor = (uint_least8_t *)end_of_block; *cursor != 0x00u; cursor--)
+        {
+        }
+
+        // Replace the 0x00 with the distance to the previous 0x00 (1-indexed).
+        *cursor = (uint_least8_t)(end_of_block - cursor + 1);
+
+        // Move to the preceding block.
+        end_of_block = cursor - 1;
+
+    } while (cursor > buffer);
+
+    // If the original data started with 0x00, the loop wrote 0x00 at buffer[0].
+    // COBS spec: a block-length of 0 is invalid, so use 0x01 (block of length 1
+    // containing just the implicit zero).
+    if (buffer[0] == 0x00u)
+    {
+        buffer[0] = 0x01u;
+    }
+
+    // Append the trailing 0x00 frame terminator.
+    buffer[size] = 0x00u;
+}
+
+/**
+ * \brief   COBS decode: remove length bytes and restore zero bytes.
+ *
+ * The function modifies the buffer in-place, shrinking the data. It returns
+ * early when it encounters a block-length of 0 (end of valid encoded data),
+ * leaving any trailing bytes untouched.
+ *
+ * \param   buffer: Pointer to the COBS-encoded buffer (modified in-place).
+ * \param   size: Total number of bytes in the buffer.
+ */
+void cobs_decode(uint_least8_t * buffer, const size_t size)
+{
+    const uint_least8_t * const end_of_buffer = buffer + size - 1;
+
+    do
+    {
+        const uint_least8_t tmp = *buffer;
+
+        // Block-length of 0 signals end of valid encoded data.
+        // Return early, leaving any trailing bytes unmodified.
+        if (tmp == 0)
+        {
+            return;
+        }
+
+        // Zero out the block-length byte and advance by that many positions.
+        *buffer = 0x00u;
+        buffer += tmp;
+
+    } while (buffer < end_of_buffer);
 }
 
 /**

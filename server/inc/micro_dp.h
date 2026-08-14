@@ -35,9 +35,6 @@
     #define EXPORT
 #endif
 
-// Magic key for frame termination.
-#define DP_KEY "vicet"
-
 // Architecture bit width detection.
 #if UINT_FAST8_MAX == UINTMAX_C(0xFF)
     #define DP_ARCH_BIT_WIDTH (8)
@@ -320,9 +317,6 @@ typedef struct
         // Current write index in the receive buffer.
         size_t rx_buf_ptr;
 
-        // DP_KEY parsing sequence index
-        ptrdiff_t sequence;
-
         // Memory initialization flag.
         bool_t initialized;
 
@@ -405,5 +399,8 @@ int_fast8_t are_type_and_address_valid(const uintptr_t, const Types_DP);
 void read_variable(Value_DP_Union * const, const size_t);
 
 Exception_DP micro_dp_func_transmit_stub(const uint_least8_t * const, const size_t);
+
+void cobs_encode(uint_least8_t * const, const size_t);
+void cobs_decode(uint_least8_t *, const size_t);
 
 #endif  // MICRO_DP_H

@@ -20,7 +20,7 @@ static Exception_DP build_0x00_frame(void);
  * registers the response builder, and resets the node to an idle state (no active measurement).
  *
  * \param   frame: Pointer to the received frame buffer.
- * 
+ *
  * \retval  DP_OK: Frame processed successfully; response will be built.
  * \retval  DP_ERROR: Invalid CRC or version mismatch.
  */
@@ -71,8 +71,6 @@ EXPORT Exception_DP process_0x00_frame(const uint_least8_t * const frame)
  * 10..11 | 2    | Samples count per frame to transmit in Trigger Mode (16-bit Little-Endian)
  * 12     | 1    | Maximum variable count
  * 13..14 | 2    | CRC-16 over header and payload (16-bit Big-Endian)
- * 15..19 | 5    | Magic Key Terminator (DP_KEY)
-
  *
  * \retval  DP_OK: Frame built and transmitted successfully.
  * \retval  DP_ERROR: Transmission failed.
@@ -80,26 +78,19 @@ EXPORT Exception_DP process_0x00_frame(const uint_least8_t * const frame)
 static Exception_DP build_0x00_frame(void)
 {
     // Use a local pointer to avoid repetitive dereferencing of the global structure.
-    uint_least8_t * const tx_buf = MICRO_DP.mem.tx_buf;
+    uint_least8_t * const tx_buf = &MICRO_DP.mem.tx_buf[1];
 
     tx_buf[0] = MICRO_DP.info.node_addr;
-    tx_buf[1] = (uint_least8_t)DP_MODE_0x00;
+    tx_buf[1] = DP_MODE_0x00;
 
     // Sampling Frequency (32-bit LE), [Hz].
-    tx_buf[2]  = READ_BYTE(MICRO_DP.info.sampling_freq, 0);
-    tx_buf[3]  = READ_BYTE(MICRO_DP.info.sampling_freq, 1);
-    tx_buf[4]  = READ_BYTE(MICRO_DP.info.sampling_freq, 2);
-    tx_buf[5]  = READ_BYTE(MICRO_DP.info.sampling_freq, 3);
+    (void)memcpy(&tx_buf[2], &MICRO_DP.info.sampling_freq, sizeof(MICRO_DP.info.sampling_freq));
 
     // Trigger Sample Count (32-bit LE).
-    tx_buf[6] = READ_BYTE(MICRO_DP.trigger.samples_count, 0);
-    tx_buf[7] = READ_BYTE(MICRO_DP.trigger.samples_count, 1);
-    tx_buf[8] = READ_BYTE(MICRO_DP.trigger.samples_count, 2);
-    tx_buf[9] = READ_BYTE(MICRO_DP.trigger.samples_count, 3);
+    (void)memcpy(&tx_buf[6], &MICRO_DP.trigger.samples_count, sizeof(MICRO_DP.trigger.samples_count));
 
     // Samples count per frame to transmit in Trigger Mode (16-bit LE).
-    tx_buf[10] = READ_BYTE(MICRO_DP.mem.samples_count_tx_0x02, 0);
-    tx_buf[11] = READ_BYTE(MICRO_DP.mem.samples_count_tx_0x02, 1);
+    (void)memcpy(&tx_buf[10], &MICRO_DP.mem.samples_count_tx_0x02, sizeof(MICRO_DP.mem.samples_count_tx_0x02));
 
     // Maximum variable count.
     tx_buf[12] = READ_BYTE(MICRO_DP.info.max_var_count, 0);
@@ -109,11 +100,10 @@ static Exception_DP build_0x00_frame(void)
     tx_buf[13] = READ_BYTE(crc, 1);
     tx_buf[14] = READ_BYTE(crc, 0);
 
-    // Magic Key Terminator.
-    (void)memcpy(&tx_buf[15], DP_KEY, sizeof(DP_KEY) - 1);
+    cobs_encode(MICRO_DP.mem.tx_buf, 16);
 
     // Transmit the fully built frame via the hardware callback.
-    return MICRO_DP.info.func_transmit(tx_buf, 20);
+    return MICRO_DP.info.func_transmit(MICRO_DP.mem.tx_buf, 17);
 }
 
 /**

@@ -48,7 +48,7 @@ def _upload_signal_chunks(
 
         for _ in range(3):
             interface.write_frame(frame_write)
-            frame_read = interface.read_frame(lambda len_: len_ == 9)
+            frame_read = interface.read_frame(lambda len_: len_ == 4)
 
             if frame_read and process_0x04_ack_frame(tuple(frame_read)):
                 break

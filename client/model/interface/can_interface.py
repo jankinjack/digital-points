@@ -6,6 +6,8 @@ from typing import Optional, Callable, Self
 from contextlib import suppress
 import time
 
+from cobs import cobs
+
 import can
 from can.interfaces import gs_usb, robotell, canalystii
 
@@ -15,10 +17,14 @@ if platform.system() == 'Linux':
 import usb
 
 from controller.common import chunks
-from model.interface.build_frame import DP_KEY
 
 
 class CAN_Interface():
+    """
+    Singleton.
+    Provides thread-safe writing and custom frame reading logic
+    based on the COBS algorithm via CANbus.
+    """
 
     __slots__ = (
         '_bus_type',
@@ -32,6 +38,7 @@ class CAN_Interface():
         '_bus',
         '_abm',
         '_auto_retransmit',
+        '_is_initialized',
         )
     __instance = None
 
@@ -42,6 +49,9 @@ class CAN_Interface():
         return cls.__instance
 
     def __init__(self) -> None:
+        # Prevent re-initialization of the Singleton instance
+        if getattr(self, '_is_initialized', False):
+            return
 
         self._bus_type = None
         self._bitrate = None
@@ -57,6 +67,8 @@ class CAN_Interface():
 
         self._abm = None
         self._auto_retransmit = None
+
+        self._is_initialized = True
 
     @property
     def port(self) -> Optional[str]:
@@ -243,7 +255,6 @@ class CAN_Interface():
         """ Read (receive) a frame. """
 
         frame_read = []
-        check_seq = DP_KEY
 
         real_timeout = self._timeout
 
@@ -258,12 +269,11 @@ class CAN_Interface():
                     if not message_read.is_error_frame and message_read.is_rx:
                         frame_read += list(message_read.data)
 
-                        seq = [i+len(check_seq) for i in range(len(frame_read))
-                            if frame_read[i:i+len(check_seq)] == check_seq]
+                        # Finding the delimeter byte.
+                        if 0x00 in frame_read:
+                            index = frame_read.index(0x00)
 
-                        # Finding the DP_KEY-sequence.
-                        if seq:
-                            frame_read = frame_read[:seq[-1]]
+                            frame_read = frame_read[:index]
                             break
                 elif real_timeout is not None:
                     return []
@@ -272,11 +282,13 @@ class CAN_Interface():
                 if blocked_thread_exit():
                     return []
 
+        frame_read = cobs.decode(frame_read)
+
         # Check if the frame is read.
-        if (len(frame_read) < 9 or not check_func(len(frame_read))):
+        if (len(frame_read) < 4 or not check_func(len(frame_read))):
             return []
 
-        return frame_read[0:-5]
+        return list(frame_read)
 
     def flush_tx_buffer(self) -> None:
         """ Flush TX buffer. """

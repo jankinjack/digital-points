@@ -81,7 +81,7 @@ def function_0x01(
                 err_count += 1
                 continue
 
-            frame_read = interface.read_frame(lambda len_: len_ >= 12)
+            frame_read = interface.read_frame(lambda len_: len_ >= 7)
 
             if not frame_read:
                 err_count += 1

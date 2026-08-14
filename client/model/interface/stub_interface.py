@@ -10,7 +10,7 @@ class StubInterface:
     """
     Singleton wrapper around a serial interface stub.
     Provides thread-safe writing and custom frame reading logic
-    based on a proprietary termination key (DP_KEY).
+    based on the COBS algorithm.
     """
 
     __slots__ = (

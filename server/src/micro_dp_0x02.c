@@ -185,7 +185,7 @@ EXPORT Exception_DP process_0x02_frame(const uint_least8_t * const frame)
 
     (void)memcpy((void *)&trigger_aux_value, (const void *)&frame[7], TYPE_BYTESIZE[(ptrdiff_t)trigger_type]);
 
-    const uint_least8_t * const frame_offset = &frame[7u + TYPE_BYTESIZE[trigger_type]];
+    const uint_least8_t * const frame_offset = &frame[7 + TYPE_BYTESIZE[trigger_type]];
 
 #elif DP_BYTE_SIZE == 16
 
@@ -193,7 +193,7 @@ EXPORT Exception_DP process_0x02_frame(const uint_least8_t * const frame)
 
     (void)memcpy((void *)&trigger_aux_value, (const void *)&integer_form, TYPE_BYTESIZE[(ptrdiff_t)trigger_type]);
 
-    const uint_least8_t * const frame_offset = &frame[7u + 2u * TYPE_BYTESIZE[trigger_type]];
+    const uint_least8_t * const frame_offset = &frame[7 + 2 * TYPE_BYTESIZE[trigger_type]];
 
 #endif
 
@@ -256,7 +256,7 @@ EXPORT Exception_DP process_0x02_frame(const uint_least8_t * const frame)
         const uintptr_t var_address = BYTES_TO_UINT32(ptr[1], ptr[2], ptr[3], ptr[4]);
 #if DP_BYTE_SIZE == 8
         const int_fast8_t alignment = are_type_and_address_valid(var_address, var_type);
-#if DP_BYTE_SIZE == 16
+#elif DP_BYTE_SIZE == 16
         const int_fast8_t alignment = are_type_and_address_valid(var_address, var_type) >> 1;
 #endif
 
@@ -380,14 +380,13 @@ EXPORT Exception_DP process_0x02_ack_frame(const uint_least8_t * const frame)
  * 0      | 1    | Node Address
  * 1      | 1    | Frame Mode
  * 2..3   | 2    | CRC-16 over header only (Big-Endian: MSB first, LSB second)
- * 4..8   | 5    | Magic Key Terminator (DP_KEY)
  *
  * \retval  DP_OK: Frame built and transmitted successfully.
  * \retval  DP_ERROR: Transmission failed.
  */
 static Exception_DP build_0x02_ack_frame(void)
 {
-    uint_least8_t * const tx_buf = MICRO_DP.mem.tx_buf;
+    uint_least8_t * const tx_buf = &MICRO_DP.mem.tx_buf[1];
 
     tx_buf[0] = MICRO_DP.info.node_addr;
     tx_buf[1] = (uint_least8_t)DP_MODE_0x02;
@@ -398,13 +397,12 @@ static Exception_DP build_0x02_ack_frame(void)
     tx_buf[2] = READ_BYTE(crc, 1);
     tx_buf[3] = READ_BYTE(crc, 0);
 
-    // Magic Key Terminator.
-    (void)memcpy(&tx_buf[4], DP_KEY, sizeof(DP_KEY) - 1);
+    cobs_encode(MICRO_DP.mem.tx_buf, 5);
 
     MICRO_DP.stage_0x02 = DP_0x02_STAGE_WAIT_ACK;
 
     // Transmit the fully built frame via the hardware callback.
-    return MICRO_DP.info.func_transmit(tx_buf, 9u);
+    return MICRO_DP.info.func_transmit(MICRO_DP.mem.tx_buf, 6);
 }
 
 /**
@@ -420,7 +418,6 @@ static Exception_DP build_0x02_ack_frame(void)
  * 7        | 1    | Variable Count (Number of variables in this frame)
  * 8..M     | Var. | Variables Payload (Repeated "Variable Count" times)
  * M+1..M+2 | 2    | CRC-16 over header and payload (Big-Endian: MSB first, LSB second)
- * M+3..M+7 | 5    | Magic Key Terminator (DP_KEY)
  *
  * \retval  DP_OK: Frame built and transmitted successfully.
  * \retval  DP_ERROR: Transmission failed.
@@ -428,7 +425,7 @@ static Exception_DP build_0x02_ack_frame(void)
 static Exception_DP build_0x02_frame(void)
 {
     // Use a local pointer to avoid repetitive dereferencing of the global structure.
-    uint_least8_t * const tx_buf = MICRO_DP.mem.tx_buf;
+    uint_least8_t * const tx_buf = &MICRO_DP.mem.tx_buf[1];
 
     tx_buf[0] = MICRO_DP.info.node_addr;
     tx_buf[1] = (uint_least8_t)DP_MODE_0x02;
@@ -491,14 +488,12 @@ static Exception_DP build_0x02_frame(void)
     tx_buf[i] = READ_BYTE(crc, 0);
     i++;
 
-    // Magic Key Terminator.
-    (void)memcpy(&tx_buf[i], DP_KEY, sizeof(DP_KEY) - 1);
-    i += 5;
+    cobs_encode(MICRO_DP.mem.tx_buf, i + 1);
 
     MICRO_DP.stage_0x02 = DP_0x02_STAGE_WAIT_ACK;
 
     // Transmit the fully built frame via the hardware callback.
-    return MICRO_DP.info.func_transmit(tx_buf, i);
+    return MICRO_DP.info.func_transmit(MICRO_DP.mem.tx_buf, i + 2);
 }
 
 /**
@@ -672,9 +667,13 @@ EXPORT size_t get_0x02_frame_size(void)
     const uint_fast16_t original_tx_samples = MICRO_DP.mem.samples_count_tx_0x02;
     const uint32_t original_samples_per_var = MICRO_DP.trigger.samples_count_per_var;
     const uint_fast8_t original_tx_count = MICRO_DP.tx_samples_count;
+    
+    size_t prev_stub_size = 0;
 
-    for (uint_fast16_t n = 1; MICRO_DP.mem.stub_size < 450; n++)
+    for (uint_fast16_t n = 1; MICRO_DP.mem.stub_size < 255; n++)
     {
+        prev_stub_size = MICRO_DP.mem.stub_size;
+        
         // Setup the worst-case scenario.
         MICRO_DP.var_count = MICRO_DP.info.max_var_count;
         MICRO_DP.trigger.samples_count_per_var = 1000;
@@ -712,6 +711,8 @@ EXPORT size_t get_0x02_frame_size(void)
             MICRO_DP.vars[i].address_alignment = 0;
         }
     }
+    
+    MICRO_DP.mem.stub_size = prev_stub_size;
 
     return MICRO_DP.mem.stub_size;
 }

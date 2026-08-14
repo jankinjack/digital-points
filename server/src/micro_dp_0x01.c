@@ -17,7 +17,7 @@ static Exception_DP build_0x01_frame(void);
  * \brief   Process an incoming 0x01 frame from the host.
  *
  * \param   frame: Pointer to the received frame buffer.
- * 
+ *
  * \retval  DP_OK: Frame processed successfully; response will be built.
  * \retval  DP_ERROR: Invalid variable count, CRC mismatch, or invalid memory alignment.
  */
@@ -92,8 +92,6 @@ EXPORT Exception_DP process_0x01_frame(const uint_least8_t * const frame)
  * 2        | 1    | Variable Count
  * 3..M     | Var. | Variables Payload (repeated "Variable Count" times)
  * M+1..M+2 | 2    | CRC-16 over header and payload (16-bit Big-Endian)
- * M+3..M+7 | 5    | Magic Key Terminator (DP_KEY)
-
  *
  * \retval  DP_OK: Frame built and transmitted successfully.
  * \retval  DP_ERROR: Transmission failed.
@@ -101,19 +99,19 @@ EXPORT Exception_DP process_0x01_frame(const uint_least8_t * const frame)
 static Exception_DP build_0x01_frame(void)
 {
     // Use a local pointer to avoid repetitive dereferencing of the global structure.
-    uint_least8_t * const tx_buf = MICRO_DP.mem.tx_buf;
+    uint_least8_t * const tx_buf = &MICRO_DP.mem.tx_buf[1];
 
     tx_buf[0] = MICRO_DP.info.node_addr;
     tx_buf[1] = (uint_least8_t)DP_MODE_0x01;
     tx_buf[2] = (uint_least8_t)MICRO_DP.var_count;
 
-    ptrdiff_t i = 3;
-    
     static Value_DP_Union sample[20];
-    
+
     // Read variables.
     read_variable(sample, MICRO_DP.var_count);
 
+    // Serialize variables into the transmit buffer.
+    ptrdiff_t i = 3;
     for (ptrdiff_t j = 0; j < (ptrdiff_t)MICRO_DP.var_count; j++)
     {
         // Append the variable type.
@@ -140,12 +138,10 @@ static Exception_DP build_0x01_frame(void)
     tx_buf[i] = READ_BYTE(crc, 0);
     i++;
 
-    // Magic Key Terminator.
-    (void)memcpy(&tx_buf[i], DP_KEY, sizeof(DP_KEY) - 1);
-    i += 5;
+    cobs_encode(MICRO_DP.mem.tx_buf, i + 1);
 
     // Transmit the fully built frame via the hardware callback.
-    return MICRO_DP.info.func_transmit(tx_buf, (size_t)i);
+    return MICRO_DP.info.func_transmit(MICRO_DP.mem.tx_buf, (size_t)i + 2);
 }
 
 /**

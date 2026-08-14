@@ -4,14 +4,14 @@ import serial
 from typing import Optional, Callable, Self
 from contextlib import suppress
 
-from model.interface.build_frame import DP_KEY_STR
+from cobs import cobs
 
 
 class SerialInterface(serial.Serial):
     """
     Singleton wrapper around pyserial's Serial class.
     Provides thread-safe writing and custom frame reading logic
-    based on a proprietary termination key (DP_KEY).
+    based on the COBS algorithm via serial port.
     """
 
     __slots__ = (
@@ -122,7 +122,7 @@ class SerialInterface(serial.Serial):
 
         return self.isOpen()
 
-    def _atomic_write(self, data: bytearray) -> int:
+    def _atomic_write(self, data: bytearray | bytes) -> int:
         """ Thread-safe write operation. """
 
         with suppress(Exception), self._write_lock:
@@ -149,7 +149,7 @@ class SerialInterface(serial.Serial):
             blocked_thread_exit: Callable = lambda: False,
             ) -> list[int]:
         """
-        Read a frame terminated by the proprietary DP_KEY.
+        Read a frame terminated by the delimeter byte.
 
         Args:
             check_func: A callback to validate the length of the received frame.
@@ -157,7 +157,7 @@ class SerialInterface(serial.Serial):
                                 calling thread is requested to stop.
 
         Returns:
-            A list of integers representing the frame bytes (excluding the DP_KEY),
+            A list of integers representing the frame bytes (excluding the delimiter byte),
             or an empty list if the read fails or is aborted.
         """
 
@@ -168,7 +168,7 @@ class SerialInterface(serial.Serial):
 
         try:
             while True:
-                frame_read = self.read_until(expected=DP_KEY_STR)
+                frame_read = self.read_until(expected=b'\x00')
 
                 if frame_read:
                     break
@@ -191,12 +191,14 @@ class SerialInterface(serial.Serial):
             # side-effects on subsequent read operations.
             pass # self.timeout = real_timeout
 
+        frame_read = cobs.decode(frame_read[:-1])
+
         # Validate frame length and custom check function.
-        # Minimum frame size is 9 bytes (including the 5-byte DP_KEY).
-        if len(frame_read) < 9 or not check_func(len(frame_read)):
+        # Minimum frame size is 4 bytes.
+        if len(frame_read) < 4 or not check_func(len(frame_read)):
             return []
 
-        return list(frame_read[0:-5])
+        return list(frame_read)
 
     def flush_tx_buffer(self) -> None:
         """ Discard all data in the transmit buffer. """

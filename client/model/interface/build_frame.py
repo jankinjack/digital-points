@@ -6,6 +6,8 @@ import numpy as np
 
 import info
 
+from cobs import cobs
+
 from model.trigger import Trigger
 from model.interface.crc16 import crc16
 
@@ -36,21 +38,18 @@ FUNCTION_ID = {
     '0x04':  105,
     }
 
-# Proprietary key appended to all frames for basic validation.
-DP_KEY_STR = b'vicet'
-DP_KEY = tuple(DP_KEY_STR)
-
 # Maximum allowed length for a single FRA signal chunk in one frame
 MAX_SIGNAL_CHUNK_SIZE = 20
 
 
 def _finalize_frame(frame: tuple[int, ...]) -> tuple[int, ...]:
     """
-    Append CRC-16 checksum and the proprietary DP_KEY to the packed frame.
+    Append CRC-16 checksum and the delimiter byte 0x00 to the packed frame.
     Centralizes the finalization logic for all protocol frames.
     """
 
-    return frame + crc16(frame) + DP_KEY
+    byte_frame = bytearray(frame + crc16(frame))
+    return tuple(cobs.encode(byte_frame) + b'\x00')
 
 
 def build_0x00_frame(slave_address: int) -> tuple[int, ...]:

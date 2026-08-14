@@ -539,7 +539,7 @@ class InterfaceBase(QObject):
         # Attempt to write and verify up to 3 times.
         for _ in range(3):
             self._interface.write_frame(frame_write)
-            frame_read = self._interface.read_frame(lambda len_: len_ == 9)
+            frame_read = self._interface.read_frame(lambda len_: len_ == 4)
 
             if frame_read and process_0x03_ack_frame(tuple(frame_read)):
                 return  # Success

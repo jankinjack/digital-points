@@ -80,7 +80,7 @@ def function_0x02(
                 err_count_out += 1
                 continue
 
-            frame_read = interface.read_frame(lambda len_: len_ == 9)
+            frame_read = interface.read_frame(lambda len_: len_ == 4)
 
             if not frame_read or not process_0x02_ack_frame(tuple(frame_read)):
                 err_count_out += 1
@@ -107,7 +107,7 @@ def function_0x02(
                 if not STUB_MICRO_DP:
                     set_long_read(interface.timeout is None)
                     frame_read = interface.read_frame(
-                        check_func=lambda len_: len_ >= 25,
+                        check_func=lambda len_: len_ >= 20,
                         blocked_thread_exit=lambda: not event.is_set(),
                         )
                     set_long_read(False)
@@ -118,7 +118,7 @@ def function_0x02(
                             and interface.is_connected()
                             and not frame_read):
                         frame_read = interface.read_frame(
-                            check_func=lambda len_: len_ >= 25,
+                            check_func=lambda len_: len_ >= 20,
                             blocked_thread_exit=lambda: not event.is_set(),
                             )
 

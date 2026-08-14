@@ -80,7 +80,6 @@ EXPORT Exception_DP process_0x04_frame(const uint_least8_t * const frame)
  * 0      | 1    | Node Address
  * 1      | 1    | Frame Mode
  * 2..3   | 2    | CRC-16 over header only (Big-Endian: MSB first, LSB second)
- * 4..8   | 5    | Magic Key Terminator (DP_KEY)
  *
  * \retval  DP_OK: Frame built and transmitted successfully.
  * \retval  DP_ERROR: Transmission failed.
@@ -88,7 +87,7 @@ EXPORT Exception_DP process_0x04_frame(const uint_least8_t * const frame)
 static Exception_DP build_0x04_ack_frame(void)
 {
     // Use a local pointer to avoid repetitive dereferencing of the global structure.
-    uint_least8_t * const tx_buf = MICRO_DP.mem.tx_buf;
+    uint_least8_t * const tx_buf = &MICRO_DP.mem.tx_buf[1];
 
     tx_buf[0] = MICRO_DP.info.node_addr;
     tx_buf[1] = (uint_least8_t)DP_MODE_0x04;
@@ -99,11 +98,10 @@ static Exception_DP build_0x04_ack_frame(void)
     tx_buf[2] = READ_BYTE(crc, 1);
     tx_buf[3] = READ_BYTE(crc, 0);
 
-    // Magic Key Terminator.
-    (void)memcpy(&tx_buf[4], DP_KEY, sizeof(DP_KEY) - 1);
+    cobs_encode(MICRO_DP.mem.tx_buf, 5);
 
     // Transmit the fully built frame via the hardware callback.
-    return MICRO_DP.info.func_transmit(tx_buf, 9u);
+    return MICRO_DP.info.func_transmit(MICRO_DP.mem.tx_buf, 6);
 }
 
 /**
