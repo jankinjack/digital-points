@@ -26,16 +26,12 @@ static Exception_DP build_0x00_frame(void);
  */
 EXPORT Exception_DP process_0x00_frame(const uint_least8_t * const frame)
 {
-    // Validate CRC.
-    const uint16_t crc = crc16(frame, 9);
-    const bool_t is_crc_valid = (BYTES_TO_UINT16(frame[9], frame[10]) == crc);
-
     // Validate DP version against the micro_dp's definitions.
     const bool_t is_version_valid = (BYTES_TO_UINT16(frame[3], frame[4]) == DP_VERSION_MAJOR)
         && (BYTES_TO_UINT16(frame[5], frame[6]) == DP_VERSION_MINOR)
         && (BYTES_TO_UINT16(frame[7], frame[8]) == DP_VERSION_PATCH);
 
-    if (is_crc_valid && is_version_valid)
+    if (is_version_valid)
     {
         // Store the address alignment hint to subsequently validate variable addresses.
         MICRO_DP.mem.address_alignment = frame[2];

@@ -35,19 +35,6 @@ EXPORT Exception_DP process_0x03_frame(const uint_least8_t * const frame)
         return DP_ERROR;
     }
 
-    // Calculate frame size and validate CRC-16.
-#if DP_BYTE_SIZE == 8
-    const size_t size = 7u + TYPE_BYTESIZE[type];
-#elif DP_BYTE_SIZE == 16
-    const size_t size = 7u + (2u * TYPE_BYTESIZE[type]);
-#endif
-    const uint16_t crc = crc16(frame, size);
-
-    if (BYTES_TO_UINT16(frame[size], frame[(ptrdiff_t)(size + 1u)]) != crc)
-    {
-        return DP_ERROR;
-    }
-
 #if 0
     // Check if float numbers are inf or NaN.
     if (((type == DP_TYPE_FLOAT32) && !isfinite(*(const float *)(const void *)&frame[7]))

@@ -326,22 +326,30 @@ EXPORT void micro_dp_handle_rx_chunk(const uint_least8_t * const chunk, const si
             MICRO_DP.mem.rx_buf_ptr = 0;
         }
 
-        // Finding the delimiter byte to detect the end of a frame.
+        // Find the delimiter byte to detect the end of a frame.
         if (byte == 0x00)
         {
-            cobs_decode(MICRO_DP.mem.rx_buf, MICRO_DP.mem.rx_buf_ptr-1);
+            cobs_decode(MICRO_DP.mem.rx_buf, MICRO_DP.mem.rx_buf_ptr - 1);
 
-            const uint_least8_t node_addr = MICRO_DP.mem.rx_buf[1];
-            const Modes_DP mode = (Modes_DP)MICRO_DP.mem.rx_buf[2];
+            const uint_least8_t * const frame = &MICRO_DP.mem.rx_buf[1];
+            const uint_least8_t node_addr = frame[0];
+            const Modes_DP mode = (Modes_DP)frame[1];
 
-            // Validate that the frame is addressed to this node and the function is supported.
+            // Validate that the frame is addressed to this node,
+            // the function is supported, and the CRC is valid.
             if ((node_addr == MICRO_DP.info.node_addr) && (mode < DP_MODE_END))
             {
-                // Process the frame.
-                REGISTER_PROCESS_FUNCTION(PROCESS_FUNCTION[(ptrdiff_t)mode]);
+                const size_t frame_data_size = MICRO_DP.mem.rx_buf_ptr - 4;
+                const uint16_t crc = crc16(frame, frame_data_size);
+
+                if (BYTES_TO_UINT16(frame[frame_data_size], frame[frame_data_size + 1]) == crc)
+                {
+                    // Process the frame.
+                    REGISTER_PROCESS_FUNCTION(PROCESS_FUNCTION[(ptrdiff_t)mode]);
+                }
             }
 
-            MICRO_DP.mem.rx_buf_ptr = 0u;
+            MICRO_DP.mem.rx_buf_ptr = 0;
         }
     }
 

@@ -33,15 +33,6 @@ EXPORT Exception_DP process_0x01_frame(const uint_least8_t * const frame)
         return DP_ERROR;
     }
 
-    // Calculate frame size and validate CRC-16.
-    const size_t   size = 3 + (5 * (size_t)var_count);
-    const uint16_t crc  = crc16(frame, size);
-
-    if (BYTES_TO_UINT16(frame[size], frame[size + 1u]) != crc)
-    {
-        return DP_ERROR;
-    }
-
     // Point to the frame payload.
     const uint_least8_t * const payload = &frame[3];
 

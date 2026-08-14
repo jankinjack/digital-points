@@ -233,19 +233,6 @@ EXPORT Exception_DP process_0x02_frame(const uint_least8_t * const frame)
         goto FREE_0x02;
     }
 
-    // Validate payload CRC-16.
-#if DP_BYTE_SIZE == 8
-    const size_t size = 19 + TYPE_BYTESIZE[trigger_type] + (5 * (size_t)var_count);
-#elif DP_BYTE_SIZE == 16
-    const size_t size = 19 + (2 * TYPE_BYTESIZE[trigger_type]) + (5 * (size_t)var_count);
-#endif
-    const uint16_t crc = crc16(frame, size);
-
-    if (BYTES_TO_UINT16(frame[size], frame[size + 1u]) != crc)
-    {
-        goto FREE_0x02;
-    }
-
     // Parse and validate variable configurations.
     const uint_least8_t *ptr = &frame_offset[12];
 
@@ -323,13 +310,6 @@ EXPORT Exception_DP process_0x02_ack_frame(const uint_least8_t * const frame)
     if (MICRO_DP.stage_0x02 != DP_0x02_STAGE_WAIT_ACK)
     {
         return DP_OK;
-    }
-
-    const uint16_t crc = crc16(frame, 3);
-
-    if (BYTES_TO_UINT16(frame[3], frame[4]) != crc)
-    {
-        return DP_ERROR;
     }
 
     const Transmit_0x02_CMD_DP command = (Transmit_0x02_CMD_DP)frame[2];
