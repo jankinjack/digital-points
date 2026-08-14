@@ -3,6 +3,8 @@ import ctypes
 from contextlib import suppress
 from typing import Optional, Callable, Self
 
+from cobs import cobs
+
 from model.interface.stub_server import lib, get_stub_rx_frame
 
 
@@ -208,12 +210,14 @@ class StubInterface:
             else:
                 break
 
-        # A valid frame must be at least 9 bytes long and pass the custom check.
-        if len(frame_read) < 9 or not check_func(len(frame_read)):
+        frame_read = cobs.decode(bytes(frame_read[:-1]))
+
+        # A valid frame must be at least 4 bytes long and pass the custom check.
+        if len(frame_read) < 4 or not check_func(len(frame_read)):
             return []
 
         # Strip the last 5 bytes (likely CRC or termination sequence).
-        return list(frame_read[:-5])
+        return list(frame_read)
 
     def flush_tx_buffer(self) -> None:
         """ Clear the transmit buffer (stub implementation does nothing). """

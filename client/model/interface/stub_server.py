@@ -22,8 +22,6 @@ class InfoDPStruct(ctypes.Structure):
     """ Structure representing the configuration passed to the Micro DP C library. """
 
     _fields_ = [
-        ("get_sys_clk_counter", GET_SYS_CLK_COUNTER),
-        ("sys_clk_freq", ctypes.c_uint32),
         ("sampling_freq", ctypes.c_uint32),
         ("func_transmit", FUNC_TRANSMIT),
         ("uninterrupted", ctypes.c_bool),
@@ -50,17 +48,6 @@ lib.micro_dp_handle_rx_chunk.restype = None
 
 # Global state to store the latest received frame and system clock counter.
 RX_FRAME: list[int] = []
-SYS_CLK_COUNTER: int = 0
-
-
-@GET_SYS_CLK_COUNTER
-def py_get_sys_clk_counter() -> int:
-    """ Callback invoked by the C library to get the current system clock. """
-
-    global SYS_CLK_COUNTER
-    SYS_CLK_COUNTER += 1000
-    time.sleep(0.01)
-    return SYS_CLK_COUNTER
 
 
 @FUNC_TRANSMIT
@@ -112,24 +99,22 @@ def _initialize_stub() -> None:
     """ Initialize the Micro DP C library with mock callbacks and memory buffers. """
 
     info = InfoDPStruct()
-    
-    info.get_sys_clk_counter = py_get_sys_clk_counter
-    info.sys_clk_freq = 200_000_000
+
     info.sampling_freq = 100_000
     info.func_transmit = py_func_transmit
     info.uninterrupted = True
     info.disable_interrupts = py_disable_interrupts
     info.enable_interrupts = py_enable_interrupts
-    
+
     # Pass the pointer to the static buffer.
     info.static_buffer = ctypes.cast(my_static_pool, ctypes.c_void_p)
     info.memory_limit = BUFFER_SIZE
-    
+
     info.valid_min_addr = 0
     info.valid_max_addr = 0xFFFFFFFFFFFFFFFF
     info.max_var_count = 20
     info.node_addr = 0
-    
+
     res = lib.micro_dp_init(ctypes.byref(info))
     if res != 0:
         RuntimeError(f"micro_dp_init returned: {res} (Expected 0 for DP_OK)")
